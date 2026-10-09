@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>AppBusters · главная</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Oswald:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Токены 1:1 с файлом Figma «AppBusters · Web Designer Test», страница UI Kit */
+:root {
+  /* Color */
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-tertiary: #7C7C7C;
+  --text-placeholder: #B8B8B8;
+  --text-on-inverse: #FFFFFF;
+  --text-accent: #097FE8;
+  --surface-page: #FFFFFF;
+  --surface-muted: #F2F2F2;
+  --surface-card: #FFFFFF;
+  --surface-inverse: #000000;
+  --surface-inverse-hover: #333333;
+  --surface-accent-soft: #F3F9FE;
+  --border-divider: #EDEDED;
+  --border-strong: #000000;
+  --accent-blue: #097FE8;
+  --accent-yellow: #FFB010;
+  --accent-orange: #FF7A2F;
+  --accent-red: #F04438;
+  --accent-green: #22B24C;
+  --accent-indigo: #3B3BD9;
+  --accent-blue-gloss: linear-gradient(90deg, #097FE8 0%, #097FE8 55%, #9CCBF6 80%, #097FE8 100%);
+
+  /* Spacing */
+  --space-4: 4px; --space-8: 8px; --space-12: 12px; --space-16: 16px; --space-20: 20px;
+  --space-24: 24px; --space-32: 32px; --space-40: 40px; --space-48: 48px; --space-64: 64px;
+  --space-80: 80px; --space-96: 96px; --space-120: 120px; --space-160: 160px;
+  --layout-container: 1000px;
+  --layout-page: 1440px;
+
+  /* Radius */
+  --radius-sm: 12px; --radius-md: 16px; --radius-lg: 24px; --radius-xl: 32px;
+  --radius-section: 160px; --radius-full: 999px;
+
+  /* Type */
+  --font-display: "Oswald", sans-serif;
+  --font-text: "Manrope", sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--surface-page); color: var(--text-primary); font: 500 16px/24px var(--font-text); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; color: inherit; border: 0; background: none; }
+
+/* Text styles */
+.display-xl { font: 400 72px/80px var(--font-display); letter-spacing: -0.01em; }
+.heading-h2 { font: 400 40px/48px var(--font-display); letter-spacing: -0.005em; }
+.heading-h3 { font: 400 24px/32px var(--font-display); }
+.heading-h4 { font: 500 16px/20px var(--font-display); }
+.text-lg { font: 500 20px/28px var(--font-text); letter-spacing: -0.01em; }
+.text-md { font: 500 16px/24px var(--font-text); }
+.text-sm { font: 500 14px/20px var(--font-text); }
+.text-xs { font: 500 12px/16px var(--font-text); }
+.label-md { font: 700 16px/20px var(--font-text); }
+.label-sm { font: 700 12px/16px var(--font-text); }
+
+.container { width: var(--layout-container); margin: 0 auto; }
+
+/* Button */
+.button { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-8); border-radius: var(--radius-full); cursor: pointer; transition: background-color 150ms ease-out; white-space: nowrap; }
+.button--sm { height: 36px; padding: 0 var(--space-16); font: 700 12px/16px var(--font-text); }
+.button--md { height: 48px; padding: 0 var(--space-24); font: 700 16px/20px var(--font-text); }
+.button--primary { background: var(--surface-inverse); color: var(--text-on-inverse); }
+.button--primary:hover { background: var(--surface-inverse-hover); }
+.button--secondary { background: var(--surface-card); color: var(--text-primary); box-shadow: inset 0 0 0 1px var(--border-divider); }
+.button--secondary:hover { background: var(--surface-muted); }
+
+.icon-button { width: 56px; height: 56px; border-radius: var(--radius-full); background: var(--surface-inverse); color: var(--text-on-inverse); display: grid; place-items: center; cursor: pointer; transition: background-color 150ms ease-out; }
+.icon-button:hover { background: var(--surface-inverse-hover); }
+
+.badge { display: inline-flex; align-items: center; gap: var(--space-8); padding: var(--space-8) var(--space-12); border-radius: var(--radius-full); background: var(--surface-accent-soft); color: var(--text-accent); }
+
+.highlight { display: inline-block; padding: 0 var(--space-24); border-radius: var(--radius-full); background: var(--accent-blue-gloss); color: var(--text-on-inverse); }
+/* Motion: load · блик · слева → направо · 1400ms · ease-in-out, пауза 2600ms, по кругу */
+@media (prefers-reduced-motion: no-preference) {
+  .highlight {
+    background: linear-gradient(105deg, var(--accent-blue) 0%, var(--accent-blue) 40%, #9CCBF6 50%, var(--accent-blue) 60%, var(--accent-blue) 100%);
+    background-size: 300% 100%;
+    animation: highlight-shine 4s ease-in-out infinite;
+  }
+}
+@keyframes highlight-shine {
+  0% { background-position: 100% 0; }
+  35%, 100% { background-position: 0% 0; }
+}
+
+.chip { display: inline-flex; align-items: center; padding: 0 var(--space-16); border-radius: var(--radius-full); }
+.chip--primary { height: 44px; background: var(--surface-card); }
+.chip--secondary { height: 36px; background: var(--surface-muted); }
+
+.avatar-group { display: flex; }
+.avatar-group span { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--surface-page); background: var(--border-divider); }
+.avatar-group span + span { margin-left: -12px; }
+.avatar-group span:nth-child(1) { background: linear-gradient(135deg, #C9B8A6, #7D6A5B); }
+.avatar-group span:nth-child(2) { background: linear-gradient(135deg, #8E8A86, #3C3A38); }
+.avatar-group span:nth-child(3) { background: linear-gradient(135deg, #F0D2B4, #B98962); }
+
+.idea-input { display: flex; width: 448px; border-radius: var(--radius-full); background: var(--surface-inverse); }
+.idea-input__field { flex: 1; display: flex; align-items: center; gap: var(--space-8); padding: 0 var(--space-12); height: 48px; border-radius: var(--radius-full); background: var(--surface-card); box-shadow: inset 0 0 0 1.5px var(--border-strong); }
+.idea-input__field:focus-within { box-shadow: inset 0 0 0 2px var(--border-strong); }
+.idea-input__field input { flex: 1; outline: none; font: 500 14px/20px var(--font-text); }
+.idea-input__field input::placeholder { color: var(--text-tertiary); }
+.idea-input__field svg { color: var(--text-placeholder); flex: none; }
+
+.section-header { display: flex; flex-direction: column; align-items: center; gap: var(--space-16); text-align: center; }
+.section-header p { color: var(--text-secondary); }
+
+/* Header */
+.site-header { display: flex; align-items: center; justify-content: space-between; padding: var(--space-20) var(--space-24) 0 var(--space-32); position: relative; }
+.logo { display: flex; align-items: center; gap: var(--space-12); font: 700 20px/24px var(--font-text); }
+.nav { position: absolute; left: 50%; top: var(--space-20); transform: translateX(-50%); display: flex; gap: var(--space-24); height: 40px; align-items: center; padding: 0 var(--space-20); background: var(--surface-card); border-radius: var(--radius-sm); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.nav a { color: var(--text-secondary); display: flex; align-items: center; gap: var(--space-4); }
+.header-actions { display: flex; gap: var(--space-8); align-items: center; padding: var(--space-4); border-radius: var(--radius-sm); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+.lang { display: flex; align-items: center; gap: var(--space-4); padding: 0 var(--space-12); }
+
+/* Hero */
+.hero { padding-top: var(--space-120); display: flex; flex-direction: column; align-items: center; text-align: center; }
+.hero .badge { margin-bottom: var(--space-12); }
+.hero h1 { margin-bottom: var(--space-12); }
+.hero h1 .highlight { line-height: 80px; }
+.hero p { color: var(--text-secondary); margin-bottom: var(--space-32); }
+
+/* Services */
+.services { display: grid; grid-template-columns: 1fr 494px; gap: var(--space-48); margin-top: var(--space-96); }
+.services h2 { margin-bottom: var(--space-80); }
+.service { padding: var(--space-24) 0; border-top: 1px solid var(--border-divider); }
+.service:last-child { border-bottom: 1px solid var(--border-divider); }
+.service__title { display: flex; align-items: center; gap: var(--space-12); color: var(--text-placeholder); cursor: pointer; }
+.service__icon { width: 20px; height: 20px; border-radius: 5px; background: var(--accent-yellow); display: grid; place-items: center; color: var(--text-on-inverse); }
+.service--open .service__title { color: var(--accent-yellow); }
+.service__body { color: var(--text-secondary); margin-top: var(--space-12); display: none; }
+.service--open .service__body { display: block; }
+.card { border-radius: var(--radius-lg); background: var(--surface-muted); display: grid; place-items: center; padding: var(--space-32); }
+.card__slot { width: 272px; height: 288px; border-radius: var(--radius-lg); background: var(--surface-card); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+.services .card { aspect-ratio: 1; }
+
+/* Demo call */
+.demo { margin-top: var(--space-96); }
+.demo .section-header { gap: var(--space-8); margin-bottom: var(--space-24); }
+.video { height: 560px; border-radius: var(--radius-lg); background: var(--surface-muted); display: grid; place-items: center; }
+.video__play { width: 40px; height: 40px; border-radius: 50%; background: #DADADA; display: grid; place-items: center; color: var(--surface-card); }
+
+/* What you get */
+.outcome { margin-top: var(--space-48); background: var(--surface-muted); border-radius: var(--radius-section) var(--radius-section) 0 0; padding: var(--space-120) 0 var(--space-96); }
+.docs { display: flex; justify-content: center; margin: var(--space-48) auto var(--space-64); }
+.doc { width: 232px; height: 248px; background: var(--surface-card); border-radius: var(--radius-lg); box-shadow: 0 8px 24px rgba(0,0,0,0.06); padding: var(--space-16); display: flex; flex-direction: column; justify-content: flex-end; gap: var(--space-8); position: relative; overflow: hidden; }
+.doc:nth-child(1) { transform: rotate(-5deg) translateY(8px); }
+.doc:nth-child(3) { transform: rotate(5deg) translateY(8px); }
+.doc + .doc { margin-left: -8px; }
+.doc::before { content: ""; position: absolute; left: 50%; top: var(--space-24); width: 96px; height: 72px; transform: translateX(-50%); border-radius: 6px; background: repeating-linear-gradient(var(--surface-card) 0 10px, var(--border-divider) 10px 12px), var(--surface-muted); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.doc::after { content: ""; position: absolute; left: 50%; top: 96px; width: 72px; height: 4px; transform: translateX(-30%); border-radius: 2px; background: var(--accent-orange); }
+.doc__title { font: 600 14px/20px var(--font-text); }
+.doc p { color: var(--text-secondary); }
+.lead-form { width: 808px; margin: 0 auto; background: var(--surface-card); border-radius: var(--radius-xl); padding: var(--space-40) var(--space-48) var(--space-32) var(--space-56, 56px); display: flex; flex-direction: column; gap: var(--space-32); }
+.lead-form__hint { display: flex; align-items: center; gap: var(--space-12); color: var(--text-tertiary); }
+.lead-form__fields { display: grid; grid-template-columns: 1fr 1fr; row-gap: var(--space-32); column-gap: var(--space-24); }
+.field { display: flex; gap: var(--space-12); align-items: baseline; }
+.field label { flex: none; }
+.field input { flex: 1; min-width: 0; outline: none; font: 500 20px/28px var(--font-text); letter-spacing: -0.01em; }
+.field input::placeholder { color: var(--text-placeholder); }
+.lead-form__footer { display: flex; align-items: center; justify-content: space-between; }
+.consent { display: flex; align-items: center; gap: var(--space-8); color: var(--text-tertiary); margin-left: var(--space-64); }
+.consent a { color: var(--text-secondary); text-decoration: underline; }
+.consent input { width: 14px; height: 14px; accent-color: var(--surface-inverse); }
+.team { display: flex; justify-content: center; align-items: center; gap: var(--space-24); margin-top: var(--space-24); }
+
+/* Блоки в работе: места из брифа */
+.todo { margin: var(--space-80) auto 0; height: 360px; border: 2px dashed var(--accent-blue); border-radius: var(--radius-lg); background: var(--surface-accent-soft); display: grid; place-items: center; text-align: center; }
+.todo + .todo { margin-top: var(--space-64); }
+.todo p { color: var(--text-tertiary); margin-top: var(--space-8); }
+
+/* FAQ */
+.faq { display: grid; grid-template-columns: 272px 1fr; margin-top: var(--space-96); }
+.accordion { border-bottom: 1px solid var(--border-divider); padding: var(--space-20); }
+.accordion summary { list-style: none; display: flex; align-items: center; gap: var(--space-16); cursor: pointer; }
+.accordion summary::-webkit-details-marker { display: none; }
+.accordion__icon { width: 20px; height: 20px; flex: none; display: grid; place-items: center; }
+.accordion__icon::before { content: "+"; font: 400 22px/1 var(--font-text); color: var(--tone, var(--accent-blue)); }
+.accordion[open] .accordion__icon { border-radius: 5px; background: var(--accent-blue); }
+.accordion[open] .accordion__icon::before { content: ""; width: 10px; height: 2px; border-radius: 1px; background: var(--surface-card); }
+.accordion p { color: var(--text-tertiary); padding: var(--space-12) 0 0 36px; }
+.accordion:nth-child(2) { --tone: var(--accent-yellow); }
+.accordion:nth-child(3) { --tone: var(--accent-red); }
+.accordion:nth-child(4) { --tone: var(--accent-green); }
+.accordion:nth-child(5) { --tone: var(--accent-indigo); }
+
+.page-end { height: var(--space-120); }
+.test-note { padding: var(--space-24); text-align: center; color: var(--text-tertiary); border-top: 1px solid var(--border-divider); }
+.test-note a { color: var(--text-secondary); text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="#">
+    <svg width="34" height="30" viewBox="0 0 34 30" aria-hidden="true"><g>
+      <rect x="18" y="0" width="5" height="5" fill="#F04438"/><rect x="24" y="2" width="5" height="5" fill="#097FE8"/><rect x="12" y="6" width="5" height="5" fill="#3B3BD9"/><rect x="18" y="6" width="5" height="5" fill="#FFB010"/><rect x="24" y="8" width="4" height="4" fill="#22B24C"/><rect x="6" y="12" width="5" height="5" fill="#097FE8"/><rect x="13" y="13" width="4" height="4" fill="#F04438"/><rect x="19" y="13" width="3" height="3" fill="#097FE8"/><rect x="2" y="19" width="3" height="3" fill="#FFB010"/><rect x="8" y="19" width="3" height="3" fill="#22B24C"/><rect x="0" y="25" width="2" height="2" fill="#3B3BD9"/>
+    </g></svg>
+    AppBusters
+  </a>
+  <nav class="nav text-sm">
+    <a href="#">Услуги <svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>
+    <a href="#">Мы ищем таланты <svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>
+    <a href="#">Блог <svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>
+    <a href="#">Кейсы</a>
+    <a href="#">Партнерская программа</a>
+  </nav>
+  <div class="header-actions">
+    <span class="lang label-sm">RU <svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></span>
+    <a class="button button--sm button--primary" href="#lead">Оставить заявку</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero container">
+    <span class="badge text-sm">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c.4 3.3 2.2 5.1 5.5 5.5v1c-3.3.4-5.1 2.2-5.5 5.5h-1C6.6 10.2 4.8 8.4 1.5 8v-1C4.8 6.6 6.6 4.8 7 1.5z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      Аккредитованная IT компания
+    </span>
+    <h1 class="display-xl">Системно запускаем<br><span class="highlight">IT &amp; AI</span> проекты</h1>
+    <p class="text-md">Приглашаем пройти демо-созвон с&nbsp;разработчиком:<br>подберем эксперта из&nbsp;вашей сферы</p>
+    <form class="idea-input" onsubmit="return false">
+      <label class="idea-input__field">
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3c4.4 0 7 2.6 7 6s-2.6 6-7 6c-.9 0-1.7-.1-2.4-.3L4 16.5l.9-3.1C3.7 12.3 3 10.8 3 9c0-3.4 2.6-6 7-6z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        <input type="text" placeholder="Ваша идея...">
+      </label>
+      <button class="button button--md button--primary" type="submit">Обсудить</button>
+    </form>
+  </section>
+
+  <section class="services container">
+    <div>
+      <h2 class="heading-h2">От сырой идеи до<br>устойчивой прибыли</h2>
+      <div class="service service--open">
+        <div class="service__title heading-h3"><span class="service__icon"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M4.5 3 2 6l2.5 3M7.5 3 10 6 7.5 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Разработка</div>
+        <p class="service__body text-sm">Создаем визуальную концепцию, разрабатываем интерфейс. Делаем адаптивную верстку по&nbsp;макетам, реализуем интерактивные элементы, проектируем и&nbsp;реализуем API, настраиваем базы данных.</p>
+      </div>
+      <div class="service"><div class="service__title heading-h3">Дизайн</div></div>
+      <div class="service"><div class="service__title heading-h3">Маркетинг</div></div>
+    </div>
+    <div class="card"><div class="card__slot"></div></div>
+  </section>
+
+  <section class="demo container">
+    <div class="section-header">
+      <h2 class="heading-h2">Приглашаем на демо-созвон с<br>экспертом разработчиком</h2>
+      <p class="text-xs">Подберем специалиста именно из&nbsp;вашей сферы</p>
+    </div>
+    <div class="video"><span class="video__play"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 2.5v9l7.5-4.5z" fill="currentColor"/></svg></span></div>
+  </section>
+
+  <section class="outcome" id="lead">
+    <div class="section-header container">
+      <h2 class="heading-h2">Что вы получите после созвона</h2>
+      <p class="text-md">За 30 минут созвона мы сформируем фундамент<br>для вашего проекта.</p>
+    </div>
+    <div class="docs">
+      <article class="doc"><h3 class="doc__title">Дорожная карта</h3><p class="text-sm">Прозрачный план работ с&nbsp;дедлайнами и&nbsp;приоритетами.</p></article>
+      <article class="doc"><h3 class="doc__title">Расходы и ROI</h3><p class="text-sm">Прозрачная смета и&nbsp;прогноз окупаемости (ROI)</p></article>
+      <article class="doc"><h3 class="doc__title">Техническое задание</h3><p class="text-sm">Детально проработанный документ, описывающий всю логику, функционал продукта.</p></article>
+    </div>
+    <form class="lead-form" onsubmit="return false">
+      <div class="lead-form__hint text-xs"><span class="chip chip--secondary text-sm" style="color:var(--text-primary)">3 файла</span>Документы почти готовы. Куда их направить?</div>
+      <div class="lead-form__fields text-lg">
+        <div class="field"><label for="f-name">Хорошо, мое имя</label><input id="f-name" placeholder="Введите имя"></div>
+        <div class="field"><label for="f-phone">Вот мой</label><input id="f-phone" placeholder="Введите номер телефона"></div>
+        <div class="field"><label for="f-tg">Телеграм</label><input id="f-tg" placeholder="Введите свой телеграмм"></div>
+      </div>
+      <div class="lead-form__footer">
+        <label class="consent text-xs"><input type="checkbox"> Я соглашаюсь на <a href="#">обработку персональных данных</a> и <a href="#">политику конфиденциальности</a></label>
+        <button class="icon-button" type="submit" aria-label="Отправить"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </form>
+    <div class="team">
+      <div class="avatar-group"><span></span><span></span><span></span></div>
+      <span class="chip chip--primary heading-h4">Ждём вашего звонка</span>
+    </div>
+  </section>
+
+  <!-- 01 Projects: рисуем в Figma, фрейм 6:2 -->
+  <section class="todo container" id="projects">
+    <div><h2 class="heading-h3">«Немногие из наших проектов»</h2><p class="text-sm">Блок в работе</p></div>
+  </section>
+
+  <!-- 02 Trust: фрейм 6:4 -->
+  <section class="todo container" id="trust">
+    <div><h2 class="heading-h3">«Познакомьтесь с нами ближе»</h2><p class="text-sm">Блок в работе</p></div>
+  </section>
+
+  <section class="faq container">
+    <h2 class="heading-h2">Частые<br>вопросы</h2>
+    <div>
+      <details class="accordion" open>
+        <summary class="text-md"><span class="accordion__icon"></span>Сколько это стоит и хватит ли моего бюджета?</summary>
+        <p class="text-sm">Стоимость зависит от&nbsp;задачи и&nbsp;масштаба проекта. После обсуждения идеи оцениваем объём работ и&nbsp;предлагаем оптимальный вариант реализации под ваш бюджет</p>
+      </details>
+      <details class="accordion"><summary class="text-md"><span class="accordion__icon"></span>А если бюджет небольшой, есть смысл обращаться?</summary><p class="text-sm">Ответ появится здесь</p></details>
+      <details class="accordion"><summary class="text-md"><span class="accordion__icon"></span>Подпишите NDA? Безопасно ли рассказывать идею?</summary><p class="text-sm">Ответ появится здесь</p></details>
+      <details class="accordion"><summary class="text-md"><span class="accordion__icon"></span>Что будет с моим номером, начнете звонить и слать рассылки?</summary><p class="text-sm">Ответ появится здесь</p></details>
+      <details class="accordion"><summary class="text-md"><span class="accordion__icon"></span>Можно связаться напрямую с Игнатом?</summary><p class="text-sm">Ответ появится здесь</p></details>
+    </div>
+  </section>
+
+  <!-- 03 Final CTA: фрейм 6:6 -->
+  <section class="todo container" id="cta">
+    <div><h2 class="heading-h3">Финальный CTA</h2><p class="text-sm">Блок в работе</p></div>
+  </section>
+
+  <div class="page-end"></div>
+</main>
+
+<footer class="test-note text-xs">Тестовое задание <a href="https://shugadiva.github.io">Diana Shvedskaia</a> для AppBusters. Это не официальный сайт компании, формы никуда не отправляются</footer>
+
+<script>
+  // Раскрытие услуг: открыт один пункт за раз
+  document.querySelectorAll('.service__title').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.service').forEach(s => s.classList.toggle('service--open', s === t.parentElement));
+  }));
+</script>
+</body>
+</html>
