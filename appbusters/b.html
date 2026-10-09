@@ -195,17 +195,19 @@ svg { display: block; flex: none; }
 .consent input:checked { background: var(--surface-inverse); box-shadow: none; }
 .team { display: flex; justify-content: center; align-items: center; gap: var(--space-32); margin-top: var(--space-24); }
 
-/* Projects, вариант B: четыре карточки (Figma 80:309) */
+/* Projects, вариант B: карточки 2×2 по раскладке grovia.framer.ai (Figma 85:202) */
 .projects { background: var(--surface-muted); padding: var(--space-96) 0; display: flex; flex-direction: column; align-items: center; gap: var(--space-48); }
 .projects .section-header { width: 1000px; }
-.project-cards { width: var(--layout-container); display: flex; gap: var(--space-16); }
-.project-card { flex: 1; min-height: 425px; display: flex; flex-direction: column; padding: var(--space-8); border-radius: var(--radius-lg); background: var(--surface-card); transition: transform 250ms ease-out; }
-.project-card:hover { transform: translateY(-4px); }
-.project-card__media { height: 176px; display: flex; justify-content: space-between; align-items: flex-start; padding: var(--space-12); border-radius: var(--radius-md); background: center / cover no-repeat; }
-.project-card__media .badge { align-self: flex-start; }
-.project-card__body { flex: 1; display: flex; flex-direction: column; gap: var(--space-8); padding: var(--space-20) var(--space-12); }
-.project-card__body p { color: var(--text-tertiary); }
-.project-card__result { display: flex; align-items: flex-end; gap: var(--space-12); padding: var(--space-16) var(--space-12) var(--space-8); border-top: 1px solid var(--border-divider); }
+.project-cards { width: var(--layout-container); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); }
+.project-card { display: flex; flex-direction: column; padding: var(--space-8); border-radius: var(--radius-lg); background: var(--surface-card); }
+.project-card__media { height: 282px; display: flex; justify-content: flex-end; align-items: flex-end; padding: var(--space-16); border-radius: var(--radius-md); overflow: hidden; position: relative; }
+.project-card__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 400ms ease-out; }
+/* Motion: hover · обложка · scale 1 → 1.03 · 400ms · ease-out */
+.project-card:hover .project-card__media img { transform: scale(1.03); }
+.project-card__media .badge { position: relative; align-self: flex-end; }
+.project-card__body { display: flex; flex-direction: column; gap: var(--space-8); padding: var(--space-24) var(--space-16) var(--space-8); }
+.project-card__body p { color: var(--text-secondary); }
+.project-card__result { display: flex; align-items: flex-end; gap: var(--space-12); padding: var(--space-12) var(--space-16) var(--space-16); }
 .project-card__result .metric { flex: 1; display: flex; flex-direction: column; gap: var(--space-4); }
 .project-card__result .metric span:last-child { color: var(--text-tertiary); }
 .project-card__value { color: var(--text-accent); }
@@ -352,23 +354,23 @@ svg { display: block; flex: none; }
     </div>
     <div class="project-cards">
       <a class="project-card" href="#">
-        <div class="project-card__media" style="background-image:url(img/project-miner.png)"><span class="chip chip--secondary text-xs">01</span><span class="badge text-sm">Telegram Mini App</span></div>
-        <div class="project-card__body"><h3 class="text-lg">Miner</h3><p class="text-sm">Тапалка для криптотрейдера: придумали механику, собрали Mini App и&nbsp;привели аудиторию через блогеров</p></div>
+        <div class="project-card__media"><img src="img/project-miner-wide.jpg" alt="" loading="lazy"><span class="badge text-sm">Telegram Mini App</span></div>
+        <div class="project-card__body"><h3 class="text-lg">Miner</h3><p class="text-md">Тапалка для криптотрейдера: придумали механику, собрали Mini App и&nbsp;привели аудиторию через блогеров</p></div>
         <div class="project-card__result"><div class="metric"><span class="heading-h3 project-card__value">200 000</span><span class="text-xs">пользователей за&nbsp;месяц</span></div><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
       <a class="project-card" href="#">
-        <div class="project-card__media" style="background-image:url(img/project-tryon.png)"><span class="chip chip--secondary text-xs">02</span><span class="badge text-sm">AI-примерка</span></div>
-        <div class="project-card__body"><h3 class="text-lg">Tryon.AI</h3><p class="text-sm">Примерка одежды на&nbsp;фото с&nbsp;помощью AI: собрали приложение и&nbsp;вырастили его на&nbsp;коротких роликах</p></div>
+        <div class="project-card__media"><img src="img/project-tryon-wide.jpg" alt="" loading="lazy"><span class="badge text-sm">AI-примерка</span></div>
+        <div class="project-card__body"><h3 class="text-lg">Tryon.AI</h3><p class="text-md">Примерка одежды на&nbsp;фото с&nbsp;помощью AI: собрали приложение и&nbsp;вырастили его на&nbsp;коротких роликах</p></div>
         <div class="project-card__result"><div class="metric"><span class="heading-h3 project-card__value">100 000</span><span class="text-xs">установок с&nbsp;одного ролика</span></div><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
       <a class="project-card" href="#">
-        <div class="project-card__media" style="background-image:url(img/project-dom.png)"><span class="chip chip--secondary text-xs">03</span><span class="badge text-sm">Ремонт</span></div>
-        <div class="project-card__body"><h3 class="text-lg">Дом «От и&nbsp;До»</h3><p class="text-sm">Приложение для ремонта: объекты на&nbsp;карте, работы и&nbsp;исполнители в&nbsp;одном месте</p></div>
+        <div class="project-card__media"><img src="img/project-dom-wide.jpg" alt="" loading="lazy"><span class="badge text-sm">Ремонт</span></div>
+        <div class="project-card__body"><h3 class="text-lg">Дом «От и&nbsp;До»</h3><p class="text-md">Приложение для ремонта: объекты на&nbsp;карте, работы и&nbsp;исполнители в&nbsp;одном месте</p></div>
         <div class="project-card__result"><div class="metric"><span class="heading-h3 project-card__value">3 стора</span><span class="text-xs">за&nbsp;4 месяца от&nbsp;старта</span></div><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
       <a class="project-card" href="#">
-        <div class="project-card__media" style="background-image:url(img/project-spiritup.png)"><span class="chip chip--secondary text-xs">04</span><span class="badge text-sm">Астрология</span></div>
-        <div class="project-card__body"><h3 class="text-lg">Spirit Up</h3><p class="text-sm">Консультации астрологов и&nbsp;персональные прогнозы в&nbsp;одном приложении</p></div>
+        <div class="project-card__media"><img src="img/project-spiritup-wide.jpg" alt="" loading="lazy"><span class="badge text-sm">Астрология</span></div>
+        <div class="project-card__body"><h3 class="text-lg">Spirit Up</h3><p class="text-md">Консультации астрологов и&nbsp;персональные прогнозы в&nbsp;одном приложении</p></div>
         <div class="project-card__result"><div class="metric"><span class="heading-h3 project-card__value">82%</span><span class="text-xs">доходят до&nbsp;регистрации</span></div><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
     </div>
