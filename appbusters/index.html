@@ -244,10 +244,11 @@ svg { display: block; flex: none; }
 
 /* Final CTA (Figma 126:254): белый фон, композиция как у makro.framer.website, телефон выглядывает и растворяется в белом */
 .cta { padding: var(--space-20); }
-.cta__panel { position: relative; height: 1140px; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: var(--space-64); padding-top: var(--space-120); background: var(--surface-page); }
+.cta__panel { position: relative; height: 1000px; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: var(--space-64); padding-top: var(--space-120); background: var(--surface-page); }
 .cta__head { width: 720px; display: flex; flex-direction: column; align-items: center; gap: var(--space-40); text-align: center; }
+.cta__intro { display: flex; flex-direction: column; align-items: center; gap: var(--space-24); }
 .cta__icon { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
-.cta__text { display: flex; flex-direction: column; align-items: center; gap: var(--space-24); }
+.cta__text { display: flex; flex-direction: column; align-items: center; gap: var(--space-20); }
 .cta__text p { width: 540px; color: var(--text-secondary); }
 .showcase { display: flex; align-items: flex-start; gap: var(--space-48); }
 .promises { display: flex; flex-direction: column; gap: var(--space-64); }
@@ -487,10 +488,12 @@ svg { display: block; flex: none; }
   <section class="cta" id="cta">
     <div class="cta__panel">
       <div class="cta__head">
+        <div class="cta__intro">
         <img class="cta__icon" src="img/avatar-ignat-lg.jpg" alt="Игнат Егоров">
         <div class="cta__text">
-          <h2 class="display-xl">Так будет выглядеть ваш проект с&nbsp;первого дня</h2>
-          <p class="text-md">Покажем на&nbsp;созвоне, как идёт работа: версии каждую неделю, чат с&nbsp;командой, отчёты. 30&nbsp;минут, бесплатно и&nbsp;ни&nbsp;к&nbsp;чему не&nbsp;обязывает</p>
+          <h2 class="heading-h2">Так будет выглядеть ваш проект с&nbsp;первого дня</h2>
+          <p class="text-sm">Покажем на&nbsp;созвоне, как идёт работа: версии каждую неделю, чат с&nbsp;командой, отчёты. 30&nbsp;минут, бесплатно и&nbsp;ни&nbsp;к&nbsp;чему не&nbsp;обязывает</p>
+        </div>
         </div>
         <a class="button button--xl button--primary" href="#lead">Записаться на&nbsp;созвон<span class="button__trailing"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       </div>
