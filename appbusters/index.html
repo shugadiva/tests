@@ -27,8 +27,6 @@
   --surface-accent-soft: #F3F9FE;
   --surface-control: #D7D7D7;
   --surface-overlay: rgba(0, 0, 0, 0.3);
-  --surface-glass: rgba(255, 255, 255, 0.14);
-  --border-glass: rgba(255, 255, 255, 0.35);
   --shadow-card: 0 12px 32px rgba(0,0,0,0.10), 0 0 16px rgba(0,0,0,0.05); /* Shadow/card */
   --border-divider: #EDEDED;
   --border-strong: #000000;
@@ -234,12 +232,7 @@ svg { display: block; flex: none; }
 .channel__video { position: relative; width: 100%; height: 300px; border-radius: var(--radius-lg); background: var(--surface-muted) url(img/youtube-cover.jpg) center / cover no-repeat; display: grid; place-items: center; }
 .channel__video .video__play { cursor: pointer; }
 .channel__stat { display: flex; flex-direction: column; gap: var(--space-4); }
-/* Пост стеклом поверх синей подложки (Figma 117:104). Glass из Figma в браузере: размытие подложки + полупрозрачная заливка + кромка */
-.post-backdrop { position: relative; width: 100%; padding: var(--space-12); border-radius: var(--radius-lg); background: var(--accent-blue-gloss); overflow: hidden; }
-.post-backdrop__glow { position: absolute; border-radius: 50%; background: var(--surface-card); filter: blur(2px); }
-.post-backdrop__glow:nth-child(1) { left: -20px; top: 70px; width: 90px; height: 90px; opacity: 0.25; }
-.post-backdrop__glow:nth-child(2) { left: 200px; top: -30px; width: 120px; height: 120px; opacity: 0.35; }
-.post { position: relative; display: flex; flex-direction: column; gap: var(--space-8); padding: var(--space-16); border-radius: var(--radius-lg); background: var(--surface-glass); box-shadow: inset 0 0 0 1px var(--border-glass), inset 0 1px 0 rgba(255,255,255,0.5); -webkit-backdrop-filter: blur(12px) saturate(140%); backdrop-filter: blur(12px) saturate(140%); color: var(--surface-accent-soft); }
+.post { width: 100%; display: flex; flex-direction: column; gap: var(--space-8); padding: var(--space-16); border-radius: var(--radius-lg); background: var(--accent-blue-gloss); color: var(--surface-accent-soft); }
 .post__meta { color: rgba(242,242,242,0.5); }
 .channel__spacer { flex: 1; }
 .rating { width: 100%; display: flex; align-items: center; gap: var(--space-16); padding: var(--space-12) 0; border-bottom: 1px solid var(--border-divider); }
@@ -423,9 +416,7 @@ svg { display: block; flex: none; }
       <article class="channel">
         <div class="channel__source"><img src="img/avatar-ignat-tg.jpg" alt=""><span class="label-md">Telegram</span></div>
         <div class="channel__stat"><span class="heading-h2">5 067</span><span class="text-sm channel__meta">подписчиков читают канал Игната</span></div>
-        <div class="post-backdrop"><span class="post-backdrop__glow"></span><span class="post-backdrop__glow"></span>
-          <div class="post"><p class="text-sm">Запустили MVP за&nbsp;6&nbsp;недель и&nbsp;не&nbsp;сожгли бюджет. Рассказываю, что мы&nbsp;вырезали из&nbsp;первой версии и&nbsp;почему пользователи этого даже не&nbsp;заметили</p><span class="text-xs post__meta">2&nbsp;дня назад · 1,4K просмотров</span></div>
-        </div>
+        <div class="post"><p class="text-sm">Запустили MVP за&nbsp;6&nbsp;недель и&nbsp;не&nbsp;сожгли бюджет. Рассказываю, что мы&nbsp;вырезали из&nbsp;первой версии и&nbsp;почему пользователи этого даже не&nbsp;заметили</p><span class="text-xs post__meta">2&nbsp;дня назад · 1,4K просмотров</span></div>
         <div class="channel__spacer"></div>
         <a class="button button--md button--secondary" href="https://t.me/sprestay_apps" target="_blank" rel="noopener">Читать канал</a>
       </article>
