@@ -181,8 +181,8 @@ svg { display: block; flex: none; }
 .doc__preview i:nth-child(7) { top: 58px; }
 .doc__bar { position: absolute; left: 102px; top: 76px; width: 56px; height: 4px; border-radius: 2px; background: var(--accent-orange); box-shadow: 0 4px 8px rgba(255,122,46,0.45); }
 .doc__folder { position: absolute; left: 0; top: 80px; color: var(--surface-muted); }
-.doc__text { position: absolute; left: 12px; top: 126px; width: 200px; display: flex; flex-direction: column; gap: var(--space-8); }
-.doc__title { font: 600 14px/20px var(--font-text); color: var(--text-navy); }
+.doc__text { position: absolute; left: 12px; top: 112px; width: 200px; display: flex; flex-direction: column; gap: var(--space-8); }
+.doc__title { font: 400 24px/32px var(--font-display); color: var(--text-navy); } /* Heading/h3, как заголовки пунктов во втором экране */
 .doc p { color: var(--text-secondary); }
 .form-wrap { position: relative; width: 808px; margin: 0 auto; padding-top: 40px; }
 .sheets { position: absolute; left: 56px; top: 0; width: 210px; height: 60px; }
@@ -417,19 +417,19 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
     <div class="project-cards">
       <a class="project-card" href="#">
         <div class="project-card__media" style="--cover: #00138B url(img/cover-miner.jpg?v=1110c) center / cover no-repeat"><span class="project-card__wordmark"><span class="project-card__logo"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M1.92468 19.085C1.0718 8.60774 14.9282 0.60774 23.5753 6.58498C17.2952 5.70748 4.30481 13.2075 1.92468 19.085Z" fill="currentColor"/><path d="M12.8687 8.84048C12.2888 7.83606 11.0045 7.49193 10.0001 8.07183C8.99564 8.65172 8.6515 9.93607 9.2314 10.9405L17.1314 24.6237C17.7113 25.6281 18.9956 25.9722 20.0001 25.3923C21.0045 24.8124 21.3486 23.5281 20.7687 22.5237L12.8687 8.84048Z" fill="currentColor"/></svg><span>Miner</span></span></span><span class="badge badge--ghost text-sm">Telegram Mini App</span></div>
-        <div class="project-card__body"><h3 class="text-lg">Miner</h3><p class="text-sm">Тапалка для криптотрейдера: придумали механику, собрали Mini App и&nbsp;привели аудиторию через блогеров</p></div>
+        <div class="project-card__body"><h3 class="heading-h3">Miner</h3><p class="text-sm">Тапалка для криптотрейдера: придумали механику, собрали Mini App и&nbsp;привели аудиторию через блогеров</p></div>
       </a>
       <a class="project-card" href="#">
         <div class="project-card__media" style="--cover: var(--accent-green) url(img/cover-tryon.jpg?v=1110c) center / cover no-repeat"><span class="project-card__wordmark"><span class="project-card__logo"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M11.5 8.5C11.5058 8.04153 11.6375 7.5935 11.8808 7.2049C12.1241 6.81629 12.4696 6.50207 12.8794 6.2966C13.2893 6.09113 13.7478 6.00233 14.2047 6.03991C14.6616 6.07748 15.0994 6.23999 15.4702 6.50965C15.841 6.77932 16.1305 7.14576 16.307 7.56889C16.4836 7.99202 16.5404 8.45555 16.4712 8.90878C16.402 9.36201 16.2095 9.78748 15.9147 10.1387C15.62 10.4899 15.2344 10.7532 14.8 10.9C14.3 11.1 14 11.5 14 12V13" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><path d="M14 13L3.6 20.4C2.6 21.1 3.1 22.5 4.3 22.5H23.7C24.9 22.5 25.4 21.1 24.4 20.4L14 13Z" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="M23 2.5L24.1 4.9L26.5 6L24.1 7.1L23 9.5L21.9 7.1L19.5 6L21.9 4.9L23 2.5Z" fill="currentColor"/></svg><span>Tryon.AI</span></span></span><span class="badge badge--ghost text-sm">AI-примерка</span></div>
-        <div class="project-card__body"><h3 class="text-lg">Tryon.AI</h3><p class="text-sm">Примерка одежды на&nbsp;фото с&nbsp;помощью AI: собрали приложение и&nbsp;вырастили его на&nbsp;коротких роликах</p></div>
+        <div class="project-card__body"><h3 class="heading-h3">Tryon.AI</h3><p class="text-sm">Примерка одежды на&nbsp;фото с&nbsp;помощью AI: собрали приложение и&nbsp;вырастили его на&nbsp;коротких роликах</p></div>
       </a>
       <a class="project-card" href="#">
         <div class="project-card__media" style="--cover: var(--accent-orange) url(img/cover-dom.jpg?v=1110c) center / cover no-repeat"><span class="project-card__wordmark"><span class="project-card__logo"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 3.5L25 12.6V24.5H17.2V18H10.8V24.5H3V12.6L14 3.5Z" fill="currentColor" stroke="currentColor" stroke-linejoin="round"/></svg><span>Дом&nbsp;«От&nbsp;и&nbsp;До»</span></span></span><span class="badge badge--ghost text-sm">Ремонт</span></div>
-        <div class="project-card__body"><h3 class="text-lg">Дом «От&nbsp;и&nbsp;До»</h3><p class="text-sm">Приложение для ремонта: объекты на&nbsp;карте, работы и&nbsp;исполнители в&nbsp;одном месте</p></div>
+        <div class="project-card__body"><h3 class="heading-h3">Дом «От&nbsp;и&nbsp;До»</h3><p class="text-sm">Приложение для ремонта: объекты на&nbsp;карте, работы и&nbsp;исполнители в&nbsp;одном месте</p></div>
       </a>
       <a class="project-card" href="#">
         <div class="project-card__media" style="--cover: var(--accent-indigo) url(img/cover-spiritup.jpg?v=1110c) center / cover no-repeat"><span class="project-card__wordmark"><span class="project-card__logo"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 4C18.2 8.6 18.2 15.4 14 21C9.8 15.4 9.8 8.6 14 4Z" fill="currentColor"/><path d="M2.5 11C8 10.8 12.2 14.6 12.8 21.5C6.6 21.6 2.6 17.6 2.5 11Z" fill="currentColor"/><path d="M25.5 11C20 10.8 15.8 14.6 15.2 21.5C21.4 21.6 25.4 17.6 25.5 11Z" fill="currentColor"/><path d="M20.8 23H7.2C6.537 23 6 23.537 6 24.2C6 24.863 6.537 25.4 7.2 25.4H20.8C21.463 25.4 22 24.863 22 24.2C22 23.537 21.463 23 20.8 23Z" fill="currentColor"/></svg><span>Spirit&nbsp;Up</span></span></span><span class="badge badge--ghost text-sm">Астрология</span></div>
-        <div class="project-card__body"><h3 class="text-lg">Spirit Up</h3><p class="text-sm">Консультации астрологов и&nbsp;персональные прогнозы в&nbsp;одном приложении</p></div>
+        <div class="project-card__body"><h3 class="heading-h3">Spirit Up</h3><p class="text-sm">Консультации астрологов и&nbsp;персональные прогнозы в&nbsp;одном приложении</p></div>
       </a>
     </div>
     <a class="button button--xl button--primary" href="#">Все 17 кейсов<span class="button__trailing"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
@@ -501,8 +501,8 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
       </div>
       <div class="showcase">
         <div class="promises promises--left">
-          <div class="promise" style="--dot: var(--accent-blue)"><span class="promise__dot"></span><span class="promise__text"><span class="label-md">Версия каждые 7&nbsp;дней</span><span class="text-xs">проверяете сразу, а&nbsp;не&nbsp;в&nbsp;финале</span></span></div>
-          <div class="promise" style="--dot: var(--accent-green)"><span class="promise__dot"></span><span class="promise__text"><span class="label-md">Чат с&nbsp;командой</span><span class="text-xs">отвечаем и&nbsp;в&nbsp;выходные</span></span></div>
+          <div class="promise" style="--dot: var(--accent-blue)"><span class="promise__dot"></span><span class="promise__text"><span class="heading-h3">Версия каждые 7&nbsp;дней</span><span class="text-xs">проверяете сразу, а&nbsp;не&nbsp;в&nbsp;финале</span></span></div>
+          <div class="promise" style="--dot: var(--accent-green)"><span class="promise__dot"></span><span class="promise__text"><span class="heading-h3">Чат с&nbsp;командой</span><span class="text-xs">отвечаем и&nbsp;в&nbsp;выходные</span></span></div>
         </div>
         <div class="phone" aria-hidden="true">
           <span class="phone__island"></span>
@@ -514,8 +514,8 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
           </div>
         </div>
         <div class="promises promises--right">
-          <div class="promise" style="--dot: var(--accent-yellow)"><span class="promise__dot"></span><span class="promise__text"><span class="label-md">Оплата по&nbsp;плану</span><span class="text-xs">можно поставить на&nbsp;паузу</span></span></div>
-          <div class="promise" style="--dot: var(--surface-control)"><span class="promise__dot"></span><span class="promise__text"><span class="label-md">Обучение после запуска</span><span class="text-xs">для вас и&nbsp;сотрудников</span></span></div>
+          <div class="promise" style="--dot: var(--accent-yellow)"><span class="promise__dot"></span><span class="promise__text"><span class="heading-h3">Оплата по&nbsp;плану</span><span class="text-xs">можно поставить на&nbsp;паузу</span></span></div>
+          <div class="promise" style="--dot: var(--surface-control)"><span class="promise__dot"></span><span class="promise__text"><span class="heading-h3">Обучение после запуска</span><span class="text-xs">для вас и&nbsp;сотрудников</span></span></div>
         </div>
       </div>
       <div class="cta__fade"></div>
