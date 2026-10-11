@@ -196,35 +196,17 @@ svg { display: block; flex: none; }
 .team { display: flex; justify-content: center; align-items: center; gap: var(--space-32); margin-top: var(--space-24); }
 
 /* Projects */
-.projects { background: var(--surface-muted); padding: var(--space-40) 0; display: flex; flex-direction: column; align-items: center; gap: var(--space-40); }
+.projects { background: var(--surface-muted); padding: var(--space-96) 0; display: flex; flex-direction: column; align-items: center; gap: var(--space-48); }
 .projects .section-header { width: 1000px; }
-.tabs { width: 1000px; display: flex; justify-content: space-between; padding: var(--space-8); border-radius: var(--radius-full); background: var(--surface-card); }
-.tab { display: flex; align-items: center; gap: var(--space-12); height: 64px; padding: 0 var(--space-24); border-radius: var(--radius-full); color: var(--text-tertiary); cursor: pointer; transition: background-color 250ms ease-out, color 250ms ease-out; }
-.tab[aria-selected="true"] { background: var(--surface-muted); color: var(--text-primary); }
-.tab:not([aria-selected="true"]):hover { color: var(--text-secondary); }
-.spotlight { width: 1000px; display: flex; align-items: center; gap: var(--space-48); padding: var(--space-12) var(--space-48) var(--space-12) var(--space-12); border-radius: var(--radius-xl); background: var(--surface-card); border: 1px solid var(--border-divider); }
-.spotlight__media { position: relative; flex: none; width: 520px; height: 400px; border-radius: var(--radius-lg); overflow: hidden;
-  /* градиент снят с макета: три слоя, верхний первым */
-  background:
-    radial-gradient(55.6% 55.6% at 50% 0%, rgba(78,100,112,0.7), rgba(78,100,112,0)),
-    radial-gradient(80.6% 80.6% at 0% 100%, rgba(138,42,10,1) 0%, rgba(106,36,16,0.45) 60%, rgba(106,36,16,0) 100%),
-    linear-gradient(180deg, #3C4256 0%, #3A2F45 55%, #4A1E14 100%); }
-.screen { position: absolute; left: 32px; top: 32px; width: 520px; padding: var(--space-24) var(--space-8); border-radius: 20px; background: var(--surface-card); }
-.screen__header { display: flex; justify-content: space-between; align-items: center; padding: 0 var(--space-16) var(--space-12); }
-.screen__header span:last-child { color: var(--text-secondary); }
-.screen__row { display: flex; align-items: center; gap: var(--space-12); height: 70px; padding: var(--space-16) var(--space-12) var(--space-16) var(--space-16); border-radius: var(--radius-sm); }
-.screen__row--selected { background: rgba(255,176,16,0.2); }
-.screen__row img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; flex: none; }
-.screen__text { flex: 1; display: flex; flex-direction: column; gap: 2px; }
-.screen__text span:last-child { color: var(--text-secondary); }
-.screen__actions { display: flex; gap: var(--space-20); }
-.screen__footer { display: flex; align-items: center; gap: var(--space-8); padding: var(--space-12) 0 0 var(--space-16); }
-.spotlight__content { flex: 1; display: flex; flex-direction: column; gap: var(--space-24); }
-.spotlight__heading { display: flex; flex-direction: column; gap: var(--space-16); }
-.spotlight__content > p { color: var(--text-secondary); }
-.metrics { display: flex; gap: var(--space-40); }
-.metric { display: flex; flex-direction: column; gap: var(--space-4); }
-.metric span:last-child { color: var(--text-tertiary); }
+/* Карточки проектов 2×2 (Figma 85:202), обложка: цвет кейса + название по центру, логотипы позже */
+.project-cards { width: var(--layout-container); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); }
+.project-card { display: flex; flex-direction: column; padding: var(--space-8) var(--space-8) var(--space-20); border-radius: var(--radius-lg); background: var(--surface-card); }
+.project-card__media { position: relative; height: 300px; display: flex; justify-content: flex-end; align-items: flex-end; padding: var(--space-20); border-radius: var(--radius-md); overflow: hidden; background: var(--cover); }
+.project-card__wordmark { position: absolute; inset: 0; display: grid; place-items: center; font: 700 32px/40px var(--font-text); letter-spacing: -0.02em; color: var(--text-on-inverse); transition: transform 400ms ease-out; }
+.project-card:hover .project-card__wordmark { transform: scale(1.04); }
+.project-card__media .badge { position: relative; align-self: flex-end; }
+.project-card__body { display: flex; flex-direction: column; gap: var(--space-8); padding: var(--space-24) var(--space-16) var(--space-8); }
+.project-card__body p { color: var(--text-secondary); }
 
 /* Блоки в работе: места из брифа */
 .todo-wrap { padding-top: var(--space-64); }
@@ -360,51 +342,38 @@ svg { display: block; flex: none; }
     </div>
   </section>
 
-  <section class="projects" id="projects">
-    <div class="section-header">
-      <h2 class="heading-h2">Немногие из наших проектов</h2>
-      <p class="text-sm">Продукты, которые мы запускаем и&nbsp;развиваем вместе с&nbsp;основателями.<br>В&nbsp;части из&nbsp;них мы партнёры в&nbsp;доле и&nbsp;зарабатываем, только если продукт растёт</p>
-    </div>
-    <div class="tabs text-md" role="tablist">
-      <button class="tab" role="tab" aria-selected="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-pickaxe"/></svg>Miner</button>
-      <button class="tab" role="tab" aria-selected="false"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-shirt"/></svg>Tryon.AI</button>
-      <button class="tab" role="tab" aria-selected="false"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-house"/></svg>Дом «От и До»</button>
-      <button class="tab" role="tab" aria-selected="false"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-map-pin"/></svg>Out &amp; About</button>
-      <button class="tab" role="tab" aria-selected="false"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-sun"/></svg>Spirit Up</button>
-    </div>
-    <article class="spotlight">
-      <div class="spotlight__media">
-        <div class="screen" aria-hidden="true">
-          <div class="screen__header"><span class="text-lg">Улучшения</span><span class="text-sm">По уровню</span></div>
-          <div class="screen__row screen__row--selected"><img src="img/miner-pick-1.png" alt=""><div class="screen__text"><span class="text-sm">Стартовая кирка</span><span class="text-xs">+5 монет за тап</span></div>
-            <div class="screen__actions"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow-up-circle"/></svg><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-star"/></svg><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg></div></div>
-          <div class="screen__row"><img src="img/miner-pick-2.png" alt=""><div class="screen__text"><span class="text-sm">Улучшенная кирка</span><span class="text-xs">+12 монет за тап</span></div></div>
-          <div class="screen__row"><img src="img/miner-pick-3.png" alt=""><div class="screen__text"><span class="text-sm">Продвинутая кирка</span><span class="text-xs">+25 монет за тап</span></div></div>
-          <div class="screen__row"><img src="img/miner-pick-4.png" alt=""><div class="screen__text"><span class="text-sm">Легендарная кирка</span><span class="text-xs">+200 монет за тап</span></div></div>
-          <div class="screen__footer text-sm">Все улучшения <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><use href="#i-arrow-right"/></svg></div>
-        </div>
-      </div>
-      <div class="spotlight__content">
-        <div class="spotlight__heading">
-          <span class="badge text-sm"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c.4 3.3 2.2 5.1 5.5 5.5v1c-3.3.4-5.1 2.2-5.5 5.5h-1C6.6 10.2 4.8 8.4 1.5 8v-1C4.8 6.6 6.6 4.8 7 1.5z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>MINER · TELEGRAM MINI APP</span>
-          <h3 class="heading-h2">200 000 пользователей в&nbsp;первый месяц</h3>
-        </div>
-        <p class="text-md">Тапалка для криптотрейдера: вместе придумали механику, собрали Mini App и&nbsp;привели аудиторию через блогеров</p>
-        <div class="metrics">
-          <div class="metric"><span class="heading-h3">350 000</span><span class="text-xs">аудитория за&nbsp;полгода</span></div>
-          <div class="metric"><span class="heading-h3">27%</span><span class="text-xs">вернулись на&nbsp;7-й день</span></div>
-        </div>
-      </div>
-    </article>
-    <a class="button button--md button--primary" href="#">Все 17 кейсов</a>
-  </section>
-
   <!-- 02 Trust: в работе -->
   <div class="todo-wrap">
     <section class="todo container" id="trust">
       <div><h2 class="heading-h3">«Познакомьтесь с нами ближе»</h2><p class="text-sm">Блок в работе</p></div>
     </section>
   </div>
+
+  <section class="projects" id="projects">
+    <div class="section-header">
+      <h2 class="heading-h2">Немногие из наших проектов</h2>
+      <p class="text-sm">Продукты, которые мы запускаем и&nbsp;развиваем вместе с&nbsp;основателями.<br>В&nbsp;части из&nbsp;них мы партнёры в&nbsp;доле и&nbsp;зарабатываем, только если продукт растёт</p>
+    </div>
+    <div class="project-cards">
+      <a class="project-card" href="#">
+        <div class="project-card__media" style="--cover: #00138B"><span class="project-card__wordmark">Miner</span><span class="badge text-sm">Telegram Mini App</span></div>
+        <div class="project-card__body"><h3 class="text-lg">Miner</h3><p class="text-md">Тапалка для криптотрейдера: придумали механику, собрали Mini App и&nbsp;привели аудиторию через блогеров</p></div>
+      </a>
+      <a class="project-card" href="#">
+        <div class="project-card__media" style="--cover: var(--accent-green)"><span class="project-card__wordmark">Tryon.AI</span><span class="badge text-sm">AI-примерка</span></div>
+        <div class="project-card__body"><h3 class="text-lg">Tryon.AI</h3><p class="text-md">Примерка одежды на&nbsp;фото с&nbsp;помощью AI: собрали приложение и&nbsp;вырастили его на&nbsp;коротких роликах</p></div>
+      </a>
+      <a class="project-card" href="#">
+        <div class="project-card__media" style="--cover: var(--accent-orange)"><span class="project-card__wordmark">Дом&nbsp;«От&nbsp;и&nbsp;До»</span><span class="badge text-sm">Ремонт</span></div>
+        <div class="project-card__body"><h3 class="text-lg">Дом «От&nbsp;и&nbsp;До»</h3><p class="text-md">Приложение для ремонта: объекты на&nbsp;карте, работы и&nbsp;исполнители в&nbsp;одном месте</p></div>
+      </a>
+      <a class="project-card" href="#">
+        <div class="project-card__media" style="--cover: var(--accent-indigo)"><span class="project-card__wordmark">Spirit&nbsp;Up</span><span class="badge text-sm">Астрология</span></div>
+        <div class="project-card__body"><h3 class="text-lg">Spirit Up</h3><p class="text-md">Консультации астрологов и&nbsp;персональные прогнозы в&nbsp;одном приложении</p></div>
+      </a>
+    </div>
+    <a class="button button--md button--primary" href="#">Все 17 кейсов</a>
+  </section>
 
   <section class="faq container">
     <h2 class="heading-h2">Частые<br>вопросы</h2>
@@ -436,10 +405,6 @@ svg { display: block; flex: none; }
   // Раскрытие услуг: открыт один пункт за раз
   document.querySelectorAll('.service__title').forEach(t => t.addEventListener('click', () => {
     document.querySelectorAll('.service').forEach(s => s.classList.toggle('service--open', s === t.parentElement));
-  }));
-  // Вкладки проектов: пока есть только кейс Miner, переключается подсветка
-  document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(x => x.setAttribute('aria-selected', x === t));
   }));
 </script>
 </body>
