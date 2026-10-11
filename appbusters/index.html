@@ -26,6 +26,7 @@
   --surface-inverse-hover: #333333;
   --surface-accent-soft: #F3F9FE;
   --surface-control: #D7D7D7;
+  --surface-overlay: rgba(0, 0, 0, 0.3);
   --border-divider: #EDEDED;
   --border-strong: #000000;
   --accent-blue: #097FE8;
@@ -211,6 +212,8 @@ svg { display: block; flex: none; }
 .project-card__wordmark { position: absolute; inset: 0; display: grid; place-items: center; font: 700 32px/40px var(--font-text); letter-spacing: -0.02em; color: var(--text-on-inverse); transition: transform 400ms ease-out; }
 .project-card:hover .project-card__wordmark { transform: scale(1.04); }
 .project-card__media .badge { position: relative; align-self: flex-end; }
+/* Badge Hierarchy=Ghost (Figma 101:84): плашка поверх обложки, как у grovia.framer.ai */
+.badge--ghost { padding: var(--space-4) var(--space-8); background: var(--surface-overlay); color: var(--text-on-inverse); }
 .project-card__body { display: flex; flex-direction: column; gap: var(--space-8); padding: var(--space-24) var(--space-16) var(--space-8); }
 .project-card__body p { color: var(--text-secondary); }
 
@@ -362,19 +365,19 @@ svg { display: block; flex: none; }
     </div>
     <div class="project-cards">
       <a class="project-card" href="#">
-        <div class="project-card__media" style="--cover: #00138B"><span class="project-card__wordmark">Miner</span><span class="badge text-sm">Telegram Mini App</span></div>
+        <div class="project-card__media" style="--cover: #00138B"><span class="project-card__wordmark">Miner</span><span class="badge badge--ghost text-sm">Telegram Mini App</span></div>
         <div class="project-card__body"><h3 class="text-lg">Miner</h3><p class="text-sm">Тапалка для криптотрейдера: придумали механику, собрали Mini App и&nbsp;привели аудиторию через блогеров</p></div>
       </a>
       <a class="project-card" href="#">
-        <div class="project-card__media" style="--cover: var(--accent-green)"><span class="project-card__wordmark">Tryon.AI</span><span class="badge text-sm">AI-примерка</span></div>
+        <div class="project-card__media" style="--cover: var(--accent-green)"><span class="project-card__wordmark">Tryon.AI</span><span class="badge badge--ghost text-sm">AI-примерка</span></div>
         <div class="project-card__body"><h3 class="text-lg">Tryon.AI</h3><p class="text-sm">Примерка одежды на&nbsp;фото с&nbsp;помощью AI: собрали приложение и&nbsp;вырастили его на&nbsp;коротких роликах</p></div>
       </a>
       <a class="project-card" href="#">
-        <div class="project-card__media" style="--cover: var(--accent-orange)"><span class="project-card__wordmark">Дом&nbsp;«От&nbsp;и&nbsp;До»</span><span class="badge text-sm">Ремонт</span></div>
+        <div class="project-card__media" style="--cover: var(--accent-orange)"><span class="project-card__wordmark">Дом&nbsp;«От&nbsp;и&nbsp;До»</span><span class="badge badge--ghost text-sm">Ремонт</span></div>
         <div class="project-card__body"><h3 class="text-lg">Дом «От&nbsp;и&nbsp;До»</h3><p class="text-sm">Приложение для ремонта: объекты на&nbsp;карте, работы и&nbsp;исполнители в&nbsp;одном месте</p></div>
       </a>
       <a class="project-card" href="#">
-        <div class="project-card__media" style="--cover: var(--accent-indigo)"><span class="project-card__wordmark">Spirit&nbsp;Up</span><span class="badge text-sm">Астрология</span></div>
+        <div class="project-card__media" style="--cover: var(--accent-indigo)"><span class="project-card__wordmark">Spirit&nbsp;Up</span><span class="badge badge--ghost text-sm">Астрология</span></div>
         <div class="project-card__body"><h3 class="text-lg">Spirit Up</h3><p class="text-sm">Консультации астрологов и&nbsp;персональные прогнозы в&nbsp;одном приложении</p></div>
       </a>
     </div>
