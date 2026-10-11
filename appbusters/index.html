@@ -27,6 +27,7 @@
   --surface-accent-soft: #F3F9FE;
   --surface-control: #D7D7D7;
   --surface-overlay: rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 12px 32px rgba(0,0,0,0.10), 0 0 16px rgba(0,0,0,0.05); /* Shadow/card */
   --border-divider: #EDEDED;
   --border-strong: #000000;
   --accent-blue: #097FE8;
@@ -79,6 +80,8 @@ svg { display: block; flex: none; }
 .button--md { height: 38px; padding: 0 var(--space-24); font: 700 14px/18px var(--font-text); }
 .button--primary { background: var(--surface-inverse); color: var(--text-on-inverse); }
 .button--primary:hover { background: var(--surface-inverse-hover); }
+.button--secondary { background: var(--surface-card); color: var(--text-primary); box-shadow: inset 0 0 0 1px var(--border-divider); }
+.button--secondary:hover { background: var(--surface-muted); }
 /* Size=xl, Icon=Trailing: крупный CTA, выбивается из ряда sm/md сознательно (Figma 98:72) */
 .button--xl { height: 56px; padding: 0 var(--space-8) 0 var(--space-32); gap: var(--space-16); font: 700 14px/18px var(--font-text); }
 .button__trailing { width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--surface-card); color: var(--text-primary); display: grid; place-items: center; }
@@ -187,7 +190,7 @@ svg { display: block; flex: none; }
 .sheet:nth-child(1) { left: 0; top: 14px; transform: rotate(-6deg); }
 .sheet:nth-child(2) { left: 120px; top: 12px; transform: rotate(6deg); }
 .sheet:nth-child(3) { left: 56px; top: 0; }
-.lead-form { position: relative; background: var(--surface-card); border-radius: var(--radius-xl); padding: var(--space-40) var(--space-32) var(--space-32) 56px; display: flex; flex-direction: column; gap: var(--space-32); box-shadow: 0 12px 32px rgba(0,0,0,0.10), 0 0 16px rgba(0,0,0,0.05); }
+.lead-form { position: relative; background: var(--surface-card); border-radius: var(--radius-xl); padding: var(--space-40) var(--space-32) var(--space-32) 56px; display: flex; flex-direction: column; gap: var(--space-32); box-shadow: var(--shadow-card); }
 .lead-form__hint { display: flex; align-items: center; gap: var(--space-12); color: var(--text-tertiary); }
 .lead-form__body { display: flex; flex-direction: column; gap: var(--space-20); }
 .lead-form__fields { display: grid; grid-template-columns: 348px 348px; row-gap: var(--space-24); column-gap: var(--space-24); }
@@ -207,7 +210,7 @@ svg { display: block; flex: none; }
 .projects .section-header { width: 1000px; }
 /* Карточки проектов 2×2 (Figma 85:202), обложка: цвет кейса + название по центру, логотипы позже */
 .project-cards { width: var(--layout-container); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); }
-.project-card { display: flex; flex-direction: column; padding: var(--space-8) var(--space-8) var(--space-20); border-radius: var(--radius-lg); background: var(--surface-card); }
+.project-card { display: flex; flex-direction: column; padding: var(--space-8) var(--space-8) var(--space-20); border-radius: var(--radius-lg); background: var(--surface-card); box-shadow: var(--shadow-card); }
 .project-card__media { position: relative; height: 300px; display: flex; justify-content: flex-end; align-items: flex-end; padding: var(--space-20); border-radius: var(--radius-md); overflow: hidden; background: var(--cover); }
 .project-card__wordmark { position: absolute; inset: 0; display: grid; place-items: center; font: 700 32px/40px var(--font-text); letter-spacing: -0.02em; color: var(--text-on-inverse); transition: transform 400ms ease-out; }
 .project-card:hover .project-card__wordmark { transform: scale(1.04); }
@@ -216,6 +219,26 @@ svg { display: block; flex: none; }
 .badge--ghost { padding: var(--space-4) var(--space-8); background: var(--surface-overlay); color: var(--text-on-inverse); }
 .project-card__body { display: flex; flex-direction: column; gap: var(--space-8); padding: var(--space-24) var(--space-16) var(--space-8); }
 .project-card__body p { color: var(--text-secondary); }
+
+/* Trust: бенто каналов (Figma 103:88) */
+.trust { background: var(--surface-muted); padding: var(--space-96) 0; display: flex; flex-direction: column; align-items: center; gap: var(--space-48); }
+.trust .section-header { width: 1000px; }
+.bento { width: var(--layout-container); display: grid; grid-template-columns: 650px 1fr; gap: var(--space-16); }
+.channel { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-16); padding: var(--space-32); border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); }
+.channel--ratings { gap: var(--space-8); }
+.channel__source { display: flex; align-items: center; gap: var(--space-8); }
+.channel__source img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; }
+.channel__meta { color: var(--text-tertiary); }
+.channel__video { position: relative; width: 100%; height: 300px; border-radius: var(--radius-lg); background: var(--surface-muted) url(img/youtube-cover.jpg) center / cover no-repeat; display: grid; place-items: center; }
+.channel__video .video__play { cursor: pointer; }
+.channel__stat { display: flex; flex-direction: column; gap: var(--space-4); }
+.post { width: 100%; display: flex; flex-direction: column; gap: var(--space-8); padding: var(--space-16); border-radius: var(--radius-lg); background: var(--accent-blue-gloss); color: var(--surface-accent-soft); }
+.post__meta { color: rgba(242,242,242,0.5); }
+.channel__spacer { flex: 1; }
+.rating { width: 100%; display: flex; align-items: center; gap: var(--space-16); padding: var(--space-12) 0; border-bottom: 1px solid var(--border-divider); }
+.rating__name { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.rating__name span:last-child, .rating__note { color: var(--text-tertiary); }
+.rating__stars { color: var(--accent-yellow); letter-spacing: 0.1em; }
 
 /* Блоки в работе: места из брифа */
 .todo-wrap { padding-top: var(--space-64); }
@@ -351,13 +374,6 @@ svg { display: block; flex: none; }
     </div>
   </section>
 
-  <!-- 02 Trust: в работе -->
-  <div class="todo-wrap">
-    <section class="todo container" id="trust">
-      <div><h2 class="heading-h3">«Познакомьтесь с нами ближе»</h2><p class="text-sm">Блок в работе</p></div>
-    </section>
-  </div>
-
   <section class="projects" id="projects">
     <div class="section-header">
       <h2 class="heading-h2">Немногие из наших проектов</h2>
@@ -369,11 +385,11 @@ svg { display: block; flex: none; }
         <div class="project-card__body"><h3 class="text-lg">Miner</h3><p class="text-sm">Тапалка для криптотрейдера: придумали механику, собрали Mini App и&nbsp;привели аудиторию через блогеров</p></div>
       </a>
       <a class="project-card" href="#">
-        <div class="project-card__media" style="--cover: var(--accent-green)"><span class="project-card__wordmark">Tryon.AI</span><span class="badge badge--ghost text-sm">AI-примерка</span></div>
+        <div class="project-card__media" style="--cover: var(--accent-green) url(img/cover-tryon.jpg) center / cover no-repeat"><span class="project-card__wordmark">Tryon.AI</span><span class="badge badge--ghost text-sm">AI-примерка</span></div>
         <div class="project-card__body"><h3 class="text-lg">Tryon.AI</h3><p class="text-sm">Примерка одежды на&nbsp;фото с&nbsp;помощью AI: собрали приложение и&nbsp;вырастили его на&nbsp;коротких роликах</p></div>
       </a>
       <a class="project-card" href="#">
-        <div class="project-card__media" style="--cover: var(--accent-orange)"><span class="project-card__wordmark">Дом&nbsp;«От&nbsp;и&nbsp;До»</span><span class="badge badge--ghost text-sm">Ремонт</span></div>
+        <div class="project-card__media" style="--cover: var(--accent-orange) url(img/cover-dom.jpg) center / cover no-repeat"><span class="project-card__wordmark">Дом&nbsp;«От&nbsp;и&nbsp;До»</span><span class="badge badge--ghost text-sm">Ремонт</span></div>
         <div class="project-card__body"><h3 class="text-lg">Дом «От&nbsp;и&nbsp;До»</h3><p class="text-sm">Приложение для ремонта: объекты на&nbsp;карте, работы и&nbsp;исполнители в&nbsp;одном месте</p></div>
       </a>
       <a class="project-card" href="#">
@@ -382,6 +398,43 @@ svg { display: block; flex: none; }
       </a>
     </div>
     <a class="button button--xl button--primary" href="#">Все 17 кейсов<span class="button__trailing"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+  </section>
+
+  <!-- 02 Trust: бенто каналов (Figma 103:88) -->
+  <section class="trust" id="trust">
+    <div class="section-header">
+      <h2 class="heading-h2">Познакомьтесь с&nbsp;нами ближе</h2>
+      <p class="text-sm">Игнат и&nbsp;команда открыто рассказывают о&nbsp;разработке: смотрите, читайте, сверяйте отзывы</p>
+    </div>
+    <div class="bento">
+      <article class="channel">
+        <div class="channel__source"><img src="img/avatar-ignat.jpg" alt=""><span class="label-md">YouTube</span></div>
+        <a class="channel__video" href="https://www.youtube.com/watch?v=HpsRNGjC4tY" target="_blank" rel="noopener" aria-label="Смотреть ролик"><span class="video__play"><svg width="28" height="28" viewBox="0 0 28 28"><path d="M8 5v18l15-9z" fill="currentColor"/></svg></span></a>
+        <p class="text-sm channel__meta">22,5 тыс. подписчиков · 85 видео · 1,28 млн просмотров</p>
+        <a class="button button--md button--secondary" href="https://www.youtube.com/@sprestay" target="_blank" rel="noopener">Смотреть канал</a>
+      </article>
+      <article class="channel">
+        <div class="channel__source"><img src="img/avatar-ignat-tg.jpg" alt=""><span class="label-md">Telegram</span></div>
+        <div class="channel__stat"><span class="heading-h2">5 067</span><span class="text-sm channel__meta">подписчиков читают канал Игната</span></div>
+        <div class="post"><p class="text-sm">Запустили MVP за&nbsp;6&nbsp;недель и&nbsp;не&nbsp;сожгли бюджет. Рассказываю, что мы&nbsp;вырезали из&nbsp;первой версии и&nbsp;почему пользователи этого даже не&nbsp;заметили</p><span class="text-xs post__meta">2&nbsp;дня назад · 1,4K просмотров</span></div>
+        <div class="channel__spacer"></div>
+        <a class="button button--md button--secondary" href="https://t.me/sprestay_apps" target="_blank" rel="noopener">Читать канал</a>
+      </article>
+      <article class="channel">
+        <div class="channel__source"><img src="img/avatar-ignat.jpg" alt=""><span class="label-md">VC.ru</span></div>
+        <h3 class="heading-h3">Как я&nbsp;заработал 100&nbsp;млн на&nbsp;продаже услуг для стартаперов</h3>
+        <p class="text-sm channel__meta">около 6,7K просмотров</p>
+        <p class="text-sm">Кейс детского приложения: 50K+ загрузок</p>
+        <a class="button button--md button--secondary" href="https://vc.ru/id1821746" target="_blank" rel="noopener">Читать блог</a>
+      </article>
+      <article class="channel channel--ratings">
+        <div class="channel__source"><img src="img/avatar-review.jpg" alt=""><span class="label-md">Отзывы</span></div>
+        <div class="rating"><span class="heading-h3">4,9</span><span class="rating__name"><span class="label-md">DreamJob</span><span class="text-xs">5 отзывов, 100% рекомендуют</span></span><span class="text-xs rating__stars">★★★★★</span></div>
+        <div class="rating"><span class="heading-h3">5,0</span><span class="rating__name"><span class="label-md">Отзовик*</span><span class="text-xs">11 отзывов</span></span><span class="text-xs rating__stars">★★★★★</span></div>
+        <div class="rating"><span class="heading-h3">4,5</span><span class="rating__name"><span class="label-md">Zoon*</span><span class="text-xs">6 отзывов</span></span><span class="text-xs rating__stars">★★★★★</span></div>
+        <p class="text-xs rating__note">* данные с сайта компании</p>
+      </article>
+    </div>
   </section>
 
   <section class="faq container">
