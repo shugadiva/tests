@@ -240,11 +240,41 @@ svg { display: block; flex: none; }
 .rating__name span:last-child, .rating__note { color: var(--text-tertiary); }
 .rating__stars { color: var(--accent-yellow); letter-spacing: 0.1em; }
 
-/* Блоки в работе: места из брифа */
-.todo-wrap { padding-top: var(--space-64); }
-.todo-wrap--cta { padding-top: var(--space-80); }
-.todo { height: 360px; border: 2px solid var(--accent-blue); border-style: dashed; border-radius: var(--radius-lg); background: var(--surface-accent-soft); display: grid; place-items: center; text-align: center; }
-.todo p { color: var(--text-tertiary); margin-top: var(--space-8); }
+/* Final CTA (Figma 126:254): белый фон, композиция как у makro.framer.website, телефон выглядывает и растворяется в белом */
+.cta { padding: var(--space-20); }
+.cta__panel { position: relative; height: 1140px; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: var(--space-64); padding-top: var(--space-120); background: var(--surface-page); }
+.cta__head { width: 720px; display: flex; flex-direction: column; align-items: center; gap: var(--space-40); text-align: center; }
+.cta__icon { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+.cta__text { display: flex; flex-direction: column; align-items: center; gap: var(--space-24); }
+.cta__text p { width: 540px; color: var(--text-secondary); }
+.showcase { display: flex; align-items: flex-start; gap: var(--space-48); }
+.promises { display: flex; flex-direction: column; gap: var(--space-64); }
+.promises--left { align-items: flex-end; padding-top: var(--space-64); }
+.promises--right { align-items: flex-start; padding-top: var(--space-96); }
+.promise { display: flex; align-items: center; gap: var(--space-12); padding: var(--space-16); border-radius: var(--radius-lg); background: var(--surface-card); box-shadow: var(--shadow-card); white-space: nowrap; }
+.promise__dot { width: 12px; height: 12px; border-radius: 50%; background: var(--dot); flex: none; }
+.promise__text { display: flex; flex-direction: column; }
+.promise__text span:last-child { color: var(--text-tertiary); }
+.cta__fade { position: absolute; left: 0; right: 0; bottom: 0; height: 240px; background: linear-gradient(180deg, rgba(255,255,255,0) 0%, var(--surface-page) 100%); pointer-events: none; }
+/* Device · iPhone (flat, dark), Figma 124:112 */
+.phone { position: relative; flex: none; width: 320px; height: 660px; padding: 10px; border-radius: 56px; background: var(--surface-inverse-hover); }
+.phone__island { position: absolute; left: 112px; top: 22px; width: 96px; height: 28px; border-radius: var(--radius-full); background: var(--surface-inverse); }
+.phone__screen { height: 100%; display: flex; flex-direction: column; gap: var(--space-12); padding: var(--space-64) var(--space-16) var(--space-16); border-radius: 46px; background: var(--surface-muted); overflow: hidden; }
+.app-header { display: flex; justify-content: space-between; align-items: center; }
+.app-header div { display: flex; flex-direction: column; gap: var(--space-4); }
+.app-header div span:last-child, .app-meta { color: var(--text-tertiary); }
+.app-header img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+.app-card { display: flex; flex-direction: column; gap: var(--space-12); padding: var(--space-16); border-radius: var(--radius-lg); background: var(--surface-card); }
+.app-card--row { flex-direction: row; align-items: center; padding: var(--space-12); }
+.app-card--msg { gap: var(--space-4); padding: var(--space-12); }
+.app-row { display: flex; justify-content: space-between; align-items: center; }
+.app-chip { padding: var(--space-4) var(--space-8); border-radius: var(--radius-full); background: var(--surface-accent-soft); color: var(--text-accent); }
+.app-progress { height: 6px; border-radius: var(--radius-full); background: var(--surface-muted); overflow: hidden; }
+.app-progress i { display: block; width: 38%; height: 100%; border-radius: inherit; background: var(--accent-blue); }
+.app-card--row .app-icon { width: 40px; height: 40px; border-radius: var(--radius-sm); background: var(--accent-blue); flex: none; }
+.app-card--row div { display: flex; flex-direction: column; gap: 2px; }
+.app-card p { color: var(--text-secondary); }
+.app-card--msg p { color: var(--text-primary); }
 
 /* FAQ */
 .faq { display: grid; grid-template-columns: 300px 750px; margin-top: var(--space-96); }
@@ -451,12 +481,39 @@ svg { display: block; flex: none; }
     </div>
   </section>
 
-  <!-- 03 Final CTA: в работе -->
-  <div class="todo-wrap todo-wrap--cta">
-    <section class="todo container" id="cta">
-      <div><h2 class="heading-h3">Финальный CTA</h2><p class="text-sm">Блок в работе</p></div>
-    </section>
-  </div>
+  <!-- 03 Final CTA (Figma 126:254) -->
+  <section class="cta" id="cta">
+    <div class="cta__panel">
+      <div class="cta__head">
+        <img class="cta__icon" src="img/avatar-ignat-lg.jpg" alt="Игнат Егоров">
+        <div class="cta__text">
+          <h2 class="display-xl">Так будет выглядеть ваш проект с&nbsp;первого дня</h2>
+          <p class="text-md">Покажем на&nbsp;созвоне, как идёт работа: версии каждую неделю, чат с&nbsp;командой, отчёты. 30&nbsp;минут, бесплатно и&nbsp;ни&nbsp;к&nbsp;чему не&nbsp;обязывает</p>
+        </div>
+        <a class="button button--xl button--primary" href="#lead">Записаться на&nbsp;созвон<span class="button__trailing"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </div>
+      <div class="showcase">
+        <div class="promises promises--left">
+          <div class="promise" style="--dot: var(--accent-blue)"><span class="promise__dot"></span><span class="promise__text"><span class="label-md">Версия каждые 7&nbsp;дней</span><span class="text-xs">проверяете сразу, а&nbsp;не&nbsp;в&nbsp;финале</span></span></div>
+          <div class="promise" style="--dot: var(--accent-green)"><span class="promise__dot"></span><span class="promise__text"><span class="label-md">Чат с&nbsp;командой</span><span class="text-xs">отвечаем и&nbsp;в&nbsp;выходные</span></span></div>
+        </div>
+        <div class="phone" aria-hidden="true">
+          <span class="phone__island"></span>
+          <div class="phone__screen">
+            <div class="app-header"><div><span class="heading-h3">Ваш проект</span><span class="text-xs">Маркетплейс ремонта · MVP</span></div><img src="img/avatar-team.jpg" alt=""></div>
+            <div class="app-card"><div class="app-row"><span class="label-md">Неделя 3 из&nbsp;8</span><span class="label-sm app-chip">По&nbsp;плану</span></div><div class="app-progress"><i></i></div><p class="text-sm">Промежуточная версия 0.3 готова, проверьте до&nbsp;пятницы</p></div>
+            <div class="app-card app-card--row"><span class="app-icon"></span><div><span class="label-md">Сборка 0.3</span><span class="text-xs app-meta">TestFlight · 12 экранов</span></div></div>
+            <div class="app-card app-card--msg"><span class="text-xs app-meta">Команда · 10:42</span><p class="text-sm">Собрали экран заказа и&nbsp;оплату. Записали короткое видео, как это работает</p></div>
+          </div>
+        </div>
+        <div class="promises promises--right">
+          <div class="promise" style="--dot: var(--accent-yellow)"><span class="promise__dot"></span><span class="promise__text"><span class="label-md">Оплата по&nbsp;плану</span><span class="text-xs">можно поставить на&nbsp;паузу</span></span></div>
+          <div class="promise" style="--dot: var(--surface-control)"><span class="promise__dot"></span><span class="promise__text"><span class="label-md">Обучение после запуска</span><span class="text-xs">для вас и&nbsp;сотрудников</span></span></div>
+        </div>
+      </div>
+      <div class="cta__fade"></div>
+    </div>
+  </section>
 
   <div class="page-end"></div>
 </main>
