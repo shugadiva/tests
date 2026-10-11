@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Services morph · AppBusters</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Oswald:wght@400;500&display=swap" rel="stylesheet">
+<!--
+  Ролик для карточки секции «От сырой идеи до устойчивой прибыли».
+  Раскадровка: Figma ENd2TipfHpuO9YfL2sLAN3, фрейм Storyboard Services · Kit (73:125).
+  Всё вычисляется в seek(t) от времени: без CSS-переходов и таймеров, поэтому кадр
+  детерминирован и пишется playwright покадрово (render.mjs). Открыть в браузере:
+  ролик крутится сам, ?t=8.5 замораживает кадр.
+-->
+<style>
+:root {
+  --text-primary: #000000; --text-tertiary: #7C7C7C; --text-on-inverse: #FFFFFF;
+  --surface-muted: #F2F2F2; --surface-card: #FFFFFF; --surface-inverse: #000000; --surface-control: #D7D7D7;
+  --border-strong: #000000; --accent-yellow: #FFB010;
+  --radius-xs: 6px; --radius-sm: 12px; --radius-lg: 24px; --radius-full: 999px;
+  --font-display: "Oswald", sans-serif; --font-text: "Manrope", sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 494px; height: 494px; overflow: hidden; background: var(--surface-muted); -webkit-font-smoothing: antialiased; }
+.stage { position: relative; width: 494px; height: 494px; background: var(--surface-muted); }
+.shape { position: absolute; overflow: hidden; }
+.layer { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.abs { position: absolute; }
+.heading-h2 { font: 400 40px/42px var(--font-display); letter-spacing: -0.005em; }
+.heading-h3 { font: 400 24px/32px var(--font-display); }
+.heading-h4 { font: 500 12px/16px var(--font-display); }
+.text-sm { font: 500 14px/20px var(--font-text); }
+.text-xs { font: 500 12px/16px var(--font-text); }
+.label-md { font: 700 14px/18px var(--font-text); }
+
+/* Idea input 334×38: поле слева, кнопка «Обсудить» справа (Button md 115) */
+.idea { width: 334px; height: 38px; }
+.idea__field { position: absolute; left: 0; top: 0; width: 219px; height: 38px; border-radius: var(--radius-full); background: var(--surface-card); box-shadow: inset 0 0 0 1.5px var(--border-strong); display: flex; align-items: center; gap: 8px; padding: 0 12px; white-space: nowrap; }
+.idea__field svg { color: #B8B8B8; }
+.idea__ph { color: var(--text-tertiary); }
+.idea__btn { position: absolute; right: 0; top: 0; width: 115px; height: 38px; display: grid; place-items: center; color: var(--text-on-inverse); }
+.icon { width: 60px; height: 60px; display: grid; place-items: center; color: var(--text-on-inverse); }
+.code, .phone, .chart { background: var(--surface-card); }
+.code { width: 272px; height: 288px; }
+.phone { width: 200px; height: 400px; }
+.line { position: absolute; height: 8px; border-radius: var(--radius-full); }
+.wire { position: absolute; box-shadow: inset 0 0 0 1px var(--border-strong); }
+.grid-col { position: absolute; top: 0; width: 36px; height: 400px; background: var(--accent-yellow); }
+.chip-s { position: absolute; height: 24px; padding: 0 12px; border-radius: var(--radius-full); background: var(--surface-muted); display: flex; align-items: center; }
+.row { position: absolute; left: 16px; width: 168px; height: 44px; border-radius: var(--radius-sm); background: var(--surface-muted); }
+.row i { position: absolute; left: 12px; top: 12px; width: 20px; height: 20px; border-radius: 50%; background: var(--surface-control); }
+.row b { position: absolute; left: 42px; top: 18px; height: 8px; border-radius: var(--radius-full); background: var(--text-primary); }
+.btn { position: absolute; height: 38px; border-radius: var(--radius-full); background: var(--surface-inverse); color: var(--text-on-inverse); display: grid; place-items: center; padding: 0 24px; white-space: nowrap; }
+.chip-p { height: 44px; display: grid; place-items: center; white-space: nowrap; padding: 0 16px; }
+.label-sm { font: 700 12px/16px var(--font-text); }
+/* Segmented control 3×96×36, индикатор Surface/inverse radius-full (кит, 76:140) */
+.seg { position: absolute; width: 288px; height: 36px; display: flex; }
+.seg__item { position: relative; width: 96px; height: 36px; display: grid; place-items: center; }
+.seg__ind { position: absolute; top: 0; height: 36px; border-radius: var(--radius-full); background: var(--surface-inverse); }
+.tip { position: absolute; padding: 6px 10px; border-radius: var(--radius-xs); background: var(--surface-inverse); color: var(--text-on-inverse); white-space: nowrap; }
+.cursor { position: absolute; left: 0; top: 0; }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <div class="shape" id="shape">
+    <!-- 1. Idea input -->
+    <div class="layer idea" id="L-idea">
+      <div class="idea__field text-xs"><svg width="14" height="14" viewBox="0 0 20 20"><path d="M10 3c4.4 0 7 2.6 7 6s-2.6 6-7 6c-.9 0-1.7-.1-2.4-.3L4 16.5l.9-3.1C3.7 12.3 3 10.8 3 9c0-3.4 2.6-6 7-6z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span id="idea-text"></span></div>
+      <div class="idea__btn label-md" id="idea-btn">Обсудить</div>
+    </div>
+    <!-- 2. Icon button: стрелка, потом лоадер -->
+    <div class="layer icon" id="L-icon">
+      <svg id="arrow" class="abs" width="24" height="24" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg id="loader" class="abs" width="26" height="26" viewBox="0 0 26 26"><path d="M13 2a11 11 0 1 1-11 11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+    </div>
+    <!-- 3. Код -->
+    <div class="layer code" id="L-code"></div>
+    <!-- 4. Каркас экрана + сетка -->
+    <div class="layer phone" id="L-wire"></div>
+    <!-- 5. Экран на ките, проявляется шторкой -->
+    <div class="layer phone" id="L-hifi">
+      <div class="abs heading-h3" style="left:16px;top:16px">Пекарня</div>
+      <div class="chip-s text-xs" style="left:16px;top:60px">Торты</div>
+      <div class="chip-s text-xs" style="left:84px;top:60px">Хлеб</div>
+      <div class="row" style="top:104px"><i></i><b style="width:70px"></b></div>
+      <div class="row" style="top:160px"><i></i><b style="width:84px"></b></div>
+      <div class="row" style="top:216px"><i></i><b style="width:98px"></b></div>
+      <div class="btn label-md" id="publish" style="left:26px;top:342px;width:148px">Опубликовать</div>
+    </div>
+    <div class="abs" id="wipe-edge" style="height:3px;background:var(--accent-yellow)"></div>
+    <!-- 6. Chip Primary -->
+    <div class="layer chip-p heading-h4" id="L-chip">Опубликовано в App Store</div>
+    <!-- 7-8. График: Segmented control, число, линия с заливкой (как в рефе twoclipping-5cba86) -->
+    <div class="layer chart" id="L-chart" style="width:414px;height:382px">
+      <div class="seg text-sm" style="left:63px;top:20px">
+        <span class="seg__ind" id="seg-ind"></span>
+        <span class="seg__item" id="seg-0">День</span><span class="seg__item" id="seg-1">Неделя</span><span class="seg__item" id="seg-2">Месяц</span>
+      </div>
+      <div class="abs heading-h2" id="v-orders" style="left:24px;top:72px">0</div>
+      <div class="abs text-sm" style="left:24px;top:116px;color:var(--text-tertiary)">заказов в приложении</div>
+      <svg class="abs" style="left:0;top:0" width="414" height="382" viewBox="0 0 414 382">
+        <defs><clipPath id="reveal"><rect id="reveal-rect" x="0" y="0" width="0" height="382"/></clipPath></defs>
+        <g clip-path="url(#reveal)"><path id="area" fill="#F2F2F2"/></g>
+        <g fill="#EDEDED"><rect x="24" y="166" width="366" height="1"/><rect x="24" y="226" width="366" height="1"/><rect x="24" y="286" width="366" height="1"/><rect x="24" y="346" width="366" height="1"/></g>
+        <path id="line" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect id="guide" width="1" fill="#7C7C7C"/>
+        <circle id="dot" r="5" fill="#000" stroke="#FFF" stroke-width="2"/>
+      </svg>
+      <div class="tip label-sm" id="tip">3 480</div>
+    </div>
+  </div>
+  <svg class="cursor" id="cursor" width="16" height="23" viewBox="-1.5 -1.5 16 23"><path d="M0 0L0 17L4.5 13L7.5 20L10.5 18.8L7.5 12L13 12Z" fill="#000" stroke="#FFF" stroke-width="1.5" stroke-linejoin="round"/></svg>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const lerp = (a, b, p) => a + (b - a) * p;
+const easeOut = p => 1 - Math.pow(1 - clamp(p), 3);
+const easeInOut = p => { p = clamp(p); return p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; };
+// Пружина в замкнутой форме: damping 0.8, ω 10 → оседает за ~600 мс, перелёт ~1.5%
+function spring(dt) { if (dt <= 0) return 0; const z = .8, w = 10, wd = w * Math.sqrt(1 - z * z);
+  return 1 - Math.exp(-z * w * dt) * (Math.cos(wd * dt) + (z * w / wd) * Math.sin(wd * dt)); }
+
+// Ширина чипа по тексту (hug, как в ките)
+const BLACK = [0, 0, 0], WHITE = [255, 255, 255];
+const S = {
+  idea:  { w: 334, h: 38,  r: 19, c: BLACK, sh: 0 },
+  icon:  { w: 60,  h: 60,  r: 30, c: BLACK, sh: 0 },
+  code:  { w: 272, h: 288, r: 24, c: WHITE, sh: .08 },
+  phone: { w: 200, h: 400, r: 24, c: WHITE, sh: .08 },
+  chip:  { w: 158, h: 44, r: 22, c: WHITE, sh: .08 },
+  chart: { w: 414, h: 382, r: 24, c: WHITE, sh: .08 },
+};
+// Смены формы: [время старта, состояние]. 120 BPM, такт 2 с, три клипа по 6 с
+const M = [[-99, 'idea'], [2.0, 'icon'], [4.0, 'code'], [6.0, 'phone'], [10.1, 'chip'], [12.0, 'chart'], [16.0, 'idea']];
+const DUR = 18;
+
+// Код: [отступ, ширина строки, ширина ключевого слова]
+const CODE = [[0, 40, 90], [16, 120], [16, 80, 60], [32, 140], [32, 100], [16, 60], [0, 30]];
+CODE.forEach(([ind, w, kw], i) => {
+  if (kw) $('L-code').insertAdjacentHTML('beforeend', `<div class="line" data-kw="${i}" style="left:${28 + ind}px;top:${40 + i * 28}px;background:var(--text-primary)"></div>`);
+  $('L-code').insertAdjacentHTML('beforeend', `<div class="line" data-ln="${i}" style="left:${28 + ind + (kw ? kw + 8 : 0)}px;top:${40 + i * 28}px;background:var(--surface-control)"></div>`);
+});
+$('L-code').insertAdjacentHTML('beforeend', '<div class="abs" id="caret" style="width:2px;height:16px;background:var(--accent-yellow)"></div>');
+// Каркас: те же места, что у экрана на ките
+const WIRE = [[16, 20, 96, 28, 6], [16, 60, 120, 24, 999], [16, 104, 168, 44, 12], [16, 160, 168, 44, 12], [16, 216, 168, 44, 12], [26, 342, 148, 38, 999]];
+WIRE.forEach(([x, y, w, h, r], i) => $('L-wire').insertAdjacentHTML('beforeend', `<div class="wire" data-wi="${i}" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;border-radius:${r}px"></div>`));
+for (let i = 0; i < 4; i++) $('L-wire').insertAdjacentHTML('beforeend', `<div class="grid-col" style="left:${16 + i * 44}px"></div>`);
+// График: точки в координатах карточки 414×382, кривая Catmull-Rom → cubic, как в макете (73:229, 73:248)
+const X0 = 24, X1 = 390, YB = 346, YH = 180, CHART = [40, 56];
+const WEEK8 = [.42, .50, .40, .55, .47, .60, .52, .62];
+const WEEK = Array.from({ length: 12 }, (_, i) => { const f = i * 7 / 11, a = Math.floor(f), b = Math.min(7, a + 1); return lerp(WEEK8[a], WEEK8[b], f - a); });
+const MONTH = [.15, .22, .18, .30, .40, .34, .48, .56, .50, .68, .80, .94];
+const ptsOf = vals => vals.map((v, i) => [X0 + (X1 - X0) * i / (vals.length - 1), YB - v * YH]);
+function curve(ps) { let d = `M${ps[0][0]} ${ps[0][1]}`;
+  for (let i = 0; i < ps.length - 1; i++) { const p0 = ps[Math.max(0, i - 1)], p1 = ps[i], p2 = ps[i + 1], p3 = ps[Math.min(ps.length - 1, i + 2)];
+    d += `C${p1[0] + (p2[0] - p0[0]) / 6} ${p1[1] + (p2[1] - p0[1]) / 6} ${p2[0] - (p3[0] - p1[0]) / 6} ${p2[1] - (p3[1] - p1[1]) / 6} ${p2[0]} ${p2[1]}`; }
+  return d; }
+const springK = (dt, w) => { if (dt <= 0) return 0; const z = .8, wd = w * Math.sqrt(1 - z * z); return 1 - Math.exp(-z * w * dt) * (Math.cos(wd * dt) + (z * w / wd) * Math.sin(wd * dt)); };
+const mix = (a, b, p) => `rgb(${a.map((v, k) => Math.round(lerp(v, b[k], clamp(p))))})`;
+const GREY = [124, 124, 124];
+const HOVER = ptsOf(WEEK)[8], END = ptsOf(WEEK)[11];
+
+function shapeAt(t) {
+  let i = 0; while (i + 1 < M.length && t >= M[i + 1][0]) i++;
+  const cur = S[M[i][1]], prev = i > 0 ? S[M[i - 1][1]] : cur, p = i > 0 ? spring(t - M[i][0]) : 1, q = clamp(p);
+  return { w: lerp(prev.w, cur.w, p), h: lerp(prev.h, cur.h, p), r: lerp(prev.r, cur.r, q),
+    c: prev.c.map((v, k) => Math.round(lerp(v, cur.c[k], q))), sh: lerp(prev.sh, cur.sh, q) };
+}
+// Слой виден между своей сменой формы и следующей: вход после формы с размытием, выход быстрый
+function vis(el, tIn, tOut, t, inDelay = .18) {
+  let o = 1, b = 0;
+  if (tIn > -50) { const p = clamp((t - tIn - inDelay) / .2); o = p; b = (1 - p) * 6; }
+  if (t >= tOut) { const p = clamp((t - tOut) / .12); o = Math.min(o, 1 - p); b = Math.max(b, p * 6); }
+  if (t < tIn + inDelay && tIn > -50) o = 0;
+  el.style.opacity = o; el.style.filter = b > .05 ? `blur(${b}px)` : 'none'; el.style.visibility = o < .001 ? 'hidden' : 'visible';
+}
+const IDEA = 'Приложение для пекарни';
+const fmt = n => Math.round(n).toLocaleString('ru-RU').replace(/\s/g, ' ');
+// Курсор: точки [t, x, y, opacity]; между точками ease-in-out
+const CUR = [[0, 112, 252, 1], [1.3, 112, 252, 1], [1.75, 352, 244, 1], [2.0, 352, 244, 1], [2.25, 352, 244, 0],
+  [8.9, 430, 470, 0], [9.05, 425, 465, 1], [9.6, 247, 408, 1], [10.15, 247, 408, 1], [10.35, 247, 408, 0],
+  [12.19, CHART[0] + X0 + 4, CHART[1] + ptsOf(WEEK)[0][1] + 10, 0], [13.15, CHART[0] + END[0] + 4, CHART[1] + END[1] + 10, 1], [13.45, CHART[0] + HOVER[0] + 4, CHART[1] + HOVER[1] + 10, 1], [13.85, CHART[0] + HOVER[0] + 4, CHART[1] + HOVER[1] + 10, 1],
+  [14.15, 343, 92, 1], [15.2, 343, 92, 1], [15.4, 343, 92, 0],
+  [16.35, 210, 330, 0], [16.5, 200, 320, 1], [17.1, 112, 252, 1], [18, 112, 252, 1]];
+function cursorAt(t) {
+  if (t >= 12.2 && t < 13.15) { const l = $('line'), len = l.getTotalLength(), q = l.getPointAtLength(len * easeOut((t - 12.35) / .8));
+    return [CHART[0] + q.x + 4, CHART[1] + q.y + 10, clamp((t - 12.25) / .15)]; }
+  let i = 0; while (i + 1 < CUR.length && t >= CUR[i + 1][0]) i++;
+  const a = CUR[i], b = CUR[Math.min(i + 1, CUR.length - 1)]; const p = b[0] > a[0] ? easeInOut((t - a[0]) / (b[0] - a[0])) : 0;
+  return [lerp(a[1], b[1], p), lerp(a[2], b[2], p), lerp(a[3], b[3], p)]; }
+const press = (t, tc) => { const d = t - tc; return d < 0 || d > .15 ? 1 : 1 - .04 * Math.sin(Math.PI * d / .15); };
+
+function seek(t) {
+  t = ((t % DUR) + DUR) % DUR;
+  const s = shapeAt(t), sc = press(t, 1.8) * press(t, 10.0);
+  Object.assign($('shape').style, { width: s.w + 'px', height: s.h + 'px', left: (494 - s.w) / 2 + 'px', top: (494 - s.h) / 2 + 'px',
+    borderRadius: s.r + 'px', background: `rgb(${s.c})`, boxShadow: `0 12px 44px rgba(0,0,0,${s.sh.toFixed(3)})`, transform: `scale(${sc})` });
+  // 1 / 9. Поле идеи: печать в начале, пустое в конце
+  vis($('L-idea'), t >= 16 ? 16 : -99, t >= 16 ? 99 : 2.0, t);
+  const n = t < 16 ? Math.floor(clamp((t - .3) / .045, 0, IDEA.length)) : 0;
+  $('idea-text').textContent = n ? IDEA.slice(0, n) : 'Ваша идея...';
+  $('idea-text').className = n ? '' : 'idea__ph';
+  // 2. Стрелка улетает, крутится лоадер
+  vis($('L-icon'), 2.0, 4.0, t);
+  const fly = easeInOut((t - 3.0) / .25);
+  $('arrow').style.transform = `translateX(${fly * 24}px)`; $('arrow').style.opacity = 1 - fly;
+  $('loader').style.opacity = clamp((t - 3.1) / .15); $('loader').style.transform = `rotate(${t * 540}deg)`;
+  // 3. Код печатается по строке
+  vis($('L-code'), 4.0, 6.0, t);
+  let lastEnd = [28, 40];
+  CODE.forEach(([ind, w, kw], i) => { const p = clamp((t - 4.45 - i * .12) / .12);
+    const k = document.querySelector(`[data-kw="${i}"]`), l = document.querySelector(`[data-ln="${i}"]`);
+    const kp = kw ? clamp(p * (kw + 8 + w) / kw) : 0, lp = kw ? clamp((p * (kw + 8 + w) - kw - 8) / w) : p;
+    if (k) k.style.width = kw * kp + 'px'; l.style.width = w * lp + 'px';
+    if (p > 0) lastEnd = [28 + ind + (kw ? kw * kp + (lp > 0 ? 8 : 0) : 0) + w * lp + 6, 36 + i * 28]; });
+  Object.assign($('caret').style, { left: lastEnd[0] + 'px', top: lastEnd[1] + 'px', opacity: Math.floor(t / .25) % 2 ? 0 : 1 });
+  // 4. Каркас стекается, сетка проступает
+  vis($('L-wire'), 6.0, 10.1, t, .08);
+  document.querySelectorAll('[data-wi]').forEach((el, i) => { const p = easeOut((t - 6.12 - i * .06) / .4);
+    el.style.opacity = p; el.style.transform = `translateY(${(1 - p) * 8}px)`; });
+  const g = .12 * clamp((t - 6.7) / .3) * (1 - clamp((t - 8.0) / .3));
+  document.querySelectorAll('.grid-col').forEach(el => el.style.opacity = g);
+  // 5. Шторка сверху вниз, кромка жёлтая
+  const w = easeInOut((t - 8.0) / .9);
+  const hifi = $('L-hifi'); vis(hifi, 8.0, 10.1, t, 0);
+  if (t < 8.0) hifi.style.visibility = 'hidden';
+  hifi.style.clipPath = `inset(0 0 ${(1 - w) * 100}% 0)`;
+  const edgeOn = t >= 8.0 && t < 8.95;
+  Object.assign($('wipe-edge').style, { display: edgeOn ? 'block' : 'none', left: '0', width: s.w + 'px', top: (w * 400 - 1) + 'px', opacity: w < .98 ? 1 : 0 });
+  $('publish').style.transform = `scale(${press(t, 10.0) * press(t, 10.0)})`;
+  // 6. Чип: текст входит после формы
+  vis($('L-chip'), 10.1, 12.0, t, .3);
+  // 7. График рисуется, курсор ведёт конец линии, подсказка; 8. клик «Месяц»: индикатор каплей, число и линия перетекают
+  vis($('L-chart'), 12.0, 16.0, t);
+  const mp = easeInOut((t - 14.25) / .6);
+  const ps = ptsOf(WEEK.map((v, i) => lerp(v, MONTH[i], mp))), d = curve(ps);
+  const line = $('line'); line.setAttribute('d', d);
+  $('area').setAttribute('d', d + `L${X1} ${YB}L${X0} ${YB}Z`);
+  const len = line.getTotalLength(), dp = easeOut((t - 12.35) / .8), tip = line.getPointAtLength(len * dp);
+  line.style.strokeDasharray = len; line.style.strokeDashoffset = len * (1 - dp);
+  $('reveal-rect').setAttribute('width', t >= 13.15 ? 414 : tip.x);
+  const hov = clamp((t - 13.4) / .15) * (1 - clamp((t - 13.9) / .12));
+  $('dot').setAttribute('cx', HOVER[0]); $('dot').setAttribute('cy', HOVER[1]); $('dot').style.opacity = hov;
+  Object.assign($('guide').style, { opacity: hov }); $('guide').setAttribute('x', HOVER[0] - .5); $('guide').setAttribute('y', HOVER[1]); $('guide').setAttribute('height', YB - HOVER[1]);
+  const tipEl = $('tip'); Object.assign(tipEl.style, { opacity: hov, left: Math.min(HOVER[0] - tipEl.offsetWidth / 2, 402 - tipEl.offsetWidth) + 'px', top: HOVER[1] - 40 + 'px', transform: `translateY(${(1 - hov) * 4}px)` });
+  const L = 96 + 96 * springK(t - 14.2, 9), R = 192 + 96 * springK(t - 14.2, 15);
+  Object.assign($('seg-ind').style, { left: L + 'px', width: R - L + 'px' });
+  const sw = clamp((t - 14.3) / .15);
+  $('seg-0').style.color = mix(GREY, GREY, 0); $('seg-1').style.color = mix(WHITE, GREY, sw); $('seg-2').style.color = mix(GREY, WHITE, sw);
+  $('v-orders').textContent = fmt(t < 14.25 ? 24600 * easeOut((t - 12.35) / .8) : lerp(24600, 100000, easeOut((t - 14.25) / .7)));
+  // Курсор
+  const [cx, cy, co] = cursorAt(t);
+  Object.assign($('cursor').style, { transform: `translate(${cx - 1.5}px, ${cy - 1.5}px)`, opacity: co });
+}
+window.seek = seek;
+const qt = new URLSearchParams(location.search).get('t');
+document.fonts.ready.then(() => {
+  S.chip.w = Math.ceil($('L-chip').getBoundingClientRect().width);
+  window.ready = true;
+  if (qt !== null) { seek(parseFloat(qt)); return; }
+  if (navigator.webdriver) return;
+  const t0 = performance.now(); const loop = () => { seek((performance.now() - t0) / 1000); requestAnimationFrame(loop); }; loop();
+});
+seek(0);
+</script>
+</body>
+</html>
