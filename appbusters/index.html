@@ -78,6 +78,12 @@ svg { display: block; flex: none; }
 .button--md { height: 38px; padding: 0 var(--space-24); font: 700 14px/18px var(--font-text); }
 .button--primary { background: var(--surface-inverse); color: var(--text-on-inverse); }
 .button--primary:hover { background: var(--surface-inverse-hover); }
+/* Size=xl, Icon=Trailing: крупный CTA, выбивается из ряда sm/md сознательно (Figma 98:72) */
+.button--xl { height: 72px; padding: 0 var(--space-8) 0 var(--space-40); gap: var(--space-24); font: 500 20px/28px var(--font-text); letter-spacing: -0.01em; }
+.button__trailing { width: 56px; height: 56px; border-radius: var(--radius-full); background: var(--surface-card); color: var(--text-primary); display: grid; place-items: center; }
+/* Motion: hover · стрелка · x 0 → 4 · 200ms · ease-out */
+.button__trailing svg { transition: transform 200ms ease-out; }
+.button--xl:hover .button__trailing svg { transform: translateX(4px); }
 
 .icon-button { width: 60px; height: 60px; border-radius: var(--radius-full); background: var(--surface-inverse); color: var(--text-on-inverse); display: grid; place-items: center; cursor: pointer; transition: background-color 150ms ease-out; flex: none; }
 .icon-button:hover { background: var(--surface-inverse-hover); }
@@ -372,7 +378,7 @@ svg { display: block; flex: none; }
         <div class="project-card__body"><h3 class="text-lg">Spirit Up</h3><p class="text-md">Консультации астрологов и&nbsp;персональные прогнозы в&nbsp;одном приложении</p></div>
       </a>
     </div>
-    <a class="button button--md button--primary" href="#">Все 17 кейсов</a>
+    <a class="button button--xl button--primary" href="#">Все 17 кейсов<span class="button__trailing"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
   </section>
 
   <section class="faq container">
