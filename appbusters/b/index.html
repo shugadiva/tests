@@ -510,11 +510,12 @@ main > section:not(.hero), .test-note { position: relative; }
 .hero .highlight { width: 206px; text-align: center; padding: 0; margin-right: var(--space-16); }
 .hero h1 .tail { display: inline-block; width: 243px; text-align: left; }
 
-/* стопка Services: карточка прилипает по центру окна (не ниже шапки), каскад 15 px, как у sunbeam (90/105/120),
-   чтобы следующая начинала наезжать раньше (правка Дианы 12.10.2026) */
-.feature { top: max(90px, calc(50vh - 260px)); }
-.feature:nth-child(2) { top: max(105px, calc(50vh - 245px)); }
-.feature:nth-child(3) { top: max(120px, calc(50vh - 230px)); }
+/* стопка Services как у sunbeam.framer.media (замер 12.10.2026): sticky 90 / 105 / 120;
+   Motion: scroll · прилипшая карточка · scale 1 → 0.92 · линейно, 0.008 на каждые 100 px прокрутки после прилипания · origin по центру */
+.feature:nth-child(1) { top: 90px; }
+.feature:nth-child(2) { top: 105px; }
+.feature:nth-child(3) { top: 120px; }
+.feature { transform-origin: 50% 50%; will-change: transform; }
 </style>
 <style id="lenis-css">/* lenis@1.3.26/dist/lenis.css */
 html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip}.lenis [data-lenis-prevent],.lenis [data-lenis-prevent-wheel],.lenis [data-lenis-prevent-touch],.lenis [data-lenis-prevent-vertical],.lenis [data-lenis-prevent-horizontal]{overscroll-behavior:contain}.lenis.lenis-smooth iframe{pointer-events:none}.lenis.lenis-autoToggle{transition-property:overflow;transition-duration:1ms;transition-behavior:allow-discrete}</style>
@@ -817,6 +818,33 @@ document.querySelectorAll('.video--file').forEach(box => {
   const v = box.querySelector('video');
   box.querySelector('.video__play').addEventListener('click', () => { box.classList.add('is-playing'); v.controls = true; v.play(); });
 });
+</script>
+<script>
+/* стопка Services: прилипшая карточка уменьшается, пока на неё наезжают следующие (как у sunbeam) */
+(() => {
+  const list = document.querySelector('.features'); if (!list) return;
+  const cards = [...list.querySelectorAll('.feature')];
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let stick = [];
+  const measure = () => {
+    const top0 = list.getBoundingClientRect().top + scrollY;
+    let y = top0;
+    stick = cards.map(c => { const s = y - parseFloat(getComputedStyle(c).top); y += c.offsetHeight + parseFloat(getComputedStyle(list).rowGap || 24); return s; });
+  };
+  const last = cards.length - 1;
+  const update = () => {
+    const sy = scrollY;
+    cards.forEach((c, i) => {
+      if (i === last) return;
+      const past = Math.max(0, sy - stick[i] - 200);
+      const s = Math.max(0.9, 1 - past * 0.00008);
+      c.style.transform = s < 1 ? `scale(${s.toFixed(4)})` : '';
+    });
+  };
+  measure(); update();
+  addEventListener('resize', () => { measure(); update(); });
+  addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+})();
 </script>
 </body>
 </html>
