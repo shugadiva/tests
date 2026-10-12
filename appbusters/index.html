@@ -291,20 +291,22 @@ svg { display: block; flex: none; }
 .js-motion .phone { transform: rotateX(var(--tilt, 8deg)); transform-origin: 50% 50%; will-change: transform; }
 @media (prefers-reduced-motion: reduce) { .js-motion .rise { opacity: 1; transform: none; } .js-motion .phone { transform: none; } }
 
-/* FAQ: заголовок по центру и карточки, по рефу vidora.framer.media (Accordion Surface=Card, Tone=Neutral) */
-.faq { display: flex; flex-direction: column; align-items: center; gap: var(--space-40); margin-top: var(--space-96); padding: 0 var(--space-160); }
-.faq__header { display: flex; flex-direction: column; align-items: center; gap: var(--space-16); text-align: center; }
-.faq__header p { color: var(--text-tertiary); max-width: 400px; }
-.faq__list { display: flex; flex-direction: column; gap: var(--space-24); align-self: stretch; }
-.accordion { border: 1px solid var(--border-divider); border-radius: var(--radius-sm); padding: var(--space-20); background: var(--surface-card); }
-.accordion summary { list-style: none; display: flex; align-items: center; gap: var(--space-12); cursor: pointer; }
-.accordion summary span:first-child { flex: 1; }
+/* FAQ */
+.faq { display: grid; grid-template-columns: 300px 750px; margin-top: var(--space-96); }
+.accordion { border-bottom: 1px solid var(--border-divider); padding: var(--space-16); }
+.accordion summary { list-style: none; display: flex; align-items: center; gap: var(--space-12); cursor: pointer; font: 500 14px/20px var(--font-text); }
+.accordion[open] summary { font: 400 16px/22px var(--font-text); }
 .accordion summary::-webkit-details-marker { display: none; }
-.accordion__icon { width: 20px; height: 20px; flex: none; color: var(--text-primary); }
+.accordion__icon { width: 16px; height: 16px; flex: none; color: var(--tone, var(--accent-blue)); }
 .accordion__icon .minus { display: none; }
+.accordion[open] .accordion__icon { width: 20px; height: 20px; }
 .accordion[open] .accordion__icon .plus { display: none; }
 .accordion[open] .accordion__icon .minus { display: block; }
-.accordion p { color: var(--text-tertiary); padding: var(--space-12) var(--space-32) 0 0; }
+.accordion p { color: var(--text-tertiary); padding: var(--space-12) 0 0 36px; }
+.accordion:nth-child(2) { --tone: var(--accent-yellow); }
+.accordion:nth-child(3) { --tone: var(--accent-red); }
+.accordion:nth-child(4) { --tone: var(--accent-green); }
+.accordion:nth-child(5) { --tone: var(--accent-indigo); }
 
 .test-note { padding: var(--space-24); text-align: center; color: var(--text-tertiary); border-top: 1px solid var(--border-divider); }
 .test-note a { color: var(--text-secondary); text-decoration: underline; }
@@ -490,16 +492,16 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
   </section>
 
   <section class="faq container">
-    <div class="faq__header">
-      <h2 class="heading-h2">Частые вопросы</h2>
-      <p class="text-sm">Ответы на&nbsp;вопросы, которые задают чаще всего, чтобы вы&nbsp;заранее знали, как&nbsp;мы работаем</p>
-    </div>
-    <div class="faq__list">
-      <details class="accordion" open><summary class="text-md"><span>Сколько это стоит и хватит ли моего бюджета?</span><span class="accordion__icon"><svg class="plus" width="20" height="20" viewBox="0 0 20 20"><path d="M10 3v14M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary><p class="text-sm">Стоимость зависит от&nbsp;задачи и&nbsp;масштаба проекта. После обсуждения идеи оцениваем объём работ и&nbsp;предлагаем оптимальный вариант реализации под ваш бюджет</p></details>
-      <details class="accordion"><summary class="text-md"><span>А если бюджет небольшой, есть смысл обращаться?</span><span class="accordion__icon"><svg class="plus" width="20" height="20" viewBox="0 0 20 20"><path d="M10 3v14M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary><p class="text-sm">Ответ появится здесь</p></details>
-      <details class="accordion"><summary class="text-md"><span>Подпишите NDA? Безопасно ли рассказывать идею?</span><span class="accordion__icon"><svg class="plus" width="20" height="20" viewBox="0 0 20 20"><path d="M10 3v14M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary><p class="text-sm">Ответ появится здесь</p></details>
-      <details class="accordion"><summary class="text-md"><span>Что будет с моим номером, начнете звонить и слать рассылки?</span><span class="accordion__icon"><svg class="plus" width="20" height="20" viewBox="0 0 20 20"><path d="M10 3v14M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary><p class="text-sm">Ответ появится здесь</p></details>
-      <details class="accordion"><summary class="text-md"><span>Можно связаться напрямую с Игнатом?</span><span class="accordion__icon"><svg class="plus" width="20" height="20" viewBox="0 0 20 20"><path d="M10 3v14M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary><p class="text-sm">Ответ появится здесь</p></details>
+    <h2 class="heading-h2">Частые<br>вопросы</h2>
+    <div>
+      <details class="accordion" open>
+        <summary><span class="accordion__icon"><svg class="plus" width="16" height="16" viewBox="0 0 16 16"><path d="M8 2v12M2 8h12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><rect width="20" height="20" rx="5" fill="currentColor"/><rect x="5" y="9" width="10" height="2" rx="1" fill="#fff"/></svg></span>Сколько это стоит и хватит ли моего бюджета?</summary>
+        <p class="text-sm">Стоимость зависит от&nbsp;задачи и&nbsp;масштаба проекта. После обсуждения идеи оцениваем объём работ и&nbsp;предлагаем оптимальный вариант реализации под ваш бюджет</p>
+      </details>
+      <details class="accordion"><summary><span class="accordion__icon"><svg class="plus" width="16" height="16" viewBox="0 0 16 16"><path d="M8 2v12M2 8h12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><rect width="20" height="20" rx="5" fill="currentColor"/><rect x="5" y="9" width="10" height="2" rx="1" fill="#fff"/></svg></span>А если бюджет небольшой, есть смысл обращаться?</summary><p class="text-sm">Ответ появится здесь</p></details>
+      <details class="accordion"><summary><span class="accordion__icon"><svg class="plus" width="16" height="16" viewBox="0 0 16 16"><path d="M8 2v12M2 8h12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><rect width="20" height="20" rx="5" fill="currentColor"/><rect x="5" y="9" width="10" height="2" rx="1" fill="#fff"/></svg></span>Подпишите NDA? Безопасно ли рассказывать идею?</summary><p class="text-sm">Ответ появится здесь</p></details>
+      <details class="accordion"><summary><span class="accordion__icon"><svg class="plus" width="16" height="16" viewBox="0 0 16 16"><path d="M8 2v12M2 8h12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><rect width="20" height="20" rx="5" fill="currentColor"/><rect x="5" y="9" width="10" height="2" rx="1" fill="#fff"/></svg></span>Что будет с моим номером, начнете звонить и слать рассылки?</summary><p class="text-sm">Ответ появится здесь</p></details>
+      <details class="accordion"><summary><span class="accordion__icon"><svg class="plus" width="16" height="16" viewBox="0 0 16 16"><path d="M8 2v12M2 8h12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><rect width="20" height="20" rx="5" fill="currentColor"/><rect x="5" y="9" width="10" height="2" rx="1" fill="#fff"/></svg></span>Можно связаться напрямую с Игнатом?</summary><p class="text-sm">Ответ появится здесь</p></details>
     </div>
   </section>
 
