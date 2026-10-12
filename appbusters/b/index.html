@@ -428,6 +428,13 @@ main > section:not(.hero), .test-note { position: relative; }
 .faq .accordion summary > span:first-child { flex: 1; }
 .faq .accordion__icon, .faq .accordion[open] .accordion__icon { width: 20px; height: 20px; color: #000000; }
 .faq .accordion p { padding: var(--space-12) var(--space-32) 0 0; }
+/* Motion: click · answer height · 0 → auto · 250ms · standard (JS, ответ закрывается той же высотой обратно); открыт один вопрос
+   click · icon · вертикальная черта плюса поворачивается на 90° и сливается в минус · 250ms · standard */
+.faq .accordion__answer { overflow: hidden; }
+.faq .accordion .accordion__icon .plus { display: block; }
+.faq .accordion .accordion__icon .minus { display: none; }
+.faq .accordion__icon .v { transform-box: fill-box; transform-origin: center; transition: transform 250ms cubic-bezier(0.2, 0, 0, 1); }
+.faq .accordion.is-open .accordion__icon .v { transform: rotate(90deg); }
 
 /* Services по sunbeam.framer.media (Figma Container 200:340): заголовок + стопка карточек 1050x520.
    Motion: scroll · карточки · sticky top 90 под шапкой, следующая наезжает на предыдущую стопкой */
@@ -714,11 +721,11 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
       <p class="lead-text">Ответы на&nbsp;вопросы, которые задают чаще всего,<br>чтобы вы&nbsp;заранее знали, как&nbsp;мы работаем</p>
     </div>
     <div class="faq__list">
-      <details class="accordion" open><summary><span>Сколько это стоит и хватит ли моего бюджета?</span><span class="accordion__icon"><svg class="plus" width="20" height="20" viewBox="0 0 20 20"><path d="M10 3v14M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary><p class="lead-text">Стоимость зависит от&nbsp;задачи и&nbsp;масштаба проекта. После обсуждения идеи оцениваем объём работ и&nbsp;предлагаем оптимальный вариант реализации под ваш бюджет</p></details>
-      <details class="accordion"><summary><span>А если бюджет небольшой, есть смысл обращаться?</span><span class="accordion__icon"><svg class="plus" width="20" height="20" viewBox="0 0 20 20"><path d="M10 3v14M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary><p class="lead-text">Ответ появится здесь</p></details>
-      <details class="accordion"><summary><span>Подпишите NDA? Безопасно ли рассказывать идею?</span><span class="accordion__icon"><svg class="plus" width="20" height="20" viewBox="0 0 20 20"><path d="M10 3v14M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary><p class="lead-text">Ответ появится здесь</p></details>
-      <details class="accordion"><summary><span>Что будет с моим номером, начнете звонить и слать рассылки?</span><span class="accordion__icon"><svg class="plus" width="20" height="20" viewBox="0 0 20 20"><path d="M10 3v14M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary><p class="lead-text">Ответ появится здесь</p></details>
-      <details class="accordion"><summary><span>Можно связаться напрямую с Игнатом?</span><span class="accordion__icon"><svg class="plus" width="20" height="20" viewBox="0 0 20 20"><path d="M10 3v14M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary><p class="lead-text">Ответ появится здесь</p></details>
+      <details class="accordion" open><summary><span>Сколько это стоит и хватит ли моего бюджета?</span><span class="accordion__icon"><svg class="plus" width="20" height="20" viewBox="0 0 20 20"><path class="v" d="M10 3v14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary><p class="lead-text">Стоимость зависит от&nbsp;задачи и&nbsp;масштаба проекта. После обсуждения идеи оцениваем объём работ и&nbsp;предлагаем оптимальный вариант реализации под ваш бюджет</p></details>
+      <details class="accordion"><summary><span>А если бюджет небольшой, есть смысл обращаться?</span><span class="accordion__icon"><svg class="plus" width="20" height="20" viewBox="0 0 20 20"><path class="v" d="M10 3v14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary><p class="lead-text">Ответ появится здесь</p></details>
+      <details class="accordion"><summary><span>Подпишите NDA? Безопасно ли рассказывать идею?</span><span class="accordion__icon"><svg class="plus" width="20" height="20" viewBox="0 0 20 20"><path class="v" d="M10 3v14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary><p class="lead-text">Ответ появится здесь</p></details>
+      <details class="accordion"><summary><span>Что будет с моим номером, начнете звонить и слать рассылки?</span><span class="accordion__icon"><svg class="plus" width="20" height="20" viewBox="0 0 20 20"><path class="v" d="M10 3v14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary><p class="lead-text">Ответ появится здесь</p></details>
+      <details class="accordion"><summary><span>Можно связаться напрямую с Игнатом?</span><span class="accordion__icon"><svg class="plus" width="20" height="20" viewBox="0 0 20 20"><path class="v" d="M10 3v14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="minus" width="20" height="20" viewBox="0 0 20 20"><path d="M3 10h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary><p class="lead-text">Ответ появится здесь</p></details>
     </div>
   </section>
 
@@ -760,6 +767,36 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
   document.querySelectorAll('.service__title').forEach(t => t.addEventListener('click', () => {
     document.querySelectorAll('.service').forEach(s => s.classList.toggle('service--open', s === t.parentElement));
   }));
+</script>
+<script>
+  // FAQ: раскрытие по высоте 250ms standard, открыт один вопрос. <details> оставляем ради доступности,
+  // атрибут open снимаем только после того, как ответ схлопнулся
+  (() => {
+    const items = [...document.querySelectorAll('.faq .accordion')];
+    const ease = 'cubic-bezier(0.2, 0, 0, 1)', dur = 250;
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    items.forEach(d => {
+      const p = d.querySelector('p'), wrap = document.createElement('div');
+      wrap.className = 'accordion__answer'; p.replaceWith(wrap); wrap.appendChild(p);
+      d.classList.toggle('is-open', d.open);
+    });
+    const animate = (d, open) => {
+      const wrap = d.querySelector('.accordion__answer');
+      d._anim?.cancel();
+      d.classList.toggle('is-open', open);
+      if (open) d.open = true;
+      if (still) { d.open = open; return; }
+      const h = wrap.scrollHeight, from = open ? 0 : wrap.getBoundingClientRect().height;
+      d._anim = wrap.animate([{ height: from + 'px', opacity: open ? 0 : 1 }, { height: (open ? h : 0) + 'px', opacity: open ? 1 : 0 }], { duration: dur, easing: ease });
+      d._anim.onfinish = () => { d._anim = null; if (!open) d.open = false; };
+    };
+    items.forEach(d => d.querySelector('summary').addEventListener('click', e => {
+      e.preventDefault();
+      const open = !d.classList.contains('is-open');
+      if (open) items.forEach(o => o !== d && o.classList.contains('is-open') && animate(o, false));
+      animate(d, open);
+    }));
+  })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
 <script>
