@@ -88,6 +88,12 @@ svg { display: block; flex: none; }
 /* Motion: hover · стрелка · x 0 → 4 · 200ms · ease-out */
 .button__trailing svg { transition: transform 200ms ease-out; }
 .button--xl:hover .button__trailing svg { transform: translateX(4px); }
+/* Size=lg, Hierarchy=Secondary, Icon=Trailing: вторичный CTA со стрелкой (Figma 156:143) */
+.button--lg { height: 48px; padding: 0 var(--space-4) 0 var(--space-24); gap: var(--space-12); font: 700 14px/18px var(--font-text); }
+.button--lg.button--secondary { transition: box-shadow 150ms ease-out; }
+.button--lg.button--secondary:hover { background: var(--surface-card); box-shadow: inset 0 0 0 1px var(--border-strong); }
+.button--secondary .button__trailing { background: var(--surface-inverse); color: var(--text-on-inverse); }
+.button--lg:hover .button__trailing svg { transform: translateX(4px); }
 
 .icon-button { width: 60px; height: 60px; border-radius: var(--radius-full); background: var(--surface-inverse); color: var(--text-on-inverse); display: grid; place-items: center; cursor: pointer; transition: background-color 150ms ease-out; flex: none; }
 .icon-button:hover { background: var(--surface-inverse-hover); }
@@ -432,7 +438,7 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
         <div class="project-card__body"><h3 class="heading-h3">Spirit Up</h3><p class="text-sm">Консультации астрологов и&nbsp;персональные прогнозы в&nbsp;одном приложении</p></div>
       </a>
     </div>
-    <a class="button button--xl button--primary" href="#">Все 17 кейсов<span class="button__trailing"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="button button--lg button--secondary" href="#">Все 17 кейсов<span class="button__trailing"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
   </section>
 
   <!-- 02 Trust: бенто каналов (Figma 103:88) -->
