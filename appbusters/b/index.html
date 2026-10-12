@@ -501,9 +501,9 @@ main > section:not(.hero), .test-note { position: relative; }
 .topic input:focus-visible + span { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
 .ticket .consent { padding-left: 0; }
 
-/* hero по Figma 180:1562 (обнови 12.10.2026): плашка IT & AI радиус 12 и статичный градиент Accent/blue-gloss, как в макете;
+/* hero по Figma 180:1562 (обнови 12.10.2026): плашка IT & AI радиус 12;
    поле: плейсхолдер 14/20, обводка #E6E6E6 */
-.hero .highlight { border-radius: var(--radius-sm); background: var(--accent-blue-gloss); background-size: auto; animation: none; }
+.hero .highlight { border-radius: var(--radius-sm); } /* блик бегает, как в версии A (highlight-shine 4s); в Figma статичный кадр */
 .lead-pill { box-shadow: inset 0 0 0 1px var(--border-card); }
 .lead-pill input { font: 400 14px/20px var(--font-text); letter-spacing: -0.01em; }
 /* ширины второй строки из Figma (Highlight 206, «проекты» 243): браузер считает текст с трекингом −7% уже, строка центрировалась со сдвигом 5 px */
