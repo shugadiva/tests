@@ -373,12 +373,6 @@ main > section:not(.hero), .test-note { position: relative; }
 .tcard { position: relative; border-radius: var(--radius-lg); }
 .tcard::after { content: ""; position: absolute; inset: 0; border: 1px solid var(--border-card); border-radius: inherit; pointer-events: none; }
 
-/* демо-созвон: ролик (Figma 180:1595, обложка кадром на 2-й секунде), Play запускает с контролами */
-.video--file { position: relative; overflow: hidden; }
-.video--file video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.video--file .video__play { position: relative; cursor: pointer; transition: transform 200ms ease-out; }
-.video--file .video__play:hover { transform: scale(1.06); }
-.video--file.is-playing .video__play { display: none; }
 
 /* hero: форма-пилюля (Figma Lead form 190:300), инверсия формы waitlistkit.framer.website/v3 */
 .hero .badge { height: 37px; padding-top: 0; padding-bottom: 0; }
@@ -605,7 +599,7 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
       <h2 class="heading-h2">Приглашаем на демо-созвон с<br><span class="tail">экспертом разработчиком</span></h2>
       <p class="text-sm">Подберем специалиста именно из&nbsp;вашей сферы</p>
     </div>
-    <div class="video video--file"><video src="img/demo.mp4" poster="img/demo-poster.jpg" preload="none" playsinline></video><button class="video__play" type="button" aria-label="Смотреть ролик"><svg width="28" height="28" viewBox="0 0 28 28"><path d="M8 5v18l15-9z" fill="currentColor"/></svg></button></div>
+    <div class="video"><span class="video__play"><svg width="28" height="28" viewBox="0 0 28 28"><path d="M8 5v18l15-9z" fill="currentColor"/></svg></span></div>
   </section>
 
   <section class="outcome" id="lead">
@@ -812,12 +806,6 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
     };
     requestAnimationFrame(tick);
   })();
-</script>
-<script>
-document.querySelectorAll('.video--file').forEach(box => {
-  const v = box.querySelector('video');
-  box.querySelector('.video__play').addEventListener('click', () => { box.classList.add('is-playing'); v.controls = true; v.play(); });
-});
 </script>
 <script>
 /* стопка Services: прилипшая карточка уменьшается, пока на неё наезжают следующие (как у sunbeam) */
