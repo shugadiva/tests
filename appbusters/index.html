@@ -170,7 +170,7 @@ svg { display: block; flex: none; }
 .video__play { width: 60px; height: 60px; border-radius: 50%; background: var(--surface-control); display: grid; place-items: center; color: var(--surface-card); }
 
 /* What you get */
-.outcome { margin-top: var(--space-64); background: var(--surface-muted); border-radius: var(--radius-section) var(--radius-section) 0 0; padding: var(--space-120) 0; }
+.outcome { margin-top: var(--space-64); background: var(--surface-muted); border-radius: var(--radius-section) var(--radius-section) 0 0; padding: var(--space-120) 0 0; }
 .docs { display: flex; justify-content: center; align-items: flex-start; height: 339px; padding: var(--space-48) 0 var(--space-24); }
 .doc { width: 232px; height: 248px; flex: none; background: var(--surface-muted); border-radius: var(--radius-lg); box-shadow: 0 8px 24px rgba(0,0,0,0.06); padding: 6px; position: relative; }
 .doc:nth-child(1) { transform: translateY(20px) rotate(-5deg); }
@@ -213,7 +213,7 @@ svg { display: block; flex: none; }
 .team { display: flex; justify-content: center; align-items: center; gap: var(--space-32); margin-top: var(--space-24); }
 
 /* Projects */
-.projects { background: var(--surface-muted); padding: var(--space-96) 0; display: flex; flex-direction: column; align-items: center; gap: var(--space-48); }
+.projects { background: var(--surface-muted); padding: var(--space-96) 0 0; display: flex; flex-direction: column; align-items: center; gap: var(--space-48); }
 .projects .section-header { width: 1000px; }
 /* Карточки проектов 2×2 (Figma 85:202), обложка: цвет кейса + название по центру, логотипы позже */
 .project-cards { width: var(--layout-container); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); }
@@ -230,24 +230,26 @@ svg { display: block; flex: none; }
 .project-card__body p { color: var(--text-secondary); }
 
 /* Trust: бенто каналов (Figma 103:88) */
-.trust { background: var(--surface-muted); border-radius: 0 0 var(--radius-section) var(--radius-section); padding: var(--space-96) 0; display: flex; flex-direction: column; align-items: center; gap: var(--space-48); }
+.trust { background: var(--surface-muted); border-radius: 0 0 var(--radius-section) var(--radius-section); padding: var(--space-96) 0 var(--space-120); display: flex; flex-direction: column; align-items: center; gap: var(--space-48); }
 .trust .section-header { width: 1000px; }
-.bento { width: var(--layout-container); display: grid; grid-template-columns: 650px 1fr; gap: var(--space-16); }
-.channel { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-16); padding: var(--space-32); border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); }
-.channel--ratings { gap: var(--space-8); }
-.channel__source { display: flex; align-items: center; gap: var(--space-8); }
-.channel__source img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; }
-.channel__meta { color: var(--text-tertiary); }
-.channel__video { position: relative; width: 100%; height: 300px; border-radius: var(--radius-lg); background: var(--surface-muted) url(img/youtube-cover.jpg) center / cover no-repeat; display: grid; place-items: center; }
-.channel__video .video__play { cursor: pointer; }
-.channel__stat { display: flex; flex-direction: column; gap: var(--space-4); }
-.post { width: 100%; display: flex; flex-direction: column; gap: var(--space-8); padding: var(--space-16); border-radius: var(--radius-lg); background: var(--accent-blue-gloss); color: var(--surface-accent-soft); }
+.bento { width: var(--layout-container); display: flex; flex-direction: column; gap: var(--space-16); }
+.bento__row { display: flex; gap: var(--space-16); }
+.tcard { flex: 1 1 0; height: 440px; display: flex; flex-direction: column; gap: var(--space-24); padding: var(--space-32) var(--space-32) 0; border-radius: var(--radius-xl); background: var(--surface-card); box-shadow: var(--shadow-card); overflow: hidden; color: inherit; text-decoration: none; }
+.tcard__head { display: flex; flex-direction: column; gap: var(--space-8); }
+.tcard__head p { color: var(--text-secondary); }
+.tcard__visual { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; gap: var(--space-12); }
+.tcard__visual > img { display: block; }
+/* Fade: визуал уходит под нижний край карточки и растворяется в Surface/card */
+.tcard__fade { position: absolute; left: 0; right: 0; bottom: 0; background: linear-gradient(rgba(255,255,255,0), var(--surface-card)); pointer-events: none; }
+.tvideo { position: relative; height: 292px; flex: none; border-radius: var(--radius-lg); background: var(--surface-muted) url(img/trust-video.webp) center / cover no-repeat; display: grid; place-items: center; }
+.tvideo .video__play { cursor: pointer; }
+.tvideo__stat { position: absolute; right: var(--space-20); bottom: var(--space-20); display: flex; align-items: center; gap: var(--space-8); padding: var(--space-4) var(--space-8); border-radius: var(--radius-full); background: var(--surface-overlay); color: var(--text-on-inverse); }
+.post { flex: none; display: flex; flex-direction: column; gap: var(--space-8); padding: var(--space-16); border-radius: var(--radius-lg); background: var(--accent-blue-gloss); color: var(--surface-accent-soft); }
 .post__meta { color: rgba(242,242,242,0.5); }
-.channel__spacer { flex: 1; }
-.rating { width: 100%; display: flex; align-items: center; gap: var(--space-16); padding: var(--space-12) 0; border-bottom: 1px solid var(--border-divider); }
-.rating__name { flex: 1; display: flex; flex-direction: column; gap: 2px; }
-.rating__name span:last-child, .rating__note { color: var(--text-tertiary); }
-.rating__stars { color: var(--accent-yellow); letter-spacing: 0.1em; }
+.article { flex: none; display: flex; flex-direction: column; gap: var(--space-12); padding: var(--space-20); border-radius: var(--radius-lg); background: var(--surface-muted); }
+.article__source { display: flex; align-items: center; gap: var(--space-8); color: var(--text-secondary); }
+.article__source img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; }
+.article__meta { color: var(--text-tertiary); }
 
 /* Final CTA (Figma 126:254): белый фон, композиция как у makro.framer.website, телефон выглядывает и растворяется в белом */
 .cta { padding: var(--space-20); }
@@ -437,37 +439,44 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
   <section class="trust" id="trust">
     <div class="section-header">
       <h2 class="heading-h2">Познакомьтесь с&nbsp;нами ближе</h2>
-      <p class="text-sm">Игнат и&nbsp;команда открыто рассказывают о&nbsp;разработке: смотрите, читайте, сверяйте отзывы</p>
+      <p class="text-sm">Игнат и&nbsp;команда открыто рассказывают о&nbsp;разработке</p>
     </div>
     <div class="bento">
-      <article class="channel">
-        <div class="channel__source"><img src="img/avatar-ignat.jpg" alt=""><span class="label-md">YouTube</span></div>
-        <a class="channel__video" href="https://www.youtube.com/watch?v=HpsRNGjC4tY" target="_blank" rel="noopener" aria-label="Смотреть ролик"><span class="video__play"><svg width="28" height="28" viewBox="0 0 28 28"><path d="M8 5v18l15-9z" fill="currentColor"/></svg></span></a>
-        <p class="text-sm channel__meta">22,5 тыс. подписчиков · 85 видео · 1,28 млн просмотров</p>
-        <a class="button button--md button--primary" href="https://www.youtube.com/@sprestay" target="_blank" rel="noopener">Смотреть канал</a>
-      </article>
-      <article class="channel">
-        <div class="channel__source"><img src="img/avatar-ignat-tg.jpg" alt=""><span class="label-md">Telegram</span></div>
-        <div class="channel__stat"><span class="heading-h2">5 067</span><span class="text-sm channel__meta">подписчиков читают канал Игната</span></div>
-        <div class="post"><p class="text-sm">Запустили MVP за&nbsp;6&nbsp;недель и&nbsp;не&nbsp;сожгли бюджет. Рассказываю, что мы&nbsp;вырезали из&nbsp;первой версии и&nbsp;почему пользователи этого даже не&nbsp;заметили</p><span class="text-xs post__meta">2&nbsp;дня назад · 1,4K просмотров</span></div>
-        <div class="channel__spacer"></div>
-        <a class="button button--md button--primary" href="https://t.me/sprestay_apps" target="_blank" rel="noopener">Подписаться</a>
-      </article>
-      <article class="channel">
-        <div class="channel__source"><img src="img/avatar-ignat.jpg" alt=""><span class="label-md">VC.ru</span></div>
-        <h3 class="heading-h3">Как я&nbsp;заработал 100&nbsp;млн на&nbsp;продаже услуг для стартаперов</h3>
-        <p class="text-sm channel__meta">около 6,7K просмотров</p>
-        <p class="text-sm">Кейс детского приложения: 50K+ загрузок</p>
-        <div class="channel__spacer"></div>
-        <a class="button button--md button--primary" href="https://vc.ru/id1821746" target="_blank" rel="noopener">Читать блог</a>
-      </article>
-      <article class="channel channel--ratings">
-        <div class="channel__source"><img src="img/avatar-review.jpg" alt=""><span class="label-md">Отзывы</span></div>
-        <div class="rating"><span class="heading-h3">4,9</span><span class="rating__name"><span class="label-md">DreamJob</span><span class="text-xs">5 отзывов, 100% рекомендуют</span></span><span class="text-xs rating__stars">★★★★★</span></div>
-        <div class="rating"><span class="heading-h3">5,0</span><span class="rating__name"><span class="label-md">Отзовик*</span><span class="text-xs">11 отзывов</span></span><span class="text-xs rating__stars">★★★★★</span></div>
-        <div class="rating"><span class="heading-h3">4,5</span><span class="rating__name"><span class="label-md">Zoon*</span><span class="text-xs">6 отзывов</span></span><span class="text-xs rating__stars">★★★★★</span></div>
-        <p class="text-xs rating__note">* данные с сайта компании</p>
-      </article>
+      <div class="bento__row">
+        <article class="tcard">
+          <div class="tcard__head"><h3 class="heading-h3">Разработка без закрытых дверей</h3><p class="text-sm">YouTube Игната: разработка изнутри, без постановки</p></div>
+          <div class="tcard__visual">
+            <a class="tvideo" href="https://www.youtube.com/watch?v=HpsRNGjC4tY" target="_blank" rel="noopener" aria-label="Смотреть ролик"><span class="video__play"><svg width="28" height="28" viewBox="0 0 28 28"><path d="M8 5v18l15-9z" fill="currentColor"/></svg></span><span class="tvideo__stat"><span class="label-md">22,5 тыс.</span><span class="text-xs">подписчиков · 85 видео</span></span></a>
+          </div>
+        </article>
+        <a class="tcard" href="https://www.youtube.com/@sprestay" target="_blank" rel="noopener">
+          <div class="tcard__head"><h3 class="heading-h3">Канал растёт</h3><p class="text-sm">YouTube @sprestay: 85 видео, 1,28 млн просмотров</p></div>
+          <div class="tcard__visual"><img src="img/trust-chart.webp" width="453" height="324" alt="График: 22 500 подписчиков YouTube, просмотры канала +1,9 тыс."></div>
+        </a>
+      </div>
+      <div class="bento__row">
+        <a class="tcard" href="https://t.me/sprestay_apps" target="_blank" rel="noopener">
+          <div class="tcard__head"><h3 class="heading-h3">Telegram @sprestay_apps</h3><p class="text-sm">5&nbsp;067 подписчиков</p></div>
+          <div class="tcard__visual">
+            <div class="post"><p class="text-sm">Запустили MVP за&nbsp;6&nbsp;недель и&nbsp;не&nbsp;сожгли бюджет. Рассказываю, что мы&nbsp;вырезали из&nbsp;первой версии и&nbsp;почему пользователи этого даже не&nbsp;заметили</p><span class="text-xs post__meta">2 дня назад · 1,4K просмотров</span></div>
+            <div class="post"><p class="text-sm">Почему мы&nbsp;отговорили клиента делать приложение и&nbsp;запустили бота в&nbsp;Telegram за&nbsp;две недели</p><span class="text-xs post__meta">5 дней назад · 2,1K просмотров</span></div>
+            <div class="post"><p class="text-sm">Запустили MVP за&nbsp;6&nbsp;недель и&nbsp;не&nbsp;сожгли бюджет. Рассказываю, что мы&nbsp;вырезали из&nbsp;первой версии и&nbsp;почему пользователи этого даже не&nbsp;заметили</p><span class="text-xs post__meta">2 дня назад · 1,4K просмотров</span></div>
+            <span class="tcard__fade" style="height: 140px"></span>
+          </div>
+        </a>
+        <article class="tcard">
+          <div class="tcard__head"><h3 class="heading-h3">Оценки на&nbsp;площадках</h3><p class="text-sm">Отзывы клиентов и&nbsp;сотрудников</p></div>
+          <div class="tcard__visual"><img src="img/trust-ratings.webp" width="275" height="324" alt="DreamJob 4,9, 5 отзывов; Отзовик 5,0, 11 отзывов. Данные с сайта компании"></div>
+        </article>
+        <a class="tcard" href="https://vc.ru/id1821746" target="_blank" rel="noopener">
+          <div class="tcard__head"><h3 class="heading-h3">Пишут о&nbsp;нас</h3><p class="text-sm">VC.ru, блог основателя</p></div>
+          <div class="tcard__visual">
+            <div class="article"><span class="article__source"><img src="img/avatar-ignat-tg.jpg" alt=""><span class="text-xs">Игнат Егоров · vc.ru</span></span><span class="label-md">Как я&nbsp;заработал 100&nbsp;млн на&nbsp;продаже услуг для стартаперов</span><span class="text-xs article__meta">около 6,7K просмотров</span></div>
+            <div class="article"><span class="article__source"><img src="img/avatar-ignat-tg.jpg" alt=""><span class="text-xs">Игнат Егоров · vc.ru</span></span><span class="label-md">Кейс детского приложения: 50K+ загрузок и&nbsp;1,7&nbsp;млн выручки</span><span class="text-xs article__meta">vc.ru · кейс</span></div>
+            <span class="tcard__fade" style="height: 100px"></span>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
