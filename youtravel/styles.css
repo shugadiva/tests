@@ -145,6 +145,7 @@
   .form { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
   .form-head { display: flex; flex-direction: column; gap: 16px; }
   .form-head h1 { margin: 0; }
+  .step-label { display: none; }
   .back { display: inline-flex; align-items: center; gap: 2px; font: 600 13px/19px var(--font-text); color: #828296; align-self: flex-start; }
   .back:hover { color: var(--primary-night); }
   .field { display: flex; flex-direction: column; gap: 12px; }
@@ -296,3 +297,55 @@
   .review__photos .photo-more { position: relative; }
   .review__photos .photo-more::after { content: ""; position: absolute; inset: 0; background: rgba(36, 42, 55, .5); }
   .review__photos .photo-more span { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; color: var(--primary-white); font: 700 24px/28px var(--font-display); }
+
+  /* ---- Мобильная веб-версия, 375 (по секции «Mobile · 375» в Figma) ---- */
+  @media (max-width: 640px) {
+    .lk-header { height: 56px; }
+    .lk-header__inner { padding: 0 16px; }
+    .lk-header__inner > a svg { width: 76px; height: 27px; }
+    .lk-header__actions { gap: 8px; }
+    .lk-header__actions .icon-button[aria-label="Язык и валюта"] { display: none; }
+    .user .t-action-l { display: none; }
+    .user .avatar { width: 32px; height: 32px; }
+    .user::after { content: ""; width: 16px; height: 16px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M7 10l5 5 5-5' stroke='%23242A37' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; }
+    .user { gap: 4px; }
+    .lk-body { padding: 16px 16px 40px; }
+    .card { padding: 16px; gap: 16px; }
+    .rate-trips__cards { grid-template-columns: 1fr; gap: 12px; }
+    .trip-card .button { width: 100%; }
+    .review-row { flex-wrap: wrap; align-items: flex-start; gap: 12px; padding: 16px 0; }
+    .review-row::before { inset: 0 -8px; }
+    .review-row__cover { width: 56px; height: 56px; border-radius: 8px; }
+    .review-row__info { flex: 1 1 0; gap: 8px; }
+    .review-row__aside { gap: 4px; }
+    .review-row__aside:has(.button) { flex-basis: 100%; }
+    .review-row__aside .button { width: 100%; }
+    .form-layout { flex-direction: column; gap: 24px; }
+    .form-layout > .form { display: contents; }
+    .form-layout .form-head { order: -2; }
+    .form-layout > .aside { order: -1; }
+    .step-label { display: block !important; }
+    .aside { width: 100%; position: static; }
+    .aside .steps { display: none; }
+    .scale--10 { width: 252px; flex-wrap: wrap; }
+    .scale-anchors { flex-direction: column; gap: 4px; width: auto; }
+    .scale-anchors span:first-child::before { content: "1 · "; }
+    .scale-anchors span:last-child::before { content: "10 · "; }
+    .photos-add { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .tile { width: 92px; height: 92px; }
+    .tile__del { top: 6px; right: 6px; }
+    .form-foot { flex-direction: column; align-items: stretch; gap: 12px; }
+    .form-foot .button { width: 100%; }
+    .form-foot .caps { text-align: center; }
+    .review__photos { gap: 8px; }
+    .review__photos button { width: 65px; height: 65px; border-radius: 8px; }
+    .review__photos .photo-more span { font-size: 18px; }
+    .overlay { place-items: end center; padding: 0; }
+    .dialog { width: 100%; border-radius: 16px 16px 0 0; padding-bottom: 34px; animation: sheet 250ms var(--ease-out); }
+    .viewer__prev { left: 12px; } .viewer__next { right: 12px; }
+    .viewer__close { top: 16px; right: 16px; } .viewer__count { top: 26px; }
+    .viewer__img { width: 100vw; height: auto; max-height: 70vh; border-radius: 0; }
+    .note { margin-top: -24px; padding: 0 16px 96px; }
+    .states { left: 8px; right: 8px; overflow-x: auto; white-space: nowrap; }
+  }
+  @keyframes sheet { from { transform: translateY(100%); } }
