@@ -325,11 +325,12 @@ void main() {
   if (imageAspect > aspect) uv.x = 0.5 + (uv.x - 0.5) * aspect / imageAspect;
   else uv.y = 0.5 + (uv.y - 0.5) * imageAspect / aspect;
 
-  // зернистая рябь мягким пятном с центром в курсоре. У bybang наоборот: сила растёт с расстоянием,
-  // под курсором чисто, а зерно по всей картинке; Диане нужно пятно под курсором (13.10.2026)
-  float dist = length((localUv - uPointer) * vec2(1.0, 1.0 / aspect));   // в ширинах окна
-  float spot = 1.0 - smoothstep(0.0, 0.4, dist);
-  float displacement = spot * spot * snoise(gl_FragCoord.xy) * 0.014 * uHover;
+  // под курсором зернистая рябь, вокруг самого курсора чистое пятно (формула bybang один в один;
+  // пятно ряби под курсором пробовали 13.10.2026, Диана откатила)
+  float circle = 1.0 - length((localUv - uPointer) * vec2(1.0, 1.0 / aspect)) * 15.0;
+  float pointerDistancePx = length((localUv - uPointer) * uRect.zw);
+  float focusMask = smoothstep(14.0, 48.0, pointerDistancePx);
+  float displacement = circle * snoise(gl_FragCoord.xy) * 0.0028 * uHover * focusMask;
   // у bybang фото прямоугольные; у нас окна вырезаны с прозрачностью, и рябь рвала бы контур.
   // Поэтому силуэт берём из точки без сдвига, а рябь только внутри
   vec4 base = texture2D(uTexture, clamp(uv, 0.0, 1.0));
