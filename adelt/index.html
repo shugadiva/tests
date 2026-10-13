@@ -403,10 +403,8 @@ function makeWarp(canvas) {
 
 let scrollFrozen = false;   // ставит переход в комнату
 function startScroll() {
-  // максимум изгиба у кромки экрана. У bybang 0.0486, но у них гнётся весь экран из картинок.
-  // Мы гнули только окна (0.15), а ровный город за ними прятал изгиб. Теперь гнётся и город,
-  // поэтому сила почти как у них: 0.06 даёт около 28 px в углах экрана (разбор Fable 13.10.2026)
-  const CURL_MAX = 0.06;
+  // максимум изгиба у кромки экрана: у bybang 0.0486, но гнутся только окна, поэтому сильнее
+  const CURL_MAX = 0.15;
   // кривая наведения у них: 600 мс по cubic-bezier(.4, 0, .2, 1)
   const bez = (x1, y1, x2, y2) => t => {
     let u = t;
@@ -418,7 +416,6 @@ function startScroll() {
     return 3 * (1 - u) ** 2 * u * y1 + 3 * (1 - u) * u * u * y2 + u ** 3;
   };
   const hoverEase = bez(0.4, 0, 0.2, 1);
-  const cityImg = city.querySelector('img');
   // плавность как у Lenis: lerp 0.1, то есть за кадр 60 fps проходим 10% оставшегося пути
   const LERP = reduce ? 1 : 0.1;
   let target = 0, current = 0, last = performance.now(), lastPos = 0, curl = 0;
@@ -471,8 +468,8 @@ function startScroll() {
     curl += (goal - curl) * (1 - Math.exp(-dt / (goal > curl ? 25 : 175)));
 
     if (draw) {
-      // город идёт тем же проходом с тем же изгибом, тогда гнётся весь экран, как у bybang
-      const items = [{ img: cityImg, rect: { left: 0, top: 0, right: innerWidth, bottom: innerHeight, width: innerWidth, height: innerHeight }, curl: CURL_MAX * curl, hover: 0, pointer: { x: 0.5, y: 0.5 }, anchorY: 1 }];
+      // гнутся только окна, город стоит ровно (город через изгиб пробовали 13.10.2026, Диана убрала)
+      const items = [];
       for (const w of wins) {
         const img = w.querySelector('img'), r = w.querySelector('.float').getBoundingClientRect();
         if (r.right < 0 || r.left > innerWidth || r.width < 2) continue;
