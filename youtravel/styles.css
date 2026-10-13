@@ -292,3 +292,7 @@
 
   /* Счётчик у пункта меню */
   .sidebar-item .counter { margin-left: auto; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px; background: var(--red-default); color: var(--primary-white); font: 700 10px/16px var(--font-text); text-align: center; }
+
+  .review__photos .photo-more { position: relative; }
+  .review__photos .photo-more::after { content: ""; position: absolute; inset: 0; background: rgba(36, 42, 55, .5); }
+  .review__photos .photo-more span { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; color: var(--primary-white); font: 700 24px/28px var(--font-display); }

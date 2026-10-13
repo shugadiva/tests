@@ -37,7 +37,7 @@
     $('#why')?.addEventListener('click', () => { $('#dlg-reasons').hidden = false; });
 
     // Просмотр фото
-    const photos = $$('#photos img').map((i) => i.src);
+    const photos = ($('#photos').dataset.full || '').split(' ').filter(Boolean);
     const viewer = $('#viewer'), img = $('#viewer-img'), count = $('#viewer-count');
     let cur = 0;
     const show = (i) => { cur = (i + photos.length) % photos.length; img.src = photos[cur]; count.textContent = `${cur + 1} из ${photos.length}`; };
