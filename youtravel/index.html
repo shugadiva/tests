@@ -5,135 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Мои отзывы · тестовое YouTravel.me</title>
-<style>
-  /* Токены: значения стилей ДС YouTravel (UI Kit), имена как в Figma */
-  :root {
-    --primary-night: #242a37;
-    --primary-black: #121212;
-    --primary-white: #ffffff;
-    --dark-grey-primary: #9797a3;
-    --grey-light: #eeeef2;
-    --grey-default: #f0f2f5;
-    --grey-pale: #f6f7fa;
-    --green-default: #abc232;
-    --green-hover: #9aae2d;
-    --green-click: #7fa40c;
-    --green-selected: #f8fbf1;
-    --orange: #ff9800;
-    --green-text: #88a100;
-    --red-default: #f84565;
-    --grey-divider: #d1d7e8;
-
-    --font-text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Arial, sans-serif;
-    --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
-
-    --container: 1176px;
-    --sidebar: 260px;
-    --gap: 20px;
-    --ease-out: cubic-bezier(.2, .8, .2, 1);
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; }
-  body { background: var(--grey-light); color: var(--primary-night); font-family: var(--font-text); -webkit-font-smoothing: antialiased; }
-  a { color: inherit; text-decoration: none; }
-  button { font: inherit; border: 0; cursor: pointer; }
-  svg { display: block; flex: none; }
-
-  /* Стили текста ДС */
-  .t-h3 { font: 700 20px/24px var(--font-display); }
-  .t-h4 { font: 700 18px/22px var(--font-display); }
-  .t-body-s { font: 400 13px/17px var(--font-text); }
-  .t-body-s-semi { font: 600 13px/17px var(--font-text); }
-  .t-body-xs-semi { font: 600 12px/16px var(--font-text); }
-  .t-action-l { font: 600 14px/22px var(--font-text); }
-  .t-body-m-semi { font: 600 14px/18px var(--font-text); }
-
-  /* lk-header */
-  .lk-header { height: 64px; background: var(--primary-white); box-shadow: 0 2px 15px rgba(153, 153, 169, .15); position: relative; z-index: 2; }
-  .lk-header__inner { max-width: var(--container); height: 100%; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-  .lk-header__actions { display: flex; align-items: center; gap: 12px; }
-  .icon-button { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 8px; background: transparent; transition: background-color 150ms var(--ease-out); }
-  .icon-button:hover { background: var(--grey-pale); }
-  .user { display: flex; align-items: center; gap: 12px; }
-  .avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
-
-  /* Каркас */
-  .lk-body { max-width: calc(var(--container) + 2 * 0px); margin: 0 auto; padding: 20px 0 88px; display: flex; gap: var(--gap); align-items: flex-start; }
-
-  /* lk-sidebar-traveler */
-  .lk-sidebar { width: var(--sidebar); flex: none; background: var(--primary-white); border-radius: 12px; padding: 8px; display: flex; flex-direction: column; gap: 2px; }
-  .sidebar-item { height: 36px; display: flex; align-items: center; gap: 12px; padding: 6px 10px; border-radius: 8px; font: 600 13px/20px var(--font-text); color: var(--primary-night); transition: background-color 150ms var(--ease-out); }
-  .sidebar-item:hover { background: var(--grey-pale); }
-  .sidebar-item[aria-current="page"] { background: var(--green-selected); }
-  .sidebar-item__arrow { margin-left: auto; }
-  .sidebar-divider { padding: 10px 16px 10px 46px; }
-  .sidebar-divider::before { content: ""; display: block; height: 1px; background: var(--grey-light); }
-
-  /* Контент */
-  .content { flex: 1; min-width: 0; }
-  .card { background: var(--primary-white); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 24px; }
-  .page-head { display: flex; flex-direction: column; gap: 8px; }
-  .page-head h1, .rate-trips h2 { margin: 0; }
-  .page-head p { margin: 0; }
-
-  /* rate-trips + trip-card */
-  .rate-trips { display: flex; flex-direction: column; gap: 12px; }
-  .rate-trips__cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .trip-card { background: var(--grey-default); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
-  .trip-card__trip { display: flex; align-items: center; gap: 12px; width: 100%; }
-  .trip-card__cover { width: 56px; height: 56px; border-radius: 8px; object-fit: cover; flex: none; }
-  .trip-card__info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-  .title { color: var(--primary-black); }
-  .dates { color: var(--dark-grey-primary); }
-
-  /* button (ДС, Size=S) */
-  .button { height: 40px; padding: 0 16px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; transition: background-color 150ms var(--ease-out); }
-  .button--green { background: var(--green-default); color: var(--primary-white); }
-  .button--green:hover { background: var(--green-hover); }
-  .button--green:active { background: var(--green-click); }
-  .button--grey { background: var(--grey-default); color: var(--primary-night); }
-  .button--grey:hover { background: #e4e4e8; }
-
-  /* reviews: фильтр + список */
-  .reviews { display: flex; flex-direction: column; gap: 8px; }
-  .checkbox { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px 6px 8px; border-radius: 6px; font: 500 14px/20px var(--font-text); cursor: pointer; align-self: flex-start; user-select: none; }
-  .checkbox input { position: absolute; opacity: 0; pointer-events: none; }
-  .checkbox__box { width: 20px; height: 20px; border-radius: 4px; border: 1.5px solid var(--grey-divider); display: grid; place-items: center; transition: background-color 150ms var(--ease-out), border-color 150ms var(--ease-out); }
-  .checkbox__box svg { opacity: 0; transition: opacity 150ms var(--ease-out); }
-  .checkbox input:checked + .checkbox__box { background: var(--green-default); border-color: var(--green-default); }
-  .checkbox input:checked + .checkbox__box svg { opacity: 1; }
-  .checkbox input:focus-visible + .checkbox__box { outline: 2px solid var(--green-click); outline-offset: 2px; }
-
-  /* review-row */
-  .list { list-style: none; margin: 0; padding: 0; }
-  .review-row { position: relative; display: flex; align-items: center; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--grey-light); }
-  .list li:last-child .review-row { border-bottom: 0; }
-  .review-row::before { content: ""; position: absolute; inset: 0 -12px; border-radius: 12px; background: var(--grey-pale); opacity: 0; transition: opacity 150ms var(--ease-out); z-index: 0; }
-  a.review-row:hover::before { opacity: 1; }
-  .review-row > * { position: relative; z-index: 1; }
-  .review-row__cover { width: 72px; height: 72px; border-radius: 10px; object-fit: cover; flex: none; }
-  .review-row__info { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
-  .review-row__aside { display: flex; align-items: center; gap: 20px; flex: none; }
-  .rating { display: flex; align-items: center; gap: 4px; color: var(--green-click); }
-
-  /* review-status (Tag XS grey) */
-  .tag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 6px; border-radius: 6px; background: var(--grey-default); font: 700 10px/12px var(--font-text); letter-spacing: .03em; text-transform: uppercase; }
-  .tag--draft { color: var(--primary-night); }
-  .tag--moderation { color: var(--orange); }
-  .tag--published { color: var(--green-text); }
-  .tag--rejected { color: var(--red-default); }
-
-  .note { max-width: var(--container); margin: -64px auto 0; padding: 0 0 32px; font: 400 12px/16px var(--font-text); color: var(--dark-grey-primary); text-align: center; }
-
-  @media (max-width: 1215px) {
-    .lk-header__inner, .lk-body, .note { padding-left: 20px; padding-right: 20px; }
-  }
-  @media (max-width: 900px) {
-    .lk-sidebar { display: none; }
-    .rate-trips__cards { grid-template-columns: 1fr; }
-  }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -167,7 +39,7 @@
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="4" y="4.957" width="16" height="15.049" rx="3.5" stroke="#9AAE2D" stroke-width="1.2"/><path d="M4 9.536h16M8.939 3.5v2.916M15.062 3.5v2.916" stroke="#9AAE2D" stroke-width="1.2" stroke-linecap="round"/></svg>
       Мои бронирования
     </a>
-    <a class="sidebar-item" href="#" aria-current="page">
+    <a class="sidebar-item" href="index.html" aria-current="page">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M10.5059 2.65733C11.0503 1.61422 12.4913 1.61422 13.0358 2.65733L15.3844 7.15716L20.2219 8.1037C21.3388 8.32224 21.7824 9.73643 21.004 10.5967L17.6178 14.3391L18.2507 19.4361C18.3966 20.6108 17.2325 21.4868 16.2037 20.9765L11.7708 18.7778L7.33797 20.9765C6.30919 21.4868 5.14503 20.6108 5.2909 19.4361L5.92387 14.3391L2.53765 10.5967C1.75924 9.73643 2.2029 8.32224 3.31977 8.1037L8.15724 7.15716L10.5059 2.65733Z" stroke="#9AAE2D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Мои отзывы
     </a>
@@ -205,7 +77,7 @@
                 <span class="dates t-body-xs-semi">29&nbsp;сентября – 6&nbsp;октября 2026 · 8&nbsp;дней</span>
               </div>
             </div>
-            <a class="button button--green t-body-m-semi" href="#">Оставить отзыв</a>
+            <a class="button button--green t-body-m-semi" href="step-1.html">Оставить отзыв</a>
           </article>
           <article class="trip-card">
             <div class="trip-card__trip">
@@ -215,7 +87,7 @@
                 <span class="dates t-body-xs-semi">12 – 16&nbsp;марта 2026 · 5&nbsp;дней</span>
               </div>
             </div>
-            <a class="button button--green t-body-m-semi" href="#">Оставить отзыв</a>
+            <a class="button button--green t-body-m-semi" href="step-1.html">Оставить отзыв</a>
           </article>
         </div>
       </section>
@@ -237,7 +109,7 @@
                 <span class="tag tag--draft"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.07066 10.3043L9.07078 5.30418L6.69582 2.92922L1.6957 7.92934C1.62686 7.99826 1.57797 8.08453 1.55419 8.17899L1 11L3.82047 10.4458C3.91516 10.4221 4.00179 10.3732 4.07066 10.3043ZM10.6849 3.69003C10.8867 3.48823 11 3.21457 11 2.92922C11 2.64388 10.8867 2.37022 10.6849 2.16842L9.83158 1.31507C9.62978 1.11333 9.35612 1 9.07078 1C8.78543 1 8.51177 1.11333 8.30997 1.31507L7.45662 2.16842L9.83158 4.54338L10.6849 3.69003Z" fill="#242A37"/></svg>Черновик</span>
               </div>
               <div class="review-row__aside">
-                <a class="button button--grey t-body-m-semi" href="#">Продолжить заполнение</a>
+                <a class="button button--grey t-body-m-semi" href="step-1.html">Продолжить заполнение</a>
               </div>
             </div>
           </li>
@@ -287,9 +159,11 @@
       </div>
     </section>
   </div>
+
 </main>
 
 <p class="note">Тестовое задание Diana Shvedskaia для YouTravel.me, не&nbsp;официальный сайт</p>
-
+<nav class="states" aria-label="Состояния макета"><span>Состояния</span><a href="index.html" aria-current="page">Список</a><a href="empty.html">Пусто</a><a href="loading.html">Загрузка</a><a href="step-1.html">Шаг 1</a></nav>
+<script src="app.js"></script>
 </body>
 </html>
