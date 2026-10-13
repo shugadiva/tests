@@ -106,7 +106,9 @@
   .review-row__cover { width: 72px; height: 72px; border-radius: 10px; object-fit: cover; flex: none; }
   .review-row__info { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
   .review-row__aside { display: flex; align-items: center; gap: 20px; flex: none; }
-  .rating { display: flex; align-items: center; gap: 4px; color: var(--green-click); }
+  .review-row__cta { font: 600 13px/17px var(--font-text); color: var(--green-click); white-space: nowrap; }
+.review-row:hover .review-row__cta { color: var(--green-hover); }
+.rating { display: flex; align-items: center; gap: 4px; color: var(--green-click); }
 
   /* review-status (Tag XS grey) */
   .tag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 6px; border-radius: 6px; background: var(--grey-default); font: 700 10px/12px var(--font-text); letter-spacing: .03em; text-transform: uppercase; }
@@ -360,7 +362,7 @@
     .list .review-row { background: var(--primary-white); border-radius: 16px; padding: 16px; border-bottom: 0; }
     .list .review-row::before { display: none; }
     .list .review-row__cover { width: 72px; height: 72px; border-radius: 10px; }
-    .list .review-row .review-row__aside > svg { display: none; }
+    .list .review-row .review-row__aside > svg, .list .review-row .review-row__cta { display: none; }
     .list .review-row .dates { display: none; }
     .reviews .checkbox { padding-left: 0; }
   }
