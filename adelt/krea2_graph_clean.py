@@ -1,0 +1,20 @@
+import json,sys
+prompt=open(sys.argv[1],encoding='utf-8').read()
+w,h,seed,prefix=int(sys.argv[2]),int(sys.argv[3]),int(sys.argv[4]),sys.argv[5]
+g={
+ "10":{"class_type":"UNETLoader","inputs":{"unet_name":"krea2_turbo_int8_convrot.safetensors","weight_dtype":"default"}},
+ "14":{"class_type":"ComfyUI-Krea2T-Enhancer","inputs":{"model":["10",0],"enabled":False,"strength":1.0,"debug":False}},
+ "11":{"class_type":"CLIPLoader","inputs":{"clip_name":"qwen3vl_4b_fp8_scaled.safetensors","type":"krea2","device":"default"}},
+ "12":{"class_type":"VAELoader","inputs":{"vae_name":"qwen_image_vae.safetensors"}},
+ "6":{"class_type":"CLIPTextEncode","inputs":{"clip":["11",0],"text":prompt}},
+ "13":{"class_type":"ConditioningZeroOut","inputs":{"conditioning":["6",0]}},
+ "5":{"class_type":"EmptyLatentImage","inputs":{"width":w,"height":h,"batch_size":1}},
+ "3":{"class_type":"KSampler","inputs":{"model":["14",0],"positive":["6",0],"negative":["13",0],"latent_image":["5",0],"seed":seed,"steps":8,"cfg":1,"sampler_name":"euler","scheduler":"simple","denoise":1}},
+ "8":{"class_type":"VAEDecode","inputs":{"samples":["3",0],"vae":["12",0]}},
+ "9":{"class_type":"SaveImage","inputs":{"images":["8",0],"filename_prefix":prefix+"_p1"}},
+ "20":{"class_type":"ImageScaleBy","inputs":{"image":["8",0],"upscale_method":"lanczos","scale_by":1.5}},
+ "21":{"class_type":"VAEEncode","inputs":{"pixels":["20",0],"vae":["12",0]}},
+ "22":{"class_type":"KSampler","inputs":{"model":["14",0],"positive":["6",0],"negative":["13",0],"latent_image":["21",0],"seed":seed,"steps":4,"cfg":1,"sampler_name":"euler","scheduler":"simple","denoise":0.3}},
+ "23":{"class_type":"VAEDecode","inputs":{"samples":["22",0],"vae":["12",0]}},
+ "24":{"class_type":"SaveImage","inputs":{"images":["23",0],"filename_prefix":prefix+"_p2"}}}
+print(json.dumps({"prompt":g}))
