@@ -247,3 +247,48 @@
   .scale--10 { gap: 8px; }
   .scale--10 button { width: 44px; height: 44px; }
   .scale-anchors { display: flex; justify-content: space-between; width: 512px; max-width: 100%; }
+
+  /* ---- Карточка отзыва ---- */
+  .review { gap: 24px; }
+  .review [data-show] { display: none; }
+  .review[data-status="published"] [data-show="published"],
+  .review[data-status="moderation"] [data-show="moderation"],
+  .review[data-status="rejected"] [data-show="rejected"] { display: inline-flex; }
+  .review[data-status="published"] .answer[data-show="published"] { display: block; }
+  .review__meta { display: flex; flex-direction: column; gap: 8px; }
+  .review__rating { display: flex; align-items: center; gap: 12px; }
+  .stars { display: inline-flex; gap: 4px; }
+  .review__status { display: flex; align-items: center; gap: 6px; }
+  .why { display: inline-flex; align-items: center; gap: 4px; background: none; padding: 0; font: 600 13px/17px var(--font-text); color: #8600ef; }
+  .why:hover { text-decoration: underline; }
+  .review__text { display: flex; flex-direction: column; gap: 4px; }
+  .review__text p { margin: 0; color: var(--primary-night); }
+  .t-body-m { font: 400 14px/20px var(--font-text); }
+  .clamp { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .more { align-self: flex-start; background: none; padding: 0; font: 600 13px/17px var(--font-text); color: var(--green-click); }
+  .more:hover { color: var(--green-hover); }
+  .review__photos { display: flex; gap: 12px; }
+  .review__photos button { padding: 0; width: 120px; height: 120px; border-radius: 12px; overflow: hidden; background: var(--grey-default); }
+  .review__photos img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 200ms var(--ease-out); }
+  .review__photos button:hover img { transform: scale(1.04); }
+  .answer { background: #f7f2fd; border-radius: 12px; padding: 16px; }
+  .answer__toggle { display: flex; gap: 8px; background: none; padding: 0; font: 600 14px/22px var(--font-text); color: #8600ef; }
+  .answer__body { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .answer__body[hidden] { display: none; }
+  .answer__body p { margin: 0; color: var(--primary-night); }
+  .answer .expert { gap: 8px; }
+  .reasons { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; color: var(--primary-night); }
+
+  /* ---- Просмотр фото ---- */
+  .viewer { position: fixed; inset: 0; z-index: 30; background: rgba(36, 42, 55, .92); display: grid; place-items: center; animation: fade 200ms var(--ease-out); }
+  .viewer[hidden] { display: none; }
+  .viewer__img { width: min(720px, 80vw); height: min(720px, 80vh); object-fit: cover; border-radius: 12px; }
+  .viewer__count { position: absolute; top: 40px; left: 50%; transform: translateX(-50%); color: var(--primary-white); font: 600 14px/22px var(--font-text); }
+  .viewer__btn { position: absolute; width: 48px; height: 48px; border-radius: 50%; background: var(--primary-white); display: grid; place-items: center; }
+  .viewer__btn:hover { background: var(--grey-pale); }
+  .viewer__close { top: 40px; right: 40px; }
+  .viewer__prev { left: calc(50% - min(360px, 40vw) - 80px); top: 50%; transform: translateY(-50%); }
+  .viewer__next { right: calc(50% - min(360px, 40vw) - 80px); top: 50%; transform: translateY(-50%); }
+
+  /* Счётчик у пункта меню */
+  .sidebar-item .counter { margin-left: auto; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px; background: var(--red-default); color: var(--primary-white); font: 700 10px/16px var(--font-text); text-align: center; }

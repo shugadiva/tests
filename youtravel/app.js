@@ -12,6 +12,47 @@
     if (e.key === 'Escape') $$('.overlay:not([hidden])').forEach((ov) => { if (ov.id !== 'dlg-loading') closeDialog(ov); });
   });
 
+  // Карточка отзыва: статус из адреса (?s=published|moderation|rejected)
+  const review = $('#review');
+  if (review) {
+    const s = new URLSearchParams(location.search).get('s');
+    if (['published', 'moderation', 'rejected'].includes(s)) review.dataset.status = s;
+
+    const text = $('#review-text'), more = $('#more');
+    if (text.scrollHeight <= text.clientHeight + 2) more.hidden = true;
+    more.addEventListener('click', () => {
+      const open = text.classList.toggle('clamp');
+      more.textContent = open ? 'Показать полностью' : 'Свернуть';
+    });
+
+    const toggle = $('.answer__toggle'), body = $('#answer-body');
+    toggle?.addEventListener('click', () => {
+      const open = body.hidden;
+      body.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      $('.answer__sign', toggle).textContent = open ? '–' : '+';
+      $('.answer__label', toggle).textContent = open ? 'Скрыть ответ тревел-эксперта' : 'Смотреть ответ тревел-эксперта';
+    });
+
+    $('#why')?.addEventListener('click', () => { $('#dlg-reasons').hidden = false; });
+
+    // Просмотр фото
+    const photos = $$('#photos img').map((i) => i.src);
+    const viewer = $('#viewer'), img = $('#viewer-img'), count = $('#viewer-count');
+    let cur = 0;
+    const show = (i) => { cur = (i + photos.length) % photos.length; img.src = photos[cur]; count.textContent = `${cur + 1} из ${photos.length}`; };
+    $$('#photos button').forEach((b) => b.addEventListener('click', () => { show(+b.dataset.i); viewer.hidden = false; }));
+    $('.viewer__prev').addEventListener('click', () => show(cur - 1));
+    $('.viewer__next').addEventListener('click', () => show(cur + 1));
+    viewer.addEventListener('click', (e) => { if (e.target === viewer || e.target.closest('[data-close]')) viewer.hidden = true; });
+    document.addEventListener('keydown', (e) => {
+      if (viewer.hidden) return;
+      if (e.key === 'ArrowLeft') show(cur - 1);
+      if (e.key === 'ArrowRight') show(cur + 1);
+      if (e.key === 'Escape') viewer.hidden = true;
+    });
+  }
+
   const form = $('#review-step-1') || $('#review-step-2');
   if (!form) return;
 
