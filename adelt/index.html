@@ -27,7 +27,7 @@
   .city img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 100%; display: block; }
 
   /* окна вырезаны с прозрачностью (свечение вокруг рамы полупрозрачное), поэтому лежат поверх любого неба */
-  .sky { position: absolute; inset: 0; }
+  .sky { position: absolute; inset: 0; z-index: 5; }   /* окна поверх подписи, как в макете 4072:21 */
   /* лента окон: два одинаковых набора подряд, по прокрутке едет влево-вправо по кругу */
   .rail { position: absolute; inset: 0; will-change: transform; }
   /* холст искажения поверх ленты: когда он рисует окна, сами картинки прячем */
@@ -45,7 +45,7 @@
   @keyframes bob { from { transform: translateY(calc(var(--u) * -0.35)); } to { transform: translateY(calc(var(--u) * 0.35)); } }
 
   /* подпись по центру экрана, как wordmark у bybang */
-  .wordmark { position: fixed; z-index: 7; left: 50%; top: 50%; translate: -50% -50%; font: 500 clamp(36px, 3.34vw, 96px)/1 "Inter Tight", var(--font); color: #F5F8FF; white-space: nowrap; opacity: 0; pointer-events: none; }
+  .wordmark { position: fixed; z-index: 4; left: 50%; top: 50%; translate: -50% -50%; font: 500 clamp(36px, 3.34vw, 96px)/1 "Inter Tight", var(--font); color: #F5F8FF; white-space: nowrap; opacity: 0; pointer-events: none; }
 
   .counter { position: fixed; z-index: 6; left: 50%; translate: -50% 0; font: 500 13px/16px "Inter", var(--font); letter-spacing: 0.12em; color: var(--ink); font-variant-numeric: tabular-nums; transition: opacity 0.4s; }
   .counter.hide { opacity: 0; }
@@ -127,20 +127,32 @@
 </div>
 
 <script>
-// Финал по макету 4041:5 (1920×1080): четыре окна вокруг подписи.
+// Финал: два экрана по макету, 4041:5 (первый) и 4072:21 (второй), по 1920×1080, лента едет по ним по кругу.
 // [центр x в % ширины, центр y в % высоты, высота в --u (1080 = 100), окно, ширина/высота рамки в макете]
 const WINDOWS = {
-  shutters: 'win-shutters-on.webp', arch: 'win-arch-on.webp', tiles: 'win-tiles-on.webp',
+  shutters: 'win-shutters-on.webp', arch: 'win-arch-on.webp', tiles: 'win-tiles-on.webp', sash: 'win-sash-on.webp',
+  greenarch: 'win-greenarch-on.webp', red: 'win-red-on.webp', navy: 'win-navy-on.webp', alpine: 'win-alpine-on.webp',
 };
-const LAYOUT = matchMedia('(orientation: portrait)').matches
+const PORTRAIT = matchMedia('(orientation: portrait)').matches;
+const SCREEN_A = PORTRAIT
   ? [ // телефон: макета нет, два окна сверху и два снизу, подпись в просвете
       [27, 20, 31.48, 'shutters', '300 / 340'], [74, 25, 31.20, 'arch', '300 / 337'],
-      [26, 76, 36.48, 'tiles', '270 / 394'], [73, 81, 31.48, 'shutters', '300 / 340'],
+      [26, 76, 36.48, 'tiles', '270 / 394'], [73, 80, 31.02, 'sash', '198 / 335'],
     ]
   : [
-      [32.66, 22.69, 31.48, 'shutters', '300 / 340'], [80.42, 24.49, 31.20, 'arch', '300 / 337'],
-      [14.53, 68.24, 36.48, 'tiles', '270 / 394'], [68.80, 77.41, 31.48, 'shutters', '300 / 340'],
+      [38.02, 32.59, 31.48, 'shutters', '300 / 340'], [80.42, 25.97, 31.20, 'arch', '300 / 337'],
+      [13.33, 59.81, 36.48, 'tiles', '270 / 394'], [72.08, 71.81, 31.02, 'sash', '198 / 335'],
     ];
+const SCREEN_B = PORTRAIT
+  ? [
+      [28, 21, 26.48, 'greenarch', '332 / 286'], [73, 28, 33.89, 'navy', '218 / 366'],
+      [28, 77, 27.22, 'alpine', '409 / 294'], [72, 79, 28.24, 'red', '371 / 305'],
+    ]
+  : [
+      [17.81, 19.72, 26.48, 'greenarch', '332 / 286'], [53.85, 36.02, 33.89, 'navy', '218 / 366'],
+      [31.64, 70.37, 27.22, 'alpine', '409 / 294'], [83.88, 50.14, 28.24, 'red', '371 / 305'],
+    ];
+const LAYOUT = SCREEN_A;   // из окна с котами вылетают окна первого экрана
 // главное окно на загрузке по макету 4041:2 (свет выключен) и 4072:13 (свет включён, видно котов):
 // рама 250×397 на 1080, верх на 373, то есть центр на 571.5 из 1080
 const START_H = 36.76;       // высота в --u
@@ -166,7 +178,9 @@ function makeWin([x, y, h, type, ar], cls, parent = rail) {
   el.append(f); parent.append(el); return el;
 }
 const clones = LAYOUT.map(p => makeWin(p, 'clone'));
-LAYOUT.forEach(([x, ...rest]) => makeWin([x + 100, ...rest], 'copy'));   // второй набор правее экрана, для бесшовного круга
+// правее первого экрана второй, за ним снова первый: так круг на два экрана замыкается без шва
+SCREEN_B.forEach(([x, ...rest]) => makeWin([x + 100, ...rest], 'copy'));
+SCREEN_A.forEach(([x, ...rest]) => makeWin([x + 200, ...rest], 'copy'));
 const main = makeWin([50, START_Y * 100, START_H, 'cats', '250 / 397'], 'main', sky);
 
 // трансформация, которая ставит окно на место и в размер главного окна на загрузке
@@ -371,7 +385,9 @@ void main() {
   // гнём экран до перевода в координаты окна, иначе у окна останутся четыре прямых края
   vec2 screenUv = vScreenUv;
   float centeredX = screenUv.x * 2.0 - 1.0;
-  float edgeProfile = 1.0 - sqrt(max(0.0, 1.0 - centeredX * centeredX));
+  // у bybang профиль круговой (1 - sqrt(1 - c²)): гнётся только у самой кромки. Наши окна редко
+  // доходят до края, поэтому парабола: окно выгибается на всём пути, к краю сильнее (13.10.2026)
+  float edgeProfile = centeredX * centeredX;
   screenUv.y = 0.5 + (screenUv.y - 0.5) * (1.0 - edgeProfile * uCurlStrength);
   vec2 localUv = (screenUv * uViewport - uRect.xy) / uRect.zw;
   vec2 edgePx = min(localUv, 1.0 - localUv) * uRect.zw;
@@ -463,7 +479,7 @@ function makeWarp(canvas) {
 let scrollFrozen = false;   // ставит переход в комнату
 function startScroll() {
   // максимум изгиба у кромки экрана: у bybang 0.0486, но гнутся только окна, поэтому сильнее
-  const CURL_MAX = 0.15;
+  const CURL_MAX = 0.2;
   // кривая наведения у них: 600 мс по cubic-bezier(.4, 0, .2, 1)
   const bez = (x1, y1, x2, y2) => t => {
     let u = t;
@@ -516,8 +532,8 @@ function startScroll() {
     const dt = Math.min(100, Math.max(1, now - last)); last = now;
     current += (target - current) * (1 - Math.pow(1 - LERP, dt / 16.67));
     if (Math.abs(target - current) < 0.05) current = target;
-    // второй набор окон стоит ровно на ширину экрана правее, поэтому круг замыкается на innerWidth
-    const P = innerWidth;
+    // в ленте два экрана, поэтому круг замыкается на две ширины
+    const P = innerWidth * 2;
     const shift = ((current % P) + P) % P;
     rail.style.transform = `translate3d(${-shift}px, 0, 0)`;
 
