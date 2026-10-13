@@ -9,7 +9,7 @@
 <link rel="preload" as="image" href="assets/win-cats-on.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Inter+Tight:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Inter+Tight:wght@500&display=swap" rel="stylesheet">
 <style>
   :root {
     --sky: #FEFEFE;              /* белый экран загрузки, потом его закрывает город */
@@ -62,6 +62,47 @@
   :root { --column: #F4F3EB; }
 
   @media (prefers-reduced-motion: reduce) { .idle .win .float { animation: none; } }
+
+  /* ===== в комнате: точки и карточка истории ремонта (Figma 4071:3, 4074:2/40/78/116) ===== */
+  /* слой поверх портала; сцена повторяет кадр комнаты (cover по экрану), поэтому точки стоят на предметах */
+  .restore { position: fixed; inset: 0; z-index: 9; font-family: "Inter", var(--font); color: #3A3A3A; visibility: hidden; opacity: 0; transition: opacity 0.6s; --k: min(calc(100vw / 1536), calc(100vh / 1024)); }
+  .restore.on { visibility: visible; opacity: 1; }
+  .restore .stage { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: max(100vw, 150vh); aspect-ratio: 1536 / 1024; }
+  .spot { position: absolute; width: calc(44 * var(--k)); height: calc(44 * var(--k)); min-width: 28px; min-height: 28px; translate: -50% -50%; border-radius: 50%; border: 0; background: #FFFFFF; opacity: 0.5; cursor: pointer; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18); transition: opacity 0.2s, background-color 0.2s, scale 0.2s; }
+  .spot::before, .spot::after { content: ""; position: absolute; left: 50%; top: 50%; translate: -50% -50%; background: #3A3A3A; transition: background-color 0.2s; }
+  .spot::before { width: 32%; height: 1.5px; }
+  .spot::after { width: 1.5px; height: 32%; }
+  .spot:hover { opacity: 1; scale: 1.08; }
+  .spot.active { opacity: 1; background: #7A8452; }
+  .spot.active::before, .spot.active::after { background: #FFFFFF; }
+
+  .card { position: absolute; right: calc(36 * var(--k)); top: calc(36 * var(--k)); width: calc(440 * var(--k)); background: #F2F0EA; border-radius: calc(16 * var(--k)); padding: calc(16 * var(--k)) calc(16 * var(--k)) calc(20 * var(--k)); display: flex; flex-direction: column; gap: calc(20 * var(--k)); translate: 0 12px; transition: translate 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+  .restore.on .card { translate: 0 0; }
+  .card .photo { width: 100%; aspect-ratio: 408 / 250; border-radius: calc(10 * var(--k)); background-image: url(assets/room-s403.webp); background-repeat: no-repeat; }
+  .card .text, .card .timeline, .card .pager { padding: 0 calc(8 * var(--k)); }
+  .card .text { display: flex; flex-direction: column; gap: calc(10 * var(--k)); }
+  .card .eyebrow { font-size: calc(13 * var(--k)); font-weight: 500; color: #73706B; white-space: pre; }
+  .card h2 { font-size: calc(22 * var(--k)); line-height: calc(26 * var(--k)); font-weight: 500; max-width: calc(290 * var(--k)); }
+  .card .body { font-size: calc(15 * var(--k)); line-height: calc(21 * var(--k)); }
+  .card .step { display: flex; gap: calc(16 * var(--k)); padding: calc(10 * var(--k)) 0; border-top: 1px solid #D8D6CB; font-size: calc(13 * var(--k)); }
+  .card .step b { flex: 0 0 calc(64 * var(--k)); font-weight: 500; color: #7A8452; }
+  .card .pager { display: flex; justify-content: space-between; align-items: center; }
+  .card .pager button { width: calc(40 * var(--k)); height: calc(40 * var(--k)); min-width: 32px; min-height: 32px; border-radius: 50%; border: 0; background: #FFFFFF; color: #3A3A3A; font-size: calc(16 * var(--k)); cursor: pointer; }
+  .card .pager button.next { background: #3A3A3A; color: #FFFFFF; }
+  .card .dots { display: flex; gap: calc(6 * var(--k)); }
+  .card .dots i { width: 4px; height: 4px; border-radius: 50%; background: #73706B; }
+  .card .dots i.on { background: #7A8452; }
+  .card .swap { transition: opacity 0.2s; }
+  .card.fade .swap { opacity: 0; }
+
+  /* телефон: карточка снизу во всю ширину, фото в ней прячем, комнату и так видно */
+  @media (max-width: 800px) {
+    .restore { --k: 1px; }
+    .card { left: 12px; right: 12px; top: auto; bottom: 12px; width: auto; gap: 12px; }
+    .card .photo { display: none; }
+    .card h2 { max-width: none; font-size: 19px; line-height: 23px; }
+    .card .body { font-size: 14px; line-height: 19px; }
+  }
 </style>
 </head>
 <body>
@@ -74,6 +115,16 @@
   <image id="room" href="assets/room-s403.webp" preserveAspectRatio="xMidYMid slice" clip-path="url(#door)"/>
   <path class="rim" id="doorRim"/>
 </svg>
+
+<div class="restore" id="restore" aria-label="Что сделано в квартире">
+  <div class="stage" id="stage"></div>
+  <div class="card" id="card">
+    <div class="photo swap"></div>
+    <div class="text swap"><p class="eyebrow"></p><h2></h2><p class="body"></p></div>
+    <div class="timeline swap"></div>
+    <div class="pager"><button class="prev" aria-label="Предыдущее">←</button><span class="dots"></span><button class="next" aria-label="Следующее">→</button></div>
+  </div>
+</div>
 
 <script>
 // Финал по макету 4041:5 (1920×1080): четыре окна вокруг подписи.
@@ -215,7 +266,7 @@ function enterRoom(win) {
   const W = innerWidth, H = innerHeight, cx = W / 2, cy = H / 2;
   room.setAttribute('width', W); room.setAttribute('height', H);
 
-  if (reduce) { doorShape.setAttribute('d', `M0 0H${W}V${H}H0Z`); portal.style.visibility = 'visible'; portal.animate([{ opacity: 0 }, { opacity: 1 }], 600); return; }
+  if (reduce) { doorShape.setAttribute('d', `M0 0H${W}V${H}H0Z`); portal.style.visibility = 'visible'; portal.animate([{ opacity: 0 }, { opacity: 1 }], 600); showRestore(); return; }
 
   // остальные окна уходят от выбранного, подпись гаснет, город темнеет
   // анимация входа держит transform окна через fill: forwards, снимаем её, иначе инлайновый transform не применится
@@ -260,7 +311,7 @@ function enterRoom(win) {
     room.setAttribute('transform', `translate(${cx} ${cy}) scale(${rs}) translate(${-cx} ${-cy})`);
 
     if (t < C0 + C) requestAnimationFrame(frame);
-    else { doorShape.setAttribute('transform', ''); doorShape.setAttribute('d', `M0 0H${W}V${H}H0Z`); doorRim.remove(); sky.remove(); }
+    else { doorShape.setAttribute('transform', ''); doorShape.setAttribute('d', `M0 0H${W}V${H}H0Z`); doorRim.remove(); sky.remove(); showRestore(); }
   })(t0);
 }
 run();
@@ -505,6 +556,61 @@ function startScroll() {
     if (!scrollFrozen) requestAnimationFrame(frame);
   })(performance.now());
 }
+// ===== в комнате: истории ремонта по точкам, появляются после перехода =====
+// точка at [x, y] и кадр фото crop [x, y, w, h] в пикселях картинки 1536x1024
+const STORIES = [
+  { at: [330, 320], crop: [300, 30, 450, 276], tag: 'Стена', title: 'За дубовой стеной кладовая и щиток',
+    body: 'Электрощиток, роутер и кладовую спрятали за панелями из массива дуба. Дверь открывается нажатием, ручек и щелей не видно.',
+    steps: ['Щиток и трубы на виду в коридоре', 'Каркас, скрытые петли, вентиляция в зазоре', 'Ровная стена и доступ ко всему за пару секунд'] },
+  { at: [740, 230], crop: [560, 60, 450, 276], tag: 'Проём', title: 'Расширили выход на балкон на 40 см',
+    body: 'Старое окно с подоконником заменили французской дверью в пол. Проём в несущей стене усилили стальной перемычкой и согласовали перепланировку.',
+    steps: ['Окно 120 см и высокий порог', 'Стальная перемычка, проект и согласование', 'Дверь 160 см в пол, балкон стал частью комнаты'] },
+  { at: [300, 700], crop: [60, 540, 560, 343], tag: 'Диван', title: 'Диван из миланской квартиры, 1970-е',
+    body: 'Нашли на распродаже мебели при расселении дома на Корсо Маджента. Каркас из бука оказался целым, поэтому его оставили и поменяли только то, что изнашивается.',
+    steps: ['Продавленный диван 1970-х с распродажи', 'Каркас из бука сохранили, новый пружинный блок', 'Букле цвета терракоты под палитру комнаты'] },
+  { at: [930, 560], crop: [880, 40, 520, 319], tag: 'Стены', title: 'Известковая штукатурка вместо обоев',
+    body: 'Стены выровняли и покрыли известковой штукатуркой: она дышит и не боится влажности с балкона. Проводку перенесли в штробы, розетки поставили по плану мебели.',
+    steps: ['Обои в три слоя, проводка поверху', 'Новая проводка, выравнивание, известь в три слоя', 'Матовая стена без швов и лишних розеток'] },
+  { at: [120, 180], crop: [0, 0, 420, 257], tag: 'Потолок', title: 'Карниз спрятан в потолок',
+    body: 'В потолке сделали нишу под карниз, поэтому шторы начинаются прямо от потолка и комната кажется выше. В этой же нише проходит приточная вентиляция.',
+    steps: ['Карниз на кронштейнах, потолок 2,9 м', 'Ниша в потолке, скрытый карниз и приток', 'Шторы от потолка, свежий воздух без решёток'] },
+];
+const restore = document.getElementById('restore'), stage = document.getElementById('stage');
+const card = document.getElementById('card');
+const dots = card.querySelector('.dots');
+const spots = STORIES.map((st, i) => {
+  const b = document.createElement('button');
+  b.className = 'spot'; b.setAttribute('aria-label', st.tag);
+  b.style.left = (st.at[0] / 1536 * 100) + '%'; b.style.top = (st.at[1] / 1024 * 100) + '%';
+  b.addEventListener('mouseenter', () => show(i));
+  b.addEventListener('click', () => show(i));
+  stage.append(b); dots.append(document.createElement('i'));
+  return b;
+});
+let cur = 0;
+function fill(i) {
+  const st = STORIES[i], [x, y, w, h] = st.crop, ph = card.querySelector('.photo');
+  ph.style.backgroundSize = (1536 / w * 100) + '% auto';
+  ph.style.backgroundPosition = (x / (1536 - w) * 100) + '% ' + (y / (1024 - h) * 100) + '%';
+  card.querySelector('.eyebrow').textContent = '0' + (i + 1) + ' / 0' + STORIES.length + '  ·  ' + st.tag;
+  card.querySelector('h2').textContent = st.title;
+  card.querySelector('.body').textContent = st.body;
+  card.querySelector('.timeline').innerHTML = ['Было', 'Сделали', 'Итог']
+    .map((l, k) => '<div class="step"><b>' + l + '</b><span>' + st.steps[k] + '</span></div>').join('');
+  spots.forEach((s, k) => s.classList.toggle('active', k === i));
+  [...dots.children].forEach((d, k) => d.classList.toggle('on', k === i));
+}
+function show(i) {
+  i = (i + STORIES.length) % STORIES.length;
+  if (i === cur) return;
+  cur = i;
+  card.classList.add('fade');
+  setTimeout(() => { fill(i); card.classList.remove('fade'); }, 180);
+}
+card.querySelector('.prev').addEventListener('click', () => show(cur - 1));
+card.querySelector('.next').addEventListener('click', () => show(cur + 1));
+fill(0);
+function showRestore() { restore.classList.add('on'); }
 </script>
 </body>
 </html>
