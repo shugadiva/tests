@@ -28,10 +28,9 @@
 
   /* окна вырезаны с прозрачностью (свечение вокруг рамы полупрозрачное), поэтому лежат поверх любого неба */
   .sky { position: absolute; inset: 0; }
-  .win { position: absolute; translate: -50% -50%; aspect-ratio: 658 / 1100; height: calc(var(--h) * var(--u)); }
-  .win.a, .win.b { aspect-ratio: 403 / 700; }
+  .win { position: absolute; translate: -50% -50%; aspect-ratio: var(--ar); height: calc(var(--h) * var(--u)); }
   .win .float { position: absolute; inset: 0; }
-  .win img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .win img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .win.clone { opacity: 0; }
   .win.main { opacity: 0; }
   .win.main .on { opacity: 0; }
@@ -56,15 +55,20 @@
 <div class="counter" id="counter">0</div>
 
 <script>
-// Раскладка как на картине-референсе: крупные окна ниже и ближе, мелкие выше и дальше.
-// [x в % ширины, y в % высоты, высота в единицах --u, форма]
-const LAYOUT = [
-  [12, 40, 22, 'c'], [30, 44, 20, 'b'], [70, 42, 23, 'c'], [88, 40, 20, 'a'],
-  [6, 24, 13, 'a'], [22, 26, 14, 'c'], [38, 27, 12, 'c'], [62, 24, 12, 'b'], [80, 26, 14, 'c'], [95, 22, 12, 'c'],
-  [10, 9, 7, 'c'], [18, 14, 6, 'b'], [33, 11, 8, 'c'], [46, 8, 6, 'c'], [57, 13, 7, 'b'], [68, 9, 8, 'a'], [77, 14, 6, 'c'], [90, 10, 7, 'c'],
-  [26, 4, 4, 'c'], [62, 4, 3, 'c'], [84, 5, 3, 'b'],
-];
-const MAIN = [50, 34, 18];   // куда встаёт главное окно после разлёта
+// Финал по макету 4041:5 (1920×1080): четыре окна вокруг подписи.
+// [центр x в % ширины, центр y в % высоты, высота в --u (1080 = 100), окно, ширина/высота рамки в макете]
+const WINDOWS = {
+  shutters: 'win-shutters-on.webp', arch: 'win-arch-on.webp', tiles: 'win-tiles-on.webp',
+};
+const LAYOUT = matchMedia('(orientation: portrait)').matches
+  ? [ // телефон: макета нет, два окна сверху и два снизу, подпись в просвете
+      [27, 20, 31.48, 'shutters', '300 / 340'], [74, 25, 31.20, 'arch', '300 / 337'],
+      [26, 76, 36.48, 'tiles', '270 / 394'], [73, 81, 31.48, 'shutters', '300 / 340'],
+    ]
+  : [
+      [32.66, 22.69, 31.48, 'shutters', '300 / 340'], [80.42, 24.49, 31.20, 'arch', '300 / 337'],
+      [14.53, 68.24, 36.48, 'tiles', '270 / 394'], [68.80, 77.41, 31.48, 'shutters', '300 / 340'],
+    ];
 const START_H = 30.93;       // высота главного окна на загрузке, в --u: в макете 4041:2 окно 200×334 на 1080 по высоте
 const EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';
 
@@ -74,19 +78,19 @@ const city = document.querySelector('.city');
 const wordmark = document.getElementById('wordmark');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function makeWin([x, y, h, type], cls) {
+function makeWin([x, y, h, type, ar], cls) {
   const el = document.createElement('div');
   el.className = `win ${type} ${cls}`;
-  el.style.left = x + '%'; el.style.top = y + '%'; el.style.setProperty('--h', h);
+  el.style.left = x + '%'; el.style.top = y + '%'; el.style.setProperty('--h', h); el.style.setProperty('--ar', ar);
   el.style.setProperty('--bob', (5 + Math.random() * 4).toFixed(1) + 's');
   const f = document.createElement('div'); f.className = 'float';
   f.innerHTML = cls === 'main'
     ? '<img class="off" src="assets/win-c-off.webp" alt=""><img class="on" src="assets/win-c-on.webp" alt="">'
-    : `<img src="assets/win-${type}-on.webp" alt="">`;
+    : `<img src="assets/${WINDOWS[type]}" alt="">`;
   el.append(f); sky.append(el); return el;
 }
 const clones = LAYOUT.map(p => makeWin(p, 'clone'));
-const main = makeWin([...MAIN, 'c'], 'main');
+const main = makeWin([50, 50, START_H, 'c', '658 / 1100'], 'main');
 
 // трансформация, которая ставит окно в центр экрана в размер главного окна на загрузке
 function unit() { return Math.min(innerHeight / 100, innerWidth * (matchMedia('(orientation: portrait)').matches ? 0.015 : 0.0062)); }
@@ -101,14 +105,12 @@ async function run() {
   await Promise.all([...document.images].map(i => i.decode().catch(() => {})));
 
   if (reduce) {
-    clones.forEach(c => c.style.opacity = 1); main.style.opacity = 1;
-    main.querySelector('.on').style.opacity = 1; main.querySelector('.off').style.opacity = 0; city.style.transform = 'none'; wordmark.style.opacity = 1;
+    clones.forEach(c => c.style.opacity = 1);
+    city.style.transform = 'none'; wordmark.style.opacity = 1;
     counter.remove(); return;
   }
 
   // 1. загрузка: главное окно по центру, свет выключен, идёт счётчик
-  const mainStart = centerTransform(main);
-  main.style.transform = mainStart;
   main.style.opacity = 1;
   main.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 700, easing: 'ease-out' });
   counter.style.top = (innerHeight / 2 + START_H * unit() / 2 + 14) + 'px';   // зазор 14, как в макете
@@ -131,15 +133,15 @@ async function run() {
   await main.querySelector('.on').animate(FLICKER.map((o, i) => ({ opacity: o, offset: OFFS[i] })), flick).finished;
   await wait(350);
 
-  // 3. окно распадается: копии вылетают из главного и расходятся по небу
+  // 3. окно распадается: из главного вылетают четыре окна финала и расходятся по небу, главное гаснет
   clones.forEach(c => {
     const from = centerTransform(c);
     c.animate(
-      [{ transform: from, opacity: c.classList.contains('c') ? 1 : 0 }, { opacity: 1, offset: 0.25 }, { transform: 'none', opacity: 1 }],
+      [{ transform: from, opacity: 0 }, { opacity: 1, offset: 0.2 }, { transform: 'none', opacity: 1 }],
       { duration: 1700, delay: 40 + Math.random() * 260, easing: EASE, fill: 'forwards' });
   });
-  main.animate([{ transform: mainStart }, { transform: 'none' }], { duration: 1700, easing: EASE, fill: 'forwards' })
-    .finished.then(() => { main.style.transform = 'none'; });
+  main.animate([{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(0.92)' }], { duration: 500, easing: 'ease-out', fill: 'forwards' })
+    .finished.then(() => main.remove());
 
   // 4. город выезжает снизу и встаёт на место с лёгкой отдачей
   await wait(500);
