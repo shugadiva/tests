@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Mono design · тестовое adelt.io</title>
-<link rel="preload" as="image" href="assets/win-c-off.webp">
-<link rel="preload" as="image" href="assets/win-c-on.webp">
+<link rel="preload" as="image" href="assets/win-cats-off.webp">
+<link rel="preload" as="image" href="assets/win-cats-on.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Inter+Tight:wght@500&display=swap" rel="stylesheet">
@@ -90,7 +90,10 @@ const LAYOUT = matchMedia('(orientation: portrait)').matches
       [32.66, 22.69, 31.48, 'shutters', '300 / 340'], [80.42, 24.49, 31.20, 'arch', '300 / 337'],
       [14.53, 68.24, 36.48, 'tiles', '270 / 394'], [68.80, 77.41, 31.48, 'shutters', '300 / 340'],
     ];
-const START_H = 30.93;       // высота главного окна на загрузке, в --u: в макете 4041:2 окно 200×334 на 1080 по высоте
+// главное окно на загрузке по макету 4041:2 (свет выключен) и 4072:13 (свет включён, видно котов):
+// рама 250×397 на 1080, верх на 373, то есть центр на 571.5 из 1080
+const START_H = 36.76;       // высота в --u
+const START_Y = 571.5 / 1080;  // центр по вертикали, доля высоты экрана
 const EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';
 
 const sky = document.getElementById('sky');
@@ -107,20 +110,20 @@ function makeWin([x, y, h, type, ar], cls, parent = rail) {
   el.style.setProperty('--bob', (5 + Math.random() * 4).toFixed(1) + 's');
   const f = document.createElement('div'); f.className = 'float';
   f.innerHTML = cls === 'main'
-    ? '<img class="off" src="assets/win-c-off.webp" alt=""><img class="on" src="assets/win-c-on.webp" alt="">'
+    ? '<img class="off" src="assets/win-cats-off.webp" alt=""><img class="on" src="assets/win-cats-on.webp" alt="Два кота на подоконнике в освещённом окне">'
     : `<img src="assets/${WINDOWS[type]}" alt="">`;
   el.append(f); parent.append(el); return el;
 }
 const clones = LAYOUT.map(p => makeWin(p, 'clone'));
 LAYOUT.forEach(([x, ...rest]) => makeWin([x + 100, ...rest], 'copy'));   // второй набор правее экрана, для бесшовного круга
-const main = makeWin([50, 50, START_H, 'c', '658 / 1100'], 'main', sky);
+const main = makeWin([50, START_Y * 100, START_H, 'cats', '250 / 397'], 'main', sky);
 
-// трансформация, которая ставит окно в центр экрана в размер главного окна на загрузке
+// трансформация, которая ставит окно на место и в размер главного окна на загрузке
 function unit() { return Math.min(innerHeight / 100, innerWidth * (matchMedia('(orientation: portrait)').matches ? 0.015 : 0.0062)); }
 function centerTransform(el) {
   const r = el.getBoundingClientRect();
   const s = START_H * unit() / r.height;
-  return `translate(${innerWidth / 2 - (r.left + r.width / 2)}px, ${innerHeight / 2 - (r.top + r.height / 2)}px) scale(${s})`;
+  return `translate(${innerWidth / 2 - (r.left + r.width / 2)}px, ${innerHeight * START_Y - (r.top + r.height / 2)}px) scale(${s})`;
 }
 const wait = ms => new Promise(r => setTimeout(r, ms));
 
@@ -138,25 +141,30 @@ async function run() {
   // 1. загрузка: главное окно по центру, свет выключен, идёт счётчик
   main.style.opacity = 1;
   main.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 700, easing: 'ease-out' });
-  counter.style.top = (innerHeight / 2 + START_H * unit() / 2 + 14) + 'px';   // зазор 14, как в макете
+  counter.style.top = (innerHeight * START_Y + START_H * unit() / 2 + 14) + 'px';   // зазор 14, как в макете
 
+  // 2. на 80 свет загорается (мерцание, как у лампы), за занавеской становятся видны коты; счёт идёт дальше
+  const FLICKER = [0, 0.7, 0.05, 0.85, 0.25, 1], OFFS = [0, 0.12, 0.22, 0.45, 0.58, 1];
+  const flick = { duration: 900, easing: 'linear', fill: 'forwards' };
+  let lit = null;
+  const lightUp = () => {
+    main.querySelector('.off').animate(FLICKER.map((o, i) => ({ opacity: 1 - o, offset: OFFS[i] })), flick);
+    return main.querySelector('.on').animate(FLICKER.map((o, i) => ({ opacity: o, offset: OFFS[i] })), flick).finished;
+  };
   const LOAD = 2400, t0 = performance.now();
   await new Promise(done => {
     (function tick(now) {
       const p = Math.min(1, (now - t0) / LOAD);
-      counter.textContent = Math.round(100 * (1 - Math.pow(1 - p, 2.2)));
+      const n = Math.round(100 * (1 - Math.pow(1 - p, 2.2)));
+      counter.textContent = n;
+      if (n >= 80 && !lit) lit = lightUp();
       p < 1 ? requestAnimationFrame(tick) : done();
     })(t0);
   });
+  await lit;
   await wait(250);
   counter.classList.add('hide');
-
-  // 2. свет загорается: короткое мерцание, как у лампы, потом ровный свет
-  const FLICKER = [0, 0.7, 0.05, 0.85, 0.25, 1], OFFS = [0, 0.12, 0.22, 0.45, 0.58, 1];
-  const flick = { duration: 900, easing: 'linear', fill: 'forwards' };
-  main.querySelector('.off').animate(FLICKER.map((o, i) => ({ opacity: 1 - o, offset: OFFS[i] })), flick);
-  await main.querySelector('.on').animate(FLICKER.map((o, i) => ({ opacity: o, offset: OFFS[i] })), flick).finished;
-  await wait(350);
+  await wait(450);   // дать разглядеть котов
 
   // 3. окно распадается: из главного вылетают четыре окна финала и расходятся по небу, главное гаснет
   clones.forEach(c => {
