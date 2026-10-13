@@ -50,6 +50,17 @@
   .counter { position: fixed; z-index: 6; left: 50%; translate: -50% 0; font: 500 13px/16px "Inter", var(--font); letter-spacing: 0.12em; color: var(--ink); font-variant-numeric: tabular-nums; transition: opacity 0.4s; }
   .counter.hide { opacity: 0; }
 
+  /* окна финала кликабельны: по наведению чуть ярче и ближе */
+  /* окна финала кликабельны; отклик на наведение даёт рябь в шейдере ленты */
+  .idle .rail .win { cursor: pointer; }
+  .leaving .win { pointer-events: none; }
+  .leaving .win .float { animation-play-state: paused; }
+
+  /* портал: комната видна только внутри колонны паттерна Mono (Figma 2:794), колонна растёт, как арка у era-residence */
+  .portal { position: fixed; inset: 0; z-index: 8; width: 100%; height: 100%; pointer-events: none; visibility: hidden; }
+  .portal .rim { fill: none; stroke: var(--column); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+  :root { --column: #F4F3EB; }
+
   @media (prefers-reduced-motion: reduce) { .idle .win .float { animation: none; } }
 </style>
 </head>
@@ -58,6 +69,11 @@
 <div class="sky" id="sky"><div class="rail" id="rail"></div><canvas class="warp" id="warp" aria-hidden="true"></canvas></div>
 <h1 class="wordmark" id="wordmark">Mono design</h1>
 <div class="counter" id="counter">0</div>
+<svg class="portal" id="portal" aria-hidden="true">
+  <defs><clipPath id="door"><path id="doorShape"/></clipPath></defs>
+  <image id="room" href="assets/room-s403.webp" preserveAspectRatio="xMidYMid slice" clip-path="url(#door)"/>
+  <path class="rim" id="doorRim"/>
+</svg>
 
 <script>
 // Финал по макету 4041:5 (1920×1080): четыре окна вокруг подписи.
@@ -111,7 +127,9 @@ const wait = ms => new Promise(r => setTimeout(r, ms));
 async function run() {
   await Promise.all([...document.images].map(i => i.decode().catch(() => {})));
 
-  if (reduce) {
+  // ?final: сразу финальный экран, чтобы проверять переход без загрузки
+  if (reduce || location.search.includes('final')) {
+    main.remove(); document.body.classList.add('idle');
     clones.forEach(c => c.style.opacity = 1);
     city.style.transform = 'none'; wordmark.style.opacity = 1;
     counter.remove(); main.remove(); startScroll(); return;
@@ -160,6 +178,82 @@ async function run() {
   wordmark.animate([{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'none' }], { duration: 900, easing: EASE, fill: 'forwards' });
   document.body.classList.add('idle');
   startScroll();
+}
+
+// Переход в комнату по клику на окно.
+// 1. остальные окна разлетаются и гаснут, выбранное едет в центр и растёт;
+// 2. в его проёме снизу вырастает колонна паттерна, сквозь неё видна комната;
+// 3. камера наезжает: окно проходит мимо, колонна становится шире экрана, мы в комнате.
+const COLUMN = 'M0.64 18.76V0H53.76V18.76C51.2 21.19 49.92 25.22 49.92 30.87V394.06C49.92 402.53 51.41 408.39 54.4 411.61V435.2H0V411.61C2.99 408.39 4.48 402.53 4.48 394.06V30.87C4.48 25.22 3.2 21.19 0.64 18.76Z';
+const COL_W = 54.4, COL_H = 435.2, SHAFT_W = 45.44, SHAFT_H = 363.2;   // ствол колонны без капители и базы
+const portal = document.getElementById('portal');
+const doorShape = document.getElementById('doorShape'), doorRim = document.getElementById('doorRim'), room = document.getElementById('room');
+doorShape.setAttribute('d', COLUMN); doorRim.setAttribute('d', COLUMN);
+
+const lerp = (a, b, p) => a + (b - a) * p;
+const clamp01 = p => Math.max(0, Math.min(1, p));
+const easeOut = p => 1 - Math.pow(1 - p, 4);
+const easeInOut = p => p < 0.5 ? 4 * p ** 3 : 1 - Math.pow(-2 * p + 2, 3) / 2;   // cubic in-out: разгон в окно и мягкая посадка в комнате
+
+sky.addEventListener('click', e => {
+  const win = e.target.closest('.rail .win');   // оба набора ленты, и основной, и копия для круга
+  if (win && document.body.classList.contains('idle')) enterRoom(win);
+});
+
+function enterRoom(win) {
+  document.body.classList.remove('idle'); document.body.classList.add('leaving');
+  // лента и холст изгиба замирают: окна дальше двигает переход, а рисует их обычная вёрстка
+  scrollFrozen = true; document.body.classList.remove('gl'); document.getElementById('warp').style.display = 'none';
+  const W = innerWidth, H = innerHeight, cx = W / 2, cy = H / 2;
+  room.setAttribute('width', W); room.setAttribute('height', H);
+
+  if (reduce) { doorShape.setAttribute('d', `M0 0H${W}V${H}H0Z`); portal.style.visibility = 'visible'; portal.animate([{ opacity: 0 }, { opacity: 1 }], 600); return; }
+
+  // остальные окна уходят от выбранного, подпись гаснет, город темнеет
+  // анимация входа держит transform окна через fill: forwards, снимаем её, иначе инлайновый transform не применится
+  win.getAnimations().forEach(an => { an.commitStyles(); an.cancel(); });
+  const r = win.getBoundingClientRect(), wx = r.left + r.width / 2, wy = r.top + r.height / 2;
+  [...rail.querySelectorAll('.win')].filter(c => c !== win).forEach(c => {
+    const q = c.getBoundingClientRect(), dx = q.left + q.width / 2 - wx, dy = q.top + q.height / 2 - wy, d = Math.hypot(dx, dy) || 1;
+    c.animate([{ transform: 'none', opacity: 1 }, { transform: `translate(${dx / d * W * 0.25}px, ${dy / d * H * 0.25}px) scale(0.9)`, opacity: 0 }],
+      { duration: 1000, easing: 'cubic-bezier(0.5, 0, 0.75, 0)', fill: 'forwards' });
+  });
+  wordmark.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 400, fill: 'forwards' });
+  city.querySelector('img').animate([{ filter: 'brightness(1)' }, { filter: 'brightness(0.55)' }], { duration: 1600, fill: 'forwards' });
+
+  const s1 = Math.min(H * 0.62 / r.height, W * 0.8 / r.width);   // окно в центре: 62% высоты экрана, на телефоне не шире 80%
+  const k = r.height * s1 * 0.66 / COL_H;         // колонна-дверь: 66% высоты окна, низ не заходит на подоконник
+  const zEnd = 1.15 * Math.max(W / (SHAFT_W * k), H / (SHAFT_H * k));   // ствол колонны перекрывает экран с запасом
+  const A = 900, B0 = 550, B = 700, C0 = 1000, C = 2100;   // мс: окно в центр, дверь растёт, наезд
+
+  portal.style.visibility = 'visible';
+  const t0 = performance.now();
+  (function frame(now) {
+    const t = now - t0;
+    const a = easeOut(clamp01(t / A));
+    const g = easeOut(clamp01((t - B0) / B));
+    const c = easeInOut(clamp01((t - C0) / C));
+    const z = Math.pow(zEnd, c);             // наезд по экспоненте: скорость приближения кажется ровной
+
+    // окно: в центр и крупнее, потом проходит мимо камеры
+    const ws = lerp(1, s1, a) * z;
+    win.style.transform = `translate(${lerp(0, cx - wx, a)}px, ${lerp(0, cy - wy, a)}px) scale(${ws})`;
+    win.style.opacity = 1 - clamp01((z - 2.5) / 3);
+
+    // дверь стоит на подоконнике центра окна и растёт вверх, на наезде масштабируется вокруг центра экрана
+    const S = k * Math.max(g, 0.001) * z;
+    const bottom = cy + (COL_H * k / 2) * z;
+    const doorCy = bottom - COL_H * S / 2;
+    const m = `translate(${cx} ${doorCy}) scale(${S}) translate(${-COL_W / 2} ${-COL_H / 2})`;
+    doorShape.setAttribute('transform', m); doorRim.setAttribute('transform', m);
+    doorRim.style.opacity = 1 - c;
+    // комната внутри почти неподвижна, как фото в арке era: только оседает с 1.12 до 1
+    const rs = lerp(1.12, 1, c);
+    room.setAttribute('transform', `translate(${cx} ${cy}) scale(${rs}) translate(${-cx} ${-cy})`);
+
+    if (t < C0 + C) requestAnimationFrame(frame);
+    else { doorShape.setAttribute('transform', ''); doorShape.setAttribute('d', `M0 0H${W}V${H}H0Z`); doorRim.remove(); sky.remove(); }
+  })(t0);
 }
 run();
 
@@ -304,6 +398,7 @@ function makeWarp(canvas) {
   };
 }
 
+let scrollFrozen = false;   // ставит переход в комнату
 function startScroll() {
   // максимум изгиба у кромки экрана: у bybang 0.0486 (сжатие 5%), Диане мало, втрое сильнее
   const CURL_MAX = 0.15;
@@ -374,7 +469,7 @@ function startScroll() {
       }
       if (!draw(items)) document.body.classList.remove('gl');
     }
-    requestAnimationFrame(frame);
+    if (!scrollFrozen) requestAnimationFrame(frame);
   })(performance.now());
 }
 </script>
