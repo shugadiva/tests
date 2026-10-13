@@ -17,7 +17,7 @@
   const mobile = () => matchMedia('(max-width: 640px)').matches;
   const setMenu = (open) => { menu.classList.toggle('is-open', open); document.body.classList.toggle('menu-open', open); };
   user?.addEventListener('click', (e) => { if (!mobile()) return; e.preventDefault(); setMenu(!menu.classList.contains('is-open')); });
-  document.addEventListener('click', (e) => { if (menu?.classList.contains('is-open') && !e.target.closest('.lk-sidebar, .user')) setMenu(false); });
+  document.addEventListener('click', (e) => { if (menu?.classList.contains('is-open') && (!e.target.closest('.lk-sidebar, .user') || e.target.closest('.sheet-close'))) setMenu(false); });
 
   // Список: фильтр «Только с фото»
   $('#only-photos')?.addEventListener('change', (e) => {

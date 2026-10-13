@@ -374,7 +374,15 @@
     .textarea { min-width: 0; box-sizing: border-box; }
     .review-row__info .sk { max-width: 100%; }
     .dialog__secondary { display: none; }
-    /* меню кабинета по аватару */
-    .lk-sidebar.is-open { display: flex; position: fixed; top: 56px; left: 0; right: 0; z-index: 20; width: auto; border-radius: 0 0 16px 16px; padding: 8px 16px 16px; box-shadow: 0 12px 24px rgba(36, 42, 55, .12); animation: fade 200ms var(--ease-out); }
-    body.menu-open::after { content: ""; position: fixed; inset: 56px 0 0; background: rgba(36, 42, 55, .4); z-index: 19; }
+    /* меню кабинета по аватару: шторкой снизу, как остальные окна на мобилке */
+    .lk-sidebar.is-open { display: flex; position: fixed; top: auto; bottom: 0; left: 0; right: 0; z-index: 20; width: auto; border-radius: 16px 16px 0 0; padding: 8px 16px 34px; box-shadow: none; animation: sheet 250ms var(--ease-out); }
+    .lk-sidebar.is-open::before { content: ""; align-self: center; width: 40px; height: 4px; border-radius: 2px; background: var(--grey-default); margin-bottom: 8px; }
+    .lk-sidebar.is-open .sheet-head { display: flex; }
+    body.menu-open::after { content: ""; position: fixed; inset: 0; background: rgba(36, 42, 55, .4); z-index: 19; }
   }
+
+  .sheet-head { display: none; position: relative; justify-content: center; align-items: center; height: 48px; margin-bottom: 8px; }
+  .sheet-close { position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; padding: 0; display: grid; }
+  .answer__toggle { align-items: center; gap: 4px; }
+  .answer__chev { transition: transform 200ms var(--ease-out); }
+  .answer__toggle[aria-expanded="true"] .answer__chev { transform: rotate(180deg); }
