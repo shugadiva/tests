@@ -388,3 +388,8 @@
   .answer__toggle { align-items: center; gap: 4px; }
   .answer__chev { transition: transform 200ms var(--ease-out); }
   .answer__toggle[aria-expanded="true"] .answer__chev { transform: rotate(180deg); }
+  /* Мобильный шаг 2 как в макете МП: без карточки тура и кнопки «Назад», назад ведёт ссылка «Шаг 1» наверху */
+  @media (max-width: 640px) {
+    .form-layout:has(#review-step-2) > .aside { display: none; }
+    #review-step-2 .form-foot a.button--grey { display: none; }
+  }
