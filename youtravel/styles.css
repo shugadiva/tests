@@ -207,3 +207,36 @@
   .states a[aria-current="page"] { background: var(--green-selected); color: var(--green-click); }
 
   @media (max-width: 1100px) { .form-layout { flex-direction: column-reverse; } .aside { position: static; width: 100%; } }
+
+  /* ---- Шаг 2: NPS ---- */
+  .nps { display: flex; flex-direction: column; gap: 12px; }
+  .nps__top { display: flex; justify-content: space-between; align-items: center; color: var(--primary-night); }
+  .nps__value { font: 600 16px/20px var(--font-text); color: var(--primary-night); min-width: 20px; text-align: right; }
+  .nps__range { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 4px; background: linear-gradient(var(--green-default), var(--green-default)) 0 / var(--fill, 100%) 100% no-repeat, var(--grey-light); cursor: pointer; }
+  .nps__range::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--primary-white); border: 5px solid var(--green-default); box-shadow: 0 1px 4px rgba(36,42,55,.2); }
+  .nps__range::-moz-range-thumb { width: 10px; height: 10px; border-radius: 50%; background: var(--primary-white); border: 5px solid var(--green-default); box-shadow: 0 1px 4px rgba(36,42,55,.2); }
+  .nps__range:focus-visible { outline: 2px solid var(--green-click); outline-offset: 4px; }
+  .steps li.is-done .num { background: #f0f6dd; color: var(--green-click); }
+
+  /* ---- Диалоги ---- */
+  .overlay { position: fixed; inset: 0; z-index: 20; background: rgba(36, 42, 55, .4); display: grid; place-items: center; padding: 24px; animation: fade 200ms var(--ease-out); }
+  .overlay[hidden] { display: none; }
+  .dialog { position: relative; width: 400px; max-width: 100%; background: var(--primary-white); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 16px; animation: rise 200ms var(--ease-out); }
+  .dialog p { margin: 0; }
+  .dialog--center { align-items: center; text-align: center; }
+  .dialog__head { display: flex; align-items: center; gap: 12px; }
+  .dialog__head h2 { flex: 1; margin: 0; }
+  .dialog h2 { margin: 0; }
+  .dialog__close { position: absolute; top: 20px; right: 20px; width: 32px; height: 32px; border-radius: 8px; background: transparent; display: grid; place-items: center; }
+  .dialog__close--inline { position: static; }
+  .dialog__close:hover { background: var(--grey-pale); }
+  .dialog__actions { display: flex; gap: 12px; width: 100%; }
+  .dialog__actions .button { flex: 1; }
+  .spinner { width: 48px; height: 48px; border-radius: 50%; border: 4px solid var(--grey-default); border-top-color: var(--green-default); animation: spin 800ms linear infinite; }
+  .platforms { list-style: none; margin: 0; padding: 0; }
+  .platforms a { display: flex; align-items: center; gap: 12px; height: 56px; padding: 0 8px; margin: 0 -8px; border-radius: 8px; transition: background-color 150ms var(--ease-out); }
+  .platforms a:hover { background: var(--grey-pale); }
+  .platforms img { width: 24px; height: 24px; }
+  .platforms .t-body-s-semi { flex: 1; color: var(--primary-night); }
+  @keyframes fade { from { opacity: 0; } }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } }
