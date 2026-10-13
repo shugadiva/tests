@@ -305,6 +305,7 @@ uniform vec2 uImageSize;
 uniform vec2 uPointer;
 uniform float uCurlStrength;
 uniform float uHover;
+uniform float uAnchorY;
 varying vec2 vScreenUv;
 ${SNOISE}
 void main() {
@@ -323,14 +324,14 @@ void main() {
   float aspect = uRect.z / max(uRect.w, 1.0);
   float imageAspect = uImageSize.x / max(uImageSize.y, 1.0);
   if (imageAspect > aspect) uv.x = 0.5 + (uv.x - 0.5) * aspect / imageAspect;
-  else uv.y = 0.5 + (uv.y - 0.5) * imageAspect / aspect;
+  else uv.y = uAnchorY + (uv.y - uAnchorY) * imageAspect / aspect;   // город прижат к низу, как object-position: 50% 100%
 
   // под курсором зернистая рябь, вокруг самого курсора чистое пятно (формула bybang один в один;
   // пятно ряби под курсором пробовали 13.10.2026, Диана откатила)
   float circle = 1.0 - length((localUv - uPointer) * vec2(1.0, 1.0 / aspect)) * 15.0;
   float pointerDistancePx = length((localUv - uPointer) * uRect.zw);
   float focusMask = smoothstep(14.0, 48.0, pointerDistancePx);
-  float displacement = circle * snoise(gl_FragCoord.xy) * 0.0028 * uHover * focusMask;
+  float displacement = uHover > 0.0 ? circle * snoise(gl_FragCoord.xy) * 0.0028 * uHover * focusMask : 0.0;
   // у bybang фото прямоугольные; у нас окна вырезаны с прозрачностью, и рябь рвала бы контур.
   // Поэтому силуэт берём из точки без сдвига, а рябь только внутри
   vec4 base = texture2D(uTexture, clamp(uv, 0.0, 1.0));
@@ -352,7 +353,7 @@ function makeWarp(canvas) {
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([0, 0, 1, 0, 0, 1, 1, 1]), gl.STATIC_DRAW);
   const loc = gl.getAttribLocation(prog, 'aPosition');
   gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-  const u = Object.fromEntries(['uViewport', 'uRect', 'uImageSize', 'uPointer', 'uCurlStrength', 'uHover', 'uTexture'].map(n => [n, gl.getUniformLocation(prog, n)]));
+  const u = Object.fromEntries(['uViewport', 'uRect', 'uImageSize', 'uPointer', 'uCurlStrength', 'uHover', 'uAnchorY', 'uTexture'].map(n => [n, gl.getUniformLocation(prog, n)]));
   gl.uniform1i(u.uTexture, 0);
   gl.clearColor(0, 0, 0, 0);
   gl.enable(gl.BLEND);
@@ -393,6 +394,7 @@ function makeWarp(canvas) {
       gl.uniform2f(u.uPointer, it.pointer.x, it.pointer.y);
       gl.uniform1f(u.uCurlStrength, it.curl);
       gl.uniform1f(u.uHover, it.hover);
+      gl.uniform1f(u.uAnchorY, it.anchorY ?? 0.5);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     }
     return gl.getError() === gl.NO_ERROR;
@@ -401,8 +403,22 @@ function makeWarp(canvas) {
 
 let scrollFrozen = false;   // ставит переход в комнату
 function startScroll() {
-  // максимум изгиба у кромки экрана: у bybang 0.0486 (сжатие 5%), Диане мало, втрое сильнее
-  const CURL_MAX = 0.15;
+  // максимум изгиба у кромки экрана. У bybang 0.0486, но у них гнётся весь экран из картинок.
+  // Мы гнули только окна (0.15), а ровный город за ними прятал изгиб. Теперь гнётся и город,
+  // поэтому сила почти как у них: 0.06 даёт около 28 px в углах экрана (разбор Fable 13.10.2026)
+  const CURL_MAX = 0.06;
+  // кривая наведения у них: 600 мс по cubic-bezier(.4, 0, .2, 1)
+  const bez = (x1, y1, x2, y2) => t => {
+    let u = t;
+    for (let i = 0; i < 6; i++) {
+      const x = 3 * (1 - u) ** 2 * u * x1 + 3 * (1 - u) * u * u * x2 + u ** 3 - t;
+      const dx = 3 * (1 - u) ** 2 * x1 + 6 * (1 - u) * u * (x2 - x1) + 3 * u * u * (1 - x2);
+      if (Math.abs(dx) < 1e-6) break; u = Math.min(1, Math.max(0, u - x / dx));
+    }
+    return 3 * (1 - u) ** 2 * u * y1 + 3 * (1 - u) * u * u * y2 + u ** 3;
+  };
+  const hoverEase = bez(0.4, 0, 0.2, 1);
+  const cityImg = city.querySelector('img');
   // плавность как у Lenis: lerp 0.1, то есть за кадр 60 fps проходим 10% оставшегося пути
   const LERP = reduce ? 1 : 0.1;
   let target = 0, current = 0, last = performance.now(), lastPos = 0, curl = 0;
@@ -455,18 +471,29 @@ function startScroll() {
     curl += (goal - curl) * (1 - Math.exp(-dt / (goal > curl ? 25 : 175)));
 
     if (draw) {
-      const items = [];
+      // город идёт тем же проходом с тем же изгибом, тогда гнётся весь экран, как у bybang
+      const items = [{ img: cityImg, rect: { left: 0, top: 0, right: innerWidth, bottom: innerHeight, width: innerWidth, height: innerHeight }, curl: CURL_MAX * curl, hover: 0, pointer: { x: 0.5, y: 0.5 }, anchorY: 1 }];
       for (const w of wins) {
         const img = w.querySelector('img'), r = w.querySelector('.float').getBoundingClientRect();
         if (r.right < 0 || r.left > innerWidth || r.width < 2) continue;
         let s = state.get(w);
-        if (!s) state.set(w, s = { hover: 0, pointer: { x: 0.5, y: 0.5 }, aim: { x: 0.5, y: 0.5 } });
+        if (!s) state.set(w, s = { hover: 0, from: 0, to: 0, started: 0, exit: { x: 0.5, y: 0.5 }, pointer: { x: 0.5, y: 0.5 }, aim: { x: 0.5, y: 0.5 }, lift: 1, zoom: 1 });
         const inside = px >= r.left && px <= r.right && py >= r.top && py <= r.bottom;
-        s.hover += ((inside ? 1 : 0) - s.hover) * (1 - Math.exp(-dt / 150));
-        if (inside) s.aim = { x: (px - r.left) / r.width, y: (py - r.top) / r.height };
+        // рябь: 600 мс туда и обратно по их кривой; после ухода курсора точка плывёт к центру окна
+        if ((inside ? 1 : 0) !== s.to) { s.from = s.hover; s.to = inside ? 1 : 0; s.started = now; s.exit = { ...s.aim }; }
+        const e = hoverEase(Math.min(1, (now - s.started) / 600));
+        s.hover = s.from + (s.to - s.from) * e;
+        s.aim = inside ? { x: (px - r.left) / r.width, y: (py - r.top) / r.height }
+                       : { x: s.exit.x + (0.5 - s.exit.x) * e, y: s.exit.y + (0.5 - s.exit.y) * e };
         const k = 1 - Math.pow(0.84, dt / 16.67);
         s.pointer.x += (s.aim.x - s.pointer.x) * k; s.pointer.y += (s.aim.y - s.pointer.y) * k;
-        items.push({ img, rect: r, curl: CURL_MAX * curl, hover: s.hover, pointer: s.pointer });
+        // подъём 1.025 за ~280 мс и медленный зум 1.04 за ~900 мс, как карточка и картинка у bybang
+        s.lift += ((inside ? 1.025 : 1) - s.lift) * (1 - Math.exp(-dt / 90));
+        s.zoom += ((inside ? 1.04 : 1) - s.zoom) * (1 - Math.exp(-dt / 250));
+        const g = s.lift * s.zoom, cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+        const rect = { left: cx - r.width * g / 2, top: cy - r.height * g / 2, width: r.width * g, height: r.height * g };
+        rect.right = rect.left + rect.width; rect.bottom = rect.top + rect.height;
+        items.push({ img, rect, curl: CURL_MAX * curl, hover: s.hover, pointer: s.pointer });
       }
       if (!draw(items)) document.body.classList.remove('gl');
     }
