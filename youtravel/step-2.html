@@ -84,12 +84,10 @@
             <textarea class="textarea" id="t-ideas" placeholder="Приветствуются любые замечания и&nbsp;идеи по&nbsp;улучшению"></textarea>
           </div>
           <div class="divider"></div>
-          <div class="field" data-required="nps">
-            <label class="label" for="nps">Порекомендуете&nbsp;ли сервис YouTravel.me своим друзьям и&nbsp;знакомым?<span class="req">*</span></label>
-            <div class="nps">
-              <div class="nps__top"><span class="t-body-s">От&nbsp;1 до&nbsp;10</span><output class="nps__value" for="nps" id="nps-value">10</output></div>
-              <input class="nps__range" id="nps" type="range" min="1" max="10" step="1" value="10">
-            </div>
+          <div class="field" data-required="rating">
+            <span class="label" id="l-nps">Порекомендуете&nbsp;ли сервис YouTravel.me своим друзьям и&nbsp;знакомым?<span class="req">*</span></span>
+            <div class="scale scale--10" role="radiogroup" aria-labelledby="l-nps"><button type="button" role="radio" aria-checked="false">1</button><button type="button" role="radio" aria-checked="false">2</button><button type="button" role="radio" aria-checked="false">3</button><button type="button" role="radio" aria-checked="false">4</button><button type="button" role="radio" aria-checked="false">5</button><button type="button" role="radio" aria-checked="false">6</button><button type="button" role="radio" aria-checked="false">7</button><button type="button" role="radio" aria-checked="false">8</button><button type="button" role="radio" aria-checked="false">9</button><button type="button" role="radio" aria-checked="false">10</button></div>
+            <div class="scale-anchors dates t-body-xs-semi"><span>Точно не&nbsp;порекомендую</span><span>Обязательно порекомендую</span></div>
             <span class="error">Выберите оценку от&nbsp;1 до&nbsp;10</span>
           </div>
           <div class="form-foot">

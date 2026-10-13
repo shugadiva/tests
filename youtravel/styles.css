@@ -242,3 +242,8 @@
   .platforms .t-body-s-semi { flex: 1; color: var(--primary-night); }
   @keyframes fade { from { opacity: 0; } }
   @keyframes rise { from { opacity: 0; transform: translateY(8px); } }
+
+  /* NPS кнопками 1-10 вместо бегунка (решение 13.10.2026) */
+  .scale--10 { gap: 8px; }
+  .scale--10 button { width: 44px; height: 44px; }
+  .scale-anchors { display: flex; justify-content: space-between; width: 512px; max-width: 100%; }
