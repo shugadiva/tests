@@ -9,7 +9,7 @@
 <link rel="preload" as="image" href="assets/win-c-on.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Inter+Tight:wght@500&display=swap" rel="stylesheet">
 <style>
   :root {
     --sky: #FEFEFE;              /* белый экран загрузки, потом его закрывает город */
@@ -43,7 +43,7 @@
   /* подпись по центру экрана, как wordmark у bybang */
   .wordmark { position: fixed; z-index: 7; left: 50%; top: 50%; translate: -50% -50%; font: 500 clamp(36px, 3.34vw, 96px)/1 "Inter Tight", var(--font); color: #F5F8FF; white-space: nowrap; opacity: 0; pointer-events: none; }
 
-  .counter { position: fixed; z-index: 6; left: 50%; translate: -50% 0; font: 400 13px/1 var(--font); letter-spacing: 0.12em; color: var(--ink); font-variant-numeric: tabular-nums; transition: opacity 0.4s; }
+  .counter { position: fixed; z-index: 6; left: 50%; translate: -50% 0; font: 500 13px/16px "Inter", var(--font); letter-spacing: 0.12em; color: var(--ink); font-variant-numeric: tabular-nums; transition: opacity 0.4s; }
   .counter.hide { opacity: 0; }
 
   @media (prefers-reduced-motion: reduce) { .idle .win .float { animation: none; } }
@@ -65,7 +65,7 @@ const LAYOUT = [
   [26, 4, 4, 'c'], [62, 4, 3, 'c'], [84, 5, 3, 'b'],
 ];
 const MAIN = [50, 34, 18];   // куда встаёт главное окно после разлёта
-const START_H = 46;          // высота главного окна на загрузке, в --u
+const START_H = 30.93;       // высота главного окна на загрузке, в --u: в макете 4041:2 окно 200×334 на 1080 по высоте
 const EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';
 
 const sky = document.getElementById('sky');
@@ -111,7 +111,7 @@ async function run() {
   main.style.transform = mainStart;
   main.style.opacity = 1;
   main.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 700, easing: 'ease-out' });
-  counter.style.top = (innerHeight / 2 + START_H * unit() / 2 + 28) + 'px';
+  counter.style.top = (innerHeight / 2 + START_H * unit() / 2 + 14) + 'px';   // зазор 14, как в макете
 
   const LOAD = 2400, t0 = performance.now();
   await new Promise(done => {
