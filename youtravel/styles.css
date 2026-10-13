@@ -128,7 +128,7 @@
 
   /* ---- Пусто ---- */
   .empty-state { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 48px 0 56px; text-align: center; }
-  .empty-state img { width: 65px; height: 65px; border-radius: 50%; }
+  .empty-state img { width: 65px; height: 65px; padding: 12px; box-sizing: border-box; object-fit: contain; border-radius: 50%; background: var(--primary-white); box-shadow: 0 2px 45px rgba(153, 153, 169, .22); }
   .empty-state p { margin: 0; max-width: 360px; }
   .empty-state--success { gap: 12px; }
   .empty-state--success .button { margin-top: 12px; }
@@ -363,4 +363,18 @@
     .list .review-row .review-row__aside > svg { display: none; }
     .list .review-row .dates { display: none; }
     .reviews .checkbox { padding-left: 0; }
+  }
+
+  /* Правки по ревью 13.10.2026 */
+  body { padding-bottom: 72px; }
+  .list li.is-hidden { display: none; }
+  @media (max-width: 640px) {
+    .form-layout { align-items: stretch; }
+    .form-layout .field, .form-layout .form-foot, .form-layout .divider, .form-layout .form-head { width: 100%; align-self: stretch; box-sizing: border-box; }
+    .textarea { min-width: 0; box-sizing: border-box; }
+    .review-row__info .sk { max-width: 100%; }
+    .dialog__secondary { display: none; }
+    /* меню кабинета по аватару */
+    .lk-sidebar.is-open { display: flex; position: fixed; top: 56px; left: 0; right: 0; z-index: 20; width: auto; border-radius: 0 0 16px 16px; padding: 8px 16px 16px; box-shadow: 0 12px 24px rgba(36, 42, 55, .12); animation: fade 200ms var(--ease-out); }
+    body.menu-open::after { content: ""; position: fixed; inset: 56px 0 0; background: rgba(36, 42, 55, .4); z-index: 19; }
   }

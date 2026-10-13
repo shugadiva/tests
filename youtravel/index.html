@@ -71,10 +71,10 @@
         <div class="rate-trips__cards">
           <article class="trip-card">
             <div class="trip-card__trip">
-              <img class="trip-card__cover" src="assets/kamchatka.jpg" alt="">
+              <img class="trip-card__cover" src="assets/altai.jpg" alt="">
               <div class="trip-card__info">
-                <span class="title t-body-s-semi">Земля Камчатка. Вулканы, термальные источники. Джип-тур</span>
-                <span class="dates t-body-xs-semi">29&nbsp;сентября – 6&nbsp;октября 2026 · 8&nbsp;дней</span>
+                <span class="title t-body-s-semi">Алтай: Чуйский тракт и&nbsp;Мультинские озёра</span>
+                <span class="dates t-body-xs-semi">с&nbsp;3 по&nbsp;10&nbsp;августа 2026 · 8&nbsp;дней</span>
               </div>
             </div>
             <a class="button button--green t-body-m-semi" href="step-1.html">Оставить отзыв</a>
@@ -84,7 +84,7 @@
               <img class="trip-card__cover" src="assets/baikal.jpg" alt="">
               <div class="trip-card__info">
                 <span class="title t-body-s-semi">Байкальский лёд: Ольхон и&nbsp;Листвянка за&nbsp;5&nbsp;дней</span>
-                <span class="dates t-body-xs-semi">12 – 16&nbsp;марта 2026 · 5&nbsp;дней</span>
+                <span class="dates t-body-xs-semi">с&nbsp;12 по&nbsp;16&nbsp;марта 2026 · 5&nbsp;дней</span>
               </div>
             </div>
             <a class="button button--green t-body-m-semi" href="step-1.html">Оставить отзыв</a>
@@ -94,7 +94,7 @@
 
       <div class="reviews">
         <label class="checkbox">
-          <input type="checkbox">
+          <input type="checkbox" id="only-photos">
           <span class="checkbox__box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2 4.9 8.5 9.5 3.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           Только с&nbsp;фото
         </label>
@@ -102,10 +102,10 @@
         <ul class="list">
           <li>
             <div class="review-row">
-              <img class="review-row__cover" src="assets/altai.jpg" alt="">
+              <img class="review-row__cover" src="assets/kamchatka.jpg" alt="">
               <div class="review-row__info">
-                <span class="title t-body-s-semi">Алтай: Чуйский тракт и&nbsp;Мультинские озёра</span>
-                <span class="dates t-body-xs-semi">3 – 10&nbsp;августа 2026 · 8&nbsp;дней</span>
+                <span class="title t-body-s-semi">Земля Камчатка. Вулканы, термальные источники. Джип-тур</span>
+                <span class="dates t-body-xs-semi">с&nbsp;29&nbsp;сентября по&nbsp;6&nbsp;октября 2026 · 8&nbsp;дней</span>
                 <span class="tag tag--draft"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.07066 10.3043L9.07078 5.30418L6.69582 2.92922L1.6957 7.92934C1.62686 7.99826 1.57797 8.08453 1.55419 8.17899L1 11L3.82047 10.4458C3.91516 10.4221 4.00179 10.3732 4.07066 10.3043ZM10.6849 3.69003C10.8867 3.48823 11 3.21457 11 2.92922C11 2.64388 10.8867 2.37022 10.6849 2.16842L9.83158 1.31507C9.62978 1.11333 9.35612 1 9.07078 1C8.78543 1 8.51177 1.11333 8.30997 1.31507L7.45662 2.16842L9.83158 4.54338L10.6849 3.69003Z" fill="#242A37"/></svg>Черновик</span>
               </div>
               <div class="review-row__aside">
@@ -113,12 +113,12 @@
               </div>
             </div>
           </li>
-          <li>
+          <li data-photos>
             <a class="review-row" href="review.html?s=moderation">
               <img class="review-row__cover" src="assets/dagestan.jpg" alt="">
               <div class="review-row__info">
                 <span class="title t-body-s-semi">Дагестан: Сулакский каньон и&nbsp;древний Дербент</span>
-                <span class="dates t-body-xs-semi">14 – 19&nbsp;июня 2026 · 6&nbsp;дней</span>
+                <span class="dates t-body-xs-semi">с&nbsp;14 по&nbsp;19&nbsp;июня 2026 · 6&nbsp;дней</span>
                 <span class="tag tag--moderation"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" fill="#F5A32A"/><path d="M6 3.2v2.8l1.9 1.9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>На проверке</span>
               </div>
               <div class="review-row__aside">
@@ -127,12 +127,12 @@
               </div>
             </a>
           </li>
-          <li>
+          <li data-photos>
             <a class="review-row" href="review.html?s=published">
               <img class="review-row__cover" src="assets/karelia.jpg" alt="">
               <div class="review-row__info">
                 <span class="title t-body-s-semi">Карелия на&nbsp;байдарках: Ладожские шхеры</span>
-                <span class="dates t-body-xs-semi">1 – 7&nbsp;июля 2026 · 7&nbsp;дней</span>
+                <span class="dates t-body-xs-semi">с&nbsp;1 по&nbsp;7&nbsp;июля 2026 · 7&nbsp;дней</span>
                 <span class="tag tag--published"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.7539 2.30099C12.0856 2.63923 12.0807 3.18273 11.743 3.51493L4.59722 10.5439L0.256526 6.27415C-0.0811977 5.94195 -0.0860865 5.39845 0.245606 5.06021C0.577299 4.72196 1.11997 4.71707 1.45769 5.04927L4.59722 8.13746L10.5418 2.29005C10.8796 1.95785 11.4222 1.96275 11.7539 2.30099Z" fill="#7FA40C"/></svg>Опубликован</span>
               </div>
               <div class="review-row__aside">
@@ -146,7 +146,7 @@
               <img class="review-row__cover" src="assets/murmansk.jpg" alt="">
               <div class="review-row__info">
                 <span class="title t-body-s-semi">Мурманск: северное сияние и&nbsp;Териберка</span>
-                <span class="dates t-body-xs-semi">6 – 9&nbsp;февраля 2026 · 4&nbsp;дня</span>
+                <span class="dates t-body-xs-semi">с&nbsp;6 по&nbsp;9&nbsp;февраля 2026 · 4&nbsp;дня</span>
                 <span class="tag tag--rejected"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1.5 1.5l9 9M10.5 1.5l-9 9" stroke="#F84565" stroke-width="1.5" stroke-linecap="round"/></svg>Не опубликован</span>
               </div>
               <div class="review-row__aside">

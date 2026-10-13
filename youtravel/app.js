@@ -12,6 +12,18 @@
     if (e.key === 'Escape') $$('.overlay:not([hidden])').forEach((ov) => { if (ov.id !== 'dlg-loading') closeDialog(ov); });
   });
 
+  // Мобильная шапка: меню кабинета по нажатию на аватар
+  const user = $('.user'), menu = $('.lk-sidebar');
+  const mobile = () => matchMedia('(max-width: 640px)').matches;
+  const setMenu = (open) => { menu.classList.toggle('is-open', open); document.body.classList.toggle('menu-open', open); };
+  user?.addEventListener('click', (e) => { if (!mobile()) return; e.preventDefault(); setMenu(!menu.classList.contains('is-open')); });
+  document.addEventListener('click', (e) => { if (menu?.classList.contains('is-open') && !e.target.closest('.lk-sidebar, .user')) setMenu(false); });
+
+  // Список: фильтр «Только с фото»
+  $('#only-photos')?.addEventListener('change', (e) => {
+    $$('.list > li').forEach((li) => li.classList.toggle('is-hidden', e.target.checked && !li.hasAttribute('data-photos')));
+  });
+
   // Карточка отзыва: статус из адреса (?s=published|moderation|rejected)
   const review = $('#review');
   if (review) {
@@ -30,7 +42,6 @@
       const open = body.hidden;
       body.hidden = !open;
       toggle.setAttribute('aria-expanded', String(open));
-      $('.answer__sign', toggle).textContent = open ? '–' : '+';
       $('.answer__label', toggle).textContent = open ? 'Скрыть ответ тревел-эксперта' : 'Смотреть ответ тревел-эксперта';
     });
 
@@ -56,15 +67,7 @@
   const form = $('#review-step-1') || $('#review-step-2');
   if (!form) return;
 
-  const toast = $('#toast');
   const autosave = $('#autosave');
-  const showToast = (text) => {
-    if (!toast) return;
-    toast.textContent = text;
-    toast.classList.add('is-on');
-    clearTimeout(showToast.t);
-    showToast.t = setTimeout(() => toast.classList.remove('is-on'), 2600);
-  };
   let saveTimer;
   const markDirty = () => {
     autosave.textContent = 'Сохраняем…';
@@ -89,17 +92,6 @@
     markDirty();
   }));
 
-  // NPS 1-10
-  const range = $('#nps');
-  if (range) {
-    const sync = () => {
-      $('#nps-value').textContent = range.value;
-      range.style.setProperty('--fill', ((range.value - 1) / 9) * 100 + '%');
-    };
-    range.addEventListener('input', () => { sync(); markDirty(); });
-    sync();
-  }
-
   // Фото (шаг 1)
   const tiles = $('#tiles');
   if (tiles) {
@@ -108,7 +100,10 @@
     const addLabel = $('#add-photo');
     const fileInput = $('input', addLabel);
     const count = () => $$('.tile:not(.tile--error)', tiles).length;
-    const syncAdd = () => addLabel.classList.toggle('is-disabled', count() >= MAX_PHOTOS);
+    const syncAdd = () => {
+      addLabel.classList.toggle('is-disabled', count() >= MAX_PHOTOS);
+      $('#photo-count').textContent = count();
+    };
     tiles.addEventListener('click', (e) => {
       const del = e.target.closest('.tile__del');
       if (!del) return;
@@ -122,7 +117,7 @@
         const tile = document.createElement('div');
         if (file.size > MAX_SIZE) {
           tile.className = 'tile tile--error';
-          tile.innerHTML = `<span>Фото<br>превышает 5&nbsp;мб</span><button class="tile__del" type="button" aria-label="Убрать">${trash}</button>`;
+          tile.innerHTML = `<span>Фото<br>превышает 5&nbsp;МБ</span><button class="tile__del" type="button" aria-label="Убрать">${trash}</button>`;
         } else {
           tile.className = 'tile tile--loading';
           tile.innerHTML = `<img src="${URL.createObjectURL(file)}" alt=""><button class="tile__del" type="button" aria-label="Удалить фото">${trash}</button>`;
