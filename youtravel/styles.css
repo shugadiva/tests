@@ -349,3 +349,18 @@
     .states { left: 8px; right: 8px; overflow-x: auto; white-space: nowrap; }
   }
   @keyframes sheet { from { transform: translateY(100%); } }
+
+  /* Мобильный список как в МП: каждый отзыв отдельной карточкой (пересборка 13.10.2026) */
+  @media (max-width: 640px) {
+    body { background: #f1f3f8; }
+    .content > .card:has(.list) { background: transparent; padding: 0; }
+    .rate-trips .trip-card { background: var(--primary-white); border-radius: 16px; }
+    .rate-trips .trip-card .button--green { background: var(--grey-default); color: var(--primary-night); }
+    .list { display: flex; flex-direction: column; gap: 16px; }
+    .list .review-row { background: var(--primary-white); border-radius: 16px; padding: 16px; border-bottom: 0; }
+    .list .review-row::before { display: none; }
+    .list .review-row__cover { width: 72px; height: 72px; border-radius: 10px; }
+    .list .review-row .review-row__aside > svg { display: none; }
+    .list .review-row .dates { display: none; }
+    .reviews .checkbox { padding-left: 0; }
+  }
