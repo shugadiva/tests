@@ -5,121 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Mono design · тестовое adelt.io</title>
-<link rel="preload" as="image" href="assets/hero-b.jpg">
 <style>
-  :root {
-    --navy-deep: #030B24;
-    --navy: #2C3C66;
-    --stone-white: #F2F0EA;
-    --stone: #D8D6CB;
-    --olive: #7A8452;
-    --text: var(--stone-white);
-    --text-muted: rgba(242, 240, 234, 0.72);
-    --line: rgba(242, 240, 234, 0.24);
-    --font: "HelveticaNeueCyr", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    --pad: clamp(20px, 4.2vw, 80px);
-    --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: var(--navy-deep); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; }
-  a { color: inherit; text-decoration: none; }
-
-  .hero { position: relative; height: 100vh; min-height: 640px; overflow: hidden; }
-  .hero-media { position: absolute; inset: 0; transform-origin: 50% 70%; animation: hero-in 2.4s var(--ease) both; }
-  .hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; display: block; }
-  /* затемнение слева и снизу, чтобы текст читался на небе и крышах */
-  .hero-media::after { content: ""; position: absolute; inset: 0;
-    background:
-      linear-gradient(90deg, rgba(3, 11, 36, 0.55) 0%, rgba(3, 11, 36, 0) 55%),
-      linear-gradient(0deg, rgba(3, 11, 36, 0.7) 0%, rgba(3, 11, 36, 0) 30%),
-      linear-gradient(180deg, rgba(3, 11, 36, 0.45) 0%, rgba(3, 11, 36, 0) 18%); }
-
-  .nav { position: absolute; top: 0; left: 0; right: 0; z-index: 3; display: flex; align-items: center; justify-content: space-between; padding: 28px var(--pad); }
-  .logo { font-size: 20px; letter-spacing: 0.02em; font-weight: 500; }
-  .logo span { color: var(--text-muted); font-weight: 400; }
-  .menu { display: flex; gap: 40px; font-size: 15px; color: var(--text-muted); }
-  .menu a:hover { color: var(--text); }
-  .cta { font-size: 15px; padding: 12px 22px; border: 1px solid var(--line); border-radius: 999px; backdrop-filter: blur(8px); background: rgba(242, 240, 234, 0.06); transition: background 0.25s; }
-  .cta:hover { background: rgba(242, 240, 234, 0.16); }
-
-  .copy { position: absolute; z-index: 2; left: var(--pad); top: 26vh; max-width: 1100px; }
-  .eyebrow { font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 28px; }
-  h1 { font-weight: 400; font-size: clamp(40px, 5.2vw, 96px); line-height: 1.02; letter-spacing: -0.03em; }
-  h1 .line { display: block; overflow: hidden; }
-  h1 .line > span { display: inline-block; animation: rise 1.2s var(--ease) both; }
-  h1 .line:nth-child(2) > span { animation-delay: 0.12s; }
-  h1 .line:nth-child(3) > span { animation-delay: 0.24s; }
-  .lead { margin-top: 32px; max-width: 460px; font-size: 17px; line-height: 1.5; color: var(--text-muted); }
-  .eyebrow, .lead { animation: fade 1.2s 0.5s var(--ease) both; }
-
-  .steps { position: absolute; z-index: 2; left: var(--pad); right: var(--pad); bottom: 36px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); animation: fade 1.2s 0.8s var(--ease) both; }
-  .step { padding-top: 18px; font-size: 15px; display: flex; gap: 14px; }
-  .step b { font-weight: 400; color: var(--text-muted); font-variant-numeric: tabular-nums; }
-
-
-  .next { position: relative; z-index: 1; background: var(--stone-white); color: var(--navy-deep); padding: 120px var(--pad) 48px; }
-  .next h2 { font-weight: 400; font-size: clamp(28px, 3vw, 48px); line-height: 1.1; letter-spacing: -0.02em; max-width: 900px; }
-  .note { margin-top: 120px; font-size: 13px; color: rgba(3, 11, 36, 0.5); }
-
-  @keyframes hero-in { from { transform: scale(1.08); filter: brightness(0.6); } to { transform: scale(1); filter: none; } }
-  @keyframes rise { from { transform: translateY(105%); } to { transform: none; } }
-  @keyframes fade { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
-
-  @media (max-width: 900px) {
-    .menu { display: none; }
-    .copy { top: 18vh; right: var(--pad); }
-    .steps { grid-template-columns: repeat(2, 1fr); row-gap: 12px; }
-    .hero-media img { object-position: 62% 60%; }
-  }
+  html, body { height: 100%; overflow: hidden; background: #030B24; }
+  .hero { position: fixed; inset: 0; }
+  .hero img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; display: block; }
+  @media (max-width: 900px) { .hero img { object-position: 62% 60%; } }
 </style>
 </head>
 <body>
-<section class="hero">
-  <div class="hero-media"><img id="heroImg" src="assets/hero-b.jpg" alt="Вечерний склон с минималистичными виллами из травертина"></div>
-
-  <header class="nav">
-    <a class="logo" href="#">Mono <span>design</span></a>
-    <nav class="menu">
-      <a href="#">Проекты</a>
-      <a href="#">Подход</a>
-      <a href="#">Студия</a>
-      <a href="#">Контакты</a>
-    </nav>
-    <a class="cta" href="#">Обсудить объект</a>
-  </header>
-
-  <div class="copy">
-    <p class="eyebrow">Комплексная реновация под&nbsp;ключ</p>
-    <h1>
-      <span class="line"><span>Красота,</span></span>
-      <span class="line"><span>которая держится</span></span>
-      <span class="line"><span>на&nbsp;инженерии</span></span>
-    </h1>
-    <p class="lead">Ведём объект от&nbsp;анализа и&nbsp;инженерной логики до&nbsp;дизайна, стройки и&nbsp;сдачи. Одна точка входа и&nbsp;полная ответственность за&nbsp;результат</p>
-  </div>
-
-  <div class="steps">
-    <div class="step"><b>01</b>Анализ</div>
-    <div class="step"><b>02</b>Инженерия</div>
-    <div class="step"><b>03</b>Дизайн</div>
-    <div class="step"><b>04</b>Сдача</div>
-  </div>
-</section>
-
-
-<section class="next">
-  <h2>Мы&nbsp;работаем со&nbsp;сложными объектами и&nbsp;создаём интерьеры, в&nbsp;которых комфортно жить сегодня и&nbsp;спустя годы</h2>
-  <p class="note">Тестовое задание Diana Shvedskaia для adelt.io, не&nbsp;официальный сайт</p>
-</section>
-
-<script>
-  // лёгкий параллакс: картинка уезжает медленнее текста
-  const media = document.querySelector('.hero-media');
-  addEventListener('scroll', () => {
-    const y = scrollY;
-    if (y < innerHeight) media.style.translate = `0 ${y * 0.35}px`;
-  }, { passive: true });
-</script>
+<main class="hero">
+  <img src="assets/hero-b.jpg" alt="Вечерний склон с минималистичными виллами из травертина">
+</main>
 </body>
 </html>
