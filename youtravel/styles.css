@@ -395,3 +395,138 @@
     .form-layout:has(#review-step-2) > .aside { display: none; }
     #review-step-2 .form-foot a.button--grey { display: none; }
   }
+
+  /* ---- Синхронизация с макетом 13.10.2026 («обнови») ---- */
+  .m-only { display: none !important; }
+  .form-body { display: flex; flex-direction: column; gap: 24px; }
+  .review__body { gap: 24px; }
+  .lead { display: flex; flex-direction: column; gap: 8px; }
+  .lead p { margin: 0; }
+  .empty-state { padding-bottom: 48px; }
+  .textarea { resize: none; }
+  .field.is-error .textarea { min-height: 96px; }
+  .field.is-error .error { margin-top: -4px; font-weight: 500; }
+  .dialog__text { display: flex; flex-direction: column; gap: 8px; }
+  .dialog__text p { margin: 0; }
+  .grabber { display: none; }
+  .overlay { background: rgba(31, 32, 36, .65); }
+  /* окно ошибки: крестик отдельной строкой, иконка в 64 от верха, заголовок под иконкой */
+  .dialog__bar { display: contents; }
+  #dlg-error .dialog { padding-top: 64px; }
+  #dlg-error .dialog h2 { order: 1; }
+  #dlg-error .dialog__text { order: 2; }
+  #dlg-error .dialog__actions { order: 3; }
+  /* окно бонусов: строки с внутренним отступом 16 */
+  .platforms a { padding: 0 16px; margin: 0 -16px; }
+  /* карточка отзыва */
+  .review__photos .photo-more span { font: 700 20px/24px var(--font-display); }
+  .answer { background: linear-gradient(118deg, #f6e7ff 0%, #eeeeff 90%); }
+  .answer__toggle { width: 100%; justify-content: space-between; text-align: left; }
+  .review__status { gap: 4px; }
+  .more { display: inline-flex; align-items: center; gap: 4px; }
+
+  @media (max-width: 640px) {
+    .m-only { display: revert !important; }
+    svg.m-only, .review__tour.m-only { display: flex !important; }
+    .d-only { display: none !important; }
+
+    /* шапка формы и карточки на сером фоне, содержимое в белых карточках */
+    .content > .card:has(.form-layout) { background: transparent; padding: 0; }
+    .form-layout { gap: 16px; }
+    .form-layout .form-head { gap: 8px; }
+    .form-layout .form-head h1 { display: none; }
+    .step-label { text-align: center; }
+    .form-body { background: var(--primary-white); border-radius: 16px; padding: 16px; width: 100%; }
+    .tour-card { background: var(--primary-white); border: 0; border-radius: 16px; padding: 16px; display: grid; grid-template-columns: 72px 1fr; column-gap: 16px; row-gap: 8px; align-items: start; }
+    .tour-card__trip { display: contents; }
+    .tour-card__cover { width: 72px; height: 72px; border-radius: 10px; grid-row: span 2; }
+    .tour-card .title { font: 600 14px/22px var(--font-text); color: #222; }
+    .tour-card .dates, .tour-card > .divider, .tour-card .expert { display: none; }
+    .tour-card > .tag { grid-column: 2; justify-self: start; }
+    .form-layout:has(.review) > .aside { display: none; }
+    .photos-add .dates { font-weight: 400; white-space: nowrap; }
+    .list a.review-row { flex-wrap: nowrap; align-items: flex-start; }
+    .list a.review-row .review-row__info { flex: 1 1 auto; max-width: 180px; }
+    .label { color: #222; }
+    #t-trip { min-height: 124px; }
+    #t-group, #t-service, #t-ideas { min-height: 108px; }
+    #t-wish { min-height: 98px; }
+    .divider--photos, .divider--nps { display: none; }
+    .photos-add { flex-direction: row; align-items: center; gap: 16px; }
+    .button--m { height: 48px; font: 600 15px/22px var(--font-text); }
+    #review-step-1 .form-body { position: relative; margin-bottom: 28px; } #review-step-1 #autosave { position: absolute; left: 0; right: 0; bottom: -28px; text-align: center; }
+    #review-step-1 .form-foot .button { width: 100%; }
+    #review-step-2 #autosave { display: none; }
+    .scale-anchors { text-transform: lowercase; }
+    .field.is-error .error { margin-top: 0; }
+
+    /* карточка отзыва */
+    .review { gap: 16px; }
+    .review__body { gap: 16px; }
+    .review__tour { align-items: flex-start; gap: 16px; }
+    .review__tour img { width: 72px; height: 72px; border-radius: 10px; object-fit: cover; flex: none; }
+    .review__tour .title { font: 600 14px/22px var(--font-text); color: #222; }
+    .review__rating { justify-content: space-between; }
+    .review__rating .dates { order: -1; font: 600 12px/18px var(--font-text); }
+    .review__status { gap: 8px; }
+    .why svg { display: none; }
+    .review .answer { order: 1; }
+    .review__photos { order: 2; overflow-x: auto; margin-right: -16px; padding-right: 16px; scrollbar-width: none; }
+    .review__photos button { width: 120px; height: 120px; border-radius: 10px; flex: none; }
+    .review__photos .photo-more::after, .review__photos .photo-more span { display: none; }
+    .answer .expert__name { font: 600 14px/22px var(--font-text); color: #222; }
+
+    /* шторки снизу */
+    .dialog { padding: 0 16px 34px; gap: 16px; }
+    .grabber { display: block; position: absolute; top: 8px; left: 50%; width: 40px; height: 4px; margin-left: -20px; border-radius: 100px; background: var(--grey-divider); }
+    .dialog__head, .dialog__bar { display: flex; align-self: stretch; align-items: center; justify-content: center; position: relative; min-height: 58px; padding-top: 8px; margin: 0 -16px; }
+    .dialog__head h2, .dialog__bar h2 { flex: none; font: 600 16px/19px var(--font-text); color: #222; text-align: center; }
+    .dialog__head .dialog__close, .dialog__bar .dialog__close { position: absolute; right: 8px; top: 17px; }
+    .dialog__close svg path { stroke: #9797a3; }
+    #dlg-error .dialog { padding-top: 0; }
+    #dlg-error .dialog__bar { order: -1; }
+    #dlg-error .dialog h2 { order: 0; }
+    .dialog__text, .dialog > p.t-body-s, .reasons { font: 400 14px/20px var(--font-text); color: #222; }
+    .dialog__text { gap: 0; }
+    .reasons { gap: 0; margin-top: -16px; }
+    .dialog .button { width: 100%; background: #eeeef2; color: #222; }
+
+    /* экран успеха и шторка бонусов */
+    .content > .card:has(.empty-state--success) { margin-top: 104px; padding: 24px 16px; gap: 0; }
+    .empty-state--success { padding: 0; gap: 12px; }
+    .empty-state--success h2 { font: 600 16px/19px var(--font-text); color: #222; }
+    .empty-state--success .dialog__text { font: 400 14px/20px var(--font-text); color: #222; text-align: center; }
+    .empty-state--success .button { width: 100%; margin-top: 16px; height: 48px; background: #eeeef2; color: #222; font: 600 15px/22px var(--font-text); }
+    #dlg-bonus .dialog__head .dialog__close { display: none; }
+    #dlg-bonus .dialog__head h2 { font: 700 16px/22px var(--font-text); }
+    .bonus-intro { font: 400 13px/17px var(--font-text) !important; text-align: center; gap: 8px !important; }
+    .platforms { border: 1px solid var(--grey-light); border-radius: 12px; padding: 0 16px; }
+    .platforms li + li { border-top: 1px solid var(--grey-light); }
+    .platforms a { height: 58px; margin: 0 -16px; padding: 0 16px; }
+    .platforms .t-body-s-semi { font: 600 14px/22px var(--font-text); color: #222; }
+    .platforms .dates { font: 600 14px/22px var(--font-text); color: #9999a9; }
+    .bonus-foot { margin: 0; font: 400 13px/17px var(--font-text) !important; color: #222; text-align: center; }
+    .bonus-foot a { color: #8600ef; }
+
+    /* пусто: без белой карточки, кнопка во всю ширину */
+    .content > .card:has(.empty-state:not(.empty-state--success)) { background: transparent; padding: 4px 0 0; }
+    .empty-state:not(.empty-state--success) { padding: 116px 0 0; }
+    .empty-state:not(.empty-state--success) p { color: #222; }
+    .empty-state:not(.empty-state--success) .button { width: 100%; height: 48px; border-radius: 50px; margin-top: 24px; font: 600 14px/22px var(--font-text); }
+
+    /* список */
+    .rate-trips__cards { gap: 16px; }
+    .rate-trips .trip-card { padding: 16px; gap: 16px; }
+    .trip-card__trip { gap: 16px; align-items: flex-start; }
+    .trip-card__cover { width: 72px; height: 72px; border-radius: 10px; }
+    .trip-card .title, .list .review-row .title { font: 600 14px/22px var(--font-text); color: #222; }
+    .trip-card .dates { display: none; }
+    .trip-card .button, .review-row__aside .button { height: 44px; }
+    .reviews .checkbox { padding-left: 8px; }
+    .list .review-row { gap: 16px; }
+    .list li:has(.button) .review-row { padding: 16px 20px; }
+    .list .review-row .title { hyphens: manual; }
+    .list a.review-row .review-row__info { flex: 0 0 180px; gap: 8px; }
+    .list a.review-row .title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .list a.review-row .review-row__aside { margin-left: auto; align-self: flex-start; }
+  }

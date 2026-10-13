@@ -69,6 +69,7 @@
             <span class="caps step-label">Шаг 2 из 2</span>
             <h1 class="t-h3">Оцените наш сервис</h1>
           </div>
+          <div class="form-body">
           <div class="field" data-required="rating">
             <span class="label" id="l-service">Как вы&nbsp;оцениваете работу сервиса YouTravel.me?<span class="req">*</span></span>
             <div class="scale" role="radiogroup" aria-labelledby="l-service">
@@ -85,7 +86,7 @@
             <label class="label" for="t-ideas">Пожелания и&nbsp;предложения</label>
             <textarea class="textarea" id="t-ideas" placeholder="Приветствуются любые замечания и&nbsp;идеи по&nbsp;улучшению"></textarea>
           </div>
-          <div class="divider"></div>
+          <div class="divider divider--nps"></div>
           <div class="field" data-required="rating">
             <span class="label" id="l-nps">Порекомендуете&nbsp;ли сервис YouTravel.me своим друзьям и&nbsp;знакомым?<span class="req">*</span></span>
             <div class="scale scale--10" role="radiogroup" aria-labelledby="l-nps"><button type="button" role="radio" aria-checked="false">1</button><button type="button" role="radio" aria-checked="false">2</button><button type="button" role="radio" aria-checked="false">3</button><button type="button" role="radio" aria-checked="false">4</button><button type="button" role="radio" aria-checked="false">5</button><button type="button" role="radio" aria-checked="false">6</button><button type="button" role="radio" aria-checked="false">7</button><button type="button" role="radio" aria-checked="false">8</button><button type="button" role="radio" aria-checked="false">9</button><button type="button" role="radio" aria-checked="false">10</button></div>
@@ -97,13 +98,14 @@
             <button class="button button--green button--m t-body-m-semi" type="submit">Отправить</button>
             <span class="caps" id="autosave" aria-live="polite">Сохранено как черновик</span>
           </div>
+          </div>
         </form>
         <aside class="aside" aria-label="Тур">
           <div class="tour-card">
             <div class="tour-card__trip">
               <img class="tour-card__cover" src="assets/kamchatka.jpg" alt="">
               <div class="tour-card__info">
-                <span class="title t-body-s-semi">Земля Камчатка. Вулканы, термальные источники. Джип-тур</span>
+                <span class="title t-body-s-semi">Земля Камчатка. Вулканы, термальные источники. Джип&#8209;тур</span>
                 <span class="dates t-body-xs-semi">с&nbsp;29&nbsp;сентября по&nbsp;6&nbsp;октября 2026</span>
               </div>
             </div>
@@ -132,10 +134,9 @@
   </div>
   <div class="overlay" id="dlg-error" hidden>
     <div class="dialog dialog--center" role="alertdialog" aria-modal="true" aria-labelledby="de-t">
-      <button class="dialog__close" type="button" data-close aria-label="Закрыть"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M7 7l10 10" stroke="#242A37" stroke-width="1.2" stroke-linecap="round"/></svg></button>
+      <div class="dialog__bar"><span class="grabber" aria-hidden="true"></span><h2 class="t-h4" id="de-t">Не&nbsp;удалось отправить отзыв</h2><button class="dialog__close" type="button" data-close aria-label="Закрыть"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M7 7l10 10" stroke="#242A37" stroke-width="1.2" stroke-linecap="round"/></svg></button></div>
       <svg width="60" height="60" viewBox="0 0 60 60" fill="none" aria-hidden="true"><circle cx="30" cy="30" r="30" fill="#FDEFF2"/><path d="M22.8 37.2 37.2 22.8M22.8 22.8l14.4 14.4" stroke="#F84565" stroke-width="1.8" stroke-linecap="round"/></svg>
-      <h2 class="t-h4" id="de-t">Не&nbsp;удалось отправить отзыв</h2>
-      <p class="t-body-s">Произошла ошибка при&nbsp;отправке отзыва.<br>Попробуйте ещё раз, черновик сохранён</p>
+      <div class="dialog__text t-body-s"><p>Произошла ошибка при&nbsp;отправке отзыва.</p><p>Попробуйте ещё раз, черновик сохранён</p></div>
       <div class="dialog__actions">
         <button class="button button--grey button--m t-body-m-semi dialog__secondary" type="button" data-close>Закрыть</button>
         <button class="button button--green button--m t-body-m-semi" type="button" id="retry">Повторить</button>

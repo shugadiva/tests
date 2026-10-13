@@ -69,7 +69,7 @@
             <span class="caps step-label">Шаг 1 из 2</span>
             <h1 class="t-h3">Оцените тур и&nbsp;тревел&#8209;эксперта</h1>
           </div>
-
+          <div class="form-body">
           <div class="field" data-required="rating">
             <span class="label" id="l-trip">Как вы&nbsp;оцениваете поездку?<span class="req">*</span></span>
             <div class="scale" role="radiogroup" aria-labelledby="l-trip">
@@ -78,7 +78,7 @@
             <span class="error">Поставьте оценку от&nbsp;1 до&nbsp;5</span>
           </div>
           <div class="field" data-required="text">
-            <label class="label" for="t-trip">Поделитесь вашими впечатлениями от&nbsp;поездки.<br>Эмоции приветствуются<span class="req">*</span></label>
+            <label class="label" for="t-trip">Поделитесь вашими впечатлениями от&nbsp;поездки.<br class="d-only"> Эмоции приветствуются<span class="req">*</span></label>
             <textarea class="textarea" id="t-trip" placeholder="Поделитесь впечатлениями">Камчатка превзошла ожидания: вулканы, горячие источники и океан за одну неделю. Маршрут продуман, джипы надёжные, а вечерние посиделки у костра стали лучшей частью поездки</textarea>
             <span class="error">Расскажите о&nbsp;поездке хотя&nbsp;бы в&nbsp;паре предложений</span>
           </div>
@@ -95,12 +95,12 @@
             <textarea class="textarea" id="t-group" placeholder="Поделитесь впечатлениями"></textarea>
             <span class="error">Расскажите о&nbsp;группе хотя&nbsp;бы в&nbsp;паре предложений</span>
           </div>
-          <div class="divider"></div>
+          <div class="divider divider--photos"></div>
           <div class="field">
             <span class="label">Поделитесь фотографиями</span>
             <div class="photos-add">
               <label class="button button--grey t-body-m-semi" id="add-photo">Добавить фото<input type="file" accept="image/png,image/jpeg,image/webp" multiple></label>
-              <span class="dates t-body-xs-semi" id="photo-hint">До&nbsp;7 фото, каждое до&nbsp;5&nbsp;МБ. Загружено <span id="photo-count">3</span> из&nbsp;7</span>
+              <span class="dates t-body-xs-semi" id="photo-hint">До&nbsp;7 фото, каждое до&nbsp;5&nbsp;МБ<span id="photo-count" hidden>3</span></span>
             </div>
             <div class="tiles" id="tiles">
               <div class="tile"><img src="assets/photo-1.jpg" alt=""><button class="tile__del" type="button" aria-label="Удалить фото"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 4h-3.33V2.89A1.6 1.6 0 0 0 9 1.33H7a1.6 1.6 0 0 0-1.67 1.56V4H2a.67.67 0 0 0 0 1.33h.67v7.34a2 2 0 0 0 2 2h6.66a2 2 0 0 0 2-2V5.33H14A.67.67 0 0 0 14 4ZM6.67 10.67a.67.67 0 0 1-1.34 0V8a.67.67 0 0 1 1.34 0v2.67Zm0-7.78c0-.1.14-.22.33-.22h2c.19 0 .33.11.33.22V4H6.67V2.89Zm4 7.78a.67.67 0 0 1-1.34 0V8a.67.67 0 0 1 1.34 0v2.67Z" fill="#fff"/></svg></button></div>
@@ -117,6 +117,7 @@
             <button class="button button--green button--m t-body-m-semi" type="submit">Далее</button>
             <span class="caps" id="autosave" aria-live="polite">Сохранено как черновик</span>
           </div>
+          </div>
         </form>
 
         <aside class="aside" aria-label="Тур">
@@ -124,7 +125,7 @@
             <div class="tour-card__trip">
               <img class="tour-card__cover" src="assets/kamchatka.jpg" alt="">
               <div class="tour-card__info">
-                <span class="title t-body-s-semi">Земля Камчатка. Вулканы, термальные источники. Джип-тур</span>
+                <span class="title t-body-s-semi">Земля Камчатка. Вулканы, термальные источники. Джип&#8209;тур</span>
                 <span class="dates t-body-xs-semi">с&nbsp;29&nbsp;сентября по&nbsp;6&nbsp;октября 2026</span>
               </div>
             </div>
