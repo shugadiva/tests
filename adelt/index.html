@@ -231,11 +231,11 @@ void main() {
   if (imageAspect > aspect) uv.x = 0.5 + (uv.x - 0.5) * aspect / imageAspect;
   else uv.y = 0.5 + (uv.y - 0.5) * imageAspect / aspect;
 
-  // под курсором зернистая рябь, вокруг самого курсора чистое пятно
-  float circle = 1.0 - length((localUv - uPointer) * vec2(1.0, 1.0 / aspect)) * 15.0;
-  float pointerDistancePx = length((localUv - uPointer) * uRect.zw);
-  float focusMask = smoothstep(14.0, 48.0, pointerDistancePx);
-  float displacement = circle * snoise(gl_FragCoord.xy) * 0.0028 * uHover * focusMask;
+  // зернистая рябь мягким пятном с центром в курсоре. У bybang наоборот: сила растёт с расстоянием,
+  // под курсором чисто, а зерно по всей картинке; Диане нужно пятно под курсором (13.10.2026)
+  float dist = length((localUv - uPointer) * vec2(1.0, 1.0 / aspect));   // в ширинах окна
+  float spot = 1.0 - smoothstep(0.0, 0.4, dist);
+  float displacement = spot * spot * snoise(gl_FragCoord.xy) * 0.014 * uHover;
   // у bybang фото прямоугольные; у нас окна вырезаны с прозрачностью, и рябь рвала бы контур.
   // Поэтому силуэт берём из точки без сдвига, а рябь только внутри
   vec4 base = texture2D(uTexture, clamp(uv, 0.0, 1.0));
@@ -305,6 +305,8 @@ function makeWarp(canvas) {
 }
 
 function startScroll() {
+  // максимум изгиба у кромки экрана: у bybang 0.0486 (сжатие 5%), Диане мало, втрое сильнее
+  const CURL_MAX = 0.15;
   // плавность как у Lenis: lerp 0.1, то есть за кадр 60 fps проходим 10% оставшегося пути
   const LERP = reduce ? 1 : 0.1;
   let target = 0, current = 0, last = performance.now(), lastPos = 0, curl = 0;
@@ -368,7 +370,7 @@ function startScroll() {
         if (inside) s.aim = { x: (px - r.left) / r.width, y: (py - r.top) / r.height };
         const k = 1 - Math.pow(0.84, dt / 16.67);
         s.pointer.x += (s.aim.x - s.pointer.x) * k; s.pointer.y += (s.aim.y - s.pointer.y) * k;
-        items.push({ img, rect: r, curl: 0.0486 * curl, hover: s.hover, pointer: s.pointer });
+        items.push({ img, rect: r, curl: CURL_MAX * curl, hover: s.hover, pointer: s.pointer });
       }
       if (!draw(items)) document.body.classList.remove('gl');
     }
