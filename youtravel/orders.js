@@ -63,17 +63,20 @@
 
   const CHEV = '<img src="assets/or-chev-down.svg" alt="" width="24" height="24">';
   const filtersEl = $('#or-filters');
+  const FILTER_ICON = '<img src="assets/or-filter.svg" alt="" width="16.2" height="12">';
   const renderFilters = () => {
-    filtersEl.innerHTML = FILTERS.map((f) => {
+    const n = Object.keys(state.f).length;
+    // на мобилке шесть фильтров спрятаны под кнопкой «Фильтры», рядом остаётся «Сортировка»
+    filtersEl.innerHTML = `<div class="or-filter or-filter--toggle m-only"><button class="button button--outline or-filter__btn" type="button" aria-expanded="${filtersEl.classList.contains('is-open')}"><span class="or-filter__icon">${FILTER_ICON}</span>Фильтры${n ? ' · ' + n : ''}</button></div>` + FILTERS.map((f) => {
       const val = f.key === 'sort' ? null : state.f[f.key];
       const cur = f.key === 'sort' ? state.sort : val;
       const label = val ? f.opts.find(([k]) => k === val)[1] : f.label;
       const items = (f.all ? [['', f.all]] : []).concat(f.opts)
         .map(([k, t]) => `<li><button type="button" role="menuitemradio" data-v="${k}" aria-checked="${(cur || '') === k}">${t}</button></li>`).join('');
-      return `<div class="or-filter" data-key="${f.key}"><button class="button button--outline or-filter__btn" type="button" aria-haspopup="true" aria-expanded="false">${label}${CHEV}</button><ul class="or-menu" role="menu" hidden>${items}</ul></div>`;
+      return `<div class="or-filter${f.key === 'sort' ? ' or-filter--sort' : ''}" data-key="${f.key}"><button class="button button--outline or-filter__btn" type="button" aria-haspopup="true" aria-expanded="false">${label}${CHEV}</button><ul class="or-menu" role="menu" hidden>${items}</ul></div>`;
     }).join('');
   };
-  const closeMenus = (except) => $$('.or-filter', filtersEl).forEach((w) => {
+  const closeMenus = (except) => $$('.or-filter[data-key]', filtersEl).forEach((w) => {
     if (w === except) return;
     $('.or-menu', w).hidden = true;
     $('.or-filter__btn', w).setAttribute('aria-expanded', 'false');
@@ -81,6 +84,12 @@
   filtersEl.addEventListener('click', (e) => {
     const w = e.target.closest('.or-filter');
     if (!w) return;
+    if (w.classList.contains('or-filter--toggle')) {
+      const open = filtersEl.classList.toggle('is-open');
+      $('.or-filter__btn', w).setAttribute('aria-expanded', String(open));
+      closeMenus();
+      return;
+    }
     const opt = e.target.closest('.or-menu button');
     if (opt) {
       const key = w.dataset.key, v = opt.dataset.v;
@@ -127,9 +136,9 @@
     if (none) return;
 
     statsEl.innerHTML = `
-      <div class="or-stat"><p class="or-meta">Ожидают подтверждения</p><p class="or-stat__value">${reqs(pendAll.length)}</p></div>
+      <div class="or-stat"><p class="or-meta"><span class="d-only">Ожидают подтверждения</span><span class="m-only">Ждут подтверждения</span></p><p class="or-stat__value">${reqs(pendAll.length)}</p></div>
       <div class="or-stat"><p class="or-meta">Ожидают оплаты</p><p class="or-stat__value">${reqs(ORDERS.filter((o) => o.status === 'confirmed').length)}</p></div>
-      <div class="or-stat"><p class="or-meta">Ближайший заезд</p><p class="or-stat__value">${DEPS[0].dates}</p><p class="or-stat__sub">${DEPS[0].short}</p></div>`;
+      <div class="or-stat or-stat--near"><p class="or-meta">Ближайший заезд</p><p class="or-stat__value">${DEPS[0].dates}</p><p class="or-stat__sub">${DEPS[0].short}</p></div>`;
 
     const pend = list.filter((o) => o.status === 'pending').sort(newest);
     pendEl.hidden = pend.length === 0;
@@ -138,7 +147,9 @@
         <div class="or-req__info">
           <p class="or-meta">Заказ ${o.id} · ${dShort(o.at)}</p>
           <p class="or-req__who"><span class="or-name">${o.name}</span><span class="or-meta">${people(o.group.length)}</span></p>
-          <p class="or-req__trip"><b>${dep(o).dates}</b> · ${dep(o).title}</p>
+          <p class="or-req__trip d-only"><b>${dep(o).dates}</b> · ${dep(o).title}</p>
+          <p class="or-name m-only">${dep(o).dates}</p>
+          <p class="or-req__tour m-only">${dep(o).title}</p>
         </div>
         <div class="or-req__sum"><p class="or-amount">${rub(o.sum)}</p><p class="or-pay">${payText(o)}</p></div>
         ${btnsPending(o)}
@@ -154,9 +165,9 @@
       return `
       <button class="or-dep" type="button" data-dep="${d.id}" aria-expanded="${open}" aria-controls="or-rows-${d.id}">
         <span class="or-dep__title"><span>${d.title}</span><span class="or-meta">${d.dates}</span></span>
-        <span class="or-dep__slot" aria-hidden="true"></span>
-        <span class="or-occ"><span>Занято ${d.seats[0]} из ${d.seats[1]} мест</span><span class="or-occ__bar"><span style="width:${Math.round(d.seats[0] / d.seats[1] * 160)}px"></span></span></span>
-        <span class="or-meta or-dep__count">${reqs(rows.length)}</span>
+        <span class="or-dep__slot" aria-hidden="true"><img class="m-only" src="assets/or-chev-down.svg" alt="" width="24" height="24"></span>
+        <span class="or-occ"><span>Занято ${d.seats[0]} из ${d.seats[1]} мест</span><span class="or-occ__bar"><span style="width:${Math.round(d.seats[0] / d.seats[1] * 160)}px;--occ:${(d.seats[0] / d.seats[1]).toFixed(3)}"></span></span></span>
+        <span class="or-meta or-dep__count">${reqs(rows.length)}${(() => { const w = rows.filter((o) => o.status === 'pending').length; return w ? `<span class="m-only">, ${w} ${w === 1 ? 'ждёт' : 'ждут'}</span>` : ''; })()}</span>
       </button>
       <div class="or-rows" id="or-rows-${d.id}"${open ? '' : ' hidden'}>` + rows.map((o) => `
         <div class="or-row" data-row="${o.id}">
@@ -165,6 +176,7 @@
           <div class="or-row__sum"><p>${rub(o.sum)}</p><p class="or-pay">${payText(o)}</p></div>
           <div class="or-row__status"><p class="or-status--${o.status}">${STATUS[o.status]}</p></div>
           ${o.status === 'pending' ? btnsPending(o) : btnMore(o)}
+          <button class="or-row__m m-only" type="button" data-act="more" data-id="${o.id}"><span><b>${o.id} · ${o.name}, ${people(o.group.length)}</b><span>${rub(o.sum)}</span><span class="or-status--${o.status}">${STATUS[o.status]}</span></span><img src="assets/or-chev-down.svg" alt="" width="24" height="24"></button>
         </div>`).join('') + '</div>';
     }).join('');
   };

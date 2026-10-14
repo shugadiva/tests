@@ -45,3 +45,10 @@
   // Загрузка: через 1,5 с показываем активные бронирования
   if ($('#bk-loading')) setTimeout(() => { location.href = 'bookings.html'; }, 1500);
 })();
+
+// Мобильная карточка: чип статуса раскрывает и сворачивает ленту шагов
+document.querySelectorAll('.bk-status--toggle').forEach((b) => b.addEventListener('click', () => {
+  const open = b.getAttribute('aria-expanded') !== 'true';
+  b.setAttribute('aria-expanded', String(open));
+  document.getElementById(b.getAttribute('aria-controls')).hidden = !open;
+}));

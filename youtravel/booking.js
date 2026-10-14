@@ -60,6 +60,22 @@
     showToast('Номер скопирован');
   }));
 
+  // Липкая колонка оплаты: если она выше окна, top уходит в минус, чтобы низ с кнопками оставался виден
+  const aside = $('.bd-aside');
+  const fitSticky = () => {
+    if (!aside) return;
+    const gap = 20;
+    // низ не заходит под панель «Состояния» (fixed внизу слева)
+    const states = $('.states');
+    const limit = states ? states.getBoundingClientRect().top - 16 : innerHeight - gap;
+    aside.style.top = `${Math.min(gap, limit - aside.offsetHeight)}px`;
+  };
+  if (aside) {
+    new ResizeObserver(fitSticky).observe(aside);
+    addEventListener('resize', fitSticky);
+    fitSticky();
+  }
+
   // Выходы из раздела: оплата, отмена, чат, страница тура, профиль эксперта
   $$('[data-bd-toast]').forEach((el) => el.addEventListener('click', (e) => {
     e.preventDefault();

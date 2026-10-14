@@ -96,8 +96,10 @@
       <section class="or-deps" id="or-deps" aria-label="Все заезды"></section>
 
       <div class="or-empty" id="or-nf" hidden>
-        <p class="t-body-m-semi">Ничего не&nbsp;найдено</p>
-        <p class="or-empty__text">Попробуйте изменить фильтры или сбросить их</p>
+        <img class="or-empty__icon m-only" src="assets/or-tent.png" alt="">
+        <p class="t-body-m-semi d-only">Ничего не&nbsp;найдено</p>
+        <p class="or-empty__text d-only">Попробуйте изменить фильтры или сбросить их</p>
+        <p class="or-empty__m m-only">Ничего не&nbsp;найдено.<br>Измените или сбросьте фильтры</p>
         <button class="button button--green t-body-m-semi" type="button" id="or-reset">Сбросить фильтры</button>
       </div>
     </section>
@@ -106,9 +108,10 @@
   <!-- Окно «Подтвердить бронирование?» -->
   <div class="overlay" id="dlg-confirm" hidden>
     <div class="dialog or-dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-confirm-title">
+      <span class="grabber" aria-hidden="true"></span>
       <div class="dialog__head">
         <h2 class="t-h4" id="dlg-confirm-title">Подтвердить бронирование?</h2>
-        <button class="dialog__close dialog__close--inline" type="button" data-close aria-label="Закрыть"><img src="assets/or-close.svg" alt="" width="12" height="12"></button>
+        <button class="dialog__close dialog__close--inline" type="button" data-close aria-label="Закрыть"><img class="d-only" src="assets/or-close.svg" alt="" width="12" height="12"><img class="m-only" src="assets/or-close-mini.svg" alt="" width="11.6" height="11.6"></button>
       </div>
       <div class="or-dlg-text" data-order-summary></div>
       <div class="or-dlg-note">
@@ -125,9 +128,10 @@
   <!-- Окно «Отклонить бронирование?»: причина необязательная, путешественник её увидит -->
   <div class="overlay" id="dlg-reject" hidden>
     <div class="dialog or-dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-reject-title">
+      <span class="grabber" aria-hidden="true"></span>
       <div class="dialog__head">
         <h2 class="t-h4" id="dlg-reject-title">Отклонить бронирование?</h2>
-        <button class="dialog__close dialog__close--inline" type="button" data-close aria-label="Закрыть"><img src="assets/or-close.svg" alt="" width="12" height="12"></button>
+        <button class="dialog__close dialog__close--inline" type="button" data-close aria-label="Закрыть"><img class="d-only" src="assets/or-close.svg" alt="" width="12" height="12"><img class="m-only" src="assets/or-close-mini.svg" alt="" width="11.6" height="11.6"></button>
       </div>
       <div class="or-dlg-text" data-order-summary></div>
       <div class="or-dlg-note">
@@ -144,6 +148,8 @@
   <!-- Боковая панель заявки по «Подробнее» -->
   <div class="or-drawer-wrap" id="or-drawer" hidden>
     <div class="or-drawer-overlay" data-drawer-close></div>
+    <!-- на мобилке панель становится отдельным экраном под шапкой: «Заявки» назад вместо крестика -->
+    <button class="back or-back m-only" type="button" data-drawer-close><span class="or-back__arrow"><img src="assets/or-back.svg" alt="" width="8.4" height="12"></span>Заявки</button>
     <aside class="or-drawer" role="dialog" aria-modal="true" aria-labelledby="or-drawer-title">
       <div class="or-drawer__head">
         <div class="or-drawer__title">
