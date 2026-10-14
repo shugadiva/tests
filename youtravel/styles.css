@@ -530,3 +530,436 @@
     .list a.review-row .title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .list a.review-row .review-row__aside { margin-left: auto; align-self: flex-start; }
   }
+  .states .states__section[aria-current="true"] { background: var(--grey-default); }
+  /* панель «Состояния» с тремя разделами: одной строкой с прокруткой, не выше 44 px */
+  .states { max-width: calc(100vw - 32px); overflow-x: auto; white-space: nowrap; scrollbar-width: thin; }
+  .states a, .states span { flex: none; }
+
+  /* ---- Раздел «Мои бронирования» (путешественник, десктоп) ---- */
+  :root {
+    --bk-line: #dbdfe9;          /* grey/divider в макете бронирований: обводка кнопок, разделитель вкладок, чип «Тур завершен» */
+    --bk-orange-pale: #fff7ef;   /* orange/pale: чип «Ожидает оплаты» */
+    --bk-green-pale: #f0f6dd;    /* green/pale: чипы «Оплачен полностью», «Тур начался» */
+    --bk-shadow-tab: 2px 2px 15px rgba(153, 153, 169, .15); /* эффект light */
+    --bk-card-hover: 0 2px 15px rgba(153, 153, 169, .15);
+  }
+
+  /* Tabs: сегментный переключатель вкладок */
+  .bk-tabs { display: inline-flex; align-items: center; gap: 2px; padding: 4px; border-radius: 8px; background: var(--grey-default); align-self: flex-start; }
+  .bk-tabs__item { height: 36px; padding: 8px 12px; border-radius: 6px; display: inline-flex; align-items: center; color: var(--primary-night); white-space: nowrap; transition: background-color 150ms var(--ease-out); }
+  .bk-tabs__item:hover { background: var(--grey-pale); }
+  .bk-tabs__item[aria-current="page"] { background: var(--primary-white); box-shadow: var(--bk-shadow-tab); }
+  .bk-tabs__divider { width: 1px; height: 20px; background: var(--bk-line); flex: none; }
+
+  /* Список карточек */
+  .bk-list { display: flex; flex-direction: column; gap: 16px; }
+
+  /* booking-card-active / booking-card-closed */
+  .bk-card { display: flex; align-items: flex-start; gap: 20px; padding: 20px; border: 1px solid var(--grey-divider); border-radius: 16px; background: var(--primary-white); transition: box-shadow 150ms var(--ease-out); }
+  .bk-card:not(.bk-card--sk):hover { box-shadow: var(--bk-card-hover); }
+  .bk-card__cover { width: 200px; align-self: stretch; flex: none; border-radius: 10px; object-fit: cover; min-height: 0; }
+  .bk-card__body { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .bk-card__head { width: 100%; display: flex; align-items: center; gap: 16px; }
+  .bk-card__info { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+  .bk-card__region { font: 400 12px/16px var(--font-text); color: var(--dark-grey-primary); }
+  .bk-card__title { color: var(--primary-night); transition: color 150ms var(--ease-out); }
+  .bk-card__title:hover { color: var(--green-click); }
+  .bk-card__actions { display: flex; gap: 8px; }
+
+  .bk-card--closed .bk-card__cover { width: 160px; }
+  .bk-card--closed .bk-card__body { flex-direction: row; align-items: center; gap: 20px; min-height: 168px; }
+  .bk-card--tall .bk-card__body { min-height: 184px; }
+  .bk-card__actions--column { flex-direction: column; align-items: flex-end; flex: none; }
+
+  /* meta: пары «подпись: значение» и номер с копированием */
+  .bk-meta { width: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; }
+  .bk-pair { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+  .bk-pair__label { color: var(--dark-grey-primary); }
+  .bk-pair__value { font-weight: 600; color: var(--primary-night); }
+  .bk-copy { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 4px; background: transparent; padding: 0; transition: background-color 150ms var(--ease-out); }
+  .bk-copy:hover { background: var(--grey-pale); }
+  .bk-copy:focus-visible { outline: 2px solid var(--green-click); outline-offset: 0; }
+
+  /* status: чип статуса брони */
+  .bk-status { flex: none; padding: 6px 12px; border-radius: 6px; border: .6px solid var(--grey-divider); color: var(--primary-black); white-space: nowrap; }
+  .bk-status--orange { background: var(--bk-orange-pale); }
+  .bk-status--green { background: var(--bk-green-pale); }
+  .bk-status--s { font: 600 12px/16px var(--font-text); }
+  .bk-status--done { background: var(--bk-line); }
+  .bk-status--closed { background: var(--grey-pale); }
+  /* в макете чип 183 px с переносом после точки; перенос задан <br>, ширина по тексту, чтобы запасной шрифт не ломал строку */
+  .bk-card--tall .bk-status { min-width: 183px; }
+
+  /* stepper: шаги бронирования */
+  .bk-stepper { list-style: none; margin: 0; padding: 0; width: 100%; display: flex; align-items: flex-start; }
+  .bk-step { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+  .bk-step__track { display: flex; align-items: center; }
+  .bk-step__dot { width: 12px; height: 12px; border-radius: 50%; flex: none; background: var(--grey-light); }
+  .bk-step--done .bk-step__dot { background: var(--green-default); }
+  .bk-step--current .bk-step__dot { background: var(--primary-white); box-shadow: inset 0 0 0 2px var(--green-default); }
+  .bk-step__bar { flex: 1; height: 2px; background: var(--grey-light); }
+  .bk-step__bar--done { background: var(--green-default); }
+  .bk-step__caption { display: flex; flex-direction: column; gap: 2px; padding-right: 16px; font: 12px/16px var(--font-text); }
+  .bk-step__title { width: 130px; max-width: 100%; font-weight: 600; color: var(--primary-night); }
+  .bk-step--todo .bk-step__title { color: var(--dark-grey-primary); }
+  .bk-step__date { color: var(--dark-grey-primary); }
+
+  /* next-step: плашка следующего шага */
+  .bk-next-step { width: 100%; display: flex; align-items: center; gap: 16px; padding: 12px 16px; border-radius: 12px; background: var(--green-selected); }
+  .bk-next-step__text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .bk-next-step__title { color: var(--primary-night); }
+  .bk-next-step__sub { font: 400 12px/16px var(--font-text); color: var(--dark-grey-primary); }
+
+  /* button: белая с обводкой (Secondary) */
+  .bk-button--outline { background: var(--primary-white); color: var(--primary-night); box-shadow: inset 0 0 0 1px var(--bk-line); }
+  .bk-button--outline:hover { background: var(--grey-pale); }
+  .bk-button--outline:active { background: var(--grey-default); }
+  .bk-more { width: 100%; }
+  .bk-more[aria-busy="true"] { color: var(--dark-grey-primary); cursor: progress; }
+
+  /* Загрузка: skeleton-card */
+  .bk-sk-cover { width: 200px; height: 236px; border-radius: 12px; flex: none; }
+  .bk-sk-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+  .bk-sk-head { display: flex; align-items: flex-start; gap: 12px; }
+  .bk-sk-lines { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+  .bk-sk-lines .sk { max-width: 100%; }
+  .bk-sk-steps { display: flex; gap: 12px; }
+  .bk-sk-steps .sk { flex: 1; height: 30px; }
+  .bk-sk-actions { display: flex; gap: 8px; }
+
+  /* Пусто */
+  .empty-state.bk-empty { padding: 80px 0; }
+  .empty-state.bk-empty img { padding: 12.5px; box-shadow: 1px 2px 45px rgba(153, 153, 169, .22); } /* иконка 40 px в круге 65, как в макете */
+
+  /* toast: короткая подсказка о выходе за пределы тестового */
+  .bk-toast { position: fixed; left: 50%; bottom: 32px; z-index: 11; max-width: calc(100vw - 32px); transform: translate(-50%, 16px); opacity: 0; padding: 12px 16px; border-radius: 8px; background: var(--primary-night); color: var(--primary-white); font: 600 13px/17px var(--font-text); text-align: center; pointer-events: none; transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out); }
+  .bk-toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+
+  /* Детали бронирования (путешественник), десктоп 1440. Префикс bd- */
+  :root {
+    --bd-black: #222222;
+    --bd-text-grey: #9999a9;
+    --bd-dark-grey-secondary: #828296;
+    --bd-dark-grey-main: #b6b6bf;
+    --bd-green-dark: #87a038;
+    --bd-green-pale: #f0f6dd;
+    --bd-orange-pale: #fff7ef;
+    --bd-purple-link: #7a15b8;
+    --bd-shadow-light: 2px 2px 15px rgba(153, 153, 169, .15);
+    --bd-tracking: -.02em;
+  }
+
+  /* Каркас: две колонки 481 + 343 */
+  .bd-columns { display: grid; grid-template-columns: 481px 343px; gap: 24px; align-items: start; }
+  .bd-main { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+  .bd-section { background: var(--primary-white); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 16px; }
+  .bd-section__title { margin: 0; font: 700 16px/1.15 var(--font-display); color: var(--bd-black); }
+  .bd-sep { height: 0; box-shadow: 0 -1px 0 var(--grey-default); }
+  .card:has(.bd-columns) .back { height: 18px; }
+
+  /* Общие кнопки-ссылки без вида кнопки */
+  .bd-plain { background: none; padding: 0; color: inherit; text-align: left; font: inherit; }
+
+  /* Аккордеон: высота анимируется через grid-template-rows */
+  .bd-panel { display: grid; grid-template-rows: 1fr; transition: grid-template-rows 200ms var(--ease-out), visibility 0s linear 0s; }
+  .bd-panel > .bd-panel__inner { min-height: 0; overflow: hidden; }
+  [data-open="false"] > .bd-panel { grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows 200ms var(--ease-out), visibility 0s linear 200ms; }
+  .bd-flip { transition: transform 200ms var(--ease-out); }
+  [aria-expanded="true"] .bd-flip { transform: rotate(180deg); }
+
+  /* toggle (кнопка-иконка 28 в строке аккордеона) */
+  .bd-toggle { width: 28px; height: 28px; border-radius: 100px; background: var(--primary-white); display: grid; place-items: center; flex: none; transition: background-color 150ms var(--ease-out); }
+  .bd-acc__head:hover .bd-toggle, .bd-toggle:hover { background: var(--grey-pale); }
+
+  /* route: старт и финиш */
+  .bd-route { padding: 20px; }
+  .bd-point { display: flex; flex-direction: column; gap: 12px; }
+  .bd-point__head { display: flex; align-items: center; gap: 8px; font: 600 16px/19px var(--font-text); letter-spacing: var(--bd-tracking); color: var(--bd-black); }
+  .bd-point--finish .bd-point__head { gap: 6px; }
+  .bd-flag { width: 24px; height: 24px; display: grid; place-items: center; flex: none; }
+  .bd-point__info { display: flex; flex-direction: column; gap: 4px; font-weight: 600; font-size: 13px; letter-spacing: var(--bd-tracking); }
+  .bd-point__time { line-height: 18px; color: var(--bd-black); }
+  .bd-point__place { line-height: 16px; color: var(--bd-text-grey); }
+
+  /* travel-expert */
+  .bd-expert { padding: 20px; flex-direction: row; align-items: center; gap: 4px; }
+  .bd-expert__profile { flex: 1; min-width: 0; display: flex; align-items: flex-start; gap: 16px; border-radius: 8px; }
+  .bd-expert__photo { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex: none; box-shadow: var(--bd-shadow-light); }
+  .bd-expert__text { display: flex; flex-direction: column; gap: 4px; }
+  .bd-expert__role { display: flex; align-items: flex-start; gap: 4px; font: 600 16px/18px var(--font-text); letter-spacing: var(--bd-tracking); color: var(--bd-black); }
+  .bd-expert__ext { width: 18px; height: 18px; border-radius: 50px; background: var(--bd-green-pale); display: grid; place-items: center; flex: none; }
+  .bd-expert__meta { display: flex; align-items: center; gap: 4px; font: 600 14px/18px var(--font-text); letter-spacing: var(--bd-tracking); }
+  .bd-expert__name { color: var(--bd-purple-link); transition: color 150ms var(--ease-out); }
+  .bd-expert__profile:hover .bd-expert__name { color: var(--primary-night); }
+  .bd-rating { display: flex; align-items: center; gap: 2px; color: var(--bd-green-dark); }
+  .bd-expert__count { color: var(--bd-dark-grey-secondary); }
+
+  /* Кнопка «Чат» (серая, иконка слева) */
+  .bd-chat { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 12px 0 10px; border-radius: 6px; background: var(--grey-default); color: var(--primary-night); white-space: nowrap; transition: background-color 150ms var(--ease-out); }
+  .bd-chat:hover { background: #e4e4e8; }
+  .bd-chat__icon { width: 24px; height: 24px; display: grid; place-items: center; padding-top: 3px; flex: none; }
+  .bd-chat--s { height: 36px; font: 600 12px/18px var(--font-text); letter-spacing: -.016em; }
+  .bd-chat--l { width: 100%; height: 48px; font: 600 16px/19px var(--font-text); letter-spacing: var(--bd-tracking); }
+
+  /* facts: комфорт, активность, язык */
+  .bd-fact { display: flex; flex-direction: column; gap: 8px; }
+  .bd-fact__title { display: flex; align-items: center; gap: 8px; font: 600 16px/19px var(--font-text); letter-spacing: var(--bd-tracking); color: var(--bd-black); }
+  .bd-fact__value { font: 600 14px/18px var(--font-text); letter-spacing: var(--bd-tracking); color: var(--bd-text-grey); }
+
+  /* included: включено и не включено */
+  .bd-included { flex-direction: row; gap: 24px; align-items: flex-start; }
+  .bd-included > .bd-acc { flex: 1; min-width: 0; }
+  .bd-included .bd-acc__head { display: flex; align-items: flex-start; gap: 20px; width: 100%; }
+  .bd-included .bd-acc__title { flex: 1; font: 700 16px/24px var(--font-display); letter-spacing: .014em; color: var(--bd-black); }
+  .bd-marked { list-style: none; margin: 0; padding: 20px 0 0; display: flex; flex-direction: column; gap: 12px; }
+  .bd-marked li { display: flex; align-items: flex-start; gap: 12px; font: 400 13px/20px var(--font-text); letter-spacing: var(--bd-tracking); color: var(--bd-black); }
+  .bd-marked img { margin-top: 2px; flex: none; }
+
+  /* program: дни и важно знать */
+  .bd-expand-all { align-self: flex-end; display: inline-flex; align-items: center; gap: 2px; font: 600 14px/18px var(--font-text); letter-spacing: var(--bd-tracking); color: var(--bd-green-dark); transition: color 150ms var(--ease-out); }
+  .bd-expand-all:hover { color: var(--green-click); }
+  .bd-program__body { display: flex; flex-direction: column; gap: 12px; }
+  .bd-rows { background: var(--grey-light); display: flex; flex-direction: column; gap: 1.5px; padding: 1.5px 0; }
+  .bd-row { background: var(--primary-white); padding: 20px 0; }
+  .bd-rows--important .bd-row { padding: 14px 0; }
+  .bd-rows--important .bd-row[data-open="true"] { padding-bottom: 16px; }
+  .bd-row .bd-acc__head { display: flex; align-items: center; gap: 4px; width: 100%; font: 600 14px/18px var(--font-text); letter-spacing: var(--bd-tracking); color: var(--bd-black); }
+  .bd-row .bd-acc__title { flex: 1; }
+  .bd-day { padding-top: 12px; display: flex; flex-direction: column; gap: 16px; }
+  .bd-day p, .bd-terms li { margin: 0; font: 400 14px/24px var(--font-text); letter-spacing: var(--bd-tracking); color: var(--bd-black); }
+  .bd-day__photo { width: 224px; height: 152px; border-radius: 12px; object-fit: cover; }
+  .bd-terms { margin: 0; padding: 12px 0 0 21px; display: flex; flex-direction: column; gap: 12px; }
+
+  /* aside: тур, статус, сводка, детали оплаты */
+  .bd-aside { background: var(--primary-white); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 20px; }
+  .bd-tour { display: flex; align-items: flex-start; gap: 16px; margin: 0 4px; }
+  .bd-tour__cover { width: 72px; height: 72px; border-radius: 10px; object-fit: cover; flex: none; }
+  .bd-tour__info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .bd-tour__title { font: 600 15px/17px var(--font-text); letter-spacing: var(--bd-tracking); color: var(--bd-black); }
+  .bd-tour__link { align-self: flex-start; font: 600 14px/18px var(--font-text); letter-spacing: var(--bd-tracking); color: var(--bd-green-dark); transition: color 150ms var(--ease-out); }
+  .bd-tour__link:hover { color: var(--green-click); }
+  .bd-summary { display: flex; flex-direction: column; gap: 24px; }
+  .bd-booking { display: flex; flex-direction: column; gap: 16px; }
+  .bd-region { font: 600 14px/18px var(--font-text); letter-spacing: var(--bd-tracking); color: var(--bd-dark-grey-secondary); }
+
+  /* status-chip + stepper */
+  .bd-chip { align-self: flex-start; height: 32px; padding: 6px 12px; border: .6px solid var(--grey-divider); border-radius: 6px; display: inline-flex; align-items: center; gap: 10px; font: 600 14px/18px var(--font-text); letter-spacing: var(--bd-tracking); color: var(--primary-black); transition: border-color 150ms var(--ease-out); }
+  button.bd-chip:hover { border-color: var(--bd-text-grey); }
+  .bd-chip--orange { background: var(--bd-orange-pale); }
+  .bd-chip--green { background: var(--bd-green-pale); }
+  .bd-chip--grey { background: var(--grey-pale); letter-spacing: -.016em; }
+  .bd-status { display: flex; flex-direction: column; }
+  .bd-steps { padding-top: 16px; display: flex; gap: 10px; }
+  .bd-steps__rail { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: none; }
+  .bd-steps__done { width: 18px; height: 18px; border-radius: 50px; background: var(--green-default); }
+  .bd-steps__line { width: 1.2px; height: 12px; background: var(--bd-dark-grey-main); opacity: .5; }
+  .bd-steps__todo { width: 18px; height: 18px; border-radius: 50px; border: 1.3px solid var(--bd-text-grey); }
+  .bd-steps__labels { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 20px; font: 600 12px/18px var(--font-text); letter-spacing: var(--bd-tracking); color: var(--bd-black); white-space: nowrap; }
+
+  /* meta: даты, номер, участники */
+  .bd-meta { display: flex; flex-direction: column; gap: 8px; font: 600 14px/18px var(--font-text); letter-spacing: var(--bd-tracking); }
+  .bd-meta__row { display: flex; align-items: center; gap: 6px; }
+  .bd-meta__label { color: var(--bd-text-grey); white-space: nowrap; }
+  .bd-meta__value { color: var(--bd-black); white-space: nowrap; }
+  .bd-meta__dates { display: flex; align-items: center; gap: 16px; }
+  .bd-meta__days { display: flex; align-items: center; gap: 4px; line-height: 17px; color: var(--bd-text-grey); }
+  .bd-meta__row--number { gap: 6px; height: 18px; }
+  .bd-meta__number { flex: 1; color: var(--primary-black); letter-spacing: -.016em; }
+  .bd-copy { width: 28px; height: 28px; margin: -5px 0; border-radius: 6px; background: transparent; display: grid; place-items: center; flex: none; transition: background-color 150ms var(--ease-out); }
+  .bd-copy:hover { background: var(--grey-pale); }
+
+  /* payment-details */
+  .bd-pay { border: 1px solid var(--grey-divider); border-radius: 10px; padding: 11px; display: flex; flex-direction: column; gap: 16px; }
+  .bd-pay__title { margin: 0; font: 600 16px/19px var(--font-text); letter-spacing: var(--bd-tracking); color: var(--bd-black); }
+  .bd-pay__body { display: flex; flex-direction: column; gap: 24px; }
+  .bd-pay__list > * + .bd-pay__row, .bd-pay__list > * + .bd-acc { margin-top: 8px; }
+  .bd-pay__row, .bd-pay__list > .bd-acc > .bd-pay__row { display: flex; align-items: center; gap: 16px; color: var(--bd-text-grey); }
+  .bd-pay__label { flex: 1; min-width: 0; font: 600 12px/17px var(--font-text); letter-spacing: var(--bd-tracking); }
+  .bd-pay__amount { width: 88px; flex: none; text-align: right; font: 600 14px/18px var(--font-text); letter-spacing: var(--bd-tracking); white-space: nowrap; }
+  .bd-pay__row--first .bd-pay__amount { width: auto; }
+  .bd-pay__amount--green { color: var(--bd-green-dark); }
+  .bd-pay__more { flex: 1; min-width: 0; display: flex; }
+  .bd-pay__more > button { display: inline-flex; align-items: flex-end; gap: 4px; color: var(--bd-text-grey); font: 600 12px/17px var(--font-text); letter-spacing: var(--bd-tracking); transition: color 150ms var(--ease-out); }
+  .bd-pay__more > button:hover { color: var(--primary-night); }
+  .bd-pay__more img { margin-bottom: 0; }
+  .bd-breakdown { padding: 8px 0 4px; }
+  .bd-breakdown__box { background: var(--primary-white); border: 1px solid var(--grey-divider); border-radius: 8px; box-shadow: var(--bd-shadow-light); padding: 11px; display: flex; flex-direction: column; gap: 8px; font: 600 12px/16px var(--font-text); letter-spacing: var(--bd-tracking); color: var(--bd-text-grey); }
+  .bd-breakdown__box > div { display: flex; align-items: center; }
+  .bd-breakdown__box > div > span:first-child { flex: 1; min-width: 0; }
+  .bd-breakdown__box > div > span:last-child { white-space: nowrap; text-align: right; }
+  .bd-total { display: flex; flex-direction: column; gap: 12px; }
+  .bd-total::before { content: ""; height: 1px; background: var(--grey-light); }
+  .bd-total__row { display: flex; align-items: center; color: var(--bd-black); }
+  .bd-total__label { flex: 1; font: 600 14px/17px var(--font-text); letter-spacing: var(--bd-tracking); }
+  .bd-total__amount { font: 600 16px/19px var(--font-text); letter-spacing: var(--bd-tracking); white-space: nowrap; }
+  .bd-actions { display: flex; gap: 8px; }
+  .bd-actions .button { flex: 1; height: 48px; padding: 0 12px; font: 600 16px/19px var(--font-text); letter-spacing: var(--bd-tracking); }
+
+  /* toast внизу по центру */
+  .bd-toast { position: fixed; left: 50%; bottom: 32px; transform: translate(-50%, 16px); opacity: 0; background: var(--primary-night); color: var(--primary-white); font: 600 13px/17px var(--font-text); padding: 12px 16px; border-radius: 8px; transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out); pointer-events: none; z-index: 10; max-width: calc(100vw - 32px); }
+  .bd-toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bd-panel, [data-open="false"] > .bd-panel, .bd-flip, .bd-toast { transition: none; }
+  }
+
+  /* ==== Раздел эксперта «Заявки на бронирование» (Figma 11558:38969 и состояния) ==== */
+  :root {
+    --or-border: #dbdfe9;      /* grey/divider у кнопок и вкладок */
+    --or-placeholder: #9999a9; /* text / grey */
+    --red-hover: #e23b5a;
+    --overlay-night: rgba(36, 42, 55, .4); /* primary/night 40%, подложка боковой панели */
+  }
+
+  /* Иконки меню эксперта: 24 × 24, сдвиги как во фреймах иконок ДС */
+  .or-ic { position: relative; width: 24px; height: 24px; flex: none; display: grid; place-items: center; }
+  .or-ic img { display: block; }
+  .or-ic--tours { transform: translateX(-.3px); }
+  .or-ic--reviews { transform: translateY(-.5px); }
+  .or-ic--payouts { transform: translate(.26px, -.41px); }
+  .or-ic--help, .or-ic--chat { transform: translateY(1.2px); }
+
+  /* Трекинг стилей ДС: Body −1.6% от кегля, вкладки −0.6% */
+  .orders, .or-dialog, .or-drawer, .or-menu { letter-spacing: -.016em; }
+  .orders .t-h3, .or-drawer .t-h3 { letter-spacing: -.01em; }
+  .or-dialog .t-h4 { letter-spacing: 0; }
+
+  .or-meta { margin: 0; font: 600 12px/16px var(--font-text); color: var(--dark-grey-primary); }
+  .or-text { margin: 0; font: 400 13px/17px var(--font-text); color: var(--primary-night); }
+
+  /* Вкладки (Tabs ДС): разделитель прячется рядом с выбранной вкладкой */
+  .or-tabs { align-self: flex-start; display: flex; align-items: center; gap: 2px; padding: 4px; border-radius: 8px; background: var(--grey-default); }
+  .or-tab { height: 36px; padding: 0 12px; border-radius: 6px; background: transparent; font: 600 14px/22px var(--font-text); letter-spacing: -.006em; color: var(--primary-night); white-space: nowrap; transition: background-color 150ms var(--ease-out); }
+  .or-tab:hover { background: rgba(255, 255, 255, .6); }
+  .or-tab[aria-selected="true"] { background: var(--primary-white); }
+  .or-tab:focus-visible { outline: 2px solid var(--green-click); outline-offset: 0; }
+  .or-tabs__sep { width: 0; height: 20px; position: relative; }
+  .or-tabs__sep::before { content: ""; position: absolute; left: -.5px; top: 0; width: 1px; height: 20px; background: var(--or-border); }
+  .or-tab[aria-selected="true"] + .or-tabs__sep, .or-tabs__sep:has(+ .or-tab[aria-selected="true"]) { display: none; }
+
+  /* Кнопки ДС для раздела */
+  .button--s { height: 36px; padding: 0 12px; border-radius: 6px; font: 600 13px/17px var(--font-text); }
+  .button--l { height: 44px; padding: 0 20px; border-radius: 9px; font: 600 15px/22px var(--font-text); }
+  .button--outline { background: var(--primary-white); color: var(--primary-night); box-shadow: inset 0 0 0 1px var(--or-border); }
+  .button--outline:hover { background: var(--grey-pale); }
+  .button--red { background: var(--red-default); color: var(--primary-white); }
+  .button--red:hover { background: var(--red-hover); }
+  .button:focus-visible { outline: 2px solid var(--green-click); outline-offset: 2px; }
+
+  /* Фильтры: кнопка с выпадающим списком */
+  .or-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+  .or-filter { position: relative; }
+  .or-filter__btn { height: 40px; padding: 0 12px 0 16px; gap: 8px; border-radius: 8px; font: 600 14px/18px var(--font-text); letter-spacing: -.016em; }
+  .or-filter__btn img { transition: transform 150ms var(--ease-out); }
+  .or-filter__btn[aria-expanded="true"] img { transform: rotate(180deg); }
+  .or-filter__btn[aria-expanded="true"] { box-shadow: inset 0 0 0 1px var(--green-default); }
+  .or-menu { position: absolute; z-index: 6; top: calc(100% + 4px); left: 0; min-width: 100%; margin: 0; padding: 8px; list-style: none; background: var(--primary-white); border-radius: 12px; box-shadow: 0 2px 15px rgba(153, 153, 169, .3); animation: rise 150ms var(--ease-out); }
+  .or-menu[hidden] { display: none; }
+  .or-menu button { width: 100%; height: 36px; padding: 0 12px; border-radius: 8px; background: transparent; text-align: left; white-space: nowrap; font: 600 13px/17px var(--font-text); color: var(--primary-night); transition: background-color 150ms var(--ease-out); }
+  .or-menu button:hover { background: var(--grey-pale); }
+  .or-menu button[aria-checked="true"] { background: var(--green-selected); color: var(--green-click); }
+
+  /* Сводка: три stat card */
+  .or-stats { display: flex; gap: 16px; }
+  .or-stat { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 4px; padding: 16px; border-radius: 12px; background: var(--green-selected); }
+  .or-stat p { margin: 0; }
+  .or-stat__value { font: 600 14px/18px var(--font-text); color: var(--primary-night); }
+  .or-stat__sub { font: 600 12px/16px var(--font-text); color: var(--primary-night); }
+
+  /* Блок «Ожидают подтверждения» */
+  .or-pending[hidden], .or-deps[hidden], .or-stats[hidden] { display: none; }
+  .or-section-head { display: flex; align-items: baseline; gap: 8px; padding-bottom: 8px; margin: 0; font: 600 14px/18px var(--font-text); color: var(--primary-night); }
+  .or-section-head span { color: var(--dark-grey-primary); }
+  .or-req { display: flex; align-items: center; gap: 24px; padding: 16px 0; border-bottom: 1px solid var(--grey-divider); }
+  .or-req__info { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+  .or-req__info p { margin: 0; }
+  .or-req__who { display: flex; align-items: baseline; gap: 8px; }
+  .or-name { font: 600 13px/17px var(--font-text); color: var(--primary-night); }
+  .or-req__trip { width: 340px; max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font: 400 13px/17px var(--font-text); color: var(--primary-night); }
+  .or-req__trip b { font-weight: 600; }
+  .or-req__sum { width: 140px; flex: none; display: flex; flex-direction: column; gap: 2px; color: var(--primary-night); }
+  .or-req__sum p { margin: 0; }
+  .or-req__sum .or-amount { font: 600 14px/18px var(--font-text); }
+  .or-pay { font: 400 13px/17px var(--font-text); }
+  .or-actions { width: 208px; flex: none; display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
+  .or-actions__row { display: flex; gap: 8px; }
+  .or-actions__row .button { flex: 1 1 0; min-width: 0; }
+  .or-actions--single { align-items: flex-end; }
+  .or-actions--single .button { width: 100px; }
+
+  /* Все заезды */
+  .or-deps { display: flex; flex-direction: column; gap: 8px; }
+  .or-deps__head { display: flex; align-items: center; justify-content: space-between; }
+  .or-deps__head h2 { margin: 0; font: 600 14px/18px var(--font-text); color: var(--primary-night); }
+  .or-archive { background: none; padding: 0; font: 600 13px/17px var(--font-text); letter-spacing: inherit; color: var(--green-default); transition: color 150ms var(--ease-out); }
+  .or-archive:hover { color: var(--green-hover); }
+  .or-dep { width: 100%; display: flex; align-items: center; gap: 16px; padding: 12px 16px; border-radius: 12px; background: var(--grey-light); text-align: left; letter-spacing: inherit; color: var(--primary-night); transition: background-color 150ms var(--ease-out); }
+  .or-dep:hover { background: #e6e6ec; }
+  .or-dep:focus-visible { outline: 2px solid var(--green-click); outline-offset: 2px; }
+  .or-dep__title { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .or-dep__title span:first-child { font: 600 13px/17px var(--font-text); }
+  .or-dep__slot { width: 24px; height: 24px; flex: none; }
+  .or-occ { width: 160px; flex: none; display: flex; flex-direction: column; gap: 6px; font: 600 12px/16px var(--font-text); }
+  .or-occ__bar { height: 6px; border-radius: 3px; background: var(--primary-white); overflow: hidden; }
+  .or-occ__bar span { display: block; height: 6px; border-radius: 3px; background: var(--green-default); }
+  .or-dep__count { width: 64px; flex: none; text-align: right; }
+  .or-rows[hidden] { display: none; }
+  .or-row { display: flex; align-items: center; gap: 16px; padding: 14px 0 14px 16px; border-bottom: 1px solid var(--grey-divider); font: 600 13px/17px var(--font-text); color: var(--primary-night); }
+  .or-row p { margin: 0; }
+  .or-row > div { padding-right: 12px; display: flex; flex-direction: column; gap: 2px; }
+  .or-row__id { width: 72px; flex: none; }
+  .or-row__who { width: 130px; flex: none; }
+  .or-row__sum { width: 140px; flex: none; }
+  .or-row__status { flex: 1 1 0; min-width: 0; }
+  .or-row > .or-actions { padding-right: 0; gap: 8px; }
+
+  /* Цвет статуса заявки */
+  .or-status--pending { color: var(--dark-grey-primary); }
+  .or-status--confirmed { color: var(--green-text); }
+  .or-status--prepaid, .or-status--paid { color: var(--primary-night); }
+  .or-status--rejected, .or-status--cancelled { color: var(--red-default); }
+
+  /* Пусто и «Ничего не найдено» */
+  .or-empty { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 96px 0; text-align: center; }
+  .or-empty[hidden] { display: none; }
+  .or-empty p { margin: 0; color: var(--primary-night); }
+  .or-empty .or-empty__text { font: 400 13px/17px var(--font-text); color: var(--dark-grey-primary); }
+  .or-empty .button { margin-top: 16px; }
+
+  /* Окна подтверждения и отказа (dialog 400) */
+  .or-dialog { gap: 16px; }
+  .or-dialog .dialog__head { align-items: flex-start; }
+  .or-dialog .dialog__close, .or-close { width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; background: transparent; transition: background-color 150ms var(--ease-out); }
+  .or-close:hover { background: var(--grey-pale); }
+  .or-dlg-text { display: flex; flex-direction: column; gap: 8px; font: 400 13px/17px var(--font-text); color: var(--primary-night); }
+  .or-dlg-text p { margin: 0; }
+  .or-dlg-text b { font-weight: 600; }
+  .or-dlg-text p:last-child { font-weight: 600; }
+  .or-dlg-note { display: flex; flex-direction: column; gap: 8px; margin-top: 9px; font: 400 13px/17px var(--font-text); color: var(--dark-grey-primary); }
+  .or-dlg-note p { margin: 0; }
+  .or-reason { width: 100%; height: 88px; resize: none; padding: 19px 16px 12px; border: 1px solid var(--grey-divider); border-radius: 8px; font: 400 14px/18px var(--font-text); letter-spacing: -.02em; color: var(--primary-night); background: var(--primary-white); transition: border-color 150ms var(--ease-out); }
+  .or-reason::placeholder { color: var(--or-placeholder); }
+  .or-reason:hover { border-color: var(--dark-grey-primary); }
+  .or-reason:focus { outline: none; border-color: var(--green-default); }
+  .or-dialog .dialog__actions .button { flex: 1 1 0; }
+  #dlg-confirm, #dlg-reject { z-index: 30; }
+
+  /* Боковая панель заявки (request-drawer 480) */
+  .or-drawer-wrap { position: fixed; inset: 0; z-index: 25; }
+  .or-drawer-wrap[hidden] { display: none; }
+  .or-drawer-overlay { position: absolute; inset: 0; background: var(--overlay-night); animation: fade 250ms var(--ease-out); }
+  .or-drawer { position: absolute; top: 0; right: 0; bottom: 0; width: 480px; max-width: 100%; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; padding: 24px; border-radius: 16px 0 0 16px; background: var(--primary-white); animation: drawer 250ms var(--ease-out); }
+  .or-drawer__head { display: flex; align-items: flex-start; justify-content: space-between; }
+  .or-drawer__title { display: flex; flex-direction: column; gap: 4px; }
+  .or-drawer__title h2 { margin: 0; }
+  .or-drawer__block { display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid var(--grey-divider); }
+  .or-drawer__block-head { display: flex; align-items: center; gap: 8px; }
+  .or-drawer__block-head .or-meta { flex: 1; }
+  .or-chat { padding: 0 12px 0 10px; gap: 6px; }
+  .or-line { display: flex; justify-content: space-between; gap: 16px; font: 400 13px/17px var(--font-text); color: var(--primary-night); }
+  .or-line + .or-line { margin-top: 8px; }
+  .or-line b { font-weight: 600; white-space: nowrap; }
+  .or-drawer__decision { display: flex; gap: 8px; }
+  .or-drawer__decision[hidden] { display: none; }
+  .or-drawer__decision .button { flex: 1 1 0; }
+  body.or-lock { overflow: hidden; }
