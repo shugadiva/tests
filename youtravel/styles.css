@@ -850,7 +850,7 @@
   .bd-meta__row { display: flex; align-items: center; gap: 6px; }
   .bd-meta__label { color: var(--bd-text-grey); white-space: nowrap; }
   .bd-meta__value { color: var(--bd-black); white-space: nowrap; }
-  .bd-meta__dates { display: flex; align-items: center; gap: 16px; }
+  .bd-meta__dates { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; }
   .bd-meta__days { display: flex; align-items: center; gap: 4px; line-height: 17px; color: var(--bd-text-grey); }
   .bd-meta__row--number { gap: 6px; height: 18px; }
   .bd-meta__number { flex: 1; color: var(--primary-black); letter-spacing: -.016em; }

@@ -15,7 +15,7 @@
   const years = (n) => plural(n, ['год', 'года', 'лет']);
   const rub = (n) => n.toLocaleString('ru-RU').replace(/\s/g, ' ') + ' ₽';
   const MONTHS = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-  const MSHORT = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+  const MSHORT = ['янв.', 'февр.', 'марта', 'апр.', 'мая', 'июня', 'июля', 'авг.', 'сент.', 'окт.', 'нояб.', 'дек.'];
   const dShort = (iso) => { const d = new Date(iso); return `${d.getDate()} ${MSHORT[d.getMonth()]}`; };
   const dLong = (iso) => { const d = new Date(iso); return `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`; };
 
