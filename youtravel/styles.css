@@ -58,6 +58,7 @@
   .sidebar-item:hover { background: var(--grey-pale); }
   .sidebar-item[aria-current="page"] { background: var(--green-selected); }
   .sidebar-item__arrow { margin-left: auto; }
+  .sidebar-item--exit { color: var(--red-default); }
   .sidebar-divider { padding: 10px 16px 10px 46px; }
   .sidebar-divider::before { content: ""; display: block; height: 1px; background: var(--grey-light); }
 
@@ -742,7 +743,7 @@
   .bd-main { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
   .bd-section { background: var(--primary-white); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 16px; }
   .bd-section__title { margin: 0; font: 700 16px/1.15 var(--font-display); color: var(--bd-black); }
-  .bd-sep { height: 0; box-shadow: 0 -1px 0 var(--grey-default); }
+  .bd-sep { height: 1px; flex: none; background: var(--grey-default); }
   .card:has(.bd-columns) .back { height: 18px; }
 
   /* Общие кнопки-ссылки без вида кнопки */
@@ -850,7 +851,7 @@
   .bd-meta__row { display: flex; align-items: center; gap: 6px; }
   .bd-meta__label { color: var(--bd-text-grey); white-space: nowrap; }
   .bd-meta__value { color: var(--bd-black); white-space: nowrap; }
-  .bd-meta__dates { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; }
+  .bd-meta__dates { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 16px; }
   .bd-meta__days { display: flex; align-items: center; gap: 4px; line-height: 17px; color: var(--bd-text-grey); }
   .bd-meta__row--number { gap: 6px; height: 18px; }
   .bd-meta__number { flex: 1; color: var(--primary-black); letter-spacing: -.016em; }
@@ -866,6 +867,8 @@
   .bd-pay__label { flex: 1; min-width: 0; font: 600 12px/17px var(--font-text); letter-spacing: var(--bd-tracking); }
   .bd-pay__amount { width: 88px; flex: none; text-align: right; font: 600 14px/18px var(--font-text); letter-spacing: var(--bd-tracking); white-space: nowrap; }
   .bd-pay__row--first .bd-pay__amount { width: auto; }
+  .bd-pay__row--total-cost .bd-pay__label { white-space: nowrap; }
+  .bd-pay__row--total-cost .bd-pay__amount { width: auto; }
   .bd-pay__amount--green { color: var(--bd-green-dark); }
   .bd-pay__more { flex: 1; min-width: 0; display: flex; }
   .bd-pay__more > button { display: inline-flex; align-items: flex-end; gap: 4px; color: var(--bd-text-grey); font: 600 12px/17px var(--font-text); letter-spacing: var(--bd-tracking); transition: color 150ms var(--ease-out); }
@@ -876,6 +879,11 @@
   .bd-breakdown__box > div { display: flex; align-items: center; }
   .bd-breakdown__box > div > span:first-child { flex: 1; min-width: 0; }
   .bd-breakdown__box > div > span:last-child { white-space: nowrap; text-align: right; }
+  .bd-breakdown__box--discounts > div > span:last-child { color: var(--bd-green-dark); }
+  .bd-promo { display: inline-flex; align-items: center; gap: 4px; }
+  .bd-pay__label:has(.bd-paid-chev) { display: inline-flex; align-items: flex-end; gap: 4px; }
+  .bd-paid-chev { display: none; }
+  .bd-pay-open .bd-paid-chev { display: block; }
   .bd-total { display: flex; flex-direction: column; gap: 12px; }
   .bd-total::before { content: ""; height: 1px; background: var(--grey-light); }
   .bd-total__row { display: flex; align-items: center; color: var(--bd-black); }

@@ -47,6 +47,12 @@
   });
   syncAll();
 
+  // ?pay=1: состояние «оплата раскрыта» (как экран МП 4690): скидки и доп. услуги раскрыты, у «Оплачено» стрелка
+  if (new URLSearchParams(location.search).get('pay') === '1') {
+    ['bd-discounts', 'bd-addons'].forEach((id) => { const acc = document.getElementById(id)?.closest('.bd-acc'); if (acc) setOpen(acc, true); });
+    document.body.classList.add('bd-pay-open');
+  }
+
   // Копирование номера бронирования, на file:// запасной путь через execCommand
   $$('[data-bd-copy]').forEach((b) => b.addEventListener('click', async () => {
     const text = b.dataset.bdCopy;
