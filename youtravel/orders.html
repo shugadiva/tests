@@ -30,164 +30,163 @@
 </header>
 
 <main class="lk-body">
-  <nav class="lk-sidebar" aria-label="Кабинет тревел-эксперта">
+  <nav class="lk-sidebar or2-menu" aria-label="Кабинет тревел-эксперта">
     <div class="sheet-head"><img class="avatar" src="assets/expert-user.jpg" alt=""><span class="sheet-head__name"><span class="t-body-s-semi">Константин</span><span class="dates t-body-xs-semi">konstantin@mail.ru</span></span><button class="sheet-close" type="button" aria-label="Закрыть меню"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M7 7l10 10" stroke="#242A37" stroke-width="1.2" stroke-linecap="round"/></svg></button></div>
-    <a class="sidebar-item" href="#">
-      <span class="or-ic"><img src="assets/or-ic-home.svg" alt="" width="24" height="24"></span>
-      Главная
-    </a>
-    <a class="sidebar-item" href="#">
-      <span class="or-ic"><img class="or-ic--tours" src="assets/or-ic-tours.svg" alt="" width="14.743" height="21.6287"></span>
-      Туры
-    </a>
-    <a class="sidebar-item" href="orders.html" aria-current="page">
-      <span class="or-ic"><img src="assets/or-ic-orders.svg" alt="" width="21.2008" height="21.1998"></span>
-      Заказы
-    </a>
-    <a class="sidebar-item" href="#">
-      <span class="or-ic"><img class="or-ic--reviews" src="assets/or-ic-reviews.svg" alt="" width="22" height="22"></span>
-      Отзывы
-    </a>
-    <a class="sidebar-item" href="#">
-      <span class="or-ic"><img class="or-ic--payouts" src="assets/or-ic-payouts.svg" alt="" width="21.7" height="20.0289"></span>
-      Выплаты
-    </a>
-    <div class="sidebar-divider" role="separator"></div>
-    <a class="sidebar-item" href="#">
-      <span class="or-ic"><img src="assets/or-ic-settings.svg" alt="" width="24" height="24"></span>
-      Настройки
-    </a>
-    <a class="sidebar-item" href="#">
-      <span class="or-ic"><img src="assets/or-ic-promo.svg" alt="" width="24" height="24"></span>
-      Продвижение
-    </a>
-    <a class="sidebar-item" href="#">
-      <span class="or-ic"><img src="assets/or-ic-settle.svg" alt="" width="18" height="18"></span>
-      Урегулирование
-    </a>
-    <a class="sidebar-item" href="#">
-      <span class="or-ic"><img class="or-ic--help" src="assets/or-ic-help.svg" alt="" width="21.7" height="20.1"></span>
-      Поддержка
-    </a>
+    <!-- Меню как в живом ЛК эксперта (16.10.2026), группы разделены divider -->
+    <a class="sidebar-item" href="#" data-toast="Личный кабинет: вне тестового"><img src="assets/or2-menu-profile.svg" alt="" width="24" height="24">Личный кабинет</a>
+    <a class="sidebar-item" href="#" data-toast="Центр уведомлений: вне тестового"><img src="assets/or2-menu-bell.svg" alt="" width="24" height="24">Центр уведомлений</a>
+    <div class="or2-menu__div" role="separator"></div>
+    <a class="sidebar-item" href="#" data-toast="Мои туры: вне тестового"><img src="assets/or2-menu-tours.svg" alt="" width="24" height="24">Мои туры</a>
+    <a class="sidebar-item" href="orders.html"><img src="assets/or2-menu-orders.svg" alt="" width="24" height="24">Заказы</a>
+    <div class="or2-menu__sub">
+      <a class="sidebar-item" href="orders.html" aria-current="page">Заявки на бронирование</a>
+      <a class="sidebar-item" href="#" data-toast="Оплаты: вне тестового">Оплаты</a>
+      <a class="sidebar-item" href="#" data-toast="Путешественники: вне тестового">Путешественники</a>
+      <a class="sidebar-item" href="#" data-toast="Урегулирование: вне тестового">Урегулирование</a>
+    </div>
+    <a class="sidebar-item" href="#" data-toast="Мои отзывы: вне тестового"><img src="assets/or2-menu-reviews.svg" alt="" width="24" height="24">Мои отзывы</a>
+    <div class="or2-menu__div" role="separator"></div>
+    <a class="sidebar-item" href="#" data-toast="Счета и Платежи: вне тестового"><img src="assets/or2-menu-wallet.svg" alt="" width="24" height="24">Счета и Платежи</a>
+    <a class="sidebar-item" href="#" data-toast="Заказать продвижение: вне тестового"><img src="assets/or2-menu-promo.svg" alt="" width="24" height="24">Заказать продвижение</a>
+    <a class="sidebar-item" href="#" data-toast="Интеграции: вне тестового"><img src="assets/or2-menu-link.svg" alt="" width="24" height="24">Интеграции</a>
   </nav>
 
 
   <div class="content">
-    <section class="card orders" id="orders" aria-labelledby="or-title">
-      <div class="page-head">
-        <h1 class="t-h3" id="or-title">Заявки на&nbsp;бронирование</h1>
-        <div class="or-tabs" role="tablist" aria-label="Статус бронирования">
-          <button class="or-tab" type="button" role="tab" data-tab="all" aria-selected="true">Все</button>
-          <span class="or-tabs__sep" aria-hidden="true"></span>
-          <button class="or-tab" type="button" role="tab" data-tab="pending" aria-selected="false">Ожидает подтверждения</button>
-          <span class="or-tabs__sep" aria-hidden="true"></span>
-          <button class="or-tab" type="button" role="tab" data-tab="confirmed" aria-selected="false">Подтверждено</button>
-          <span class="or-tabs__sep" aria-hidden="true"></span>
-          <button class="or-tab" type="button" role="tab" data-tab="prepaid" aria-selected="false">Предоплачен</button>
-          <span class="or-tabs__sep" aria-hidden="true"></span>
-          <button class="or-tab" type="button" role="tab" data-tab="paid" aria-selected="false">Оплачен</button>
+    <!-- Заявки на бронирование v2 (Figma «Desktop / Заявки v2» 11801:130688, «Mobile / Заявки v2» 11867:56339) -->
+    <section class="card or2" id="orders" aria-labelledby="or-title">
+      <h1 class="t-h3 or2-title" id="or-title">Заявки на&nbsp;бронирование</h1>
+
+      <!-- Шесть фильтров ЛК; на мобилке вместо них «Фильтры» и «Сортировка» -->
+      <div class="or2-filters" id="or2-filters">
+        <div class="or2-filter" data-key="tour"><button class="or2-fbtn" type="button" data-toast="Список туров эксперта: в прототипе не раскрывается">Название тура<img src="assets/or-chev-down.svg" alt="" width="24" height="24"></button></div>
+        <div class="or2-filter" data-key="status"><button class="or2-fbtn" type="button" aria-expanded="false"><span data-label>Статус бронирования</span><img src="assets/or-chev-down.svg" alt="" width="24" height="24"></button>
+          <div class="or2-drop" hidden>
+            <label class="or2-check"><input type="checkbox" value="confirmed"><span class="or2-box"></span>Подтверждено</label>
+            <label class="or2-check"><input type="checkbox" value="pending"><span class="or2-box"></span>Ожидает подтверждения</label>
+            <label class="or2-check"><input type="checkbox" value="declined"><span class="or2-box"></span>Отклонено</label>
+            <div class="or2-drop__actions"><button class="or2-btn or2-btn--grey" type="button" data-clear>Очистить</button><button class="or2-btn or2-btn--green" type="button" data-apply>Применить</button></div>
+          </div>
         </div>
+        <div class="or2-filter" data-key="pay"><button class="or2-fbtn" type="button" data-toast="Статус оплаты: в прототипе не раскрывается">Статус оплаты<img src="assets/or-chev-down.svg" alt="" width="24" height="24"></button></div>
+        <div class="or2-filter" data-key="date"><button class="or2-fbtn" type="button" aria-expanded="false"><span data-label>Дата бронирования</span><img src="assets/or-chev-down.svg" alt="" width="24" height="24"></button>
+          <div class="or2-drop or2-drop--right or2-cal" hidden data-cal></div>
+        </div>
+        <div class="or2-filter" data-key="start"><button class="or2-fbtn" type="button" data-toast="Дата начала: в прототипе не раскрывается">Дата начала<img src="assets/or-chev-down.svg" alt="" width="24" height="24"></button></div>
+        <div class="or2-filter" data-key="end"><button class="or2-fbtn" type="button" data-toast="Дата завершения: в прототипе не раскрывается">Дата завершения<img src="assets/or-chev-down.svg" alt="" width="24" height="24"></button></div>
+      </div>
+      <div class="or2-mfilters m-only">
+        <button class="or2-fbtn" type="button" data-sheet="filters"><img src="assets/or-filter.svg" alt="" width="16" height="12"><span data-mlabel>Фильтры</span></button>
+        <button class="or2-fbtn" type="button" data-sheet="sort">Сортировка<img src="assets/or-chev-down.svg" alt="" width="24" height="24"></button>
       </div>
 
-      <!-- Фильтры, сводка, блок «Ожидают подтверждения» и заезды собирает orders.js из данных -->
-      <div class="or-filters" id="or-filters"></div>
-      <div class="or-stats" id="or-stats"></div>
-      <section class="or-pending" id="or-pending" aria-label="Ожидают подтверждения"></section>
-      <section class="or-deps" id="or-deps" aria-label="Все заезды"></section>
+      <div class="or2-table" id="or2-table">
+        <div class="or2-head d-only" role="row">
+          <button class="or2-col or2-col--id or2-sorter" type="button" aria-label="Сортировать по номеру заказа">ID заказа<img src="assets/or2-sort.svg" alt="" width="14" height="14"></button>
+          <span class="or2-col or2-col--trav">Путешественник</span>
+          <span class="or2-col or2-col--tour">Тур и даты</span>
+          <span class="or2-col or2-col--st">Статус</span>
+          <span class="or2-col or2-col--act">Действия</span>
+        </div>
+        <div id="or2-rows"></div>
+        <button class="or2-btn or2-btn--white or2-more" type="button" data-toast="Загружены все заявки">Показать ещё</button>
+      </div>
 
-      <div class="or-empty" id="or-nf" hidden>
+      <div class="or-empty" id="or2-empty" hidden>
+        <img class="or-empty__icon m-only" src="assets/or-tent.png" alt="">
+        <p class="t-body-m-semi d-only">Заявок пока нет</p>
+        <p class="or-empty__text d-only">Когда путешественники забронируют ваши туры, заявки появятся здесь</p>
+        <p class="or-empty__m m-only">У&nbsp;вас пока нет заявок.<br>Когда путешественники забронируют ваши туры, заявки появятся здесь</p>
+        <button class="button button--green t-body-m-semi" type="button" data-toast="Список туров: вне тестового">Перейти к&nbsp;турам</button>
+      </div>
+
+      <div class="or-empty" id="or2-nf" hidden>
         <img class="or-empty__icon m-only" src="assets/or-tent.png" alt="">
         <p class="t-body-m-semi d-only">Ничего не&nbsp;найдено</p>
         <p class="or-empty__text d-only">Попробуйте изменить фильтры или сбросить их</p>
         <p class="or-empty__m m-only">Ничего не&nbsp;найдено.<br>Измените или сбросьте фильтры</p>
-        <button class="button button--green t-body-m-semi" type="button" id="or-reset">Сбросить фильтры</button>
+        <button class="button button--green t-body-m-semi" type="button" id="or2-reset">Сбросить фильтры</button>
       </div>
     </section>
   </div>
 
-  <!-- Окно «Подтвердить бронирование?» -->
+  <!-- Окно «Информация о бронировании» (как в ЛК); на мобилке отдельный экран -->
+  <div class="overlay or2-info-wrap" id="or2-info" hidden>
+    <div class="or2-info" role="dialog" aria-modal="true" aria-labelledby="or2-info-title">
+      <button class="back or2-back m-only" type="button" data-close><img src="assets/or2-arrow-l.svg" alt="" width="16" height="16">Заявки</button>
+      <div class="or2-info__card">
+        <div class="or2-info__head">
+          <h2 class="t-h3" id="or2-info-title">Информация о&nbsp;бронировании</h2>
+          <button class="or2-x d-only" type="button" data-close aria-label="Закрыть"><img src="assets/or-close.svg" alt="" width="12" height="12"></button>
+        </div>
+        <dl class="or2-fields" id="or2-fields"></dl>
+      </div>
+      <div class="or2-info__actions" id="or2-info-actions"></div>
+    </div>
+  </div>
+
+  <!-- Окна подтверждения и отказа (без причины отказа, решение 16.10.2026) -->
   <div class="overlay" id="dlg-confirm" hidden>
     <div class="dialog or-dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-confirm-title">
       <span class="grabber" aria-hidden="true"></span>
-      <div class="dialog__head">
-        <h2 class="t-h4" id="dlg-confirm-title">Подтвердить бронирование?</h2>
-        <button class="dialog__close dialog__close--inline" type="button" data-close aria-label="Закрыть"><img class="d-only" src="assets/or-close.svg" alt="" width="12" height="12"><img class="m-only" src="assets/or-close-mini.svg" alt="" width="11.6" height="11.6"></button>
-      </div>
+      <div class="dialog__head"><h2 class="t-h4" id="dlg-confirm-title">Подтвердить бронирование?</h2><button class="dialog__close dialog__close--inline" type="button" data-close aria-label="Закрыть"><img src="assets/or-close.svg" alt="" width="12" height="12"></button></div>
       <div class="or-dlg-text" data-order-summary></div>
-      <div class="or-dlg-note">
-        <p>Путешественник получит уведомление.</p>
-        <p>Бронирование будет ждать оплаты.</p>
-      </div>
-      <div class="dialog__actions">
-        <button class="button button--grey button--l" type="button" data-close>Отмена</button>
-        <button class="button button--green button--l" type="button" id="dlg-confirm-ok">Подтвердить</button>
-      </div>
+      <div class="dialog__actions"><button class="button button--grey button--l" type="button" data-close>Отмена</button><button class="button button--green button--l" type="button" id="dlg-confirm-ok">Подтвердить</button></div>
     </div>
   </div>
-
-  <!-- Окно «Отклонить бронирование?»: причина необязательная, путешественник её увидит -->
   <div class="overlay" id="dlg-reject" hidden>
     <div class="dialog or-dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-reject-title">
       <span class="grabber" aria-hidden="true"></span>
-      <div class="dialog__head">
-        <h2 class="t-h4" id="dlg-reject-title">Отклонить бронирование?</h2>
-        <button class="dialog__close dialog__close--inline" type="button" data-close aria-label="Закрыть"><img class="d-only" src="assets/or-close.svg" alt="" width="12" height="12"><img class="m-only" src="assets/or-close-mini.svg" alt="" width="11.6" height="11.6"></button>
-      </div>
+      <div class="dialog__head"><h2 class="t-h4" id="dlg-reject-title">Отклонить бронирование?</h2><button class="dialog__close dialog__close--inline" type="button" data-close aria-label="Закрыть"><img src="assets/or-close.svg" alt="" width="12" height="12"></button></div>
       <div class="or-dlg-text" data-order-summary></div>
-      <div class="or-dlg-note">
-        <p>Путешественник увидит причину отказа.</p>
-      </div>
-      <textarea class="or-reason" id="dlg-reject-reason" placeholder="Причина отказа" aria-label="Причина отказа"></textarea>
-      <div class="dialog__actions">
-        <button class="button button--grey button--l" type="button" data-close>Отмена</button>
-        <button class="button button--red button--l" type="button" id="dlg-reject-ok">Отклонить</button>
-      </div>
+      <div class="dialog__actions"><button class="button button--grey button--l" type="button" data-close>Отмена</button><button class="button button--red button--l" type="button" id="dlg-reject-ok">Отклонить</button></div>
     </div>
   </div>
 
-  <!-- Боковая панель заявки по «Подробнее» -->
-  <div class="or-drawer-wrap" id="or-drawer" hidden>
-    <div class="or-drawer-overlay" data-drawer-close></div>
-    <!-- на мобилке панель становится отдельным экраном под шапкой: «Заявки» назад вместо крестика -->
-    <button class="back or-back m-only" type="button" data-drawer-close><span class="or-back__arrow"><img src="assets/or-back.svg" alt="" width="8.4" height="12"></span>Заявки</button>
-    <aside class="or-drawer" role="dialog" aria-modal="true" aria-labelledby="or-drawer-title">
-      <div class="or-drawer__head">
-        <div class="or-drawer__title">
-          <h2 class="t-h3" id="or-drawer-title"></h2>
-          <p class="or-meta" id="or-drawer-sub"></p>
+  <!-- Мобильные шторки: фильтры, дата, сортировка -->
+  <div class="overlay" id="sh-filters" hidden>
+    <div class="dialog or2-sheet" role="dialog" aria-modal="true" aria-labelledby="sh-filters-title">
+      <span class="grabber" aria-hidden="true"></span>
+      <div class="dialog__head"><h2 class="t-h4" id="sh-filters-title">Фильтры</h2><button class="dialog__close dialog__close--inline" type="button" data-close aria-label="Закрыть"><img src="assets/or-close.svg" alt="" width="12" height="12"></button></div>
+      <div class="or2-srows">
+        <button class="or2-srow" type="button" data-toast="Список туров: в прототипе не раскрывается"><span>Название тура</span><span class="or2-srow__v">Все<img src="assets/or-chev-down.svg" alt="" width="20" height="20"></span></button>
+        <button class="or2-srow" type="button" data-acc="status" aria-expanded="true"><span>Статус бронирования</span><span class="or2-srow__v"><span data-status-v>Все</span><img src="assets/or-chev-down.svg" alt="" width="20" height="20"></span></button>
+        <div class="or2-sopts" data-acc-body="status">
+          <label class="or2-check"><input type="checkbox" value="confirmed"><span class="or2-box"></span>Подтверждено</label>
+          <label class="or2-check"><input type="checkbox" value="pending"><span class="or2-box"></span>Ожидает подтверждения</label>
+          <label class="or2-check"><input type="checkbox" value="declined"><span class="or2-box"></span>Отклонено</label>
         </div>
-        <button class="or-close" type="button" data-drawer-close aria-label="Закрыть"><img src="assets/or-close.svg" alt="" width="12" height="12"></button>
+        <button class="or2-srow" type="button" data-toast="Статус оплаты: в прототипе не раскрывается"><span>Статус оплаты</span><span class="or2-srow__v">Все<img src="assets/or-chev-down.svg" alt="" width="20" height="20"></span></button>
+        <button class="or2-srow" type="button" data-sheet="date"><span>Дата бронирования</span><span class="or2-srow__v"><span data-date-v>Все</span><img src="assets/or-chev-down.svg" alt="" width="20" height="20"></span></button>
+        <button class="or2-srow" type="button" data-toast="Дата начала: в прототипе не раскрывается"><span>Дата начала</span><span class="or2-srow__v">Все<img src="assets/or-chev-down.svg" alt="" width="20" height="20"></span></button>
+        <button class="or2-srow" type="button" data-toast="Дата завершения: в прототипе не раскрывается"><span>Дата завершения</span><span class="or2-srow__v">Все<img src="assets/or-chev-down.svg" alt="" width="20" height="20"></span></button>
       </div>
-      <div class="or-drawer__block">
-        <p class="or-meta">Тур</p>
-        <p class="or-text" id="or-drawer-tour"></p>
-        <p class="or-text" id="or-drawer-dates"></p>
+      <div class="dialog__actions"><button class="button button--grey button--l" type="button" data-sclear>Сбросить</button><button class="button button--green button--l" type="button" data-sapply>Применить</button></div>
+    </div>
+  </div>
+  <div class="overlay" id="sh-date" hidden>
+    <div class="dialog or2-sheet" role="dialog" aria-modal="true" aria-labelledby="sh-date-title">
+      <span class="grabber" aria-hidden="true"></span>
+      <div class="dialog__head"><h2 class="t-h4" id="sh-date-title">Дата бронирования</h2><button class="dialog__close dialog__close--inline" type="button" data-close aria-label="Закрыть"><img src="assets/or-close.svg" alt="" width="12" height="12"></button></div>
+      <div class="or2-cal or2-cal--sheet" data-cal></div>
+    </div>
+  </div>
+  <div class="overlay" id="sh-sort" hidden>
+    <div class="dialog or2-sheet" role="dialog" aria-modal="true" aria-labelledby="sh-sort-title">
+      <span class="grabber" aria-hidden="true"></span>
+      <div class="dialog__head"><h2 class="t-h4" id="sh-sort-title">Сортировка</h2><button class="dialog__close dialog__close--inline" type="button" data-close aria-label="Закрыть"><img src="assets/or-close.svg" alt="" width="12" height="12"></button></div>
+      <div class="or2-srows">
+        <button class="or2-srow or2-sortopt" type="button" data-sort="desc"><span><b>Сначала новые</b><small>По номеру заказа, от последних</small></span><img src="assets/or2-circle-yes.svg" alt="" width="24" height="24"></button>
+        <button class="or2-srow or2-sortopt" type="button" data-sort="asc"><span><b>Сначала старые</b><small>По номеру заказа, от первых</small></span><img src="assets/or2-circle-yes.svg" alt="" width="24" height="24"></button>
       </div>
-      <div class="or-drawer__block">
-        <div class="or-drawer__block-head">
-          <p class="or-meta">Путешественник</p>
-          <button class="button button--grey button--s or-chat" type="button" data-toast="Чат с&nbsp;путешественником: вне тестового"><span class="or-ic"><img class="or-ic--chat" src="assets/or-chat.svg" alt="" width="21.7" height="20.1"></span>Чат</button>
-        </div>
-        <div id="or-drawer-people"></div>
-      </div>
-      <div class="or-drawer__block">
-        <p class="or-meta">Стоимость</p>
-        <div id="or-drawer-cost"></div>
-      </div>
-      <div class="or-drawer__block or-drawer__actions">
-        <div class="or-drawer__decision" id="or-drawer-decision">
-          <button class="button button--grey button--l" type="button" data-act="reject">Отклонить</button>
-          <button class="button button--green button--l" type="button" data-act="confirm">Подтвердить</button>
-        </div>
-        <button class="button button--outline button--l" type="button" data-toast="Спецпредложение: вне тестового">Создать спец. предложение</button>
-      </div>
-    </aside>
+      <div class="dialog__actions"><button class="button button--green button--l" type="button" data-close>Применить</button></div>
+    </div>
   </div>
 
 </main>
 
 <p class="note">Тестовое задание Diana Shvedskaia для YouTravel.me, не&nbsp;официальный сайт</p>
-<nav class="states" aria-label="Состояния макета"><span>Раздел</span><a class="states__section" href="index.html">Отзывы</a><a class="states__section" href="bookings.html">Бронирования</a><a class="states__section" href="orders.html" aria-current="true">Заявки эксперта</a><span>Состояния</span><a href="orders.html" aria-current="page">Список</a><a href="orders.html?dlg=confirm">Подтвердить</a><a href="orders.html?dlg=reject">Отклонить</a><a href="orders.html?drawer=1">Подробнее</a><a href="orders.html?nf=1">Ничего не найдено</a><a href="orders-empty.html">Заявок пока нет</a></nav>
+<nav class="states" aria-label="Состояния макета"><span>Раздел</span><a class="states__section" href="index.html">Отзывы</a><a class="states__section" href="bookings.html">Бронирования</a><a class="states__section" href="orders.html" aria-current="true">Заявки эксперта</a><span>Состояния</span><a href="orders.html" aria-current="page">Список</a><a href="orders.html?detail=await">Подробнее: ждёт ответа</a><a href="orders.html?detail=paid">Подробнее: предоплата</a><a href="orders.html?dlg=confirm">Подтвердить</a><a href="orders.html?dlg=reject">Отклонить</a><a href="orders.html?f=status">Фильтр статуса</a><a href="orders.html?f=date">Фильтр даты</a><a href="orders.html?sheet=sort">Сортировка (мобилка)</a><a href="orders.html?nf=1">Ничего не найдено</a><a href="orders-empty.html">Заявок пока нет</a></nav>
 <script src="app.js"></script>
 <script src="orders.js"></script>
 </body>
