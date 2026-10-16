@@ -173,7 +173,6 @@
   document.addEventListener('click', (e) => {
     const a = e.target.closest('[data-act][data-id]');
     if (a) { const o = ORDERS.find((x) => x.id === +a.dataset.id); if (a.dataset.act === 'info') openInfo(o); else openDlg(a.dataset.act, o); return; }
-    const row = e.target.closest('.or2-row'); if (row && !mobile() && !e.target.closest('button, a')) openInfo(ORDERS.find((x) => x.id === +row.dataset.row));
   });
 
   render();

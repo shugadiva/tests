@@ -1231,9 +1231,7 @@
   .or2-col--tour, .or2-c--tour { width: 160px; flex: none; }
   .or2-col--st, .or2-c--st { width: 146px; flex: none; }
   .or2-col--act, .or2-c--act { width: 208px; flex: none; }
-  .or2-row { position: relative; padding: 14px 16px; border-bottom: 1px solid var(--row-line); cursor: pointer; }
-  .or2-row::before { content: ""; position: absolute; inset: 0; border-radius: 8px; background: var(--grey-light); opacity: 0; transition: opacity 150ms var(--ease-out); }
-  .or2-row:hover::before { opacity: 1; }
+  .or2-row { position: relative; padding: 14px 16px; border-bottom: 1px solid var(--row-line); }
   .or2-row > * { position: relative; }
   .or2-cell { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
   .or2-cell p { margin: 0; }
@@ -1293,7 +1291,6 @@
     .or2-mfilters .or2-fbtn { flex: 1 1 0; justify-content: center; }
     #or2-rows { display: flex; flex-direction: column; gap: 12px; }
     .or2-row { display: grid; grid-template-columns: 1fr; gap: 12px; padding: 16px; border: 0; border-radius: 16px; background: var(--primary-white); cursor: default; }
-    .or2-row::before { display: none; }
     .or2-c--id, .or2-c--trav, .or2-c--tour, .or2-c--st, .or2-c--act { width: auto; }
     .or2-c--id { flex-direction: row; justify-content: space-between; align-items: center; order: 1; }
     .or2-c--st { order: 2; }
