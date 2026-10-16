@@ -555,77 +555,73 @@
   /* Список карточек */
   .bk-list { display: flex; flex-direction: column; gap: 16px; }
 
-  /* booking-card-active / booking-card-closed */
-  .bk-card { display: flex; align-items: flex-start; gap: 20px; padding: 20px; border: 1px solid var(--grey-divider); border-radius: 16px; background: var(--primary-white); transition: box-shadow 150ms var(--ease-out); }
+  /* booking-card-active / booking-card-closed, v2 по сверке с приложением */
+  .bk-tabs__item { font: 600 14px/18px var(--font-text); }
+  .bk-card { display: flex; align-items: stretch; gap: 20px; padding: 20px; border: 1px solid var(--grey-divider); border-radius: 16px; background: var(--primary-white); transition: box-shadow 150ms var(--ease-out); }
   .bk-card:not(.bk-card--sk):hover { box-shadow: var(--bk-card-hover); }
-  .bk-card__cover { width: 200px; align-self: stretch; flex: none; border-radius: 10px; object-fit: cover; min-height: 0; }
+  .bk-card__cover { position: relative; width: 200px; flex: none; border-radius: 10px; overflow: hidden; }
+  .bk-card__cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .bk-card__tag { position: absolute; top: 12px; left: 12px; height: 24px; padding: 4px 8px; border-radius: 4px; display: inline-flex; align-items: center; background: #f5a32a; color: var(--primary-white); font: 700 11px/12px var(--font-text); letter-spacing: .22px; text-transform: uppercase; }
   .bk-card__body { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
-  .bk-card__head { width: 100%; display: flex; align-items: center; gap: 16px; }
-  .bk-card__info { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
-  .bk-card__region { font: 400 12px/16px var(--font-text); color: var(--dark-grey-primary); }
-  .bk-card__title { color: var(--primary-night); transition: color 150ms var(--ease-out); }
+  .bk-card__info { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+  .bk-card__region { font: 600 14px/18px var(--font-text); color: #828296; }   /* dark-grey/secondary */
+  .bk-card__title { font: 600 16px/19px var(--font-text); color: #222222; transition: color 150ms var(--ease-out); } /* h5, black */
   .bk-card__title:hover { color: var(--green-click); }
   .bk-card__actions { display: flex; gap: 8px; }
 
   .bk-card--closed .bk-card__cover { width: 160px; }
-  .bk-card--closed .bk-card__body { flex-direction: row; align-items: center; gap: 20px; min-height: 168px; }
-  .bk-card--tall .bk-card__body { min-height: 184px; }
+  .bk-card--closed .bk-card__body { flex-direction: row; align-items: center; justify-content: space-between; gap: 20px; }
   .bk-card__actions--column { flex-direction: column; align-items: flex-end; flex: none; }
 
-  /* meta: пары «подпись: значение» и номер с копированием */
-  .bk-meta { width: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; }
+  /* meta: три строки, как в приложении */
+  .bk-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; font: 600 14px/18px var(--font-text); }
   .bk-pair { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
-  .bk-pair__label { color: var(--dark-grey-primary); }
-  .bk-pair__value { font-weight: 600; color: var(--primary-night); }
-  .bk-copy { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 4px; background: transparent; padding: 0; transition: background-color 150ms var(--ease-out); }
+  .bk-pair__label { color: #9999a9; }   /* grey/text */
+  .bk-pair__value { color: #222222; }
+  .bk-copy { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 4px; background: transparent; padding: 0; margin: -5px 0; transition: background-color 150ms var(--ease-out); }
   .bk-copy:hover { background: var(--grey-pale); }
   .bk-copy:focus-visible { outline: 2px solid var(--green-click); outline-offset: 0; }
 
-  /* status: чип статуса брони */
-  .bk-status { flex: none; padding: 6px 12px; border-radius: 6px; border: .6px solid var(--grey-divider); color: var(--primary-black); white-space: nowrap; }
+  /* status: чип статуса брони, 14/18 */
+  .bk-status { flex: none; padding: 6px 12px; border-radius: 6px; border: .6px solid var(--grey-divider); color: var(--primary-black); font: 600 14px/18px var(--font-text); white-space: nowrap; }
   .bk-status--orange { background: var(--bk-orange-pale); }
   .bk-status--green { background: var(--bk-green-pale); }
-  .bk-status--s { font: 600 12px/16px var(--font-text); }
   .bk-status--done { background: var(--bk-line); }
   .bk-status--closed { background: var(--grey-pale); }
-  /* в макете чип 183 px с переносом после точки; перенос задан <br>, ширина по тексту, чтобы запасной шрифт не ломал строку */
-  .bk-card--tall .bk-status { min-width: 183px; }
 
-  /* stepper: шаги бронирования */
-  .bk-stepper { list-style: none; margin: 0; padding: 0; width: 100%; display: flex; align-items: flex-start; }
-  .bk-step { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
-  .bk-step__track { display: flex; align-items: center; }
-  .bk-step__dot { width: 12px; height: 12px; border-radius: 50%; flex: none; background: var(--grey-light); }
-  .bk-step--done .bk-step__dot { background: var(--green-default); }
-  .bk-step--current .bk-step__dot { background: var(--primary-white); box-shadow: inset 0 0 0 2px var(--green-default); }
-  .bk-step__bar { flex: 1; height: 2px; background: var(--grey-light); }
-  .bk-step__bar--done { background: var(--green-default); }
-  .bk-step__caption { display: flex; flex-direction: column; gap: 2px; padding-right: 16px; font: 12px/16px var(--font-text); }
-  .bk-step__title { width: 130px; max-width: 100%; font-weight: 600; color: var(--primary-night); }
-  .bk-step--todo .bk-step__title { color: var(--dark-grey-primary); }
-  .bk-step__date { color: var(--dark-grey-primary); }
+  /* шаги под статусом: на десктопе видны всегда */
+  .bk-tl { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 20px; }
+  .bk-tl[hidden] { display: none; }
+  .bk-tl__step { position: relative; display: flex; align-items: center; gap: 10px; min-height: 18px; font: 600 12px/16px var(--font-text); color: #222222; }
+  .bk-tl__step + .bk-tl__step::before { content: ""; position: absolute; left: 8.4px; top: -16px; width: 1.2px; height: 12px; background: #b6b6bf; opacity: .5; }
+  .bk-tl__icon { width: 18px; height: 18px; border-radius: 50%; flex: none; display: grid; place-items: center; }
+  .bk-tl__step--done .bk-tl__icon { background: var(--green-default); }
+  .bk-tl__step--todo .bk-tl__icon { box-shadow: inset 0 0 0 1.3px #9999a9; }
 
   /* next-step: плашка следующего шага */
   .bk-next-step { width: 100%; display: flex; align-items: center; gap: 16px; padding: 12px 16px; border-radius: 12px; background: var(--green-selected); }
   .bk-next-step__text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-  .bk-next-step__title { color: var(--primary-night); }
+  .bk-next-step__title { font: 600 14px/18px var(--font-text); color: var(--primary-night); }
   .bk-next-step__sub { font: 400 12px/16px var(--font-text); color: var(--dark-grey-primary); }
 
-  /* button: белая с обводкой (Secondary) */
+  /* кнопки карточки: h5 16/19, чат серый с иконкой, как в приложении */
+  .bk-btn { font: 600 16px/19px var(--font-text); }
+  .bk-btn--chat, .bk-mbtn--chat { gap: 6px; padding-left: 10px; }
+  .bk-mbtn__icon { width: 24px; height: 24px; display: grid; place-items: center; padding-top: 2px; flex: none; }
   .bk-button--outline { background: var(--primary-white); color: var(--primary-night); box-shadow: inset 0 0 0 1px var(--bk-line); }
   .bk-button--outline:hover { background: var(--grey-pale); }
   .bk-button--outline:active { background: var(--grey-default); }
-  .bk-more { width: 100%; }
+  .bk-more { width: 100%; font: 600 16px/19px var(--font-text); }
   .bk-more[aria-busy="true"] { color: var(--dark-grey-primary); cursor: progress; }
 
-  /* Загрузка: skeleton-card */
-  .bk-sk-cover { width: 200px; height: 236px; border-radius: 12px; flex: none; }
-  .bk-sk-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
-  .bk-sk-head { display: flex; align-items: flex-start; gap: 12px; }
-  .bk-sk-lines { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
-  .bk-sk-lines .sk { max-width: 100%; }
-  .bk-sk-steps { display: flex; gap: 12px; }
-  .bk-sk-steps .sk { flex: 1; height: 30px; }
+  /* Загрузка: skeleton-card повторяет карточку */
+  .bk-sk-cover { width: 200px; min-height: 236px; border-radius: 12px; flex: none; align-self: stretch; }
+  .bk-sk-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+  .bk-sk-lines { display: flex; flex-direction: column; gap: 6px; }
+  .bk-sk-meta { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+  .bk-sk-tl { display: flex; flex-direction: column; gap: 12px; }
+  .bk-sk-step { display: flex; align-items: center; gap: 8px; }
+  .bk-sk-body .sk { max-width: 100%; }
   .bk-sk-actions { display: flex; gap: 8px; }
 
   /* Пусто */
@@ -635,6 +631,7 @@
   /* toast: короткая подсказка о выходе за пределы тестового */
   .bk-toast { position: fixed; left: 50%; bottom: 32px; z-index: 11; max-width: calc(100vw - 32px); transform: translate(-50%, 16px); opacity: 0; padding: 12px 16px; border-radius: 8px; background: var(--primary-night); color: var(--primary-white); font: 600 13px/17px var(--font-text); text-align: center; pointer-events: none; transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out); }
   .bk-toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+  .bk-toast.is-copy { color: var(--green-default); } /* «Скопировано» зелёным, как в приложении */
 
   /* ---- Мобильная версия (375): карточки как в приложении, разметка .bk-mcard рядом с десктопной ---- */
   :root {
@@ -714,6 +711,8 @@
     .bk-msk-step { display: flex; align-items: center; gap: 10px; }
     .bk-msk-dot { width: 16px; height: 16px; border-radius: 8px; flex: none; }
     .bk-msk-meta { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+    .bk-msk-pair { display: flex; gap: 8px; width: 100%; }
+    .bk-msk-pair .sk { flex: 1; }
 
     /* пусто */
     .content > .card:has(.bk-empty) { margin-top: 0; }

@@ -5,7 +5,7 @@
 
   // Тост внизу по центру: один на страницу, новый текст сбрасывает таймер
   let toast, timer;
-  const showToast = (html) => {
+  const showToast = (html, cls = '') => {
     if (!toast) {
       toast = document.createElement('div');
       toast.className = 'bk-toast';
@@ -14,6 +14,7 @@
       document.body.append(toast);
     }
     toast.innerHTML = html;
+    toast.classList.toggle('is-copy', cls === 'copy');
     toast.offsetWidth; // перезапуск перехода
     toast.classList.add('is-on');
     clearTimeout(timer);
@@ -29,7 +30,7 @@
   // Копирование номера бронирования
   $$('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
     try { await navigator.clipboard.writeText(b.dataset.copy); } catch (_) { /* file:// без доступа к буферу */ }
-    showToast(`Номер ${b.dataset.copy} скопирован`);
+    showToast('Скопировано', 'copy'); // как в приложении
   }));
 
   // «Показать ещё»: открывает скрытые карточки, если их нет, кнопка уходит
