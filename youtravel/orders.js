@@ -32,8 +32,6 @@
     { id: 131655, at: '2026-10-01', name: 'Елена', parts: ['женщина, 52 года'], tour: DAG, st: 'client', pay: 'pre', price: 79000 },
   ];
   const ST = { pending: 'Ожидает подтверждения', confirmed: 'Подтверждено', finished: 'Тур завершен', declined: 'Отклонено', client: 'Отменено клиентом', auto: 'Отменено автоматически' };
-  const PAY = { none: 'Не оплачен', pre: 'Предоплата внесена', second: 'Внесена вторая часть' };
-  const payLine = (o) => o.st === 'auto' ? 'Истек срок оплаты' : PAY[o.pay];
   const STATUS_FILTER = { confirmed: ['confirmed'], pending: ['pending'], declined: ['declined'] };
 
   const ICON = { chat: '<img src="assets/or2-chat.svg" alt="" width="20" height="20">', profile: '<img src="assets/or2-profile.svg" alt="" width="20" height="20">', doc: '<img src="assets/or2-doc.svg" alt="" width="20" height="20">' };
@@ -61,7 +59,7 @@
         <div class="or2-cell or2-c--id"><button class="or2-id" type="button" data-act="info" data-id="${o.id}"><span class="m-only">Заказ </span>${o.id}</button><p class="or2-sub">${dShort(o.at)}</p></div>
         <div class="or2-cell or2-c--trav"><p class="or2-main">${o.name}</p><p class="or2-sub">${people(o.parts.length)}</p></div>
         <div class="or2-cell or2-c--tour"><p class="or2-main or2-clamp">${o.tour[0]}</p><p class="or2-sub">${o.tour[1]}</p></div>
-        <div class="or2-cell or2-c--st"><p class="or2-main or2-st--${o.st}">${ST[o.st]}</p><p class="or2-sub">${payLine(o)}</p></div>
+        <div class="or2-cell or2-c--st"><p class="or2-main or2-st--${o.st}">${ST[o.st]}</p></div>
         <div class="or2-cell or2-c--act">${actions(o)}</div>
       </div>`).join('');
     // подписи фильтров
