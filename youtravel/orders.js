@@ -59,13 +59,13 @@
         <div class="or2-cell or2-c--id"><button class="or2-id" type="button" data-act="info" data-id="${o.id}"><span class="m-only">Заказ </span>${o.id}</button><p class="or2-sub">${dShort(o.at)}</p></div>
         <div class="or2-cell or2-c--trav"><p class="or2-main">${o.name}</p><p class="or2-sub">${people(o.parts.length)}</p></div>
         <div class="or2-cell or2-c--tour"><p class="or2-main or2-clamp">${o.tour[0]}</p><p class="or2-sub">${o.tour[1]}</p></div>
-        <div class="or2-cell or2-c--st"><p class="or2-main or2-st--${o.st}">${ST[o.st]}</p></div>
+        <div class="or2-cell or2-c--st"><p class="or2-main"><span class="or2-chip or2-st--${o.st}">${ST[o.st]}</span></p></div>
         <div class="or2-cell or2-c--act">${actions(o)}</div>
       </div>`).join('');
     // подписи фильтров
     const sv = ['pending', 'confirmed', 'declined'].filter((k) => state.status.has(k)).map((k) => ({ confirmed: 'Подтверждено', pending: 'Ожидает подтверждения', declined: 'Отклонено' }[k]));
     $('[data-count]').textContent = sv.length; $('[data-count]').hidden = !sv.length;
-    $('[data-key="date"] [data-label]').textContent = state.range ? rangeText(state.range, true) : 'Дата бронирования';
+    $('[data-key="date"] [data-label]').textContent = state.range ? rangeText(state.range) : 'Дата бронирования';
     $('[data-key="status"] .or2-fbtn').classList.toggle('is-applied', !!sv.length);
     $('[data-key="date"] .or2-fbtn').classList.toggle('is-applied', !!state.range);
     const n = (state.status.size ? 1 : 0) + (state.range ? 1 : 0);
@@ -148,7 +148,7 @@
     const f = [
       ['Номер заказа', o.id], ['Имя клиента', o.name], ['Название тура', `<a href="#" data-toast="Страница тура: вне тестового">${o.tour[0]}</a>`], ['Забронированные даты', o.tour[1]],
       ['Количество путешественников', o.parts.length], ['Данные участников', o.parts.map((p, i) => `Участник ${i + 1}: ${p}`).join('\n')],
-      ['Статус заказа', `<span class="or2-st--${o.st}">${ST[o.st]}</span>`], ['Цена тура', rub(o.price)],
+      ['Статус заказа', ST[o.st]], ['Цена тура', rub(o.price)],
       ['Размер предоплаты', `${rub(half)}<span class="or2-sub${preOk ? ' is-paid' : ''}">${preOk ? 'Оплачена' : 'Не оплачена'}</span>`],
       ['Размер постоплаты', `${rub(o.price - half)}<span class="or2-sub${postOk ? ' is-paid' : ''}">${postOk ? 'Оплачена' : 'Не оплачена'}</span>`],
       ['Списанный автоматически долг', '0 ₽'],

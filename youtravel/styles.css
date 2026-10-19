@@ -1254,10 +1254,12 @@
   .or2-id { font: 600 13px/17px var(--font-text); color: var(--green-dark); text-decoration: underline; text-underline-offset: 2px; background: none; padding: 0; align-self: flex-start; }
   .or2-id:hover { color: var(--green-click); }
   .or2-clamp { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .or2-st--pending { color: var(--primary-night); }
-  .or2-st--confirmed { color: var(--green-default); }
-  .or2-st--finished { color: var(--dark-grey-primary); }
-  .or2-st--declined, .or2-st--client, .or2-st--auto { color: var(--red-default); }
+  /* Статус плашкой как в МП путешественника (status-chip 11981:53412): тёмный текст, светлая подложка, рамка grey/divider .6 */
+  .or2-chip { display: inline-block; max-width: 100%; padding: 4px 8px; border-radius: 6px; box-shadow: inset 0 0 0 .6px var(--grey-divider); color: var(--primary-night); }
+  .or2-st--pending { background: #fff7ef; }   /* orange/pale */
+  .or2-st--confirmed { background: #f0f6dd; } /* green/pale */
+  .or2-st--finished { background: var(--row-line); } /* grey/divider */
+  .or2-st--declined, .or2-st--client, .or2-st--auto { background: var(--grey-pale); }
   .or2-c--act { display: flex; flex-direction: column; gap: 8px; cursor: default; }
   .or2-c--act .or2-btn { width: 100%; }
   .or2-pair { display: flex; gap: 8px; }
@@ -1308,6 +1310,7 @@
     .or2-c--id, .or2-c--trav, .or2-c--tour, .or2-c--st, .or2-c--act { width: auto; }
     .or2-c--id { flex-direction: row; justify-content: space-between; align-items: center; order: 1; }
     .or2-c--st { order: 2; }
+    .or2-chip { padding: 6px 12px; font-size: 14px; line-height: 18px; }
     .or2-c--trav { order: 3; }
     .or2-c--tour { order: 4; }
     .or2-c--tour .or2-main { font-weight: 400; }
