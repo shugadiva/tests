@@ -1163,6 +1163,11 @@
   :root { --green-dark: #87a038; --row-line: #dbdfe9; }
   .or2, .or2-info, .or2-sheet, .or2-drop { letter-spacing: -.016em; }
   .or2-title { margin: 0; letter-spacing: -.01em; }
+  .or2-titlerow { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .or2-link { padding: 0; background: none; font: 600 13px/17px var(--font-text); color: var(--green-dark); transition: color 150ms var(--ease-out); }
+  .or2-link:hover { color: var(--green-click); }
+  .or2-link:focus-visible { outline: 2px solid var(--green-click); outline-offset: 2px; }
+  .or2-link[hidden] { display: none !important; }
 
   /* Меню эксперта по живому ЛК: группы через divider, подпункты «Заказов» без иконок */
   .or2-menu .sidebar-item img { flex: none; }
@@ -1188,6 +1193,8 @@
   .or2-filters .or2-fbtn { width: 100%; justify-content: space-between; }
   .or2-fbtn [data-label] { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   .or2-fbtn:hover { background: var(--grey-pale); }
+  /* Применённый фильтр: filter-button Applied=True, Mark=Fill (green/superpale + green/main) */
+  .or2-fbtn.is-applied { background: var(--green-selected); box-shadow: inset 0 0 0 1px var(--green-default); }
   .or2-fbtn[aria-expanded="true"] { box-shadow: inset 0 0 0 1px var(--primary-night); }
   .or2-fbtn img { transition: transform 150ms var(--ease-out); }
   .or2-fbtn[aria-expanded="true"] img { transform: rotate(180deg); }

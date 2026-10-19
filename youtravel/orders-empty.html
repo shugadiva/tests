@@ -55,7 +55,11 @@
   <div class="content">
     <!-- Заявки на бронирование v2 (Figma «Desktop / Заявки v2» 11801:130688, «Mobile / Заявки v2» 11867:56339) -->
     <section class="card or2" id="orders" data-empty aria-labelledby="or-title">
-      <h1 class="t-h3 or2-title" id="or-title">Заявки на&nbsp;бронирование</h1>
+      <div class="or2-titlerow">
+        <h1 class="t-h3 or2-title" id="or-title">Заявки на&nbsp;бронирование</h1>
+        <!-- По комментарию Alex Gol 19.10: сброс у самих фильтров, виден только при применённых. На мобилке сброс в шторке -->
+        <button class="or2-link d-only" type="button" id="or2-freset" hidden>Сбросить фильтры</button>
+      </div>
 
       <!-- Шесть фильтров ЛК; на мобилке вместо них «Фильтры» и «Сортировка» -->
       <div class="or2-filters" id="or2-filters">
@@ -186,7 +190,7 @@
 </main>
 
 <p class="note">Тестовое задание Diana Shvedskaia для YouTravel.me, не&nbsp;официальный сайт</p>
-<nav class="states" aria-label="Состояния макета"><span>Раздел</span><a class="states__section" href="index.html">Отзывы</a><a class="states__section" href="bookings.html">Бронирования</a><a class="states__section" href="orders.html" aria-current="true">Заявки эксперта</a><span>Состояния</span><a href="orders.html">Список</a><a href="orders.html?detail=await">Подробнее: ждёт ответа</a><a href="orders.html?detail=paid">Подробнее: предоплата</a><a href="orders.html?dlg=confirm">Подтвердить</a><a href="orders.html?dlg=reject">Отклонить</a><a href="orders.html?f=status">Фильтр статуса</a><a href="orders.html?f=date">Фильтр даты</a><a href="orders.html?sheet=sort">Сортировка (мобилка)</a><a href="orders.html?nf=1">Ничего не найдено</a><a href="orders-empty.html" aria-current="page">Заявок пока нет</a></nav>
+<nav class="states" aria-label="Состояния макета"><span>Раздел</span><a class="states__section" href="index.html">Отзывы</a><a class="states__section" href="bookings.html">Бронирования</a><a class="states__section" href="orders.html" aria-current="true">Заявки эксперта</a><span>Состояния</span><a href="orders.html">Список</a><a href="orders.html?detail=await">Подробнее: ждёт ответа</a><a href="orders.html?detail=paid">Подробнее: предоплата</a><a href="orders.html?dlg=confirm">Подтвердить</a><a href="orders.html?dlg=reject">Отклонить</a><a href="orders.html?f=status">Фильтр статуса</a><a href="orders.html?f=date">Фильтр даты</a><a href="orders.html?sheet=sort">Сортировка (мобилка)</a><a href="orders.html?fa=1">Фильтры применены</a><a href="orders.html?nf=1">Ничего не найдено</a><a href="orders-empty.html" aria-current="page">Заявок пока нет</a></nav>
 <script src="app.js"></script>
 <script src="orders.js"></script>
 </body>

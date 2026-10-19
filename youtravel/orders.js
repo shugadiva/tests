@@ -63,11 +63,15 @@
         <div class="or2-cell or2-c--act">${actions(o)}</div>
       </div>`).join('');
     // подписи фильтров
-    const sv = [...state.status].map((k) => ({ confirmed: 'Подтверждено', pending: 'Ожидает подтверждения', declined: 'Отклонено' }[k]));
-    $('[data-key="status"] [data-label]').textContent = sv.length ? sv.join(', ') : 'Статус бронирования';
+    const sv = ['pending', 'confirmed', 'declined'].filter((k) => state.status.has(k)).map((k) => ({ confirmed: 'Подтверждено', pending: 'Ожидает подтверждения', declined: 'Отклонено' }[k]));
+    $('[data-key="status"] [data-label]').textContent = sv.length ? sv[0] + (sv.length > 1 ? ` +${sv.length - 1}` : '') : 'Статус бронирования';
     $('[data-key="date"] [data-label]').textContent = state.range ? rangeText(state.range, true) : 'Дата бронирования';
+    $('[data-key="status"] .or2-fbtn').classList.toggle('is-applied', !!sv.length);
+    $('[data-key="date"] .or2-fbtn').classList.toggle('is-applied', !!state.range);
     const n = (state.status.size ? 1 : 0) + (state.range ? 1 : 0);
     $('[data-mlabel]').textContent = n ? `Фильтры · ${n}` : 'Фильтры';
+    $('[data-sheet="filters"]').classList.toggle('is-applied', !!n);
+    $('#or2-freset').hidden = !n;
     $('[data-status-v]').textContent = sv.length ? (sv.length === 1 ? sv[0] : sv.length) : 'Все';
     $('[data-date-v]').textContent = state.range ? rangeText(state.range, true) : 'Все';
     $('.or2-sorter').dataset.dir = state.dir;
@@ -129,7 +133,7 @@
   });
   $('#sh-sort').addEventListener('click', (e) => { const o = e.target.closest('.or2-sortopt'); if (o) { state.dir = o.dataset.sort; $$('.or2-sortopt').forEach((b) => b.setAttribute('aria-checked', String(b === o))); render(); } });
 
-  $('#or2-reset').addEventListener('click', () => { state.status.clear(); state.range = null; render(); });
+  $$('#or2-reset, #or2-freset').forEach((b) => b.addEventListener('click', () => { state.status.clear(); state.range = null; render(); }));
 
   // ---- Тост ----
   const toast = document.createElement('div'); toast.className = 'toast'; toast.setAttribute('role', 'status'); document.body.append(toast);
@@ -184,4 +188,5 @@
   if (params.get('f') === 'date') { pick = ['2026-10-05', '2026-10-14']; renderCal(dateDrop); dateDrop.hidden = false; $('[data-key="date"] .or2-fbtn').setAttribute('aria-expanded', 'true'); }
   if (params.get('sheet')) openSheet('sh-' + params.get('sheet'));
   if (params.has('nf')) { state.status = new Set(['declined']); state.range = ['2027-03-01', '2027-03-31']; render(); }
+  if (params.has('fa')) { state.status = new Set(['pending', 'confirmed']); state.range = ['2026-10-01', '2026-10-31']; render(); }
 })();
