@@ -31,7 +31,7 @@
     { id: 131701, at: '2026-07-02', name: 'Павел', parts: ['мужчина, 44 года', 'женщина, 42 года'], tour: ALT, st: 'finished', pay: 'second', price: 210000, contacts: ['+7 916 200-44-18', 'pavel.alt@mail.ru'] },
     { id: 131655, at: '2026-10-01', name: 'Елена', parts: ['женщина, 52 года'], tour: DAG, st: 'client', pay: 'pre', price: 79000 },
   ];
-  const ST = { pending: 'Ожидает подтверждения', confirmed: 'Подтверждено', finished: 'Тур завершен', declined: 'Отклонено', client: 'Отменено клиентом', auto: 'Отменено автоматически' };
+  const ST = { pending: 'Ожидает подтверждения', confirmed: 'Подтверждено', finished: 'Тур завершен', declined: 'Бронирование отклонено', client: 'Бронирование отменено клиентом', auto: 'Бронирование отменено автоматически. Истек срок оплаты' };
   const STATUS_FILTER = { confirmed: ['confirmed'], pending: ['pending'], declined: ['declined'] };
 
   const ICON = { chat: '<img src="assets/or2-chat.svg" alt="" width="20" height="20">', profile: '<img src="assets/or2-profile.svg" alt="" width="20" height="20">', doc: '<img src="assets/or2-doc.svg" alt="" width="20" height="20">' };
