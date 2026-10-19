@@ -64,8 +64,8 @@
       </div>`).join('');
     // подписи фильтров
     const sv = [...state.status].map((k) => ({ confirmed: 'Подтверждено', pending: 'Ожидает подтверждения', declined: 'Отклонено' }[k]));
-    $('[data-key="status"] [data-label]').textContent = sv.length ? `Статус бронирования: ${sv.length === 1 ? sv[0] : sv.length}` : 'Статус бронирования';
-    $('[data-key="date"] [data-label]').textContent = state.range ? `Дата бронирования: ${rangeText(state.range, true)}` : 'Дата бронирования';
+    $('[data-key="status"] [data-label]').textContent = sv.length ? sv.join(', ') : 'Статус бронирования';
+    $('[data-key="date"] [data-label]').textContent = state.range ? rangeText(state.range, true) : 'Дата бронирования';
     const n = (state.status.size ? 1 : 0) + (state.range ? 1 : 0);
     $('[data-mlabel]').textContent = n ? `Фильтры · ${n}` : 'Фильтры';
     $('[data-status-v]').textContent = sv.length ? (sv.length === 1 ? sv[0] : sv.length) : 'Все';
