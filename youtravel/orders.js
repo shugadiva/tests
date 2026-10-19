@@ -64,12 +64,12 @@
       </div>`).join('');
     // подписи фильтров
     const sv = ['pending', 'confirmed', 'declined'].filter((k) => state.status.has(k)).map((k) => ({ confirmed: 'Подтверждено', pending: 'Ожидает подтверждения', declined: 'Отклонено' }[k]));
-    $('[data-key="status"] [data-label]').textContent = sv.length ? sv[0] + (sv.length > 1 ? ` +${sv.length - 1}` : '') : 'Статус бронирования';
+    $('[data-count]').textContent = sv.length; $('[data-count]').hidden = !sv.length;
     $('[data-key="date"] [data-label]').textContent = state.range ? rangeText(state.range, true) : 'Дата бронирования';
     $('[data-key="status"] .or2-fbtn').classList.toggle('is-applied', !!sv.length);
     $('[data-key="date"] .or2-fbtn').classList.toggle('is-applied', !!state.range);
     const n = (state.status.size ? 1 : 0) + (state.range ? 1 : 0);
-    $('[data-mlabel]').textContent = n ? `Фильтры · ${n}` : 'Фильтры';
+    $('[data-mcount]').textContent = n; $('[data-mcount]').hidden = !n;
     $('[data-sheet="filters"]').classList.toggle('is-applied', !!n);
     $('#or2-freset').hidden = !n;
     $('[data-status-v]').textContent = sv.length ? (sv.length === 1 ? sv[0] : sv.length) : 'Все';
