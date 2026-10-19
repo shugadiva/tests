@@ -1182,9 +1182,11 @@
   .or2-btn:focus-visible, .or2-fbtn:focus-visible { outline: 2px solid var(--green-click); outline-offset: 2px; }
 
   /* Фильтры */
-  .or2-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+  .or2-filters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
   .or2-filter { position: relative; }
   .or2-fbtn { height: 40px; padding: 0 12px 0 16px; gap: 8px; border-radius: 8px; display: inline-flex; align-items: center; background: var(--primary-white); box-shadow: inset 0 0 0 1px var(--row-line); font: 600 14px/18px var(--font-text); color: var(--primary-night); white-space: nowrap; transition: background-color 150ms var(--ease-out), box-shadow 150ms var(--ease-out); }
+  .or2-filters .or2-fbtn { width: 100%; justify-content: space-between; }
+  .or2-fbtn [data-label] { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   .or2-fbtn:hover { background: var(--grey-pale); }
   .or2-fbtn[aria-expanded="true"] { box-shadow: inset 0 0 0 1px var(--primary-night); }
   .or2-fbtn img { transition: transform 150ms var(--ease-out); }
