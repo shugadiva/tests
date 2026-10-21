@@ -44,7 +44,8 @@
     const chat = `<button class="or2-btn or2-btn--grey" type="button" data-toast="Чат с&nbsp;путешественником: вне тестового">${ICON.chat}Чат</button>`;
     if (o.st === 'pending') return chat + `<div class="or2-pair"><button class="or2-btn or2-btn--green" type="button" data-act="confirm" data-id="${o.id}">Подтвердить</button><button class="or2-btn or2-btn--white" type="button" data-act="reject" data-id="${o.id}">Отклонить</button></div>`;
     // #13 (Amiga, 21.10): у подтверждённых «Ссылка на вторую часть» (пока не внесена вторая часть) и «Выставить счёт на доп. услугу», подписи как в ЛК
-    if (o.st === 'confirmed') return (o.pay !== 'none' ? `<div class="or2-pair">${chat}<button class="or2-btn or2-btn--white" type="button" data-act="info" data-id="${o.id}">${ICON.profile}Контакты</button></div>` : chat) + extra(o);
+    // #12 (21.10): «Контакты» в строке нет, как в действующем ЛК; контакты в окне деталей, туда ведёт номер заказа
+    if (o.st === 'confirmed') return chat + extra(o);
     return chat;
   };
   const extra = (o) => (o.pay !== 'second' ? `<button class="or2-btn or2-btn--white" type="button" data-copy-link="${o.id}">Ссылка на&nbsp;вторую часть</button>` : '')
