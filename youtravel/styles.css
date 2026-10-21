@@ -1443,3 +1443,13 @@
   .or2-sortlist { padding: 8px; }
   .or2-sortitem { height: 32px; padding: 0 8px; }
   .or2-drop.or2-cal { padding: 16px; gap: 12px; }
+
+  /* Сортировка как в новом кабинете эксперта (lk.youtravel.me/tours/active, 21.10.2026): «Сортировать:» серым 13 Semibold и стрелка, значение не показывается;
+     список ytme-dropdown-list: скругление 10, отступы 4, пункты 32, слева 8, текст 13/20 Semibold, выбранный не отмечается */
+  .or2-sortbtn { gap: 4px; font: 600 13px/20px var(--font-text); }
+  .or2-sortbtn [data-sort-label][hidden] { display: none; }
+  .or2-sortbtn .or2-chev { margin-left: 0; color: var(--primary-night); }
+  .or2-sortlist { width: auto; min-width: 178px; padding: 4px; gap: 2px; border-radius: 10px; }
+  .or2-sortitem { height: 32px; padding: 0 10px 0 8px; font: 600 13px/20px var(--font-text); white-space: nowrap; }
+  .or2-sortitem[aria-selected="true"] { color: var(--primary-night); }
+  .or2-sortitem[aria-selected="true"]::after { content: none; }
