@@ -1456,3 +1456,8 @@
   .or2-sortitem { height: 32px; padding: 0 10px 0 8px; font: 600 13px/20px var(--font-text); white-space: nowrap; }
   .or2-sortitem[aria-selected="true"] { color: var(--primary-night); }
   .or2-sortitem[aria-selected="true"]::after { content: none; }
+
+  /* #13: у подтверждённой заявки «Чат» и «Контакты» в ряд, ниже кнопки ЛК «Ссылка на вторую часть» и «Выставить счёт на доп. услугу»; в окне деталей столбиком */
+  .or2-c--act .or2-pair .or2-btn { min-width: 0; }
+  .or2-info__actions.is-stack { flex-direction: column; }
+  .or2-info__actions.is-stack .or2-btn { flex: none; width: 100%; }

@@ -44,9 +44,12 @@
   const actions = (o) => {
     const chat = `<button class="or2-btn or2-btn--grey" type="button" data-toast="Чат с&nbsp;путешественником: вне тестового">${ICON.chat}Чат</button>`;
     if (o.st === 'pending') return chat + `<div class="or2-pair"><button class="or2-btn or2-btn--green" type="button" data-act="confirm" data-id="${o.id}">Подтвердить</button><button class="or2-btn or2-btn--white" type="button" data-act="reject" data-id="${o.id}">Отклонить</button></div>`;
-    if (o.st === 'confirmed' && o.pay !== 'none') return chat + `<button class="or2-btn or2-btn--white" type="button" data-act="info" data-id="${o.id}">${ICON.profile}Контакты</button>`;
+    // #13 (Amiga, 21.10): у подтверждённых «Ссылка на вторую часть» (пока не внесена вторая часть) и «Выставить счёт на доп. услугу», подписи как в ЛК
+    if (o.st === 'confirmed') return (o.pay !== 'none' ? `<div class="or2-pair">${chat}<button class="or2-btn or2-btn--white" type="button" data-act="info" data-id="${o.id}">${ICON.profile}Контакты</button></div>` : chat) + extra(o);
     return chat;
   };
+  const extra = (o) => (o.pay !== 'second' ? `<button class="or2-btn or2-btn--white" type="button" data-copy-link="${o.id}">Ссылка на&nbsp;вторую часть</button>` : '')
+    + `<button class="or2-btn or2-btn--white" type="button" data-toast="Откроется чат с&nbsp;путешественником и&nbsp;сценарий выставления счёта на&nbsp;допуслугу">Выставить счёт на&nbsp;доп.&nbsp;услугу</button>`;
 
   // ---- Состояние фильтров и сортировки ----
   // списки: tour, status, pay (Set); даты: date [от, до], start и end (один день)
@@ -198,7 +201,8 @@
     $('#or2-info-actions').innerHTML = o.st === 'pending'
       ? (mobile() ? `<button class="or2-btn or2-btn--green" type="button" data-act="confirm" data-id="${o.id}">Подтвердить</button><button class="or2-btn or2-btn--white" type="button" data-act="reject" data-id="${o.id}">Отклонить</button>${chat}`
         : `${chat}<button class="or2-btn or2-btn--white" type="button" data-act="reject" data-id="${o.id}">Отклонить</button><button class="or2-btn or2-btn--green" type="button" data-act="confirm" data-id="${o.id}">Подтвердить</button>`)
-      : chat;
+      : o.st === 'confirmed' ? extra(o) + chat : chat;
+    $('#or2-info-actions').classList.toggle('is-stack', o.st === 'confirmed');
   };
   const openInfo = (o) => { fill(o); info.hidden = false; };
 
@@ -209,6 +213,13 @@
   const decide = (st, msg) => { if (!current) return; current.st = st; dlgC.hidden = dlgR.hidden = true; render(); if (!info.hidden) fill(current); say(msg); };
   $('#dlg-confirm-ok').addEventListener('click', () => decide('confirmed', 'Бронирование подтверждено'));
   $('#dlg-reject-ok').addEventListener('click', () => decide('declined', 'Бронирование отклонено'));
+
+  // «Ссылка на вторую часть»: ссылка в буфер и сообщение, как описал Владимир в треде #13
+  document.addEventListener('click', (e) => {
+    const c = e.target.closest('[data-copy-link]'); if (!c) return;
+    const url = `https://youtravel.me/pay/${c.dataset.copyLink}/second`;
+    (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).catch(() => {}).finally(() => say('Ссылка на&nbsp;оплату второй части скопирована'));
+  });
 
   // клики по строкам и кнопкам
   document.addEventListener('click', (e) => {
