@@ -1287,6 +1287,25 @@
   .or2-day.is-today { box-shadow: inset 0 0 0 1px var(--green-default); font-weight: 600; }
   .or2-day.is-in { background: var(--green-selected); }
   .or2-day.is-sel { background: var(--green-default); color: var(--primary-white); font-weight: 600; }
+  /* Календарь как date-range-calendar в макете (21.10.2026, по календарю youtravel.me): ячейки 1/7 ширины без зазоров, начало и конец белые с обводкой 2px,
+     период сплошной полосой grey-light, сегодня зелёная обводка, наведение светло-зелёная обводка, дни соседних месяцев не показываются */
+  .or2-drop.or2-cal { width: 310px; }
+  .or2-cal__month { font: 600 14px/18px var(--font-text); color: var(--primary-black); }
+  .or2-cal__grid { grid-template-columns: repeat(7, 1fr); column-gap: 0; row-gap: 4px; }
+  .or2-cal__wd { font: 700 11px/12px var(--font-text); color: var(--dark-grey-primary); color: #9999a9; }
+  .or2-cal__wd.is-we { color: #87a038; }
+  .or2-day { width: 100%; height: auto; aspect-ratio: 1; position: relative; border-radius: 8px; font: 600 14px/18px var(--font-text); color: var(--primary-black); background: transparent; }
+  .or2-day > span { position: relative; z-index: 1; }
+  .or2-day:hover { background: transparent; box-shadow: inset 0 0 0 2px var(--green-default); }
+  .or2-day.is-empty { pointer-events: none; }
+  .or2-day.is-today { box-shadow: inset 0 0 0 2px #87a038; font-weight: 600; }
+  .or2-day.is-in { background: var(--grey-light); border-radius: 0; }
+  .or2-day.is-in.is-row-start { border-radius: 8px 0 0 8px; }
+  .or2-day.is-in.is-row-end { border-radius: 0 8px 8px 0; }
+  .or2-day.is-sel { background: var(--primary-white); color: var(--primary-black); box-shadow: inset 0 0 0 2px var(--primary-black); }
+  .or2-day.is-start, .or2-day.is-end { box-shadow: none; border-radius: 0; background: linear-gradient(90deg, transparent 50%, var(--grey-light) 50%); }
+  .or2-day.is-end { background: linear-gradient(90deg, var(--grey-light) 50%, transparent 50%); }
+  .or2-day.is-start::before, .or2-day.is-end::before { content: ""; position: absolute; inset: 0; border-radius: 8px; background: var(--primary-white); box-shadow: inset 0 0 0 2px var(--primary-black); }
   .or2-cal__range { display: flex; gap: 6px; font: 400 13px/17px var(--font-text); color: var(--dark-grey-primary); }
   .or2-cal__range b { font-weight: 600; color: var(--primary-night); }
 

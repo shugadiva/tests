@@ -145,13 +145,13 @@
     const cells = [];
     for (let i = first - 1; i >= 0; i--) cells.push([iso(y, m - 1, prevDays - i), prevDays - i, true]);
     for (let d = 1; d <= days; d++) cells.push([iso(y, m, d), d, false]);
-    for (let d = 1; cells.length < 42; d++) cells.push([iso(y, m + 1, d), d, true]);
+    for (let d = 1; cells.length % 7; d++) cells.push([iso(y, m + 1, d), d, true]);
     const r = pick;
-    const cls = ([k, , muted]) => { const c = ['or2-day']; if (muted) c.push('is-muted'); if (k === TODAY) c.push('is-today'); if (r && r[0] && (k === r[0] || k === r[1])) c.push('is-sel'); else if (!single && r && r[1] && k > r[0] && k < r[1]) c.push('is-in'); return c.join(' '); };
+    const cls = ([k, , muted], i) => { const c = ['or2-day']; if (muted) c.push('is-muted'); if (k === TODAY) c.push('is-today'); const span = !single && r && r[1] && r[0] !== r[1]; if (r && r[0] && (k === r[0] || k === r[1])) { c.push('is-sel'); if (span) c.push(k === r[0] ? 'is-start' : 'is-end'); } else if (!single && r && r[1] && k > r[0] && k < r[1]) { c.push('is-in'); if (i % 7 === 0) c.push('is-row-start'); if (i % 7 === 6) c.push('is-row-end'); } return c.join(' '); };
     const title = `${['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'][m]} ${y}`;
     const chosen = !r || !r[0] ? 'нет' : single || !r[1] || r[0] === r[1] ? num(r[0]) : `${num(r[0])} – ${num(r[1])}`;
     el.innerHTML = `<div class="or2-cal__month"><button class="or2-cal__nav" type="button" data-nav="-1" aria-label="Предыдущий месяц"><img src="assets/or2-arrow-l.svg" alt="" width="20" height="20"></button>${title}<button class="or2-cal__nav" type="button" data-nav="1" aria-label="Следующий месяц"><img src="assets/or2-arrow-r.svg" alt="" width="20" height="20"></button></div>
-      <div class="or2-cal__grid">${['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map((w) => `<span class="or2-cal__wd">${w}</span>`).join('')}${cells.map((c) => `<button class="${cls(c)}" type="button" data-day="${c[0]}">${c[1]}</button>`).join('')}</div>
+      <div class="or2-cal__grid">${['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'].map((w, i) => `<span class="or2-cal__wd${i > 4 ? ' is-we' : ''}">${w}</span>`).join('')}${cells.map((c, i) => c[2] ? '<span class="or2-day is-empty" aria-hidden="true"></span>' : `<button class="${cls(c, i)}" type="button" data-day="${c[0]}"><span>${c[1]}</span></button>`).join('')}</div>
       <div class="or2-cal__range">Выбрано: <b>${chosen}</b></div>
       <div class="or2-drop__actions"><button class="or2-btn or2-btn--grey" type="button" data-cclear>Очистить</button><button class="or2-btn or2-btn--green" type="button" data-capply>Применить</button></div>`;
   };
