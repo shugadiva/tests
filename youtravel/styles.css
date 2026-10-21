@@ -957,6 +957,16 @@
   .bd2-arrival { display: flex; flex-direction: column; gap: 24px; }
   .bd2-arrival__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
+  /* Тексты по стилям SERP, как в макете 21.10 (размеры без пары подведены к ближайшему стилю) */
+  .bd-v2 .bd-day p, .bd-v2 .bd-terms li { font: 400 13px/19px var(--font-text); }
+  .bd-v2 .bd2-list li { line-height: 19px; }
+  .bd-v2 .bd-point__time, .bd-v2 .bd-point__place { line-height: 17px; }
+  .bd-v2 .bd-meta__days { font-size: 14px; line-height: 18px; }
+  .bd-v2 .bd-pay__label, .bd-v2 .bd-pay__more > button { line-height: 16px; }
+  .bd-v2 .bd-tour__title { line-height: 22px; }
+  .bd-v2 .bd-total__label { line-height: 18px; }
+  .bd-v2 .bd-expert__role { line-height: 19px; }
+
   @media (max-width: 1023px) {
     .bd-v2 .bd-columns { display: flex; flex-direction: column; }
     .bd-v2 .bd-main { padding: 16px; }
