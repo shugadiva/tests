@@ -41,7 +41,7 @@
 
   const ICON = { chat: '<img src="assets/or2-chat.svg" alt="" width="20" height="20">', profile: '<img src="assets/or2-profile.svg" alt="" width="20" height="20">' };
   const actions = (o) => {
-    const chat = `<button class="or2-btn or2-btn--grey" type="button" data-toast="Чат с&nbsp;путешественником: вне тестового">${ICON.chat}Чат</button>`;
+    const chat = `<button class="or2-btn or2-btn--grey" type="button" data-toast="Чат с&nbsp;путешественником: не входит в прототип">${ICON.chat}Чат</button>`;
     if (o.st === 'pending') return chat + `<div class="or2-pair"><button class="or2-btn or2-btn--green" type="button" data-act="confirm" data-id="${o.id}">Подтвердить</button><button class="or2-btn or2-btn--white" type="button" data-act="reject" data-id="${o.id}">Отклонить</button></div>`;
     // #13 (Amiga, 21.10): у подтверждённых «Ссылка на вторую часть» (пока не внесена вторая часть) и «Выставить счёт на доп. услугу», подписи как в ЛК
     // #12 (21.10): «Контакты» в строке нет, как в действующем ЛК; контакты в окне деталей, туда ведёт номер заказа
@@ -188,7 +188,7 @@
     current = o; const half = Math.round(o.price / 2);
     const preOk = o.pay !== 'none', postOk = o.pay === 'second';
     const f = [
-      ['Номер заказа', o.id], ['Имя клиента', o.name], ['Название тура', `<a href="#" data-toast="Страница тура: вне тестового">${o.tour[0]}</a>`], ['Забронированные даты', o.tour[1]],
+      ['Номер заказа', o.id], ['Имя клиента', o.name], ['Название тура', `<a href="#" data-toast="Страница тура: не входит в прототип">${o.tour[0]}</a>`], ['Забронированные даты', o.tour[1]],
       ['Количество путешественников', o.parts.length], ['Данные участников', o.parts.map((p, i) => `Участник ${i + 1}: ${p}`).join('\n')],
       ['Статус заказа', `<span class="or2-st--${o.st}">${ST[o.st]}</span>`], ['Цена тура', rub(o.price)],
       ['Размер предоплаты', `${rub(half)}<span class="or2-sub${preOk ? ' is-paid' : ''}">${preOk ? 'Оплачена' : 'Не оплачена'}</span>`],
@@ -197,7 +197,7 @@
       ['Контакты путешественника', o.contacts && preOk ? o.contacts.join('\n') : '<span class="or2-lock"><img src="assets/or2-info.svg" alt="" width="20" height="20">Откроются после предоплаты</span>'],
     ];
     $('#or2-fields').innerHTML = f.map(([k, v]) => `<div class="or2-field"><dt>${k}</dt><dd>${v}</dd></div>`).join('');
-    const chat = `<button class="or2-btn ${mobile() ? 'or2-btn--white' : 'or2-btn--grey'}" type="button" data-toast="Чат с&nbsp;путешественником: вне тестового">${ICON.chat}Перейти в&nbsp;чат</button>`;
+    const chat = `<button class="or2-btn ${mobile() ? 'or2-btn--white' : 'or2-btn--grey'}" type="button" data-toast="Чат с&nbsp;путешественником: не входит в прототип">${ICON.chat}Перейти в&nbsp;чат</button>`;
     $('#or2-info-actions').innerHTML = o.st === 'pending'
       ? (mobile() ? `<button class="or2-btn or2-btn--green" type="button" data-act="confirm" data-id="${o.id}">Подтвердить</button><button class="or2-btn or2-btn--white" type="button" data-act="reject" data-id="${o.id}">Отклонить</button>${chat}`
         : `${chat}<button class="or2-btn or2-btn--white" type="button" data-act="reject" data-id="${o.id}">Отклонить</button><button class="or2-btn or2-btn--green" type="button" data-act="confirm" data-id="${o.id}">Подтвердить</button>`)
