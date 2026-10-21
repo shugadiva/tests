@@ -1235,7 +1235,7 @@
   .or2-menu__sub { display: flex; flex-direction: column; gap: 2px; padding-left: 36px; }
 
   /* Кнопки ДС: XS 36 и S 40 */
-  .or2-btn { height: 36px; padding: 0 12px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; font: 600 13px/17px var(--font-text); color: var(--primary-night); transition: background-color 150ms var(--ease-out); }
+  .or2-btn { height: 36px; padding: 0 12px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; gap: 4px; white-space: nowrap; font: 600 13px/17px var(--font-text); color: var(--primary-night); transition: background-color 150ms var(--ease-out); }
   .or2-btn img { flex: none; }
   .or2-btn--grey { background: var(--grey-default); }
   .or2-btn--grey:hover { background: #e4e4e8; }
