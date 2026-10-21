@@ -555,29 +555,39 @@
   /* Список карточек */
   .bk-list { display: flex; flex-direction: column; gap: 16px; }
 
-  /* booking-card-active / booking-card-closed, v2 по сверке с приложением */
+  /* booking-card-active / booking-card-closed: горизонтальная карточка по SERP (#14, #23), высота 258 у всех статусов */
   .bk-tabs__item { font: 600 14px/18px var(--font-text); }
-  .bk-card { display: flex; align-items: stretch; gap: 20px; padding: 20px; border: 1px solid var(--grey-divider); border-radius: 16px; background: var(--primary-white); transition: box-shadow 150ms var(--ease-out); }
+  .bk-card { display: flex; align-items: stretch; height: 258px; border: 1px solid var(--grey-divider); border-radius: 16px; background: var(--primary-white); overflow: hidden; transition: box-shadow 150ms var(--ease-out); }
   .bk-card:not(.bk-card--sk):hover { box-shadow: var(--bk-card-hover); }
-  .bk-card__cover { position: relative; width: 200px; flex: none; border-radius: 10px; overflow: hidden; }
+  .bk-card__cover { position: relative; width: 258px; flex: none; }   /* фото 1:1 до края карточки */
   .bk-card__cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .bk-card__tag { position: absolute; top: 12px; left: 12px; height: 24px; padding: 4px 8px; border-radius: 4px; display: inline-flex; align-items: center; background: #f5a32a; color: var(--primary-white); font: 700 11px/12px var(--font-text); letter-spacing: .22px; text-transform: uppercase; }
-  .bk-card__body { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
-  .bk-card__info { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
-  .bk-card__region { font: 600 14px/18px var(--font-text); color: #828296; }   /* dark-grey/secondary */
-  .bk-card__title { font: 600 16px/19px var(--font-text); color: #222222; transition: color 150ms var(--ease-out); } /* h5, black */
+  .bk-card__tag { position: absolute; top: 12px; left: 12px; height: 24px; padding: 4px 8px; border-radius: 4px; display: inline-flex; align-items: center; background: #f5a32a; color: var(--primary-white); font: 700 11px/12px var(--font-text); letter-spacing: .22px; text-transform: uppercase; } /* CAPS */
+  .bk-card__body { flex: 1; min-width: 0; display: flex; justify-content: space-between; gap: 20px; padding: 24px; }
+  .bk-card__main { width: 266px; flex: none; display: flex; flex-direction: column; justify-content: space-between; }   /* ширина = строка кнопок, заголовок не дальше кнопок */
+  .bk-card__info { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+  .bk-card__region { font: 600 13px/17px var(--font-text); color: #828296; }   /* Body S/Semibold, dark-grey/secondary */
+  .bk-card__title { font: 600 15px/22px var(--font-text); color: #222222; transition: color 150ms var(--ease-out); } /* Body L/Semibold, black */
   .bk-card__title:hover { color: var(--green-click); }
+  .bk-card__bottom { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
   .bk-card__actions { display: flex; gap: 8px; }
+  .bk-card__side { width: 204px; flex: none; display: flex; flex-direction: column; justify-content: space-between; }
+  .bk-side__pay { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+  .bk-side__pay .bk-status { margin-bottom: 8px; }
+  .bk-side__pay .bk-status--wrap { white-space: normal; }   /* «Отменено автоматически. Истек срок оплаты» переносится, как в макете */
+  .bk-side__label { font: 600 13px/17px var(--font-text); color: #828296; }   /* Body S/Semibold */
+  .bk-side__amount { font: 700 18px/22px var(--font-display); color: #222222; } /* H4, две валюты как в МП */
+  .bk-side__hint { font: 400 13px/17px var(--font-text); color: #828296; }    /* Body S/Regular */
 
-  .bk-card--closed .bk-card__cover { width: 160px; }
-  .bk-card--closed .bk-card__body { flex-direction: row; align-items: center; justify-content: space-between; gap: 20px; }
-  .bk-card__actions--column { flex-direction: column; align-items: flex-end; flex: none; }
+  /* кнопки: XS в строке (36, Body S/Semibold), M справа (44, Body L/Semibold) */
+  .bk-xbtn { height: 36px; padding: 0 12px; border-radius: 6px; font: 600 13px/17px var(--font-text); }
+  .bk-xbtn--chat { gap: 6px; padding-left: 10px; }
+  .bk-mbtn-d { width: 100%; height: 44px; padding: 0 20px; border-radius: 9px; font: 600 15px/22px var(--font-text); }
 
-  /* meta: три строки, как в приложении */
-  .bk-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; font: 600 14px/18px var(--font-text); }
+  /* meta: три строки, как в приложении; подпись Body S/Semibold, значение Body S/Regular */
+  .bk-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; font: 600 13px/17px var(--font-text); }
   .bk-pair { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
   .bk-pair__label { color: #9999a9; }   /* grey/text */
-  .bk-pair__value { color: #222222; }
+  .bk-pair__value { color: #121212; font-weight: 400; }   /* primary/black */
   .bk-copy { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 4px; background: transparent; padding: 0; margin: -5px 0; transition: background-color 150ms var(--ease-out); }
   .bk-copy:hover { background: var(--grey-pale); }
   .bk-copy:focus-visible { outline: 2px solid var(--green-click); outline-offset: 0; }
@@ -588,21 +598,6 @@
   .bk-status--green { background: var(--bk-green-pale); }
   .bk-status--done { background: var(--bk-line); }
   .bk-status--closed { background: var(--grey-pale); }
-
-  /* шаги под статусом: на десктопе видны всегда */
-  .bk-tl { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 20px; }
-  .bk-tl[hidden] { display: none; }
-  .bk-tl__step { position: relative; display: flex; align-items: center; gap: 10px; min-height: 18px; font: 600 12px/16px var(--font-text); color: #222222; }
-  .bk-tl__step + .bk-tl__step::before { content: ""; position: absolute; left: 8.4px; top: -16px; width: 1.2px; height: 12px; background: #b6b6bf; opacity: .5; }
-  .bk-tl__icon { width: 18px; height: 18px; border-radius: 50%; flex: none; display: grid; place-items: center; }
-  .bk-tl__step--done .bk-tl__icon { background: var(--green-default); }
-  .bk-tl__step--todo .bk-tl__icon { box-shadow: inset 0 0 0 1.3px #9999a9; }
-
-  /* next-step: плашка следующего шага */
-  .bk-next-step { width: 100%; display: flex; align-items: center; gap: 16px; padding: 12px 16px; border-radius: 12px; background: var(--green-selected); }
-  .bk-next-step__text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-  .bk-next-step__title { font: 600 14px/18px var(--font-text); color: var(--primary-night); }
-  .bk-next-step__sub { font: 400 12px/16px var(--font-text); color: var(--dark-grey-primary); }
 
   /* кнопки карточки: h5 16/19, чат серый с иконкой, как в приложении */
   .bk-btn { font: 600 16px/19px var(--font-text); }
@@ -615,13 +610,10 @@
   .bk-more[aria-busy="true"] { color: var(--dark-grey-primary); cursor: progress; }
 
   /* Загрузка: skeleton-card повторяет карточку */
-  .bk-sk-cover { width: 200px; min-height: 236px; border-radius: 12px; flex: none; align-self: stretch; }
-  .bk-sk-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
-  .bk-sk-lines { display: flex; flex-direction: column; gap: 6px; }
-  .bk-sk-meta { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
-  .bk-sk-tl { display: flex; flex-direction: column; gap: 12px; }
-  .bk-sk-step { display: flex; align-items: center; gap: 8px; }
-  .bk-sk-body .sk { max-width: 100%; }
+  .bk-sk-cover { width: 258px; height: 100%; border-radius: 0; flex: none; }
+  .bk-sk-lines { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .bk-sk-meta { display: flex; flex-direction: column; gap: 8px; }
+  .bk-card--sk .sk { max-width: 100%; }
   .bk-sk-actions { display: flex; gap: 8px; }
 
   /* Пусто */
