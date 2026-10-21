@@ -1397,8 +1397,8 @@
   .or2-col { white-space: nowrap; }
 
   /* ==== Фильтры текстом, сортировка, строка результата (Figma «Desktop / Заявки v2», #10 из Amiga, 21.10.2026) ==== */
-  /* Ряд фильтров как «Туры» нового кабинета: текст 13 Semibold, шеврон 8, ряд растянут, отступ не меньше 10, без переноса */
-  .or2-filters { display: flex; justify-content: space-between; gap: 10px; flex-wrap: nowrap; }
+  /* Ряд фильтров как «Туры» нового кабинета: текст 13 Semibold, шеврон 8, по левому краю с шагом 16 (вариант B, 21.10): значение сдвигает только фильтры правее */
+  .or2-filters { display: flex; justify-content: flex-start; gap: 16px; flex-wrap: nowrap; }
   .or2-flink { display: inline-flex; align-items: center; gap: 3px; padding: 0; background: none; white-space: nowrap; font: 600 13px/17px var(--font-text); color: var(--primary-night); transition: color 150ms var(--ease-out); }
   .or2-flink:hover { color: var(--green-hover); }
   .or2-flink:focus-visible { outline: 2px solid var(--green-click); outline-offset: 2px; }
