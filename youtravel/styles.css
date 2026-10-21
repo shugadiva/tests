@@ -910,6 +910,63 @@
   }
 
 
+/* Детали брони v2 (правки Amiga 20.10.2026: #15 карточки, #16 «Включено» как на сайте, #17 «Детали тура», #18 карточка эксперта, порядок блоков как на странице тура). Только страница booking-paid-v2.html, всё под .bd-v2 */
+  .bd-v2 { --bd2-border: #dbdfe9; --bd2-shadow: 1px 3px 60px rgba(153, 153, 169, .35); --bd2-shadow-row: 2px 2px 15px rgba(153, 153, 169, .15); --bd2-grey: #828296; --bd2-info: #9999a9; --bd2-purple: #771f96; }
+  .content > .card.bd-v2 { background: transparent; padding: 0; }
+  .bd-v2 .bd-columns { grid-template-columns: 529px 343px; }
+  .bd-v2 .bd-main { background: var(--primary-white); border: 1px solid var(--bd2-border); border-radius: 16px; box-shadow: var(--bd2-shadow); padding: 24px; gap: 48px; }
+  .bd-v2 .bd-aside { border: 1px solid var(--bd2-border); box-shadow: var(--bd2-shadow); }
+  .bd-v2 .bd2-h2 { margin: 0; font: 700 24px/28px var(--font-display); color: var(--primary-night); }
+  .bd-v2 .bd2-h3 { margin: 0; font: 700 20px/24px var(--font-display); color: var(--primary-night); }
+
+  /* #17 Детали тура: серая подложка, три белые карточки */
+  .bd2-details { background: var(--grey-pale); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+  .bd2-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .bd2-tile { background: var(--primary-white); border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .bd2-tile > svg { flex: none; }
+  .bd2-tile__info { display: flex; flex-direction: column; gap: 4px; }
+  .bd2-tile__label { display: flex; align-items: center; gap: 4px; font: 600 13px/19px var(--font-text); color: var(--bd2-grey); }
+  .bd2-tile__value { font: 600 13px/19px var(--font-text); color: var(--primary-night); }
+  .bd2-info { flex: none; }
+
+  /* #18 Тревел-эксперт карточкой, как «Организатор туров» */
+  .bd2-expert { background: var(--grey-pale); border-radius: 16px; padding: 24px; display: flex; align-items: center; gap: 16px; }
+  .bd2-expert .bd-expert__profile { align-items: center; }
+  .bd2-expert .bd-expert__photo { width: 64px; height: 64px; }
+  .bd2-chat { flex: none; display: inline-flex; align-items: center; gap: 8px; height: 48px; padding: 12px; border-radius: 8px; background: var(--bd2-purple); color: var(--primary-white); font: 600 15px/22px var(--font-text); transition: background-color 150ms var(--ease-out); }
+  .bd2-chat:hover { background: #8600ef; }
+
+  /* Программа и «Важно знать»: пункты карточками */
+  .bd2-section { display: flex; flex-direction: column; gap: 24px; }
+  .bd-v2 .bd-important { gap: 20px; }
+  .bd-v2 .bd-program__body { gap: 20px; }
+  .bd-v2 .bd-rows { background: none; padding: 0; gap: 20px; }
+  .bd-v2 .bd-row, .bd-v2 .bd-rows--important .bd-row, .bd-v2 .bd-rows--important .bd-row[data-open="true"] { background: var(--primary-white); border: 1px solid var(--grey-light); border-radius: 10px; box-shadow: var(--bd2-shadow-row); padding: 20px 24px; }
+
+  /* #16 Включено в стоимость */
+  .bd2-price { display: flex; flex-direction: column; gap: 28px; }
+  .bd2-price__body { border-top: 1px solid var(--grey-light); padding-top: 40px; }
+  .bd2-price__group { display: flex; flex-direction: column; gap: 16px; }
+  .bd2-price__group + .bd2-price__group { border-top: 1px solid var(--grey-light); margin-top: 24px; padding-top: 24px; }
+  .bd2-price__sub { margin: 0; font: 600 14px/22px var(--font-text); color: var(--primary-night); }
+  .bd2-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+  .bd2-list li { display: flex; align-items: flex-start; gap: 8px; font: 400 13px/20px var(--font-text); color: var(--primary-night); }
+  .bd2-mark { flex: none; width: 24px; height: 20px; display: grid; place-items: center; }
+
+  /* Информация по прибытию */
+  .bd2-arrival { display: flex; flex-direction: column; gap: 24px; }
+  .bd2-arrival__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+  @media (max-width: 1023px) {
+    .bd-v2 .bd-columns { display: flex; flex-direction: column; }
+    .bd-v2 .bd-main { padding: 16px; }
+  }
+  @media (max-width: 599px) {
+    .bd2-tiles, .bd2-arrival__cols { grid-template-columns: 1fr; }
+    .bd2-expert { flex-direction: column; align-items: stretch; }
+    .bd2-chat { justify-content: center; }
+  }
+
   /* ==== Раздел эксперта «Заявки на бронирование» (Figma 11558:38969 и состояния) ==== */
   :root {
     --or-border: #dbdfe9;      /* grey/divider у кнопок и вкладок */
