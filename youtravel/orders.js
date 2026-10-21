@@ -39,12 +39,11 @@
   const ST_ORDER = ['pending', 'confirmed', 'finished', 'declined', 'client', 'auto'];
   const TOTAL = 'Всего 2&nbsp;280 заявок'; // в ЛК 57 страниц по 40; число условное, вопрос Руслану
 
-  const ICON = { chat: '<img src="assets/or2-chat.svg" alt="" width="20" height="20">', profile: '<img src="assets/or2-profile.svg" alt="" width="20" height="20">', doc: '<img src="assets/or2-doc.svg" alt="" width="20" height="20">' };
+  const ICON = { chat: '<img src="assets/or2-chat.svg" alt="" width="20" height="20">', profile: '<img src="assets/or2-profile.svg" alt="" width="20" height="20">' };
   const actions = (o) => {
     const chat = `<button class="or2-btn or2-btn--grey" type="button" data-toast="Чат с&nbsp;путешественником: вне тестового">${ICON.chat}Чат</button>`;
     if (o.st === 'pending') return chat + `<div class="or2-pair"><button class="or2-btn or2-btn--green" type="button" data-act="confirm" data-id="${o.id}">Подтвердить</button><button class="or2-btn or2-btn--white" type="button" data-act="reject" data-id="${o.id}">Отклонить</button></div>`;
     if (o.st === 'confirmed' && o.pay !== 'none') return chat + `<button class="or2-btn or2-btn--white" type="button" data-act="info" data-id="${o.id}">${ICON.profile}Контакты</button>`;
-    if (o.st === 'finished') return chat + `<button class="or2-btn or2-btn--white" type="button" data-toast="Акт по&nbsp;завершённой брони: уточняем у&nbsp;клиента">${ICON.doc}Акт</button>`;
     return chat;
   };
 
