@@ -13,7 +13,6 @@
   const rub = (n) => n.toLocaleString('ru-RU').replace(/\s/g, ' ') + ' ₽';
   const MS = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
   const ML = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-  const dLong = (iso) => { const d = new Date(iso); return `${d.getDate()}&nbsp;${ML[d.getMonth()]}`; }; // в ячейке номера месяц полностью (#12)
   const dShort = (iso) => { const d = new Date(iso); return `${d.getDate()} ${MS[d.getMonth()]}`; };
 
 
@@ -78,7 +77,7 @@
     tableEl.hidden = !list.length; nfEl.hidden = !!list.length;
     rowsEl.innerHTML = list.map((o) => `
       <div class="or2-row" data-row="${o.id}">
-        <div class="or2-cell or2-c--id"><button class="or2-id" type="button" data-act="info" data-id="${o.id}" aria-label="Детали заявки ${o.id}"><span class="m-only">Заказ </span>${o.id}<svg class="or2-id__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.5 5L9.5 8L6.5 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><p class="or2-sub">${dLong(o.at)}</p></div>
+        <div class="or2-cell or2-c--id"><button class="or2-id" type="button" data-act="info" data-id="${o.id}" aria-label="Детали заявки ${o.id}"><span class="m-only">Заказ </span>${o.id}<svg class="or2-id__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.5 5L9.5 8L6.5 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><p class="or2-sub">${dShort(o.at)}</p></div>
         <div class="or2-cell or2-c--trav"><p class="or2-main">${o.name}</p><p class="or2-sub">${people(o.parts.length)}</p></div>
         <div class="or2-cell or2-c--tour"><p class="or2-main or2-clamp">${o.tour[0]}</p><p class="or2-sub">${o.tour[1]}</p></div>
         <div class="or2-cell or2-c--st"><p class="or2-main or2-st--${o.st}">${ST[o.st]}</p></div>
