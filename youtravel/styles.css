@@ -1230,11 +1230,15 @@
 
   /* Меню эксперта по живому ЛК: группы через divider, подпункты «Заказов» без иконок */
   .or2-menu .sidebar-item img { flex: none; }
+  /* меню по lk-sidebar-expert (21.10.2026): шаг 8, внутри «Заказов» 4, значок до подписи 24 как в lk.youtravel.me */
+  .or2-menu { gap: 8px; }
+  .or2-menu .sidebar-item { gap: 24px; line-height: 19px; }
+  .or2-menu .sidebar-item[aria-expanded="true"] { background: var(--green-selected); }
   .or2-menu__chev { flex: none; margin-left: auto; }
-  .or2-menu__sub .sidebar-item { height: 32px; }
-  .or2-menu__div { padding: 10px 0; }
+  /* линия как в кабинете: с 46 px, справа 16, над ней 12, под ней 10 */
+  .or2-menu__div { padding: 4px 16px 2px 46px; }
   .or2-menu__div::before { content: ""; display: block; height: 1px; background: var(--grey-light); }
-  .or2-menu__sub { display: flex; flex-direction: column; gap: 2px; padding-left: 36px; }
+  .or2-menu__sub { display: flex; flex-direction: column; gap: 4px; padding-left: 48px; margin-top: -4px; }
 
   /* Кнопки ДС: XS 36 и S 40 */
   .or2-btn { height: 36px; padding: 0 12px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; gap: 4px; white-space: nowrap; font: 600 13px/17px var(--font-text); color: var(--primary-night); transition: background-color 150ms var(--ease-out); }
