@@ -1431,3 +1431,15 @@
   .or2-pill__x { width: 16px; height: 16px; border-radius: 8px; display: grid; place-items: center; background: var(--primary-white); color: var(--green-default); }
   @keyframes or2-pill-in { from { opacity: 0; transform: scale(.95); } to { opacity: 1; transform: none; } }
   @media (prefers-reduced-motion: reduce) { .or2-pill { animation: none; } }
+
+  /* Выпадашки как в SERP и на выдаче туров (21.10.2026): тень стиля main вместо обводки, скругление 12, отступы 8, пункты 32 с подсветкой при наведении */
+  .or2-drop { padding: 8px; gap: 2px; border-radius: 12px; box-shadow: -2px 1px 28px rgba(153, 153, 169, .3); }
+  .or2-drop .or2-check { height: 32px; padding: 0 8px; border-radius: 6px; transition: background-color 150ms var(--ease-out); }
+  .or2-drop .or2-check:hover { background: var(--grey-pale); }
+  .or2-drop .or2-drop__actions { padding-top: 6px; }
+  .or2-drop--search { padding: 8px 0; }
+  .or2-drop--search .or2-opts { padding: 0 8px; gap: 2px; }
+  .or2-drop--search .or2-drop__actions { padding: 6px 8px 0; }
+  .or2-sortlist { padding: 8px; }
+  .or2-sortitem { height: 32px; padding: 0 8px; }
+  .or2-drop.or2-cal { padding: 16px; gap: 12px; }
