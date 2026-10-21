@@ -1230,6 +1230,8 @@
 
   /* Меню эксперта по живому ЛК: группы через divider, подпункты «Заказов» без иконок */
   .or2-menu .sidebar-item img { flex: none; }
+  .or2-menu__chev { flex: none; margin-left: auto; }
+  .or2-menu__sub .sidebar-item { height: 32px; }
   .or2-menu__div { padding: 8px 10px; }
   .or2-menu__div::before { content: ""; display: block; height: 1px; background: var(--grey-light); }
   .or2-menu__sub { display: flex; flex-direction: column; gap: 2px; padding-left: 36px; }
