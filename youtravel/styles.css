@@ -1385,3 +1385,47 @@
   }
   .or2-filters[hidden], .or2-mfilters[hidden] { display: none !important; }
   .or2-col { white-space: nowrap; }
+
+  /* ==== Фильтры текстом, сортировка, строка результата (Figma «Desktop / Заявки v2», #10 из Amiga, 21.10.2026) ==== */
+  /* Ряд фильтров как «Туры» нового кабинета: текст 13 Semibold, шеврон 8, ряд растянут, отступ не меньше 10, без переноса */
+  .or2-filters { display: flex; justify-content: space-between; gap: 10px; flex-wrap: nowrap; }
+  .or2-flink { display: inline-flex; align-items: center; gap: 3px; padding: 0; background: none; white-space: nowrap; font: 600 13px/17px var(--font-text); color: var(--primary-night); transition: color 150ms var(--ease-out); }
+  .or2-flink:hover { color: var(--green-hover); }
+  .or2-flink:focus-visible { outline: 2px solid var(--green-click); outline-offset: 2px; }
+  .or2-flink[aria-expanded="true"], .or2-flink.is-applied { color: var(--green-default); }
+  .or2-plus { margin-left: 1px; }
+  .or2-plus[hidden] { display: none; }
+  .or2-chev { flex: none; transition: transform 150ms var(--ease-out); }
+  .or2-flink[aria-expanded="true"] .or2-chev, .or2-sortbtn[aria-expanded="true"] .or2-chev { transform: rotate(180deg); }
+  .or2-drop { top: calc(100% + 8px); }
+  /* Панель тура: тонкий поиск с разделителем на всю ширину, список с прокруткой */
+  .or2-drop--search { width: 320px; padding: 4px 0 12px; }
+  .or2-drop--search .or2-drop__actions { padding: 8px 12px 0; }
+  .or2-search { display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 16px; border-bottom: 1px solid var(--row-line); }
+  .or2-search input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; font: 400 13px/17px var(--font-text); color: var(--primary-night); }
+  .or2-search input::placeholder { color: var(--dark-grey-primary); }
+  .or2-opts { display: flex; flex-direction: column; gap: 4px; padding: 4px 12px 0; max-height: 220px; overflow-y: auto; }
+  .or2-check__t { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .or2-check[hidden], .or2-nores[hidden] { display: none; }
+  .or2-nores { margin: 0; padding: 8px 4px; font: 400 13px/17px var(--font-text); color: var(--dark-grey-primary); }
+  /* Сортировка как компонент «Сортировка» в SERP: подпись серым, значение тёмным, шеврон; список без кнопки, применяется по клику */
+  .or2-sort { position: relative; }
+  .or2-sortbtn { display: inline-flex; align-items: center; gap: 6px; padding: 0; background: none; white-space: nowrap; font: 600 14px/18px var(--font-text); color: var(--primary-night); }
+  .or2-sortbtn__k { color: var(--dark-grey-primary); }
+  .or2-sortbtn .or2-chev { margin-left: -3px; }
+  .or2-sortbtn:focus-visible { outline: 2px solid var(--green-click); outline-offset: 2px; }
+  .or2-sortlist { width: 280px; gap: 0; padding: 8px 12px; }
+  .or2-sortitem { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 9px 4px; background: none; text-align: left; font: 400 13px/17px var(--font-text); color: var(--primary-night); border-radius: 6px; }
+  .or2-sortitem:hover { background: var(--grey-pale); }
+  .or2-sortitem[aria-selected="true"] { color: var(--green-default); font-weight: 600; }
+  .or2-sortitem[aria-selected="true"]::after { content: ""; width: 16px; height: 16px; flex: none; background: url("assets/or2-check-green.svg") center / 16px no-repeat; }
+  /* Строка результата: высота 28 всегда, кнопка появляется без сдвига таблицы */
+  .or2-result { display: flex; align-items: center; justify-content: space-between; min-height: 28px; }
+  .or2-result__n { margin: 0; font: 600 14px/18px var(--font-text); color: var(--primary-night); }
+  .or2-pill { display: inline-flex; align-items: center; gap: 2px; height: 28px; padding: 0 6px 0 12px; border-radius: 14px; background: var(--green-default); color: var(--primary-white); font: 600 13px/20px var(--font-text); white-space: nowrap; animation: or2-pill-in 150ms var(--ease-out); transition: background-color 150ms var(--ease-out); }
+  .or2-pill:hover { background: var(--green-hover); }
+  .or2-pill:focus-visible { outline: 2px solid var(--green-click); outline-offset: 2px; }
+  .or2-pill[hidden], .or2-result[hidden] { display: none; }
+  .or2-pill__x { width: 16px; height: 16px; border-radius: 8px; display: grid; place-items: center; background: var(--primary-white); color: var(--green-default); }
+  @keyframes or2-pill-in { from { opacity: 0; transform: scale(.95); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .or2-pill { animation: none; } }

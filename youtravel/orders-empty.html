@@ -57,27 +57,66 @@
     <section class="card or2" id="orders" data-empty aria-labelledby="or-title">
       <div class="or2-titlerow">
         <h1 class="t-h3 or2-title" id="or-title">Заявки на&nbsp;бронирование</h1>
-        <!-- По комментарию Alex Gol 19.10: сброс у самих фильтров, виден только при применённых. На мобилке сброс в шторке -->
-        <button class="or2-link d-only" type="button" id="or2-freset" hidden>Сбросить фильтры</button>
+        <!-- Сортировка как «Сортировка» на выдаче SERP: серая подпись, значение, стрелка; пункты из ЛК (#10, 21.10) -->
+        <div class="or2-sort d-only">
+          <button class="or2-sortbtn" type="button" aria-expanded="false" aria-haspopup="listbox"><span class="or2-sortbtn__k">Сортировать:</span><span data-sort-label>Сначала новые</span><svg class="or2-chev" width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true"><path d="M1 2.75 4 5.75 7 2.75" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="or2-drop or2-drop--right or2-sortlist" role="listbox" hidden>
+            <button class="or2-sortitem" type="button" role="option" data-sortby="new">Сначала новые</button>
+            <button class="or2-sortitem" type="button" role="option" data-sortby="old">Сначала старые</button>
+            <button class="or2-sortitem" type="button" role="option" data-sortby="name">По имени путешественника</button>
+            <button class="or2-sortitem" type="button" role="option" data-sortby="count">По количеству путешественников</button>
+            <button class="or2-sortitem" type="button" role="option" data-sortby="status">По статусу</button>
+          </div>
+        </div>
       </div>
 
-      <!-- Шесть фильтров ЛК; на мобилке вместо них «Фильтры» и «Сортировка» -->
+      <!-- Шесть фильтров ЛК текстом, как «Туры» нового кабинета (#10, 21.10): применённый зелёный, у списков «+N», у дат значение цифрами.
+           ✕ на фильтре нет: один фильтр снимает «Очистить» в панели, все сразу кнопка «Сбросить все фильтры (N)» -->
       <div class="or2-filters" id="or2-filters">
-        <div class="or2-filter" data-key="tour"><button class="or2-fbtn" type="button" data-toast="Список туров эксперта: в прототипе не раскрывается">Название тура<img src="assets/or-chev-down.svg" alt="" width="24" height="24"></button></div>
-        <div class="or2-filter" data-key="status"><button class="or2-fbtn" type="button" aria-expanded="false"><span class="or2-flabel"><span data-label>Статус бронирования</span><span class="or2-count" data-count hidden></span></span><img src="assets/or-chev-down.svg" alt="" width="24" height="24"></button>
+        <div class="or2-filter" data-key="tour" data-kind="list"><button class="or2-flink" type="button" aria-expanded="false"><span data-label>Название тура</span><span class="or2-plus" data-more hidden></span><svg class="or2-chev" width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true"><path d="M1 2.75 4 5.75 7 2.75" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="or2-drop or2-drop--search" hidden>
+            <label class="or2-search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7.2" cy="7.2" r="4.7" stroke="#242A37" stroke-width="1.2"/><path d="m10.7 10.7 2.8 2.8" stroke="#242A37" stroke-width="1.2" stroke-linecap="round"/></svg><input type="text" placeholder="Поиск" data-search aria-label="Поиск по названию тура"></label>
+            <div class="or2-opts">
+              <label class="or2-check"><input type="checkbox" value="kam"><span class="or2-box"></span><span class="or2-check__t">Земля Камчатка. Вулканы, термальные источники</span></label>
+              <label class="or2-check"><input type="checkbox" value="bai"><span class="or2-box"></span><span class="or2-check__t">Байкальский лёд: Ольхон и Листвянка</span></label>
+              <label class="or2-check"><input type="checkbox" value="dag"><span class="or2-box"></span><span class="or2-check__t">Дагестан: Сулакский каньон и древний Дербент</span></label>
+              <label class="or2-check"><input type="checkbox" value="alt"><span class="or2-box"></span><span class="or2-check__t">Алтай: Чуйский тракт и Мультинские озёра</span></label>
+              <p class="or2-nores" data-nores hidden>Туров не&nbsp;найдено</p>
+            </div>
+            <div class="or2-drop__actions"><button class="or2-btn or2-btn--grey" type="button" data-clear>Очистить</button><button class="or2-btn or2-btn--green" type="button" data-apply>Готово</button></div>
+          </div>
+        </div>
+        <div class="or2-filter" data-key="status" data-kind="list"><button class="or2-flink" type="button" aria-expanded="false"><span data-label>Статус бронирования</span><span class="or2-plus" data-more hidden></span><svg class="or2-chev" width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true"><path d="M1 2.75 4 5.75 7 2.75" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <div class="or2-drop" hidden>
             <label class="or2-check"><input type="checkbox" value="confirmed"><span class="or2-box"></span>Подтверждено</label>
             <label class="or2-check"><input type="checkbox" value="pending"><span class="or2-box"></span>Ожидает подтверждения</label>
             <label class="or2-check"><input type="checkbox" value="declined"><span class="or2-box"></span>Отклонено</label>
-            <div class="or2-drop__actions"><button class="or2-btn or2-btn--grey" type="button" data-clear>Очистить</button><button class="or2-btn or2-btn--green" type="button" data-apply>Применить</button></div>
+            <div class="or2-drop__actions"><button class="or2-btn or2-btn--grey" type="button" data-clear>Очистить</button><button class="or2-btn or2-btn--green" type="button" data-apply>Готово</button></div>
           </div>
         </div>
-        <div class="or2-filter" data-key="pay"><button class="or2-fbtn" type="button" data-toast="Статус оплаты: в прототипе не раскрывается">Статус оплаты<img src="assets/or-chev-down.svg" alt="" width="24" height="24"></button></div>
-        <div class="or2-filter" data-key="date"><button class="or2-fbtn" type="button" aria-expanded="false"><span data-label>Дата бронирования</span><img src="assets/or-chev-down.svg" alt="" width="24" height="24"></button>
-          <div class="or2-drop or2-cal" hidden data-cal></div>
+        <div class="or2-filter" data-key="pay" data-kind="list"><button class="or2-flink" type="button" aria-expanded="false"><span data-label>Статус оплаты</span><span class="or2-plus" data-more hidden></span><svg class="or2-chev" width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true"><path d="M1 2.75 4 5.75 7 2.75" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="or2-drop" hidden>
+            <label class="or2-check"><input type="checkbox" value="pre"><span class="or2-box"></span>Предоплата внесена</label>
+            <label class="or2-check"><input type="checkbox" value="second"><span class="or2-box"></span>Внесена вторая часть</label>
+            <label class="or2-check"><input type="checkbox" value="none"><span class="or2-box"></span>Не оплачен</label>
+            <div class="or2-drop__actions"><button class="or2-btn or2-btn--grey" type="button" data-clear>Очистить</button><button class="or2-btn or2-btn--green" type="button" data-apply>Готово</button></div>
+          </div>
         </div>
-        <div class="or2-filter" data-key="start"><button class="or2-fbtn" type="button" data-toast="Дата начала: в прототипе не раскрывается">Дата начала<img src="assets/or-chev-down.svg" alt="" width="24" height="24"></button></div>
-        <div class="or2-filter" data-key="end"><button class="or2-fbtn" type="button" data-toast="Дата завершения: в прототипе не раскрывается">Дата завершения<img src="assets/or-chev-down.svg" alt="" width="24" height="24"></button></div>
+        <!-- Даты как в ЛК (air-datepicker): дата бронирования периодом, начало и завершение одним днём -->
+        <div class="or2-filter" data-key="date" data-kind="range"><button class="or2-flink" type="button" aria-expanded="false"><span data-label>Дата бронирования</span><svg class="or2-chev" width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true"><path d="M1 2.75 4 5.75 7 2.75" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="or2-drop or2-cal" hidden data-cal="date"></div>
+        </div>
+        <div class="or2-filter" data-key="start" data-kind="day"><button class="or2-flink" type="button" aria-expanded="false"><span data-label>Дата начала</span><svg class="or2-chev" width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true"><path d="M1 2.75 4 5.75 7 2.75" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="or2-drop or2-cal" hidden data-cal="start"></div>
+        </div>
+        <div class="or2-filter" data-key="end" data-kind="day"><button class="or2-flink" type="button" aria-expanded="false"><span data-label>Дата завершения</span><svg class="or2-chev" width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true"><path d="M1 2.75 4 5.75 7 2.75" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="or2-drop or2-cal or2-drop--right" hidden data-cal="end"></div>
+        </div>
+      </div>
+      <!-- Строка результата есть всегда, таблица не прыгает: без фильтров «Всего», с фильтрами «Найдено» и кнопка сброса как на выдаче туров (ytme-pill) -->
+      <div class="or2-result d-only">
+        <p class="or2-result__n" data-found>Всего 2&nbsp;280 заявок</p>
+        <button class="or2-pill" type="button" id="or2-freset" hidden><span data-reset-label>Сбросить все фильтры</span><span class="or2-pill__x"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true"><path d="M.8 7.2 7.2.8M.8.8l6.4 6.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span></button>
       </div>
       <div class="or2-mfilters m-only">
         <button class="or2-fbtn" type="button" data-sheet="filters"><img src="assets/or-filter.svg" alt="" width="16" height="12"><span data-mlabel>Фильтры</span><span class="or2-count" data-mcount hidden></span></button>
@@ -86,7 +125,7 @@
 
       <div class="or2-table" id="or2-table">
         <div class="or2-head d-only" role="row">
-          <button class="or2-col or2-col--id or2-sorter" type="button" aria-label="Сортировать по номеру заказа">ID заказа<img src="assets/or2-sort.svg" alt="" width="14" height="14"></button>
+          <span class="or2-col or2-col--id">ID заказа</span>
           <span class="or2-col or2-col--trav">Путешественник</span>
           <span class="or2-col or2-col--tour">Тур и даты</span>
           <span class="or2-col or2-col--st">Статус</span>
@@ -109,7 +148,8 @@
         <p class="t-body-m-semi d-only">Ничего не&nbsp;найдено</p>
         <p class="or-empty__text d-only">Попробуйте изменить фильтры или сбросить их</p>
         <p class="or-empty__m m-only">Ничего не&nbsp;найдено.<br>Измените или сбросьте фильтры</p>
-        <button class="button button--green t-body-m-semi" type="button" id="or2-reset">Сбросить фильтры</button>
+        <!-- На десктопе сброс только кнопкой в строке результата, на мобилке кнопка остаётся -->
+        <button class="button button--green t-body-m-semi m-only" type="button" id="or2-reset">Сбросить фильтры</button>
       </div>
     </section>
   </div>
@@ -190,7 +230,7 @@
 </main>
 
 <p class="note">Тестовое задание Diana Shvedskaia для YouTravel.me, не&nbsp;официальный сайт</p>
-<nav class="states" aria-label="Состояния макета"><span>Раздел</span><a class="states__section" href="index.html">Отзывы</a><a class="states__section" href="bookings.html">Бронирования</a><a class="states__section" href="orders.html" aria-current="true">Заявки эксперта</a><span>Состояния</span><a href="orders.html">Список</a><a href="orders.html?detail=await">Подробнее: ждёт ответа</a><a href="orders.html?detail=paid">Подробнее: предоплата</a><a href="orders.html?dlg=confirm">Подтвердить</a><a href="orders.html?dlg=reject">Отклонить</a><a href="orders.html?f=status">Фильтр статуса</a><a href="orders.html?f=date">Фильтр даты</a><a href="orders.html?sheet=sort">Сортировка (мобилка)</a><a href="orders.html?fa=1">Фильтры применены</a><a href="orders.html?nf=1">Ничего не найдено</a><a href="orders-empty.html" aria-current="page">Заявок пока нет</a></nav>
+<nav class="states" aria-label="Состояния макета"><span>Раздел</span><a class="states__section" href="index.html">Отзывы</a><a class="states__section" href="bookings.html">Бронирования</a><a class="states__section" href="orders.html" aria-current="true">Заявки эксперта</a><span>Состояния</span><a href="orders.html">Список</a><a href="orders.html?detail=await">Подробнее: ждёт ответа</a><a href="orders.html?detail=paid">Подробнее: предоплата</a><a href="orders.html?dlg=confirm">Подтвердить</a><a href="orders.html?dlg=reject">Отклонить</a><a href="orders.html?f=tour">Фильтр тура</a><a href="orders.html?f=tour&q=Камч">Поиск по турам</a><a href="orders.html?f=status">Фильтр статуса</a><a href="orders.html?f=date">Фильтр даты</a><a href="orders.html?f=sort">Сортировка</a><a href="orders.html?sheet=sort">Сортировка (мобилка)</a><a href="orders.html?fa=1">Фильтры применены</a><a href="orders.html?fa=all">Применены все шесть</a><a href="orders.html?nf=1">Ничего не найдено</a><a href="orders-empty.html" aria-current="page">Заявок пока нет</a></nav>
 <script src="app.js"></script>
 <script src="orders.js"></script>
 </body>
