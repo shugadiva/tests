@@ -114,14 +114,14 @@
           <div class="or2-drop or2-cal or2-drop--right" hidden data-cal="end"></div>
         </div>
       </div>
-      <!-- Строка результата есть всегда, таблица не прыгает: без фильтров «Всего», с фильтрами «Найдено» и кнопка сброса как на выдаче туров (ytme-pill) -->
-      <div class="or2-result d-only">
-        <p class="or2-result__n" data-found>Всего 2&nbsp;280 заявок</p>
-        <button class="or2-pill" type="button" id="or2-freset" hidden><span data-reset-label>Сбросить все фильтры</span><span class="or2-pill__x"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true"><path d="M.8 7.2 7.2.8M.8.8l6.4 6.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span></button>
-      </div>
       <div class="or2-mfilters m-only">
         <button class="or2-fbtn" type="button" data-sheet="filters"><img src="assets/or-filter.svg" alt="" width="16" height="12"><span data-mlabel>Фильтры</span><span class="or2-count" data-mcount hidden></span></button>
         <button class="or2-fbtn" type="button" data-sheet="sort">Сортировка<img src="assets/or-chev-down.svg" alt="" width="24" height="24"></button>
+      </div>
+      <!-- Строка результата есть всегда, таблица не прыгает: без фильтров «Всего», с фильтрами «Найдено» и кнопка сброса как на выдаче туров (ytme-pill) -->
+      <div class="or2-result">
+        <p class="or2-result__n" data-found>Всего 2&nbsp;280 заявок</p>
+        <button class="or2-pill" type="button" id="or2-freset" hidden><span data-reset-label>Сбросить все фильтры</span><span class="or2-pill__x"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true"><path d="M.8 7.2 7.2.8M.8.8l6.4 6.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span></button>
       </div>
 
       <div class="or2-table" id="or2-table">
@@ -165,6 +165,7 @@
           <button class="or2-x d-only" type="button" data-close aria-label="Закрыть"><img src="assets/or-close.svg" alt="" width="12" height="12"></button>
         </div>
         <dl class="or2-fields" id="or2-fields"></dl>
+        <p class="or2-note" id="or2-note" hidden><img src="assets/or2-info.svg" alt="" width="24" height="24">Телефон и&nbsp;email путешественника откроются после предоплаты</p>
       </div>
       <div class="or2-info__actions" id="or2-info-actions"></div>
     </div>
@@ -179,12 +180,21 @@
       <div class="dialog__actions"><button class="button button--grey button--l" type="button" data-close>Отмена</button><button class="button button--green button--l" type="button" id="dlg-confirm-ok">Подтвердить</button></div>
     </div>
   </div>
+  <!-- Окно «Отклонить бронирование» как компонент reject-dialog (Figma 12244:53658): сводка, условия, причина из списка API, комментарий -->
   <div class="overlay" id="dlg-reject" hidden>
-    <div class="dialog or-dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-reject-title">
+    <div class="dialog or-dialog or2-rej" role="dialog" aria-modal="true" aria-labelledby="dlg-reject-title">
       <span class="grabber" aria-hidden="true"></span>
-      <div class="dialog__head"><h2 class="t-h4" id="dlg-reject-title">Отклонить бронирование?</h2><button class="dialog__close dialog__close--inline" type="button" data-close aria-label="Закрыть"><img src="assets/or-close.svg" alt="" width="12" height="12"></button></div>
-      <div class="or-dlg-text" data-order-summary></div>
-      <div class="dialog__actions"><button class="button button--grey button--l" type="button" data-close>Отмена</button><button class="button button--red button--l" type="button" id="dlg-reject-ok">Отклонить</button></div>
+      <div class="dialog__head or2-rej__head"><h2 class="t-h4" id="dlg-reject-title"><span class="d-only">Вы действительно хотите отклонить&nbsp;бронирование?</span><span class="m-only">Отклонить бронирование?</span></h2><button class="dialog__close dialog__close--inline" type="button" data-close aria-label="Закрыть"><img src="assets/or-close.svg" alt="" width="12" height="12"></button></div>
+      <div class="or2-rej__sum" data-reject-summary></div>
+      <div class="or2-rej__cond">
+        <p class="or2-rej__h">Условия отклонения</p>
+        <ul><li>В&nbsp;случае отклонения деньги будут возвращены путешественнику на&nbsp;счет.</li><li>В&nbsp;случае подтверждения заявки вы&nbsp;гарантируете проведение путешествия в&nbsp;выбранные даты.</li></ul>
+      </div>
+      <label class="or2-rej__field"><span class="or2-rej__lbl">Причина отказа<i>*</i></span>
+        <span class="or2-select"><select id="rej-reason"><option value="" selected disabled hidden>Выберите причину</option><option>Нет мест</option><option>Нет минимума в&nbsp;группе</option><option>По&nbsp;просьбе путешественника</option><option>Другое</option></select><img src="assets/or-chev-down.svg" alt="" width="20" height="20"></span>
+      </label>
+      <label class="or2-rej__ta"><textarea id="rej-text" maxlength="500" placeholder="Опишите причину отказа*" aria-label="Причина отказа подробно"></textarea><span class="or2-rej__count" data-count>0/500</span></label>
+      <div class="dialog__actions"><button class="button button--grey button--l" type="button" id="dlg-reject-ok" disabled>Да, хочу отклонить</button><button class="button button--green button--l" type="button" data-close>Нет, вернуться назад</button></div>
     </div>
   </div>
 
@@ -209,29 +219,39 @@
       <div class="dialog__actions"><button class="button button--grey button--l" type="button" data-sclear>Сбросить</button><button class="button button--green button--l" type="button" data-sapply>Применить</button></div>
     </div>
   </div>
-  <div class="overlay" id="sh-date" hidden>
-    <div class="dialog or2-sheet" role="dialog" aria-modal="true" aria-labelledby="sh-date-title">
-      <span class="grabber" aria-hidden="true"></span>
-      <div class="dialog__head"><h2 class="t-h4" id="sh-date-title">Дата бронирования</h2><button class="dialog__close dialog__close--inline" type="button" data-close aria-label="Закрыть"><img src="assets/or-close.svg" alt="" width="12" height="12"></button></div>
-      <div class="or2-cal or2-cal--sheet" data-cal></div>
+  <!-- Дата бронирования на мобилке: страница на весь экран как календарь «Когда?» на youtravel.me (Figma 12281:58255) -->
+  <div class="overlay or2-cpage-wrap" id="sh-date" hidden>
+    <div class="or2-cpage" role="dialog" aria-modal="true" aria-labelledby="sh-date-title">
+      <div class="or2-cpage__top">
+        <div class="or2-cpage__head"><button class="or2-round" type="button" data-back aria-label="Назад к&nbsp;фильтрам"><img src="assets/or2-arrow-l.svg" alt="" width="16" height="16"></button><h2 id="sh-date-title">Дата бронирования</h2><button class="or2-round" type="button" data-close aria-label="Закрыть"><img src="assets/or-close.svg" alt="" width="12" height="12"></button></div>
+        <div class="or2-cpage__wd"><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span class="is-we">Сб</span><span class="is-we">Вс</span></div>
+      </div>
+      <div class="or2-cpage__months" data-mcal></div>
+      <div class="or2-cpage__bar">
+        <div class="or2-cal__range">Выбрано: <b data-mchosen>нет</b></div>
+        <div class="or2-cpage__btns"><button class="or2-btn or2-btn--grey" type="button" data-mclear>Очистить</button><button class="or2-btn or2-btn--green" type="button" data-mapply>Применить</button></div>
+      </div>
     </div>
   </div>
   <div class="overlay" id="sh-sort" hidden>
     <div class="dialog or2-sheet" role="dialog" aria-modal="true" aria-labelledby="sh-sort-title">
       <span class="grabber" aria-hidden="true"></span>
       <div class="dialog__head"><h2 class="t-h4" id="sh-sort-title">Сортировка</h2><button class="dialog__close dialog__close--inline" type="button" data-close aria-label="Закрыть"><img src="assets/or-close.svg" alt="" width="12" height="12"></button></div>
-      <div class="or2-srows">
-        <button class="or2-srow or2-sortopt" type="button" data-sort="desc"><span><b>Сначала новые</b><small>По номеру заказа, от последних</small></span><img src="assets/or2-circle-yes.svg" alt="" width="24" height="24"></button>
-        <button class="or2-srow or2-sortopt" type="button" data-sort="asc"><span><b>Сначала старые</b><small>По номеру заказа, от первых</small></span><img src="assets/or2-circle-yes.svg" alt="" width="24" height="24"></button>
+      <!-- Как шторка «Сортировать» в МП: радиокнопки, выбор срабатывает сразу, без «Применить» -->
+      <div class="or2-srows" role="radiogroup">
+        <button class="or2-srow or2-sortopt" type="button" role="radio" data-sort="new"><span>Сначала новые</span><span class="or2-radio" aria-hidden="true"></span></button>
+        <button class="or2-srow or2-sortopt" type="button" role="radio" data-sort="old"><span>Сначала старые</span><span class="or2-radio" aria-hidden="true"></span></button>
+        <button class="or2-srow or2-sortopt" type="button" role="radio" data-sort="name"><span>По&nbsp;имени путешественника</span><span class="or2-radio" aria-hidden="true"></span></button>
+        <button class="or2-srow or2-sortopt" type="button" role="radio" data-sort="count"><span>По&nbsp;количеству путешественников</span><span class="or2-radio" aria-hidden="true"></span></button>
+        <button class="or2-srow or2-sortopt" type="button" role="radio" data-sort="status"><span>По&nbsp;статусу</span><span class="or2-radio" aria-hidden="true"></span></button>
       </div>
-      <div class="dialog__actions"><button class="button button--green button--l" type="button" data-close>Применить</button></div>
     </div>
   </div>
 
 </main>
 
 <p class="note">Сделала Diana Shvedskaia для YouTravel.me, не&nbsp;официальный сайт</p>
-<nav class="states" aria-label="Состояния макета"><span>Раздел</span><a class="states__section" href="bookings.html">Бронирования</a><a class="states__section" href="orders.html" aria-current="true">Заявки эксперта</a><span>Состояния</span><a href="orders.html">Список</a><a href="orders.html?detail=await">Подробнее: ждёт ответа</a><a href="orders.html?detail=paid">Подробнее: предоплата</a><a href="orders.html?dlg=confirm">Подтвердить</a><a href="orders.html?dlg=reject">Отклонить</a><a href="orders.html?f=tour">Фильтр тура</a><a href="orders.html?f=tour&q=Камч">Поиск по турам</a><a href="orders.html?f=status">Фильтр статуса</a><a href="orders.html?f=date">Фильтр даты</a><a href="orders.html?f=sort">Сортировка</a><a href="orders.html?sheet=sort">Сортировка (мобилка)</a><a href="orders.html?fa=1">Фильтры применены</a><a href="orders.html?fa=all">Применены все шесть</a><a href="orders.html?nf=1">Ничего не найдено</a><a href="orders-empty.html" aria-current="page">Заявок пока нет</a></nav>
+<nav class="states" aria-label="Состояния макета"><span>Раздел</span><a class="states__section" href="index.html">Отзывы</a><a class="states__section" href="bookings.html">Бронирования</a><a class="states__section" href="orders.html" aria-current="true">Заявки эксперта</a><span>Состояния</span><a href="orders.html">Список</a><a href="orders.html?detail=await">Подробнее: ждёт ответа</a><a href="orders.html?detail=paid">Подробнее: предоплата</a><a href="orders.html?dlg=confirm">Подтвердить</a><a href="orders.html?dlg=reject">Отклонить</a><a href="orders.html?f=tour">Фильтр тура</a><a href="orders.html?f=tour&q=Камч">Поиск по турам</a><a href="orders.html?f=status">Фильтр статуса</a><a href="orders.html?f=date">Фильтр даты</a><a href="orders.html?f=sort">Сортировка</a><a href="orders.html?sheet=sort">Сортировка (мобилка)</a><a href="orders.html?fa=1">Фильтры применены</a><a href="orders.html?fa=all">Применены все шесть</a><a href="orders.html?nf=1">Ничего не найдено</a><a href="orders-empty.html" aria-current="page">Заявок пока нет</a></nav>
 <script src="app.js"></script>
 <script src="orders.js"></script>
 </body>

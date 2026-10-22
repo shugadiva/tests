@@ -28,11 +28,11 @@
     { id: 131925, at: '2026-10-14', name: 'Ольга', parts: ['женщина, 34 года', 'мужчина, 36 лет'], tour: T('kam'), st: 'pending', pay: 'none', price: 248000 },
     { id: 131917, at: '2026-10-13', name: 'Алексей', parts: ['мужчина, 29 лет'], tour: T('bai'), st: 'pending', pay: 'none', price: 96000 },
     { id: 131910, at: '2026-10-13', name: 'Игорь', parts: ['мужчина, 41 год', 'женщина, 39 лет', 'девочка, 12 лет', 'мальчик, 9 лет'], tour: T('kam'), st: 'pending', pay: 'none', price: 496000 },
-    { id: 131860, at: '2026-10-09', name: 'Наталья', parts: ['женщина, 41 год', 'мужчина, 43 года'], tour: T('kam'), st: 'confirmed', pay: 'pre', price: 248000, contacts: ['+7 912 345-67-89', 'natalia.k@mail.ru'] },
+    { id: 131860, at: '2026-10-09', name: 'Наталья', parts: ['женщина, 41 год', 'мужчина, 43 года'], tour: T('kam'), st: 'confirmed', pay: 'pre', price: 248000, full: 'Наталья Кузнецова', contacts: ['+7 912 345-67-89', 'natalia.k@mail.ru'] },
     { id: 131842, at: '2026-10-07', name: 'Ксения', parts: ['женщина, 27 лет'], tour: T('kam'), st: 'auto', pay: 'none', price: 124000 },
     { id: 131833, at: '2026-10-05', name: 'Антон', parts: ['мужчина, 31 год', 'женщина, 30 лет'], tour: T('kam'), st: 'declined', pay: 'none', price: 248000 },
-    { id: 131788, at: '2026-10-03', name: 'Марина', parts: ['женщина, 38 лет', 'мужчина, 40 лет', 'женщина, 64 года'], tour: T('dag'), st: 'confirmed', pay: 'second', price: 237000, contacts: ['+7 903 555-12-40', 'marina.dag@yandex.ru'] },
-    { id: 131701, at: '2026-07-02', name: 'Павел', parts: ['мужчина, 44 года', 'женщина, 42 года'], tour: T('alt'), st: 'finished', pay: 'second', price: 210000, contacts: ['+7 916 200-44-18', 'pavel.alt@mail.ru'] },
+    { id: 131788, at: '2026-10-03', name: 'Марина', parts: ['женщина, 38 лет', 'мужчина, 40 лет', 'женщина, 64 года'], tour: T('dag'), st: 'confirmed', pay: 'second', price: 237000, full: 'Марина Соколова', contacts: ['+7 903 555-12-40', 'marina.dag@yandex.ru'] },
+    { id: 131701, at: '2026-07-02', name: 'Павел', parts: ['мужчина, 44 года', 'женщина, 42 года'], tour: T('alt'), st: 'finished', pay: 'second', price: 210000, full: 'Павел Егоров', contacts: ['+7 916 200-44-18', 'pavel.alt@mail.ru'] },
     { id: 131655, at: '2026-10-01', name: 'Елена', parts: ['женщина, 52 года'], tour: T('dag'), st: 'client', pay: 'pre', price: 79000 },
   ];
   const ST = { pending: 'Ожидает подтверждения', confirmed: 'Подтверждено', finished: 'Тур завершен', declined: 'Бронирование отклонено', client: 'Бронирование отменено клиентом', auto: 'Бронирование отменено автоматически.<br>Истек срок оплаты' };
@@ -78,7 +78,7 @@
     tableEl.hidden = !list.length; nfEl.hidden = !!list.length;
     rowsEl.innerHTML = list.map((o) => `
       <div class="or2-row" data-row="${o.id}">
-        <div class="or2-cell or2-c--id"><button class="or2-id" type="button" data-act="info" data-id="${o.id}" aria-label="Детали заявки ${o.id}"><span class="m-only">Заказ </span>${o.id}<svg class="or2-id__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.5 5L9.5 8L6.5 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><p class="or2-sub">${dShort(o.at)}</p></div>
+        <div class="or2-cell or2-c--id"><button class="or2-id" type="button" data-act="info" data-id="${o.id}" aria-label="Детали заявки ${o.id}"><span class="m-only">Заказ&nbsp;</span>${o.id}<svg class="or2-id__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.5 5L9.5 8L6.5 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><p class="or2-sub">${dShort(o.at)}</p></div>
         <div class="or2-cell or2-c--trav"><p class="or2-main">${o.name}</p><p class="or2-sub">${people(o.parts.length)}</p></div>
         <div class="or2-cell or2-c--tour"><p class="or2-main or2-clamp">${o.tour[0]}</p><p class="or2-sub">${o.tour[1]}</p></div>
         <div class="or2-cell or2-c--st"><p class="or2-main or2-st--${o.st}">${ST[o.st]}</p></div>
@@ -165,7 +165,7 @@
   }));
 
   // ---- Мобильные шторки ----
-  const openSheet = (id) => { const s = document.getElementById(id); s.hidden = false; if (id === 'sh-filters') $$('[data-acc-body="status"] input', s).forEach((i) => { i.checked = state.status.has(i.value); }); if (id === 'sh-date') { pick = state.date ? [...state.date] : null; renderCal($('[data-cal]', s)); } if (id === 'sh-sort') $$('.or2-sortopt', s).forEach((b) => b.setAttribute('aria-checked', String((b.dataset.sort === 'desc' ? 'new' : 'old') === state.sort))); };
+  const openSheet = (id) => { const s = document.getElementById(id); s.hidden = false; if (id === 'sh-filters') $$('[data-acc-body="status"] input', s).forEach((i) => { i.checked = state.status.has(i.value); }); if (id === 'sh-date') { mpick = state.date ? [...state.date] : null; renderMCal(); const m = $('[data-mcal]', s); requestAnimationFrame(() => { m.scrollTop = m.scrollHeight; }); } if (id === 'sh-sort') $$('.or2-sortopt', s).forEach((b) => b.setAttribute('aria-checked', String(b.dataset.sort === state.sort))); };
   const closeSheet = (id) => { const s = document.getElementById(id); if (s) s.hidden = true; };
   document.addEventListener('click', (e) => { const b = e.target.closest('[data-sheet]'); if (b) { if (b.dataset.sheet === 'date') closeSheet('sh-filters'); openSheet('sh-' + b.dataset.sheet); } });
   $('#sh-filters').addEventListener('click', (e) => {
@@ -173,7 +173,37 @@
     if (e.target.closest('[data-sclear]')) { $$('#sh-filters input').forEach((i) => { i.checked = false; }); resetAll(); }
     if (e.target.closest('[data-sapply]')) { state.status = new Set($$('#sh-filters input:checked').map((i) => i.value)); closeSheet('sh-filters'); render(); }
   });
-  $('#sh-sort').addEventListener('click', (e) => { const o = e.target.closest('.or2-sortopt'); if (o) { state.sort = o.dataset.sort === 'desc' ? 'new' : 'old'; $$('.or2-sortopt').forEach((b) => b.setAttribute('aria-checked', String(b === o))); render(); } });
+  $('#sh-sort').addEventListener('click', (e) => { const o = e.target.closest('.or2-sortopt'); if (o) { state.sort = o.dataset.sort; $$('.or2-sortopt').forEach((b) => b.setAttribute('aria-checked', String(b === o))); render(); setTimeout(() => closeSheet('sh-sort'), 150); } });
+
+  // ---- Мобильный календарь на весь экран (как «Когда?» на youtravel.me): месяцы списком, дни после сегодня недоступны ----
+  let mpick = null;
+  const MN = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+  const renderMCal = () => {
+    const r = mpick, span2 = r && r[1] && r[0] !== r[1];
+    const month = (y, m) => {
+      const first = (new Date(y, m, 1).getDay() + 6) % 7, days = new Date(y, m + 1, 0).getDate(); const cells = [];
+      for (let i = 0; i < first; i++) cells.push(null);
+      for (let d = 1; d <= days; d++) cells.push(d);
+      return `<section class="or2-mmonth"><h3>${MN[m]} ${y}</h3><div class="or2-mgrid">${cells.map((d, i) => {
+        if (d === null) return '<span class="or2-mday is-empty" aria-hidden="true"></span>';
+        const k = iso(y, m, d), c = ['or2-mday'], col = i % 7;
+        if (k > TODAY) c.push('is-dis');
+        if (k === TODAY) c.push('is-today');
+        if (r && r[0] && (k === r[0] || k === r[1])) { c.push('is-sel'); if (span2) c.push(k === r[0] ? 'is-start' : 'is-end'); }
+        else if (span2 && k > r[0] && k < r[1]) { c.push('is-in'); if (col === 0 || d === 1) c.push('is-row-start'); if (col === 6 || d === days) c.push('is-row-end'); }
+        return `<button class="${c.join(' ')}" type="button" data-mday="${k}"${k > TODAY ? ' disabled' : ''}><span>${d}</span></button>`;
+      }).join('')}</div></section>`;
+    };
+    $('[data-mcal]').innerHTML = month(2026, 7) + month(2026, 8) + month(2026, 9);
+    $('[data-mchosen]').textContent = !r || !r[0] ? 'нет' : !r[1] || r[0] === r[1] ? num(r[0]) : `${num(r[0])} – ${num(r[1])}`;
+  };
+  $('#sh-date').addEventListener('click', (e) => {
+    const d = e.target.closest('[data-mday]');
+    if (d) { const k = d.dataset.mday, m = $('[data-mcal]'), top = m.scrollTop; mpick = !mpick || mpick[1] ? [k, null] : (k < mpick[0] ? [k, mpick[0]] : [mpick[0], k]); renderMCal(); m.scrollTop = top; return; }
+    if (e.target.closest('[data-back]')) { closeSheet('sh-date'); openSheet('sh-filters'); return; }
+    if (e.target.closest('[data-mclear]')) { mpick = null; state.date = null; closeSheet('sh-date'); render(); return; }
+    if (e.target.closest('[data-mapply]')) { if (mpick && mpick[0]) state.date = [mpick[0], mpick[1] || mpick[0]]; closeSheet('sh-date'); render(); }
+  });
 
   $$('#or2-reset, #or2-freset').forEach((b) => b.addEventListener('click', resetAll));
 
@@ -187,15 +217,18 @@
   const fill = (o) => {
     current = o; const half = Math.round(o.price / 2);
     const preOk = o.pay !== 'none', postOk = o.pay === 'second';
+    // контакты как в живом ЛК (22.10.2026): до предоплаты только имя и плашка над кнопками; после предоплаты имя с фамилией, телефон и email, в конце «Путешественники»
+    const open = !!(o.contacts && preOk);
     const f = [
-      ['Номер заказа', o.id], ['Имя клиента', o.name], ['Название тура', `<a href="#" data-toast="Страница тура: не входит в прототип">${o.tour[0]}</a>`], ['Забронированные даты', o.tour[1]],
+      ['Номер заказа', o.id], ['Имя клиента', open ? [o.full, ...o.contacts].join('\n') : o.name], ['Название тура', `<a href="#" data-toast="Страница тура: не входит в прототип">${o.tour[0]}</a>`], ['Забронированные даты', o.tour[1]],
       ['Количество путешественников', o.parts.length], ['Данные участников', o.parts.map((p, i) => `Участник ${i + 1}: ${p}`).join('\n')],
       ['Статус заказа', `<span class="or2-st--${o.st}">${ST[o.st]}</span>`], ['Цена тура', rub(o.price)],
       ['Размер предоплаты', `${rub(half)}<span class="or2-sub${preOk ? ' is-paid' : ''}">${preOk ? 'Оплачена' : 'Не оплачена'}</span>`],
       ['Размер постоплаты', `${rub(o.price - half)}<span class="or2-sub${postOk ? ' is-paid' : ''}">${postOk ? 'Оплачена' : 'Не оплачена'}</span>`],
-      ['Списанный автоматически долг', '0 ₽'],
-      ['Контакты путешественника', o.contacts && preOk ? o.contacts.join('\n') : '<span class="or2-lock"><img src="assets/or2-info.svg" alt="" width="20" height="20">Откроются после предоплаты</span>'],
+      ['Списанный<br class="d-only">автоматически долг', '0 ₽'],
     ];
+    if (open) f.push(['Путешественники', `<span class="or2-trav"><b>Основной путешественник:</b><span><a href="#" data-toast="Профиль путешественника: не входит в прототип">${o.full}</a>\n${o.contacts[1]}\n${o.contacts[0]}</span></span>`]);
+    $('#or2-note').hidden = o.st !== 'pending';
     $('#or2-fields').innerHTML = f.map(([k, v]) => `<div class="or2-field"><dt>${k}</dt><dd>${v}</dd></div>`).join('');
     const chat = `<button class="or2-btn ${mobile() ? 'or2-btn--white' : 'or2-btn--grey'}" type="button" data-toast="Чат с&nbsp;путешественником: не входит в прототип">${ICON.chat}Перейти в&nbsp;чат</button>`;
     $('#or2-info-actions').innerHTML = o.st === 'pending'
@@ -209,7 +242,14 @@
   // ---- Подтверждение и отказ ----
   const dlgC = $('#dlg-confirm'), dlgR = $('#dlg-reject');
   const summary = (o) => `<p><b>Заказ ${o.id}</b> · <b>${o.name}</b>, ${people(o.parts.length)}</p><p>${o.tour[0].split('.')[0]}, <b>${o.tour[1]}</b></p><p>${rub(o.price)}</p>`;
-  const openDlg = (kind, o) => { current = o; const d = kind === 'confirm' ? dlgC : dlgR; $('[data-order-summary]', d).innerHTML = summary(o); d.hidden = false; };
+  const MG = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+  const span = (o) => { const a = new Date(o.tour[2]), b = new Date(o.tour[3]); return a.getMonth() === b.getMonth() ? `со&nbsp;${a.getDate()} по&nbsp;${b.getDate()} ${MG[b.getMonth()]} ${b.getFullYear()}` : `с&nbsp;${a.getDate()} ${MG[a.getMonth()]} по&nbsp;${b.getDate()} ${MG[b.getMonth()]} ${b.getFullYear()}`; };
+  const rejSummary = (o) => `<p class="or2-rej__l">Заказ ${o.id} · ${o.name}, ${people(o.parts.length)}</p><p class="or2-rej__s">${o.tour[0].split('.')[0]}, ${span(o)}</p><p class="or2-rej__l">${rub(o.price)}</p>`;
+  const rejReason = $('#rej-reason'), rejText = $('#rej-text'), rejOk = $('#dlg-reject-ok');
+  const rejReset = () => { rejReason.value = ''; rejText.value = ''; $('[data-count]', dlgR).textContent = '0/500'; rejOk.disabled = true; rejReason.closest('.or2-select').classList.remove('is-set'); };
+  rejReason.addEventListener('change', () => { rejOk.disabled = !rejReason.value; rejReason.closest('.or2-select').classList.add('is-set'); });
+  rejText.addEventListener('input', () => { $('[data-count]', dlgR).textContent = `${rejText.value.length}/500`; });
+  const openDlg = (kind, o) => { current = o; if (kind === 'confirm') { $('[data-order-summary]', dlgC).innerHTML = summary(o); dlgC.hidden = false; } else { $('[data-reject-summary]', dlgR).innerHTML = rejSummary(o); rejReset(); dlgR.hidden = false; } };
   const decide = (st, msg) => { if (!current) return; current.st = st; dlgC.hidden = dlgR.hidden = true; render(); if (!info.hidden) fill(current); say(msg); };
   $('#dlg-confirm-ok').addEventListener('click', () => decide('confirmed', 'Бронирование подтверждено'));
   $('#dlg-reject-ok').addEventListener('click', () => decide('declined', 'Бронирование отклонено'));
@@ -235,7 +275,7 @@
   if (params.get('detail') === 'await' && first) openInfo(first);
   if (params.get('detail') === 'paid') openInfo(ORDERS.find((o) => o.id === 131860));
   if (first && ['confirm', 'reject'].includes(params.get('dlg'))) openDlg(params.get('dlg'), first);
-  if (params.get('sheet')) openSheet('sh-' + params.get('sheet'));
+  if (params.get('sheet')) { openSheet('sh-' + params.get('sheet')); if (params.get('sheet') === 'date') { mpick = ['2026-10-05', '2026-10-14']; renderMCal(); } }
   if (params.has('nf')) { state.status = new Set(['declined']); state.start = '2027-03-10'; render(); }
   if (params.get('fa') === '1') { state.tour = new Set(['kam']); state.status = new Set(['pending', 'confirmed']); state.start = '2026-11-02'; render(); }
   if (params.get('fa') === 'all') { state.tour = new Set(['kam', 'bai']); state.status = new Set(['pending', 'confirmed']); state.pay = new Set(['none', 'pre']); state.date = ['2026-10-01', '2026-10-31']; state.start = '2026-11-02'; state.end = '2026-11-09'; render(); }

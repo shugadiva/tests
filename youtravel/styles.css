@@ -1507,3 +1507,90 @@
   .or2-c--act .or2-pair .or2-btn { min-width: 0; }
   .or2-info__actions.is-stack { flex-direction: column; }
   .or2-info__actions.is-stack .or2-btn { flex: none; width: 100%; }
+
+  /* ==== Синхронизация с макетом 22.10.2026: контакты, отказ с причиной, сортировка радиокнопками, календарь на весь экран ==== */
+  /* Контакты: до предоплаты плашка contacts-note над кнопками, после предоплаты блок «Путешественники» (main-traveller, зазор 4) */
+  .or2-note { display: flex; align-items: center; gap: 8px; margin: 0; padding: 8px 10px; border-radius: 8px; background: var(--grey-light); font: 400 13px/17px var(--font-text); color: var(--dark-grey-primary); }
+  .or2-note[hidden] { display: none; }
+  .or2-note img { flex: none; }
+  .or2-trav { display: flex; flex-direction: column; gap: 4px; }
+  .or2-trav b { font-weight: 600; }
+  .or2-trav a { font-weight: 600; }
+
+  /* Отклонить бронирование как reject-dialog: 480, шапка H4 по центру, сводка на grey/pale, условия под разделителем, причина и комментарий на grey/default */
+  .or2-rej { width: 480px; padding: 20px 24px 24px; gap: 24px; border-radius: 20px; }
+  .or2-rej__head { gap: 10px; }
+  .or2-rej__head h2 { flex: 1; padding-left: 28px; text-align: center; font: 700 18px/22px var(--font-text); color: var(--primary-night); }
+  .or2-rej__sum { display: flex; flex-direction: column; gap: 4px; padding: 12px 16px; border-radius: 12px; background: var(--grey-pale); }
+  .or2-rej__l { font: 600 15px/22px var(--font-text); color: #222; }
+  .or2-rej__s { font: 400 13px/17px var(--font-text); color: var(--dark-grey-primary); }
+  .or2-rej__cond { display: flex; flex-direction: column; gap: 8px; padding-top: 8px; border-top: 1px solid var(--grey-default); }
+  .or2-rej__h { font: 600 15px/22px var(--font-text); color: #222; }
+  .or2-rej__cond ul { margin: 0; padding: 0 0 0 16px; display: flex; flex-direction: column; gap: 8px; font: 400 13px/17px var(--font-text); color: #222; }
+  .or2-rej__field { display: flex; flex-direction: column; gap: 6px; }
+  .or2-rej__lbl { font: 400 13px/19px var(--font-text); color: var(--dark-grey-primary); }
+  .or2-rej__lbl i { font-style: normal; color: var(--red-default); }
+  .or2-select { position: relative; display: block; }
+  .or2-select select { width: 100%; height: 44px; padding: 0 40px 0 12px; border: 0; border-radius: 8px; background: var(--grey-default); appearance: none; -webkit-appearance: none; font: 400 13px/20px var(--font-text); color: var(--dark-grey-primary); cursor: pointer; }
+  .or2-select.is-set select { color: var(--primary-night); }
+  .or2-select select:focus-visible, .or2-rej__ta textarea:focus-visible { outline: 2px solid var(--green-click); outline-offset: 2px; }
+  .or2-select img { position: absolute; right: 12px; top: 12px; pointer-events: none; }
+  .or2-rej__ta { display: flex; flex-direction: column; gap: 2px; }
+  .or2-rej__ta textarea { height: 108px; padding: 12px; border: 0; border-radius: 8px; background: var(--grey-default); resize: none; font: 400 13px/20px var(--font-text); color: var(--primary-night); }
+  .or2-rej__ta textarea::placeholder { color: var(--dark-grey-primary); }
+  .or2-rej__count { font: 400 12px/19px var(--font-text); color: var(--dark-grey-primary); }
+  .or2-rej .dialog__actions { gap: 8px; }
+  .or2-rej .dialog__actions .button { height: 48px; border-radius: 8px; font: 600 16px/19px var(--font-text); }
+  .or2-rej #dlg-reject-ok { color: var(--primary-night); }
+  .or2-rej #dlg-reject-ok[disabled] { opacity: 1; color: var(--dark-grey-primary); }
+
+  /* Сортировка на мобилке как шторка «Сортировать» в МП: строки 49 с разделителем, радиокнопка 20 справа */
+  .or2-sortopt { min-height: 49px; padding: 14px 0; font: 600 13px/17px var(--font-text); }
+  .or2-radio { width: 20px; height: 20px; flex: none; display: grid; place-items: center; }
+  .or2-radio::before { content: ""; width: 16px; height: 16px; box-sizing: border-box; border-radius: 50%; border: 1.5px solid var(--row-line); background: var(--primary-white); transition: border-color 150ms var(--ease-out), border-width 150ms var(--ease-out); }
+  .or2-sortopt[aria-checked="true"] .or2-radio::before { border: 5px solid var(--green-default); }
+
+  /* Пустые состояния на мобилке: текст колонкой 280 по центру, как во всех разделах */
+  .or-empty .or-empty__m { max-width: 280px; }
+
+  /* Календарь «Дата бронирования» на мобилке страницей на весь экран, замеры с youtravel.me на 375:
+     шапка 60 с заголовком 18, дни недели 44, клетка 46 в колонке 1/7, строки вплотную, цифры 14/18, тени шапки и панели rgba(153,153,169,.15) 2 2 15 */
+  .overlay.or2-cpage-wrap { padding: 0; place-items: stretch; background: var(--primary-white); }
+  .or2-cpage { width: 100%; height: 100%; display: flex; flex-direction: column; background: var(--primary-white); letter-spacing: -.016em; }
+  .or2-cpage__top { position: relative; z-index: 1; padding: 0 16px; background: var(--primary-white); box-shadow: 2px 2px 15px rgba(153, 153, 169, .15); }
+  .or2-cpage__head { height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .or2-cpage__head h2 { margin: 0; flex: 1; text-align: center; font: 700 18px/22px var(--font-text); color: var(--primary-night); }
+  .or2-round { width: 28px; height: 28px; flex: none; border-radius: 50%; display: grid; place-items: center; background: #f0f2f5; }
+  .or2-round:focus-visible { outline: 2px solid var(--green-click); outline-offset: 2px; }
+  .or2-cpage__wd { height: 44px; display: grid; grid-template-columns: repeat(7, 1fr); align-items: center; text-align: center; text-transform: uppercase; font: 700 11px/12px var(--font-text); color: #9999a9; }
+  .or2-cpage__wd .is-we { color: var(--green-dark); }
+  .or2-cpage__months { flex: 1; min-height: 0; overflow-y: auto; padding: 16px 16px 24px; }
+  .or2-mmonth { padding-bottom: 24px; }
+  .or2-mmonth + .or2-mmonth { padding-top: 24px; border-top: 1px solid var(--grey-default); }
+  .or2-mmonth h3 { margin: 0 0 8px; font: 600 16px/19px var(--font-text); color: var(--primary-black); }
+  .or2-mgrid { display: grid; grid-template-columns: repeat(7, 1fr); }
+  .or2-mday { position: relative; height: 46px; padding: 0; display: grid; place-items: center; background: transparent; font: 600 14px/18px var(--font-text); color: var(--primary-black); }
+  .or2-mday > span { position: relative; z-index: 1; }
+  .or2-mday::before { content: ""; position: absolute; inset: 0 1.5px; border-radius: 8px; }
+  .or2-mday.is-dis { color: #9999a9; cursor: default; }
+  .or2-mday.is-today { color: var(--green-dark); }
+  .or2-mday.is-in { background: var(--grey-light); }
+  .or2-mday.is-in.is-row-start { border-radius: 8px 0 0 8px; margin-left: 1.5px; }
+  .or2-mday.is-in.is-row-end { border-radius: 0 8px 8px 0; margin-right: 1.5px; }
+  .or2-mday.is-sel::before { background: var(--primary-white); box-shadow: inset 0 0 0 2px var(--primary-black); }
+  .or2-mday.is-start { background: linear-gradient(90deg, transparent 50%, var(--grey-light) 50%); }
+  .or2-mday.is-end { background: linear-gradient(90deg, var(--grey-light) 50%, transparent 50%); }
+  .or2-mday:not(.is-dis):not(.is-sel):hover::before { box-shadow: inset 0 0 0 2px var(--green-default); }
+  .or2-mday:focus-visible { outline: 2px solid var(--green-click); outline-offset: -2px; border-radius: 8px; }
+  .or2-cpage__bar { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 12px; padding: 16px 16px 34px; background: var(--primary-white); box-shadow: 2px 2px 15px rgba(153, 153, 169, .15); }
+  .or2-cpage__btns { display: flex; gap: 8px; }
+  .or2-cpage__btns .or2-btn { flex: 1 1 0; height: 48px; border-radius: 8px; font: 600 15px/24px var(--font-text); }
+
+  @media (max-width: 640px) {
+    .or2-trav { gap: 2px; }
+    .or2-rej { width: 100%; padding: 0 16px 34px; gap: 20px; border-radius: 16px 16px 0 0; }
+    .or2-rej__head { padding-top: 20px; }
+    .or2-rej__head h2 { padding-left: 28px; font: 600 16px/19px var(--font-text); }
+    .or2-rej .dialog__actions .button { height: 44px; font: 600 15px/22px var(--font-text); }
+  }
+  .overlay.or2-cpage-wrap .or2-cpage { position: fixed; inset: 0; height: auto; }
