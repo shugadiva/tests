@@ -655,6 +655,8 @@
     .bk-mcard__title { color: var(--bk-black); }
     .bk-mcard__divider { margin: 0; border: 0; height: 1px; background: var(--grey-default); }
     .bk-mcard__chip { align-self: flex-start; }
+    .bk-mcard__chip--wrap { white-space: normal; width: min-content; } /* «Отменено автоматически. / Истек срок оплаты», плашка по тексту */
+    .bk-mcard__pay { display: flex; flex-direction: column; gap: 4px; } /* только «Остаток на месте»: цены на мобильных карточках скрыты, как в МП */
     /* второй разделитель только под раскрытой лентой, как в макете у свёрнутой и закрытых карточек */
     .bk-mcard__status:has([aria-expanded="false"]) + .bk-mcard__divider--tl { display: none; }
 
@@ -710,8 +712,7 @@
     .content > .card:has(.bk-empty) { margin-top: 0; }
     .empty-state.bk-empty { padding: 120px 0 0; }
     .empty-state.bk-empty p { max-width: 260px; }
-    .empty-state.bk-empty--active p { max-width: 175px; } /* переносы как в макете: 175 и 208 px */
-    .empty-state.bk-empty--archive p { max-width: 208px; }
+    .empty-state.bk-empty--active p, .empty-state.bk-empty--completed p { max-width: 200px; } /* две строки, как в МП */
     .empty-state.bk-empty .button { margin-top: 16px; }
   }
 
