@@ -964,10 +964,30 @@
     .bd-v2 .bd-columns { display: flex; flex-direction: column; }
     .bd-v2 .bd-main { padding: 16px; }
   }
-  @media (max-width: 599px) {
-    .bd2-tiles, .bd2-arrival__cols { grid-template-columns: 1fr; }
-    .bd2-expert { flex-direction: column; align-items: stretch; }
-    .bd2-chat { justify-content: center; }
+  /* День 1: на десктопе абзац, на мобилке пункты с галочкой, как на мобильной странице тура */
+  .bd2-day-items { display: none; list-style: none; margin: 0; padding: 0; flex-direction: column; gap: 8px; }
+  .bd2-day-items li { display: flex; align-items: flex-start; gap: 8px; font: 400 13px/19px var(--font-text); color: var(--primary-night); }
+  .bd2-day-mark { flex: none; height: 19px; display: grid; place-items: center; }
+  .bd2-expert--mob { display: none; }
+
+  /* Мобилка 375 по макету 22.10: карточка брони, эксперт отдельной карточкой, дальше блоки как на десктопе */
+  @media (max-width: 640px) {
+    .bd-v2 .bd-columns { display: flex; flex-direction: column; gap: 16px; }
+    .bd-v2 .bd-aside { order: -2; border: 0; box-shadow: none; }
+    .bd-v2 .bd-main { border: 0; box-shadow: none; padding: 20px 16px; gap: 32px; }
+    .bd2-tiles { grid-template-columns: 1fr; background: var(--primary-white); border-radius: 16px; padding: 20px; gap: 24px; }
+    .bd2-tile { background: none; padding: 0; border-radius: 0; flex-direction: row; align-items: center; gap: 16px; }
+    .bd2-arrival__cols { grid-template-columns: 1fr; gap: 16px; }
+    .bd-v2 .bd-point__place { max-width: 200px; }
+    .bd-v2:has(.bd2-expert--mob) .bd-main .bd2-expert { display: none; }
+    .bd-v2:not(:has(.bd2-expert--mob)) .bd2-expert { flex-direction: column; align-items: stretch; }
+    .bd-v2:not(:has(.bd2-expert--mob)) .bd2-chat { justify-content: center; }
+    .bd2-expert--mob { display: flex; order: -1; background: var(--primary-white); padding: 20px; gap: 16px; }
+    .bd2-expert--mob .bd-expert__profile { flex: 1; min-width: 0; align-items: flex-start; gap: 16px; }
+    .bd2-expert--mob .bd-expert__photo { width: 40px; height: 40px; }
+    .bd2-expert--mob .bd2-chat { height: 36px; padding: 0 12px 0 10px; gap: 6px; border-radius: 6px; font: 600 12px/18px var(--font-text); }
+    .bd2-day-items { display: flex; }
+    .bd2-day-text { display: none; }
   }
 
   /* ==== Раздел эксперта «Заявки на бронирование» (Figma 11558:38969 и состояния) ==== */
