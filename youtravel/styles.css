@@ -1781,7 +1781,7 @@
 
   /* ---- Форма ---- */
   .rv-form-cols { display: flex; align-items: flex-start; gap: 24px; }
-  .rv-form { width: 529px; flex: none; padding: 24px; border-radius: 16px; background: var(--primary-white); box-shadow: var(--rv-shadow-card); display: flex; flex-direction: column; gap: 24px; }
+  .rv-form { width: 529px; flex: none; padding: 24px; border-radius: 16px; background: var(--primary-white); display: flex; flex-direction: column; gap: 24px; }
   .rv-form__head { display: flex; flex-direction: column; gap: 8px; }
   .rv-step { font: 700 11px/12px var(--font-text); letter-spacing: .02em; text-transform: uppercase; color: var(--dark-grey-primary); }
   .rv-form__title { margin: 0; font: 700 20px/24px var(--font-display); letter-spacing: -.01em; color: var(--primary-night); }
@@ -1831,7 +1831,7 @@
 
   /* Карточка тура справа (sticky) */
   .rv-aside { width: 343px; flex: none; position: sticky; top: 20px; }
-  .rv-tour { padding: 16px; border: 1px solid var(--grey-divider); border-radius: 16px; background: var(--primary-white); box-shadow: var(--rv-shadow-card); display: flex; flex-direction: column; gap: 20px; font: 600 14px/18px var(--font-text); color: var(--rv-black); }
+  .rv-tour { padding: 16px; border: 1px solid var(--grey-divider); border-radius: 16px; background: var(--primary-white); display: flex; flex-direction: column; gap: 20px; font: 600 14px/18px var(--font-text); color: var(--rv-black); }
   .rv-tour__head { display: flex; gap: 16px; padding: 0 4px; }
   .rv-tour__cover { width: 72px; height: 72px; border-radius: 10px; object-fit: cover; flex: none; }
   .rv-tour__title { font: 600 15px/22px var(--font-text); }
