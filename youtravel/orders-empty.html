@@ -57,18 +57,7 @@
     <!-- Заявки на бронирование v2 (Figma «Desktop / Заявки v2» 11801:130688, «Mobile / Заявки v2» 11867:56339) -->
     <section class="card or2" id="orders" data-empty aria-labelledby="or-title">
       <div class="or2-titlerow">
-        <h1 class="t-h3 or2-title" id="or-title">Заявки на&nbsp;бронирование</h1>
-        <!-- Сортировка как в новом кабинете (lk.youtravel.me/tours/active): серая подпись и стрелка, значение не показывается; пункты из ЛК (#10, 21.10) -->
-        <div class="or2-sort d-only">
-          <button class="or2-sortbtn" type="button" aria-expanded="false" aria-haspopup="listbox"><span class="or2-sortbtn__k">Сортировать:</span><span data-sort-label hidden>Сначала новые</span><svg class="or2-chev" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 5.5 8 11.5 14 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <div class="or2-drop or2-drop--right or2-sortlist" role="listbox" hidden>
-            <button class="or2-sortitem" type="button" role="option" data-sortby="new">Сначала новые</button>
-            <button class="or2-sortitem" type="button" role="option" data-sortby="old">Сначала старые</button>
-            <button class="or2-sortitem" type="button" role="option" data-sortby="name">По имени путешественника</button>
-            <button class="or2-sortitem" type="button" role="option" data-sortby="count">По количеству путешественников</button>
-            <button class="or2-sortitem" type="button" role="option" data-sortby="status">По статусу</button>
-          </div>
-        </div>
+        <h1 class="t-h3 or2-title" id="or-title">Заявки на&nbsp;бронирование<span class="or2-titlecount d-only">2&nbsp;280</span></h1>
       </div>
 
       <!-- Шесть фильтров ЛК текстом, как «Туры» нового кабинета (#10, 21.10): применённый зелёный, у списков «+N», у дат значение цифрами.
@@ -120,7 +109,18 @@
       </div>
       <!-- Строка результата есть всегда, таблица не прыгает: без фильтров «Всего», с фильтрами «Найдено» и кнопка сброса как на выдаче туров (ytme-pill) -->
       <div class="or2-result">
-        <p class="or2-result__n" data-found>Всего 2&nbsp;280 заявок</p>
+        <!-- #30 (Борис, 27.10.2026): количество в заголовке, на месте счётчика сортировка, строка не прыгает при «Сбросить все фильтры» -->
+        <div class="or2-sort d-only">
+          <button class="or2-sortbtn" type="button" aria-expanded="false" aria-haspopup="listbox"><span class="or2-sortbtn__k">Сортировать:</span><span data-sort-label hidden>Сначала новые</span><svg class="or2-chev" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 5.5 8 11.5 14 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="or2-drop or2-sortlist" role="listbox" hidden>
+            <button class="or2-sortitem" type="button" role="option" data-sortby="new">Сначала новые</button>
+            <button class="or2-sortitem" type="button" role="option" data-sortby="old">Сначала старые</button>
+            <button class="or2-sortitem" type="button" role="option" data-sortby="name">По имени путешественника</button>
+            <button class="or2-sortitem" type="button" role="option" data-sortby="count">По количеству путешественников</button>
+            <button class="or2-sortitem" type="button" role="option" data-sortby="status">По статусу</button>
+          </div>
+        </div>
+        <p class="or2-result__n m-only" data-found>Всего 2&nbsp;280 заявок</p>
         <button class="or2-pill" type="button" id="or2-freset" hidden><span data-reset-label>Сбросить все фильтры</span><span class="or2-pill__x"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true"><path d="M.8 7.2 7.2.8M.8.8l6.4 6.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span></button>
       </div>
 

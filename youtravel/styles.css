@@ -1266,6 +1266,9 @@
   :root { --green-dark: #87a038; --row-line: #dbdfe9; }
   .or2, .or2-info, .or2-sheet, .or2-drop { letter-spacing: -.016em; }
   .or2-title { margin: 0; letter-spacing: -.01em; }
+  /* #30: количество в заголовке серым (27.10.2026) */
+  .or2-titlecount { margin-left: 8px; color: var(--dark-grey-primary); }
+  [data-empty] .or2-titlecount { display: none !important; }
   .or2-titlerow { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
   .or2-link { padding: 0; background: none; font: 600 13px/17px var(--font-text); color: var(--green-dark); transition: color 150ms var(--ease-out); }
   .or2-link:hover { color: var(--green-click); }
