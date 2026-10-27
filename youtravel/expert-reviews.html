@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Отзывы · YouTravel.me</title>
-<link rel="stylesheet" href="styles.css?v=9a9b332f">
+<link rel="stylesheet" href="styles.css?v=b53387ae">
 </head>
 <body>
 
@@ -56,6 +56,8 @@
     <!-- Отзывы тревел-эксперта, десктоп 1440 (Figma «ТЭ · Desktop» 12370:151806, вид из LKTE «Отзывы на платформе» 12321:97303).
          Строки отзывов рисует expert-reviews.js: состояние берётся из адреса (?s=empty, ?reply=1 и т.д.) -->
     <nav class="er-tabs" aria-label="Разделы отзывов">
+      <!-- Мобилка: фильтр и сортировка в начале ленты, как на проде (выдача туров), компоненты filter-trigger и sort-trigger в Figma -->
+      <span class="er-ctrls er-m"><button class="er-ctrl" type="button" id="er-mfilter" aria-label="Фильтры"><img src="assets/er-filter.svg" width="24" height="24" alt=""><span class="er-ctrl__n" data-mfilter-n hidden>1</span></button><button class="er-ctrl" type="button" id="er-msort" aria-label="Сортировка"><img src="assets/er-sort.svg" width="24" height="24" alt=""></button><span class="er-ctrls__div" aria-hidden="true"></span></span>
       <a class="er-tab" href="expert-reviews.html" aria-current="page">Отзывы на&nbsp;платформе<span class="er-tab__n" data-n> 23</span></a>
       <a class="er-tab" href="#" data-er-toast="Перенесённые отзывы: не&nbsp;входит в&nbsp;прототип">Перенесенные отзывы<span class="er-tab__n" data-n> 3</span></a>
       <a class="er-tab" href="#" data-er-toast="Мои отзывы на&nbsp;путешественников: не&nbsp;входит в&nbsp;прототип">Мои отзывы на&nbsp;путешественников<span class="er-tab__n" data-n> 20</span></a>
@@ -128,6 +130,6 @@
 <p class="note">Сделала Diana Shvedskaia для YouTravel.me, не&nbsp;официальный сайт</p>
 <nav class="states" aria-label="Состояния макета"><span>Раздел</span><a class="states__section" href="index.html">Отзывы</a><a class="states__section" href="bookings.html">Бронирования</a><a class="states__section" href="orders.html">Заявки эксперта</a><a class="states__section" href="expert-reviews.html" aria-current="true">Отзывы эксперта</a><span>Состояния</span><a href="expert-reviews.html" aria-current="page">Список</a><a href="expert-reviews.html?s=empty">Пусто</a><a href="expert-reviews.html?s=loading">Загрузка</a><a href="expert-reviews.html?tip=rating">Подсказка у рейтинга</a><a href="expert-reviews.html?sort=1">Сортировка</a><a href="expert-reviews.html?f=tour">Фильтр по туру</a><a href="expert-reviews.html?f=tour&q=Камч">Поиск в фильтре</a><a href="expert-reviews.html?tour=1">Тур выбран</a><a href="expert-reviews.html?reply=1">Форма ответа</a><a href="expert-reviews.html?reply=org">Форма ответа: оценка организатора</a><a href="expert-reviews.html?send=1">Отправка ответа</a><a href="expert-reviews.html?fail=1">Ошибка отправки ответа</a><a href="expert-reviews.html?sent=1">Ответ отправлен</a><a href="expert-reviews.html?edit=1">Редактирование ответа</a><a href="expert-reviews.html?locked=1">Ответ оставлен, 2 часа прошли</a></nav>
 <script src="app.js?v=ac0ecf4c"></script>
-<script src="expert-reviews.js?v=8aa0d799"></script>
+<script src="expert-reviews.js?v=d4898b0c"></script>
 </body>
 </html>

@@ -288,4 +288,16 @@
     e.preventDefault(); toast.innerHTML = t.dataset.erToast; toast.classList.add('is-on');
     clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('is-on'), 2400);
   });
+
+  // Мобилка: кнопки в ленте чипов открывают те же шторки, что фильтр и сортировка в строке над списком; счётчик = выбран тур
+  (() => {
+    const mf = document.getElementById('er-mfilter'), ms = document.getElementById('er-msort');
+    if (!mf || !ms) return;
+    const stop = (fn) => (e) => { e.preventDefault(); e.stopPropagation(); fn(); };
+    mf.addEventListener('click', stop(() => document.getElementById('er-tourbtn').click()));
+    ms.addEventListener('click', stop(() => document.getElementById('er-sortbtn').click()));
+    const chip = document.getElementById('er-tourchip'), n = document.querySelector('[data-mfilter-n]');
+    const sync = () => { n.hidden = chip.hidden; };
+    new MutationObserver(sync).observe(chip, { attributes: true, attributeFilter: ['hidden'] }); sync();
+  })();
 })();
