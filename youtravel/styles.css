@@ -2090,7 +2090,7 @@
     .er-rating [data-rating] { color: var(--green-hover); }
     .er-rating [data-rating]::before { content: "\00a0"; }
     .er-rating__cnt { white-space: nowrap; }
-    .er-info { order: 1; margin: 0 0 0 8px; }
+    .er-info { order: 1; margin: 0 0 0 4px; } /* зазор до ⓘ 4, правка Дианы в кадре 27.10.2026 */
     .er-tip { right: -8px; bottom: 32px; }
     .er-sk--rating { width: 56px; height: 24px; margin-left: 8px; background: var(--rv-grey-platforms); } /* на сером фоне страницы grey/default не виден */
 
