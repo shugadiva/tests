@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<!-- Раздел «Отзывы» скрыт на прототипе 21.10.2026: страницы не открываются, ведут в Бронирования. Вернуть: удалить эту строку -->
-<script>location.replace("bookings.html")</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
@@ -51,7 +49,7 @@
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11.993 10.9551C11.8904 10.945 11.7672 10.945 11.6543 10.9551C9.21149 10.8743 7.27161 8.90564 7.27161 6.48261C7.27161 4.0091 9.30386 2 11.8288 2C14.3435 2 16.386 4.0091 16.386 6.48261C16.3757 8.90564 14.4358 10.8743 11.993 10.9551Z" stroke="#9AAE2D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.8629 14.6806C4.37903 16.3161 4.37903 18.9815 6.8629 20.6069C9.68548 22.4646 14.3145 22.4646 17.1371 20.6069C19.621 18.9714 19.621 16.306 17.1371 14.6806C14.3248 12.833 9.69575 12.833 6.8629 14.6806Z" stroke="#9AAE2D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Настройки профиля
     </a>
-    <a class="sidebar-item" href="#" data-sec="reviews" aria-current="page">
+    <a class="sidebar-item" href="index.html" data-sec="reviews" aria-current="page">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10.5059 2.65733C11.0504 1.61422 12.4914 1.61422 13.0358 2.65733L15.3845 7.15716L20.2219 8.1037C21.3388 8.32224 21.7825 9.73643 21.004 10.5967L17.6178 14.3391L18.2508 19.4361C18.3967 20.6108 17.2325 21.4868 16.2037 20.9765L11.7709 18.7778L7.33801 20.9765C6.30924 21.4868 5.14507 20.6108 5.29095 19.4361L5.92392 14.3391L2.5377 10.5967C1.75928 9.73643 2.20295 8.32224 3.31982 8.1037L8.15728 7.15716L10.5059 2.65733Z" stroke="#9AAE2D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Мои отзывы
     </a>
@@ -75,111 +73,106 @@
   </nav>
 
 
-  <div class="content">
-    <section class="card">
-      <div class="page-head">
-        <h1 class="t-h3">Мои отзывы</h1>
-        <div class="lead t-body-s"><p>Здесь отзывы о&nbsp;ваших поездках.</p><p>Черновик можно дописать в&nbsp;любой момент, после отправки его проверят модераторы</p></div>
+  <div class="content rv">
+    <section class="card rv-card" id="reviews-list">
+      <div class="rv-head">
+        <h1 class="rv-title">Мои отзывы <span class="rv-title__count">14</span></h1>
+        <p class="rv-lead">В&nbsp;этом разделе собраны ваши отзывы о&nbsp;поездках. Оставляйте отзыв после каждого путешествия: так&nbsp;другим путешественникам будет проще выбрать тур, а&nbsp;эксперт узнает, что&nbsp;получилось хорошо, а&nbsp;что&nbsp;стоит улучшить.</p>
       </div>
-
-      <section class="rate-trips" aria-labelledby="rate-trips-title">
-        <h2 class="t-h4" id="rate-trips-title">Оцените недавние поездки</h2>
-        <div class="rate-trips__cards">
-          <article class="trip-card">
-            <div class="trip-card__trip">
-              <img class="trip-card__cover" src="assets/altai.jpg" alt="">
-              <div class="trip-card__info">
-                <span class="title t-body-s-semi">Алтай: Чуйский тракт и&nbsp;Мультинские озёра</span>
-                <span class="dates t-body-xs-semi">с&nbsp;3 по&nbsp;10&nbsp;августа 2026 · 8&nbsp;дней</span>
+      <div class="rv-reviews">
+        <div class="rv-cols"><span class="rv-cols__tour">Тур</span><span class="rv-cols__review">Отзыв</span><label class="rv-checkbox"><input type="checkbox" id="only-photos"><svg class="rv-checkbox__box" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect class="rv-checkbox__off" x="2.5" y="2.5" width="15" height="15" rx="3.5" fill="#fff" stroke="#D1D7E8"/><g class="rv-checkbox__on"><rect x="2" y="2" width="16" height="16" rx="4" fill="#ABC232"/><path d="M14.5 7L8.5 13L5.5 10.4286" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g></svg><span>Только с&nbsp;фото</span></label></div>
+        <ul class="rv-list">
+          <li><article class="rv-row">
+            <div class="rv-row__tour"><span class="rv-row__title"><span>Алтай: Чуйский</span><span class="rv-row__title-2">тракт и&nbsp;Мультинские озёра 2026</span></span></div>
+            <div class="rv-row__body"><div class="rv-line">
+              <div class="rv-line__info"><div class="rv-meta"><span class="rv-tag rv-tag--waiting"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="5.5" fill="#ABC232"/></svg>Ждёт отзыва</span><span class="rv-meta__date rv-meta__date--18">с&nbsp;5 по&nbsp;12 октября 2026</span></div><p class="rv-hint">Поездка закончилась 12 октября. Расскажите, как&nbsp;она&nbsp;прошла.</p></div>
+              <a class="rv-btn-outline" href="step-1.html">Оставить отзыв</a>
+            </div></div>
+          </article></li>
+          <li><article class="rv-row">
+            <div class="rv-row__tour"><span class="rv-row__title"><span>Байкальский лёд:</span><span class="rv-row__title-2">Ольхон и&nbsp;Листвянка за&nbsp;5 дней 2026</span></span></div>
+            <div class="rv-row__body"><div class="rv-line">
+              <div class="rv-line__info"><div class="rv-meta"><span class="rv-tag rv-tag--waiting"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="5.5" fill="#ABC232"/></svg>Ждёт отзыва</span><span class="rv-meta__date rv-meta__date--18">с&nbsp;3 по&nbsp;7 марта 2026</span></div><p class="rv-hint">Поездка закончилась 7 марта. Расскажите, как&nbsp;она&nbsp;прошла.</p></div>
+              <a class="rv-btn-outline" href="step-1.html">Оставить отзыв</a>
+            </div></div>
+          </article></li>
+          <li><article class="rv-row">
+            <div class="rv-row__tour"><span class="rv-row__title"><span>Земля Камчатка.</span><span class="rv-row__title-2">Вулканы, термальные источники. Джип&#8209;тур 2025</span></span></div>
+            <div class="rv-row__body"><div class="rv-line">
+              <div class="rv-line__info"><div class="rv-meta"><span class="rv-tag rv-tag--draft"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4.07066 10.3043L9.07078 5.30418L6.69582 2.92922L1.6957 7.92934C1.62686 7.99826 1.57797 8.08453 1.55419 8.17899L1 11L3.82047 10.4458C3.91516 10.4221 4.00179 10.3732 4.07066 10.3043ZM10.6849 3.69003C10.8867 3.48823 11 3.21457 11 2.92922C11 2.64388 10.8867 2.37022 10.6849 2.16842L9.83158 1.31507C9.62978 1.11333 9.35612 1 9.07078 1C8.78543 1 8.51177 1.11333 8.30997 1.31507L7.45662 2.16842L9.83158 4.54338L10.6849 3.69003Z" fill="#242A37"/></svg>Черновик</span><span class="rv-meta__date rv-meta__date--18">сохранён 10 октября 2026</span></div><p class="rv-hint">Допишите отзыв и&nbsp;отправьте его&nbsp;на&nbsp;проверку.</p></div>
+              <a class="rv-btn-outline" href="step-1.html">Продолжить заполнение</a>
+            </div></div>
+          </article></li>
+          <li data-photos><article class="rv-row" id="r-moderation">
+            <div class="rv-row__tour"><span class="rv-row__title"><span>Дагестан:</span><span class="rv-row__title-2">Сулакский каньон и&nbsp;древний Дербент 2026</span></span></div>
+            <div class="rv-row__body">
+              <div class="rv-meta"><span class="rv-meta__status"><span class="rv-tag rv-tag--moderation"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="6" fill="#F5A32A"/><path d="M6 3v3l2.12 2.12" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>На&nbsp;проверке</span></span><span class="rv-rating-date"><span class="rv-rating"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M7.65903 2.42975C8.09344 1.50432 8.31065 1.04161 8.64249 0.965176C8.74588 0.941362 8.85333 0.941362 8.95673 0.965176C9.28856 1.04161 9.50577 1.50432 9.94019 2.42975L10.9796 4.6439C10.999 4.68538 11.0088 4.70611 11.0249 4.72083C11.0302 4.72568 11.036 4.73 11.0421 4.73372C11.0608 4.74502 11.0834 4.7485 11.1287 4.75546L13.5775 5.13183C14.5114 5.27537 14.9783 5.34713 15.1475 5.62831C15.2004 5.7163 15.2334 5.81487 15.2439 5.91702C15.2778 6.24341 14.9477 6.58142 14.2877 7.25746L12.4694 9.11963C12.4391 9.15076 12.4239 9.16632 12.4158 9.1855C12.4131 9.19182 12.411 9.19838 12.4096 9.20509C12.4052 9.22544 12.4087 9.2469 12.4157 9.28983L12.8314 11.8386C12.9913 12.8186 13.0712 13.3086 12.8463 13.5583C12.7761 13.6362 12.6893 13.6973 12.5923 13.7372C12.2815 13.8649 11.8471 13.6246 10.9781 13.1441L8.89543 11.9924C8.85389 11.9694 8.83312 11.958 8.8107 11.9557C8.80333 11.9549 8.79589 11.9549 8.78852 11.9557C8.7661 11.958 8.74533 11.9694 8.70379 11.9924L6.6211 13.1441C5.75216 13.6246 5.31769 13.8649 5.0069 13.7372C4.90991 13.6973 4.82312 13.6362 4.75293 13.5583C4.52802 13.3086 4.60794 12.8186 4.76779 11.8386L5.18352 9.28983C5.19052 9.2469 5.19402 9.22544 5.18963 9.20509C5.18819 9.19838 5.18611 9.19182 5.18345 9.1855C5.17535 9.16632 5.16016 9.15076 5.12977 9.11963L3.31156 7.25746C2.65149 6.58142 2.32146 6.24341 2.35528 5.91702C2.36586 5.81487 2.39879 5.7163 2.45173 5.62831C2.62088 5.34713 3.08782 5.27537 4.02169 5.13183L6.4705 4.75546C6.51579 4.7485 6.53843 4.74502 6.55711 4.73372C6.56325 4.73 6.56902 4.72568 6.57433 4.72083C6.59045 4.70611 6.60018 4.68538 6.61965 4.6439L7.65903 2.42975Z" fill="#9AAE2D" stroke="#9AAE2D" stroke-width="1.65" stroke-linejoin="round"/></svg>5.0</span><span class="rv-meta__date">8&nbsp;октября 2026</span></span></div>
+              <div class="rv-about"><span class="rv-about__label">О&nbsp;туре:</span><p class="rv-about__text">Камчатка превзошла ожидания: вулканы, горячие источники и&nbsp;океан за&nbsp;одну неделю. Маршрут продуман, джипы надёжные, а&nbsp;вечерние посиделки у&nbsp;костра стали лучшей частью поездки. Отдельное спасибо гиду: он&nbsp;знал каждую тропу и&nbsp;подстраивал программу под&nbsp;погоду.</p><button class="rv-about__more" type="button">Показать ещё</button></div>
+              <div class="rv-photos">
+                <button class="rv-photo" type="button" data-i="0" aria-label="Открыть фото 1 из&nbsp;7"><img src="assets/photo-1.jpg" alt=""></button>
+                <button class="rv-photo" type="button" data-i="1" aria-label="Открыть фото 2 из&nbsp;7"><img src="assets/photo-2.jpg" alt=""></button>
+                <button class="rv-photo rv-photo--more" type="button" data-i="2" aria-label="Открыть фото 3 из&nbsp;7"><img src="assets/photo-3.jpg" alt=""><span>+&nbsp;4</span></button>
               </div>
             </div>
-            <a class="button button--green t-body-m-semi" href="step-1.html">Оставить отзыв</a>
-          </article>
-          <article class="trip-card">
-            <div class="trip-card__trip">
-              <img class="trip-card__cover" src="assets/baikal.jpg" alt="">
-              <div class="trip-card__info">
-                <span class="title t-body-s-semi">Байкальский лёд: Ольхон и&nbsp;Листвянка за&nbsp;5&nbsp;дней</span>
-                <span class="dates t-body-xs-semi">с&nbsp;12 по&nbsp;16&nbsp;марта 2026 · 5&nbsp;дней</span>
+          </article></li>
+          <li data-photos><article class="rv-row" id="r-published">
+            <div class="rv-row__tour"><span class="rv-row__title"><span>Карелия</span><span class="rv-row__title-2">на&nbsp;байдарках: Ладожские шхеры 2026</span></span></div>
+            <div class="rv-row__body">
+              <div class="rv-meta"><span class="rv-meta__status"><span class="rv-tag rv-tag--published"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.7539 2.30086C12.0856 2.63911 12.0807 3.18261 11.743 3.51481L4.59722 10.5437L0.256526 6.27403C-0.0811977 5.94183 -0.0860865 5.39832 0.245606 5.06008C0.577299 4.72184 1.11997 4.71694 1.45769 5.04915L4.59722 8.13734L10.5418 2.28993C10.8796 1.95773 11.4222 1.96262 11.7539 2.30086Z" fill="#7FA40C"/></svg>Опубликован</span></span><span class="rv-rating-date"><span class="rv-rating"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M7.65903 2.42975C8.09344 1.50432 8.31065 1.04161 8.64249 0.965176C8.74588 0.941362 8.85333 0.941362 8.95673 0.965176C9.28856 1.04161 9.50577 1.50432 9.94019 2.42975L10.9796 4.6439C10.999 4.68538 11.0088 4.70611 11.0249 4.72083C11.0302 4.72568 11.036 4.73 11.0421 4.73372C11.0608 4.74502 11.0834 4.7485 11.1287 4.75546L13.5775 5.13183C14.5114 5.27537 14.9783 5.34713 15.1475 5.62831C15.2004 5.7163 15.2334 5.81487 15.2439 5.91702C15.2778 6.24341 14.9477 6.58142 14.2877 7.25746L12.4694 9.11963C12.4391 9.15076 12.4239 9.16632 12.4158 9.1855C12.4131 9.19182 12.411 9.19838 12.4096 9.20509C12.4052 9.22544 12.4087 9.2469 12.4157 9.28983L12.8314 11.8386C12.9913 12.8186 13.0712 13.3086 12.8463 13.5583C12.7761 13.6362 12.6893 13.6973 12.5923 13.7372C12.2815 13.8649 11.8471 13.6246 10.9781 13.1441L8.89543 11.9924C8.85389 11.9694 8.83312 11.958 8.8107 11.9557C8.80333 11.9549 8.79589 11.9549 8.78852 11.9557C8.7661 11.958 8.74533 11.9694 8.70379 11.9924L6.6211 13.1441C5.75216 13.6246 5.31769 13.8649 5.0069 13.7372C4.90991 13.6973 4.82312 13.6362 4.75293 13.5583C4.52802 13.3086 4.60794 12.8186 4.76779 11.8386L5.18352 9.28983C5.19052 9.2469 5.19402 9.22544 5.18963 9.20509C5.18819 9.19838 5.18611 9.19182 5.18345 9.1855C5.17535 9.16632 5.16016 9.15076 5.12977 9.11963L3.31156 7.25746C2.65149 6.58142 2.32146 6.24341 2.35528 5.91702C2.36586 5.81487 2.39879 5.7163 2.45173 5.62831C2.62088 5.34713 3.08782 5.27537 4.02169 5.13183L6.4705 4.75546C6.51579 4.7485 6.53843 4.74502 6.55711 4.73372C6.56325 4.73 6.56902 4.72568 6.57433 4.72083C6.59045 4.70611 6.60018 4.68538 6.61965 4.6439L7.65903 2.42975Z" fill="#9AAE2D" stroke="#9AAE2D" stroke-width="1.65" stroke-linejoin="round"/></svg>5.0</span><span class="rv-meta__date">8&nbsp;октября 2026</span></span></div>
+              <div class="rv-about"><span class="rv-about__label">О&nbsp;туре:</span><p class="rv-about__text">Камчатка превзошла ожидания: вулканы, горячие источники и&nbsp;океан за&nbsp;одну неделю. Маршрут продуман, джипы надёжные, а&nbsp;вечерние посиделки у&nbsp;костра стали лучшей частью поездки. Отдельное спасибо гиду: он&nbsp;знал каждую тропу и&nbsp;подстраивал программу под&nbsp;погоду. В&nbsp;день восхождения на&nbsp;Авачинский было ветрено, и&nbsp;мы&nbsp;поменяли порядок дней, поэтому ничего не&nbsp;потеряли. Жильё простое, но&nbsp;чистое и&nbsp;тёплое, кормили вкусно. Поеду ещё&nbsp;раз, уже&nbsp;зимой.</p><button class="rv-about__more" type="button">Показать ещё</button></div>
+              <div class="rv-photos">
+                <button class="rv-photo" type="button" data-i="0" aria-label="Открыть фото 1 из&nbsp;7"><img src="assets/photo-1.jpg" alt=""></button>
+                <button class="rv-photo" type="button" data-i="1" aria-label="Открыть фото 2 из&nbsp;7"><img src="assets/photo-2.jpg" alt=""></button>
+                <button class="rv-photo rv-photo--more" type="button" data-i="2" aria-label="Открыть фото 3 из&nbsp;7"><img src="assets/photo-3.jpg" alt=""><span>+&nbsp;4</span></button>
+              </div>
+              <div class="rv-answer">
+                <div class="rv-answer__head">
+                  <div class="rv-answer__who"><img class="rv-answer__avatar" src="assets/expert.jpg" alt=""><span class="rv-answer__name">Снежанна</span><span class="rv-answer__role">Тревел&#8209;эксперт</span></div>
+                  <button class="rv-answer__toggle" type="button" aria-expanded="false"><span class="rv-answer__label">Смотреть ответ</span><svg class="rv-chev" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M9 5.25L6 8.25L3 5.25" stroke="#9797A3" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                </div>
+                <p class="rv-answer__text" hidden>Алиса, спасибо за&nbsp;тёплый отзыв! Передам гиду Максиму ваши слова, ему&nbsp;будет очень приятно. Ждём вас&nbsp;снова зимой.</p>
               </div>
             </div>
-            <a class="button button--green t-body-m-semi" href="step-1.html">Оставить отзыв</a>
-          </article>
-        </div>
-      </section>
-
-      <div class="reviews">
-        <label class="checkbox">
-          <input type="checkbox" id="only-photos">
-          <span class="checkbox__box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2 4.9 8.5 9.5 3.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          Только с&nbsp;фото
-        </label>
-
-        <ul class="list">
-          <li>
-            <div class="review-row">
-              <img class="review-row__cover" src="assets/kamchatka.jpg" alt="">
-              <div class="review-row__info">
-                <span class="title t-body-s-semi">Земля Камчатка. Вулканы, термальные источники. Джип&#8209;тур</span>
-                <span class="dates t-body-xs-semi">с&nbsp;29&nbsp;сентября по&nbsp;6&nbsp;октября 2026 · 8&nbsp;дней</span>
-                <span class="tag tag--draft"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.07066 10.3043L9.07078 5.30418L6.69582 2.92922L1.6957 7.92934C1.62686 7.99826 1.57797 8.08453 1.55419 8.17899L1 11L3.82047 10.4458C3.91516 10.4221 4.00179 10.3732 4.07066 10.3043ZM10.6849 3.69003C10.8867 3.48823 11 3.21457 11 2.92922C11 2.64388 10.8867 2.37022 10.6849 2.16842L9.83158 1.31507C9.62978 1.11333 9.35612 1 9.07078 1C8.78543 1 8.51177 1.11333 8.30997 1.31507L7.45662 2.16842L9.83158 4.54338L10.6849 3.69003Z" fill="#242A37"/></svg>Черновик</span>
-              </div>
-              <div class="review-row__aside">
-                <a class="button button--grey t-body-m-semi" href="step-1.html">Продолжить заполнение</a>
+          </article></li>
+          <li data-photos><article class="rv-row" id="r-rejected">
+            <div class="rv-row__tour"><span class="rv-row__title"><span>Мурманск:</span><span class="rv-row__title-2">северное сияние и&nbsp;Териберка 2026</span></span></div>
+            <div class="rv-row__body">
+              <div class="rv-meta"><span class="rv-meta__status"><span class="rv-tag rv-tag--rejected"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.96967 0.96967C1.26256 0.676777 1.73744 0.676777 2.03033 0.96967L11.0303 9.96967C11.3232 10.2626 11.3232 10.7374 11.0303 11.0303C10.7374 11.3232 10.2626 11.3232 9.96967 11.0303L0.96967 2.03033C0.676777 1.73744 0.676777 1.26256 0.96967 0.96967Z" fill="#F84565"/><path fill-rule="evenodd" clip-rule="evenodd" d="M11.0303 0.96967C10.7374 0.676777 10.2626 0.676777 9.96967 0.96967L0.96967 9.96967C0.676777 10.2626 0.676777 10.7374 0.96967 11.0303C1.26256 11.3232 1.73744 11.3232 2.03033 11.0303L11.0303 2.03033C11.3232 1.73744 11.3232 1.26256 11.0303 0.96967Z" fill="#F84565"/></svg>Не&nbsp;опубликован</span><span class="rv-why"><button class="rv-why__btn" type="button" aria-label="Почему отзыв не&nbsp;опубликован" aria-describedby="tip-r-rejected"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3.333" y="3.333" width="13.333" height="13.333" rx="6.667" stroke="#9797A3" stroke-width="1.2"/><path d="M10.0011 13.0957V9.76237" stroke="#9797A3" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.99731 6.15744C9.77522 6.15929 9.56255 6.24823 9.40428 6.40547C9.15502 6.64639 9.08057 7.01836 9.21764 7.33803C9.25635 7.44586 9.32039 7.54262 9.40427 7.62C9.74074 7.93656 10.2625 7.93656 10.599 7.62C10.9314 7.28736 10.9336 6.74582 10.6039 6.41043C10.4436 6.24728 10.2249 6.1561 9.99725 6.15744H9.99731Z" fill="#9797A3"/></svg></button><span class="rv-tip" role="tooltip" id="tip-r-rejected"><span class="rv-tip__body">Мы&nbsp;можем отказать в&nbsp;публикации, если отзыв содержит нецензурную лексику, клевету, угрозы или&nbsp;рекламу или&nbsp;если вы&nbsp;не&nbsp;бронировали этот тур.</span><svg class="rv-tip__corner" width="16" height="6" viewBox="0 0 16 6" fill="none" aria-hidden="true"><path d="M0 0C3.9312 0 5.3832 1.96449 7.82933 5.90434C7.86584 5.96315 7.93078 6 8 6C8.06922 6 8.13416 5.96315 8.17068 5.90434C10.6168 1.96449 12.0688 0 16 0L0 0Z" fill="#242A37"/></svg></span></span></span><span class="rv-rating-date"><span class="rv-rating"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M7.65903 2.42975C8.09344 1.50432 8.31065 1.04161 8.64249 0.965176C8.74588 0.941362 8.85333 0.941362 8.95673 0.965176C9.28856 1.04161 9.50577 1.50432 9.94019 2.42975L10.9796 4.6439C10.999 4.68538 11.0088 4.70611 11.0249 4.72083C11.0302 4.72568 11.036 4.73 11.0421 4.73372C11.0608 4.74502 11.0834 4.7485 11.1287 4.75546L13.5775 5.13183C14.5114 5.27537 14.9783 5.34713 15.1475 5.62831C15.2004 5.7163 15.2334 5.81487 15.2439 5.91702C15.2778 6.24341 14.9477 6.58142 14.2877 7.25746L12.4694 9.11963C12.4391 9.15076 12.4239 9.16632 12.4158 9.1855C12.4131 9.19182 12.411 9.19838 12.4096 9.20509C12.4052 9.22544 12.4087 9.2469 12.4157 9.28983L12.8314 11.8386C12.9913 12.8186 13.0712 13.3086 12.8463 13.5583C12.7761 13.6362 12.6893 13.6973 12.5923 13.7372C12.2815 13.8649 11.8471 13.6246 10.9781 13.1441L8.89543 11.9924C8.85389 11.9694 8.83312 11.958 8.8107 11.9557C8.80333 11.9549 8.79589 11.9549 8.78852 11.9557C8.7661 11.958 8.74533 11.9694 8.70379 11.9924L6.6211 13.1441C5.75216 13.6246 5.31769 13.8649 5.0069 13.7372C4.90991 13.6973 4.82312 13.6362 4.75293 13.5583C4.52802 13.3086 4.60794 12.8186 4.76779 11.8386L5.18352 9.28983C5.19052 9.2469 5.19402 9.22544 5.18963 9.20509C5.18819 9.19838 5.18611 9.19182 5.18345 9.1855C5.17535 9.16632 5.16016 9.15076 5.12977 9.11963L3.31156 7.25746C2.65149 6.58142 2.32146 6.24341 2.35528 5.91702C2.36586 5.81487 2.39879 5.7163 2.45173 5.62831C2.62088 5.34713 3.08782 5.27537 4.02169 5.13183L6.4705 4.75546C6.51579 4.7485 6.53843 4.74502 6.55711 4.73372C6.56325 4.73 6.56902 4.72568 6.57433 4.72083C6.59045 4.70611 6.60018 4.68538 6.61965 4.6439L7.65903 2.42975Z" fill="#9AAE2D" stroke="#9AAE2D" stroke-width="1.65" stroke-linejoin="round"/></svg>5.0</span><span class="rv-meta__date">8&nbsp;октября 2026</span></span></div>
+              <div class="rv-about"><span class="rv-about__label">О&nbsp;туре:</span><p class="rv-about__text">Камчатка превзошла ожидания: вулканы, горячие источники и&nbsp;океан за&nbsp;одну неделю. Маршрут продуман, джипы надёжные, а&nbsp;вечерние посиделки у&nbsp;костра стали лучшей частью поездки. Отдельное спасибо гиду: он&nbsp;знал каждую тропу и&nbsp;подстраивал программу под&nbsp;погоду.</p><button class="rv-about__more" type="button">Показать ещё</button></div>
+              <div class="rv-photos">
+                <button class="rv-photo" type="button" data-i="0" aria-label="Открыть фото 1 из&nbsp;7"><img src="assets/photo-1.jpg" alt=""></button>
+                <button class="rv-photo" type="button" data-i="1" aria-label="Открыть фото 2 из&nbsp;7"><img src="assets/photo-2.jpg" alt=""></button>
+                <button class="rv-photo rv-photo--more" type="button" data-i="2" aria-label="Открыть фото 3 из&nbsp;7"><img src="assets/photo-3.jpg" alt=""><span>+&nbsp;4</span></button>
               </div>
             </div>
-          </li>
-          <li data-photos>
-            <a class="review-row" href="review.html?s=moderation">
-              <img class="review-row__cover" src="assets/dagestan.jpg" alt="">
-              <div class="review-row__info">
-                <span class="title t-body-s-semi">Дагестан: Сулакский каньон и&nbsp;древний Дербент</span>
-                <span class="dates t-body-xs-semi">с&nbsp;14 по&nbsp;19&nbsp;июня 2026 · 6&nbsp;дней</span>
-                <span class="tag tag--moderation"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" fill="#F5A32A"/><path d="M6 3.2v2.8l1.9 1.9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>На проверке</span>
-              </div>
-              <div class="review-row__aside">
-                <span class="rating t-body-xs-semi"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M7.66 2.43c.43-.93.65-1.39.98-1.46a.9.9 0 0 1 .32 0c.33.07.55.53.98 1.46l1.04 2.21c.02.04.03.06.05.08l.02.01.09.02 2.44.38c.94.14 1.4.21 1.57.5a.88.88 0 0 1 .1.29c.03.32-.3.66-.96 1.34l-1.82 1.86c-.03.03-.04.05-.05.07v.02c0 .02 0 .04.01.09l.42 2.55c.16.98.24 1.47.01 1.72a.87.87 0 0 1-.25.18c-.31.13-.75-.11-1.62-.59l-2.08-1.15-.08-.04h-.03l-.08.04-2.08 1.15c-.87.48-1.3.72-1.62.59a.87.87 0 0 1-.25-.18c-.23-.25-.15-.74.01-1.72l.42-2.55v-.11l-.06-.07-1.82-1.86c-.66-.68-.99-1.02-.96-1.34a.88.88 0 0 1 .1-.29c.17-.29.63-.36 1.57-.5l2.44-.38.09-.02.02-.01.05-.08Z" fill="#9AAE2D"/></svg>4</span>
-                <span class="review-row__cta">Смотреть отзыв</span>
-              </div>
-            </a>
-          </li>
-          <li data-photos>
-            <a class="review-row" href="review.html?s=published">
-              <img class="review-row__cover" src="assets/karelia.jpg" alt="">
-              <div class="review-row__info">
-                <span class="title t-body-s-semi">Карелия на&nbsp;байдарках: Ладожские шхеры</span>
-                <span class="dates t-body-xs-semi">с&nbsp;1 по&nbsp;7&nbsp;июля 2026 · 7&nbsp;дней</span>
-                <span class="tag tag--published"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.7539 2.30099C12.0856 2.63923 12.0807 3.18273 11.743 3.51493L4.59722 10.5439L0.256526 6.27415C-0.0811977 5.94195 -0.0860865 5.39845 0.245606 5.06021C0.577299 4.72196 1.11997 4.71707 1.45769 5.04927L4.59722 8.13746L10.5418 2.29005C10.8796 1.95785 11.4222 1.96275 11.7539 2.30099Z" fill="#7FA40C"/></svg>Опубликован</span>
-              </div>
-              <div class="review-row__aside">
-                <span class="rating t-body-xs-semi"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M7.66 2.43c.43-.93.65-1.39.98-1.46a.9.9 0 0 1 .32 0c.33.07.55.53.98 1.46l1.04 2.21c.02.04.03.06.05.08l.02.01.09.02 2.44.38c.94.14 1.4.21 1.57.5a.88.88 0 0 1 .1.29c.03.32-.3.66-.96 1.34l-1.82 1.86c-.03.03-.04.05-.05.07v.02c0 .02 0 .04.01.09l.42 2.55c.16.98.24 1.47.01 1.72a.87.87 0 0 1-.25.18c-.31.13-.75-.11-1.62-.59l-2.08-1.15-.08-.04h-.03l-.08.04-2.08 1.15c-.87.48-1.3.72-1.62.59a.87.87 0 0 1-.25-.18c-.23-.25-.15-.74.01-1.72l.42-2.55v-.11l-.06-.07-1.82-1.86c-.66-.68-.99-1.02-.96-1.34a.88.88 0 0 1 .1-.29c.17-.29.63-.36 1.57-.5l2.44-.38.09-.02.02-.01.05-.08Z" fill="#9AAE2D"/></svg>5</span>
-                <span class="review-row__cta">Смотреть отзыв</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a class="review-row" href="review.html?s=rejected">
-              <img class="review-row__cover" src="assets/murmansk.jpg" alt="">
-              <div class="review-row__info">
-                <span class="title t-body-s-semi">Мурманск: северное сияние и&nbsp;Териберка</span>
-                <span class="dates t-body-xs-semi">с&nbsp;6 по&nbsp;9&nbsp;февраля 2026 · 4&nbsp;дня</span>
-                <span class="tag tag--rejected"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1.5 1.5l9 9M10.5 1.5l-9 9" stroke="#F84565" stroke-width="1.5" stroke-linecap="round"/></svg>Не опубликован</span>
-              </div>
-              <div class="review-row__aside">
-                <span class="rating t-body-xs-semi"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M7.66 2.43c.43-.93.65-1.39.98-1.46a.9.9 0 0 1 .32 0c.33.07.55.53.98 1.46l1.04 2.21c.02.04.03.06.05.08l.02.01.09.02 2.44.38c.94.14 1.4.21 1.57.5a.88.88 0 0 1 .1.29c.03.32-.3.66-.96 1.34l-1.82 1.86c-.03.03-.04.05-.05.07v.02c0 .02 0 .04.01.09l.42 2.55c.16.98.24 1.47.01 1.72a.87.87 0 0 1-.25.18c-.31.13-.75-.11-1.62-.59l-2.08-1.15-.08-.04h-.03l-.08.04-2.08 1.15c-.87.48-1.3.72-1.62.59a.87.87 0 0 1-.25-.18c-.23-.25-.15-.74.01-1.72l.42-2.55v-.11l-.06-.07-1.82-1.86c-.66-.68-.99-1.02-.96-1.34a.88.88 0 0 1 .1-.29c.17-.29.63-.36 1.57-.5l2.44-.38.09-.02.02-.01.05-.08Z" fill="#9AAE2D"/></svg>4</span>
-                <span class="review-row__cta">Смотреть отзыв</span>
-              </div>
-            </a>
-          </li>
+          </article></li>
         </ul>
+        <div class="rv-more"><button class="rv-btn-grey" type="button">Показать ещё</button></div>
       </div>
     </section>
+  </div>
+  <div class="rv-overlay" id="dlg-reasons" hidden>
+    <div class="rv-dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-reasons-title">
+      <div class="rv-dialog__head"><h2 class="rv-dialog__title" id="dlg-reasons-title">Отзыв не&nbsp;опубликован</h2><button class="rv-dialog__x" type="button" data-close aria-label="Закрыть"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.2 16.8 16.8 7.2M7.2 7.2l9.6 9.6" stroke="#242A37" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+      <div class="rv-dialog__body">
+        <p>Мы&nbsp;можем отказать в&nbsp;публикации по&nbsp;<b>2&nbsp;причинам</b>:</p>
+        <ul class="rv-reasons"><li>отзыв содержит нецензурную лексику, клевету, угрозы или&nbsp;рекламу</li><li>путешественник не&nbsp;бронировал тур, на&nbsp;который хочет оставить отзыв</li></ul>
+        <button class="rv-btn-grey" type="button" data-close>Понятно</button>
+      </div>
+    </div>
+  </div>
+  <div class="rv-viewer" id="viewer" hidden data-photos="assets/big-1.jpg assets/big-2.jpg assets/big-3.jpg assets/big-4.jpg assets/big-5.jpg assets/big-6.jpg assets/big-7.jpg" role="dialog" aria-modal="true" aria-label="Просмотр фото">
+    <span class="rv-viewer__count" id="viewer-count">1 из&nbsp;7</span>
+    <img class="rv-viewer__img" id="viewer-img" src="assets/big-1.jpg" alt="">
+    <button class="rv-viewer__btn rv-viewer__prev" type="button" aria-label="Предыдущее фото"><svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M32 36L24 28L32 20" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="rv-viewer__btn rv-viewer__next" type="button" aria-label="Следующее фото"><svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M24 36L32 28L24 20" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="rv-viewer__btn rv-viewer__close" type="button" data-close aria-label="Закрыть"><svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M20 36L36 20M20 20L36 36" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </div>
 
 </main>
 
 <p class="note">Сделала Diana Shvedskaia для YouTravel.me, не&nbsp;официальный сайт</p>
-<nav class="states" aria-label="Состояния макета"><span>Раздел</span><a class="states__section" href="bookings.html">Бронирования</a><a class="states__section" href="orders.html">Заявки эксперта</a><span>Состояния</span><a href="index.html" aria-current="page">Список</a><a href="empty.html">Пусто</a><a href="loading.html">Загрузка</a><a href="step-1.html">Шаг 1</a><a href="step-2.html">Шаг 2</a><a href="step-2.html?fail=1">Ошибка отправки</a><a href="success.html">Успех</a><a href="review.html?s=published">Опубликован</a><a href="review.html?s=moderation">На проверке</a><a href="review.html?s=rejected">Не опубликован</a></nav>
+<nav class="states" aria-label="Состояния макета"><span>Раздел</span><a class="states__section" href="index.html" aria-current="true">Отзывы</a><a class="states__section" href="bookings.html">Бронирования</a><a class="states__section" href="orders.html">Заявки эксперта</a><a class="states__section" href="expert-reviews.html">Отзывы эксперта</a><span>Состояния</span><a href="index.html" aria-current="page">Список</a><a href="index.html?photos=1">Только с фото</a><a href="index.html?open=text">Текст отзыва раскрыт</a><a href="index.html?open=answer">Ответ эксперта раскрыт</a><a href="index.html?tip=1">Не опубликован: подсказка</a><a href="index.html?dlg=reasons">Не опубликован: причины</a><a href="index.html?viewer=1">Просмотр фото</a><a href="empty.html">Пусто</a><a href="loading.html">Загрузка</a><a href="step-1.html?s=empty">Шаг 1: пусто</a><a href="step-1.html">Шаг 1: черновик</a><a href="step-1.html?s=filled">Шаг 1: заполнено</a><a href="step-1.html?s=errors">Шаг 1: ошибки</a><a href="step-1.html?photo=loading">Фото: загрузка</a><a href="step-1.html?photo=processing">Фото: обработка</a><a href="step-1.html?photo=mixed">Фото: загрузка и ошибки</a><a href="step-1.html?photo=limit">Фото: лимит</a><a href="step-1.html?viewer=1">Шаг 1: просмотр фото</a><a href="step-2.html">Шаг 2</a><a href="step-2.html?s=errors">Шаг 2: ошибки</a><a href="step-2.html?s=sending">Отправка</a><a href="step-2.html?fail=1">Ошибка отправки</a><a href="success.html">Отзыв отправлен</a><a href="success.html?bonus=1">Бонусы</a></nav>
 <script src="app.js"></script>
 </body>
 </html>

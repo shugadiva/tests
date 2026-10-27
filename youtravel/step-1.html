@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<!-- Раздел «Отзывы» скрыт на прототипе 21.10.2026: страницы не открываются, ведут в Бронирования. Вернуть: удалить эту строку -->
-<script>location.replace("bookings.html")</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
@@ -51,7 +49,7 @@
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11.993 10.9551C11.8904 10.945 11.7672 10.945 11.6543 10.9551C9.21149 10.8743 7.27161 8.90564 7.27161 6.48261C7.27161 4.0091 9.30386 2 11.8288 2C14.3435 2 16.386 4.0091 16.386 6.48261C16.3757 8.90564 14.4358 10.8743 11.993 10.9551Z" stroke="#9AAE2D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.8629 14.6806C4.37903 16.3161 4.37903 18.9815 6.8629 20.6069C9.68548 22.4646 14.3145 22.4646 17.1371 20.6069C19.621 18.9714 19.621 16.306 17.1371 14.6806C14.3248 12.833 9.69575 12.833 6.8629 14.6806Z" stroke="#9AAE2D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Настройки профиля
     </a>
-    <a class="sidebar-item" href="#" data-sec="reviews" aria-current="page">
+    <a class="sidebar-item" href="index.html" data-sec="reviews" aria-current="page">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10.5059 2.65733C11.0504 1.61422 12.4914 1.61422 13.0358 2.65733L15.3845 7.15716L20.2219 8.1037C21.3388 8.32224 21.7825 9.73643 21.004 10.5967L17.6178 14.3391L18.2508 19.4361C18.3967 20.6108 17.2325 21.4868 16.2037 20.9765L11.7709 18.7778L7.33801 20.9765C6.30924 21.4868 5.14507 20.6108 5.29095 19.4361L5.92392 14.3391L2.5377 10.5967C1.75928 9.73643 2.20295 8.32224 3.31982 8.1037L8.15728 7.15716L10.5059 2.65733Z" stroke="#9AAE2D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Мои отзывы
     </a>
@@ -75,95 +73,59 @@
   </nav>
 
 
-  <div class="content">
-    <section class="card">
-      <div class="form-layout">
-        <form class="form" id="review-step-1" novalidate>
-          <div class="form-head">
-            <a class="back" href="index.html"><svg width="14" height="20" viewBox="0 0 14 20" fill="none" aria-hidden="true"><path d="M9.1 6 4.9 10l4.2 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Мои отзывы</a>
-            <span class="caps step-label">Шаг 1 из 2</span>
-            <h1 class="t-h3">Оцените тур и&nbsp;тревел&#8209;эксперта</h1>
+  <div class="content rv">
+    <div class="rv-form-cols">
+      <form class="rv-form" id="review-step-1" novalidate>
+        <div class="rv-form__head"><span class="rv-step">Шаг 1 из&nbsp;2</span><h1 class="rv-form__title">Оцените тур и&nbsp;тревел&#8209;эксперта</h1></div>
+        <div class="rv-field" data-required="rating"><span class="rv-label" id="l-trip">Как&nbsp;вы&nbsp;оцениваете поездку?<span class="rv-req">*</span></span><div class="rv-scale" role="radiogroup" aria-labelledby="l-trip" data-name="trip"><button type="button" role="radio" aria-checked="false">1</button><button type="button" role="radio" aria-checked="false">2</button><button type="button" role="radio" aria-checked="false">3</button><button type="button" role="radio" aria-checked="false">4</button><button type="button" role="radio" aria-checked="true">5</button></div></div>
+        <div class="rv-field" data-required="text"><label class="rv-label" for="t-trip">Поделитесь вашими впечатлениями от&nbsp;поездки. Эмоции&nbsp;приветствуются<span class="rv-req">*</span></label><textarea class="rv-textarea" id="t-trip" placeholder="Поделитесь впечатлениями">Камчатка превзошла ожидания: вулканы, горячие источники и&nbsp;океан за&nbsp;одну неделю. Маршрут продуман, джипы надёжные, а&nbsp;вечерние посиделки у&nbsp;костра стали лучшей частью поездки.</textarea></div>
+        <div class="rv-divider"></div>
+        <div class="rv-field" data-required="rating"><span class="rv-label" id="l-group">Как&nbsp;вы&nbsp;оцениваете группу, с&nbsp;которой посетили&nbsp;тур?<span class="rv-req">*</span></span><div class="rv-scale" role="radiogroup" aria-labelledby="l-group" data-name="group"><button type="button" role="radio" aria-checked="false">1</button><button type="button" role="radio" aria-checked="false">2</button><button type="button" role="radio" aria-checked="false">3</button><button type="button" role="radio" aria-checked="true">4</button><button type="button" role="radio" aria-checked="false">5</button></div></div>
+        <div class="rv-field" data-required="text"><label class="rv-label" for="t-group">Поделитесь вашими впечатлениями о&nbsp;людях, с&nbsp;которыми посетили&nbsp;тур<span class="rv-req">*</span></label><textarea class="rv-textarea" id="t-group" placeholder="Поделитесь впечатлениями"></textarea></div>
+        <div class="rv-divider"></div>
+        <div class="rv-field rv-field--photos">
+          <span class="rv-label">Поделитесь фотографиями</span>
+          <div class="rv-add">
+            <label class="rv-add__btn" id="add-photo"><svg class="rv-add__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 4.42871C4.98375 4.42871 4.125 5.28746 4.125 6.30371C4.125 7.31996 4.98375 8.17871 6 8.17871C7.01625 8.17871 7.875 7.31996 7.875 6.30371C7.875 5.28746 7.01625 4.42871 6 4.42871Z" fill="currentColor"/><path d="M10.8 2.10371H9.2484L7.6242 0.479512C7.56858 0.423686 7.50246 0.379413 7.42966 0.349242C7.35686 0.319071 7.27881 0.303597 7.2 0.303712H4.8C4.72119 0.303597 4.64314 0.319071 4.57034 0.349242C4.49754 0.379413 4.43142 0.423686 4.3758 0.479512L2.7516 2.10371H1.2C0.5382 2.10371 0 2.64191 0 3.30371V9.90371C0 10.5655 0.5382 11.1037 1.2 11.1037H10.8C11.4618 11.1037 12 10.5655 12 9.90371V3.30371C12 2.64191 11.4618 2.10371 10.8 2.10371ZM6 9.30371C4.374 9.30371 3 7.92971 3 6.30371C3 4.67771 4.374 3.30371 6 3.30371C7.626 3.30371 9 4.67771 9 6.30371C9 7.92971 7.626 9.30371 6 9.30371Z" fill="currentColor"/></svg><span>Добавить фото</span><input type="file" accept="image/*" multiple hidden></label>
+            <span class="rv-add__hint"><span>Максимум 7&nbsp;фото</span><span>Макс. размер 5&nbsp;Мб</span></span>
           </div>
-          <div class="form-body">
-          <div class="field" data-required="rating">
-            <span class="label" id="l-trip">Как вы&nbsp;оцениваете поездку?<span class="req">*</span></span>
-            <div class="scale" role="radiogroup" aria-labelledby="l-trip">
-              <button type="button" role="radio" aria-checked="false">1</button><button type="button" role="radio" aria-checked="false">2</button><button type="button" role="radio" aria-checked="false">3</button><button type="button" role="radio" aria-checked="false">4</button><button type="button" role="radio" aria-checked="true">5</button>
-            </div>
-            <span class="error">Поставьте оценку от&nbsp;1 до&nbsp;5</span>
-          </div>
-          <div class="field" data-required="text">
-            <label class="label" for="t-trip">Поделитесь вашими впечатлениями от&nbsp;поездки.<br class="d-only"> Эмоции приветствуются<span class="req">*</span></label>
-            <textarea class="textarea" id="t-trip" placeholder="Поделитесь впечатлениями">Камчатка превзошла ожидания: вулканы, горячие источники и океан за одну неделю. Маршрут продуман, джипы надёжные, а вечерние посиделки у костра стали лучшей частью поездки</textarea>
-            <span class="error">Расскажите о&nbsp;поездке хотя&nbsp;бы в&nbsp;паре предложений</span>
-          </div>
-          <div class="divider"></div>
-          <div class="field" data-required="rating">
-            <span class="label" id="l-group">Как вы&nbsp;оцениваете группу, с&nbsp;которой посетили тур?<span class="req">*</span></span>
-            <div class="scale" role="radiogroup" aria-labelledby="l-group">
-              <button type="button" role="radio" aria-checked="false">1</button><button type="button" role="radio" aria-checked="false">2</button><button type="button" role="radio" aria-checked="false">3</button><button type="button" role="radio" aria-checked="true">4</button><button type="button" role="radio" aria-checked="false">5</button>
-            </div>
-            <span class="error">Поставьте оценку от&nbsp;1 до&nbsp;5</span>
-          </div>
-          <div class="field" data-required="text">
-            <label class="label" for="t-group">Поделитесь вашими впечатлениями о&nbsp;людях, с&nbsp;которыми посетили тур<span class="req">*</span></label>
-            <textarea class="textarea" id="t-group" placeholder="Поделитесь впечатлениями"></textarea>
-            <span class="error">Расскажите о&nbsp;группе хотя&nbsp;бы в&nbsp;паре предложений</span>
-          </div>
-          <div class="divider divider--photos"></div>
-          <div class="field">
-            <span class="label">Поделитесь фотографиями</span>
-            <div class="photos-add">
-              <label class="button button--grey t-body-m-semi" id="add-photo">Добавить фото<input type="file" accept="image/png,image/jpeg,image/webp" multiple></label>
-              <span class="dates t-body-xs-semi" id="photo-hint">До&nbsp;7 фото, каждое до&nbsp;5&nbsp;МБ<span id="photo-count" hidden>3</span></span>
-            </div>
-            <div class="tiles" id="tiles">
-              <div class="tile"><img src="assets/photo-1.jpg" alt=""><button class="tile__del" type="button" aria-label="Удалить фото"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 4h-3.33V2.89A1.6 1.6 0 0 0 9 1.33H7a1.6 1.6 0 0 0-1.67 1.56V4H2a.67.67 0 0 0 0 1.33h.67v7.34a2 2 0 0 0 2 2h6.66a2 2 0 0 0 2-2V5.33H14A.67.67 0 0 0 14 4ZM6.67 10.67a.67.67 0 0 1-1.34 0V8a.67.67 0 0 1 1.34 0v2.67Zm0-7.78c0-.1.14-.22.33-.22h2c.19 0 .33.11.33.22V4H6.67V2.89Zm4 7.78a.67.67 0 0 1-1.34 0V8a.67.67 0 0 1 1.34 0v2.67Z" fill="#fff"/></svg></button></div>
-              <div class="tile"><img src="assets/photo-2.jpg" alt=""><button class="tile__del" type="button" aria-label="Удалить фото"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 4h-3.33V2.89A1.6 1.6 0 0 0 9 1.33H7a1.6 1.6 0 0 0-1.67 1.56V4H2a.67.67 0 0 0 0 1.33h.67v7.34a2 2 0 0 0 2 2h6.66a2 2 0 0 0 2-2V5.33H14A.67.67 0 0 0 14 4ZM6.67 10.67a.67.67 0 0 1-1.34 0V8a.67.67 0 0 1 1.34 0v2.67Zm0-7.78c0-.1.14-.22.33-.22h2c.19 0 .33.11.33.22V4H6.67V2.89Zm4 7.78a.67.67 0 0 1-1.34 0V8a.67.67 0 0 1 1.34 0v2.67Z" fill="#fff"/></svg></button></div>
-              <div class="tile"><img src="assets/photo-3.jpg" alt=""><button class="tile__del" type="button" aria-label="Удалить фото"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 4h-3.33V2.89A1.6 1.6 0 0 0 9 1.33H7a1.6 1.6 0 0 0-1.67 1.56V4H2a.67.67 0 0 0 0 1.33h.67v7.34a2 2 0 0 0 2 2h6.66a2 2 0 0 0 2-2V5.33H14A.67.67 0 0 0 14 4ZM6.67 10.67a.67.67 0 0 1-1.34 0V8a.67.67 0 0 1 1.34 0v2.67Zm0-7.78c0-.1.14-.22.33-.22h2c.19 0 .33.11.33.22V4H6.67V2.89Zm4 7.78a.67.67 0 0 1-1.34 0V8a.67.67 0 0 1 1.34 0v2.67Z" fill="#fff"/></svg></button></div>
+          <div class="rv-tiles" id="tiles"><div class="rv-tile"><img src="assets/photo-1.jpg" alt=""><button class="rv-tile__del" type="button" aria-label="Удалить фото"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect width="28" height="28" rx="14" fill="#727281"/><path d="M19.9999 10.0006H16.6666V8.88726C16.6509 8.46047 16.4667 8.0573 16.1543 7.76612C15.8419 7.47494 15.4267 7.31952 14.9999 7.33393H12.9999C12.5731 7.31952 12.158 7.47494 11.8455 7.76612C11.5331 8.0573 11.3489 8.46047 11.3333 8.88726V10.0006H7.99992C7.82311 10.0006 7.65354 10.0708 7.52851 10.1959C7.40349 10.3209 7.33325 10.4904 7.33325 10.6673C7.33325 10.8441 7.40349 11.0136 7.52851 11.1387C7.65354 11.2637 7.82311 11.3339 7.99992 11.3339H8.66659V18.6673C8.66659 19.1977 8.8773 19.7064 9.25237 20.0815C9.62744 20.4565 10.1362 20.6673 10.6666 20.6673H17.3333C17.8637 20.6673 18.3724 20.4565 18.7475 20.0815C19.1225 19.7064 19.3333 19.1977 19.3333 18.6673V11.3339H19.9999C20.1767 11.3339 20.3463 11.2637 20.4713 11.1387C20.5963 11.0136 20.6666 10.8441 20.6666 10.6673C20.6666 10.4904 20.5963 10.3209 20.4713 10.1959C20.3463 10.0708 20.1767 10.0006 19.9999 10.0006ZM12.6666 16.6673C12.6666 16.8441 12.5963 17.0136 12.4713 17.1387C12.3463 17.2637 12.1767 17.3339 11.9999 17.3339C11.8231 17.3339 11.6535 17.2637 11.5285 17.1387C11.4035 17.0136 11.3333 16.8441 11.3333 16.6673V14.0006C11.3333 13.8238 11.4035 13.6542 11.5285 13.5292C11.6535 13.4042 11.8231 13.3339 11.9999 13.3339C12.1767 13.3339 12.3463 13.4042 12.4713 13.5292C12.5963 13.6542 12.6666 13.8238 12.6666 14.0006V16.6673ZM12.6666 8.88726C12.6666 8.78059 12.8066 8.66726 12.9999 8.66726H14.9999C15.1933 8.66726 15.3333 8.78059 15.3333 8.88726V10.0006H12.6666V8.88726ZM16.6666 16.6673C16.6666 16.8441 16.5963 17.0136 16.4713 17.1387C16.3463 17.2637 16.1767 17.3339 15.9999 17.3339C15.8231 17.3339 15.6535 17.2637 15.5285 17.1387C15.4035 17.0136 15.3333 16.8441 15.3333 16.6673V14.0006C15.3333 13.8238 15.4035 13.6542 15.5285 13.5292C15.6535 13.4042 15.8231 13.3339 15.9999 13.3339C16.1767 13.3339 16.3463 13.4042 16.4713 13.5292C16.5963 13.6542 16.6666 13.8238 16.6666 14.0006V16.6673Z" fill="#fff"/></svg></button></div><div class="rv-tile"><img src="assets/photo-2.jpg" alt=""><button class="rv-tile__del" type="button" aria-label="Удалить фото"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect width="28" height="28" rx="14" fill="#727281"/><path d="M19.9999 10.0006H16.6666V8.88726C16.6509 8.46047 16.4667 8.0573 16.1543 7.76612C15.8419 7.47494 15.4267 7.31952 14.9999 7.33393H12.9999C12.5731 7.31952 12.158 7.47494 11.8455 7.76612C11.5331 8.0573 11.3489 8.46047 11.3333 8.88726V10.0006H7.99992C7.82311 10.0006 7.65354 10.0708 7.52851 10.1959C7.40349 10.3209 7.33325 10.4904 7.33325 10.6673C7.33325 10.8441 7.40349 11.0136 7.52851 11.1387C7.65354 11.2637 7.82311 11.3339 7.99992 11.3339H8.66659V18.6673C8.66659 19.1977 8.8773 19.7064 9.25237 20.0815C9.62744 20.4565 10.1362 20.6673 10.6666 20.6673H17.3333C17.8637 20.6673 18.3724 20.4565 18.7475 20.0815C19.1225 19.7064 19.3333 19.1977 19.3333 18.6673V11.3339H19.9999C20.1767 11.3339 20.3463 11.2637 20.4713 11.1387C20.5963 11.0136 20.6666 10.8441 20.6666 10.6673C20.6666 10.4904 20.5963 10.3209 20.4713 10.1959C20.3463 10.0708 20.1767 10.0006 19.9999 10.0006ZM12.6666 16.6673C12.6666 16.8441 12.5963 17.0136 12.4713 17.1387C12.3463 17.2637 12.1767 17.3339 11.9999 17.3339C11.8231 17.3339 11.6535 17.2637 11.5285 17.1387C11.4035 17.0136 11.3333 16.8441 11.3333 16.6673V14.0006C11.3333 13.8238 11.4035 13.6542 11.5285 13.5292C11.6535 13.4042 11.8231 13.3339 11.9999 13.3339C12.1767 13.3339 12.3463 13.4042 12.4713 13.5292C12.5963 13.6542 12.6666 13.8238 12.6666 14.0006V16.6673ZM12.6666 8.88726C12.6666 8.78059 12.8066 8.66726 12.9999 8.66726H14.9999C15.1933 8.66726 15.3333 8.78059 15.3333 8.88726V10.0006H12.6666V8.88726ZM16.6666 16.6673C16.6666 16.8441 16.5963 17.0136 16.4713 17.1387C16.3463 17.2637 16.1767 17.3339 15.9999 17.3339C15.8231 17.3339 15.6535 17.2637 15.5285 17.1387C15.4035 17.0136 15.3333 16.8441 15.3333 16.6673V14.0006C15.3333 13.8238 15.4035 13.6542 15.5285 13.5292C15.6535 13.4042 15.8231 13.3339 15.9999 13.3339C16.1767 13.3339 16.3463 13.4042 16.4713 13.5292C16.5963 13.6542 16.6666 13.8238 16.6666 14.0006V16.6673Z" fill="#fff"/></svg></button></div><div class="rv-tile"><img src="assets/photo-3.jpg" alt=""><button class="rv-tile__del" type="button" aria-label="Удалить фото"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect width="28" height="28" rx="14" fill="#727281"/><path d="M19.9999 10.0006H16.6666V8.88726C16.6509 8.46047 16.4667 8.0573 16.1543 7.76612C15.8419 7.47494 15.4267 7.31952 14.9999 7.33393H12.9999C12.5731 7.31952 12.158 7.47494 11.8455 7.76612C11.5331 8.0573 11.3489 8.46047 11.3333 8.88726V10.0006H7.99992C7.82311 10.0006 7.65354 10.0708 7.52851 10.1959C7.40349 10.3209 7.33325 10.4904 7.33325 10.6673C7.33325 10.8441 7.40349 11.0136 7.52851 11.1387C7.65354 11.2637 7.82311 11.3339 7.99992 11.3339H8.66659V18.6673C8.66659 19.1977 8.8773 19.7064 9.25237 20.0815C9.62744 20.4565 10.1362 20.6673 10.6666 20.6673H17.3333C17.8637 20.6673 18.3724 20.4565 18.7475 20.0815C19.1225 19.7064 19.3333 19.1977 19.3333 18.6673V11.3339H19.9999C20.1767 11.3339 20.3463 11.2637 20.4713 11.1387C20.5963 11.0136 20.6666 10.8441 20.6666 10.6673C20.6666 10.4904 20.5963 10.3209 20.4713 10.1959C20.3463 10.0708 20.1767 10.0006 19.9999 10.0006ZM12.6666 16.6673C12.6666 16.8441 12.5963 17.0136 12.4713 17.1387C12.3463 17.2637 12.1767 17.3339 11.9999 17.3339C11.8231 17.3339 11.6535 17.2637 11.5285 17.1387C11.4035 17.0136 11.3333 16.8441 11.3333 16.6673V14.0006C11.3333 13.8238 11.4035 13.6542 11.5285 13.5292C11.6535 13.4042 11.8231 13.3339 11.9999 13.3339C12.1767 13.3339 12.3463 13.4042 12.4713 13.5292C12.5963 13.6542 12.6666 13.8238 12.6666 14.0006V16.6673ZM12.6666 8.88726C12.6666 8.78059 12.8066 8.66726 12.9999 8.66726H14.9999C15.1933 8.66726 15.3333 8.78059 15.3333 8.88726V10.0006H12.6666V8.88726ZM16.6666 16.6673C16.6666 16.8441 16.5963 17.0136 16.4713 17.1387C16.3463 17.2637 16.1767 17.3339 15.9999 17.3339C15.8231 17.3339 15.6535 17.2637 15.5285 17.1387C15.4035 17.0136 15.3333 16.8441 15.3333 16.6673V14.0006C15.3333 13.8238 15.4035 13.6542 15.5285 13.5292C15.6535 13.4042 15.8231 13.3339 15.9999 13.3339C16.1767 13.3339 16.3463 13.4042 16.4713 13.5292C16.5963 13.6542 16.6666 13.8238 16.6666 14.0006V16.6673Z" fill="#fff"/></svg></button></div></div>
+        </div>
+        <div class="rv-divider"></div>
+        <div class="rv-field"><label class="rv-label" for="t-wish">Пожелания тревел-эксперту</label><textarea class="rv-textarea" id="t-wish" placeholder="Их&nbsp;увидят только тревел-эксперт и&nbsp;модераторы. Можете рассказать, что&nbsp;бы&nbsp;вы&nbsp;хотели улучшить в&nbsp;организации и&nbsp;насколько совпали ваши ожидания от&nbsp;поездки с&nbsp;реальностью"></textarea></div>
+        <div class="rv-form__footer"><button class="rv-btn-submit" type="submit">Далее</button></div>
+      </form>
+      <aside class="rv-aside" aria-label="Тур">
+        <div class="rv-tour">
+          <div class="rv-tour__head"><img class="rv-tour__cover" src="assets/kamchatka.jpg" alt=""><span class="rv-tour__title">Земля Камчатка. Вулканы, термальные источники. Джип&#8209;тур 2024</span></div>
+          <div class="rv-tour__rows">
+            <span class="rv-tour__region">Россия, Камчатский край</span>
+            <div class="rv-tour__divider"></div>
+            <div class="rv-tour__dates"><span><span class="rv-tour__muted">Даты:</span> 29&nbsp;сент&nbsp;– 6&nbsp;окт 2026</span><span class="rv-tour__days"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M7.99992 1.33301C4.31763 1.33301 1.33325 4.31738 1.33325 7.99967C1.33325 11.682 4.31763 14.6663 7.99992 14.6663C11.6822 14.6663 14.6666 11.682 14.6666 7.99967C14.6666 4.31738 11.6822 1.33301 7.99992 1.33301ZM9.72388 10.6663L7.52856 8.47103C7.40356 8.34538 7.33325 8.17611 7.33325 7.99967V4.66634C7.33325 4.2985 7.63208 3.99967 7.99992 3.99967C8.36776 3.99967 8.66659 4.2985 8.66659 4.66634V7.72363L10.6666 9.72363C10.9264 9.9834 10.9264 10.4066 10.6666 10.6663C10.4068 10.9261 9.98364 10.9261 9.72388 10.6663Z" fill="#9999A9"/></svg><span class="rv-tour__muted">8&nbsp;дней</span></span></div>
+            <div class="rv-tour__divider"></div>
+            <div class="rv-tour__expert">
+              <img class="rv-tour__avatar" src="assets/expert.jpg" alt="">
+              <div class="rv-tour__who"><span class="rv-tour__name">Снежанна <span class="rv-tour__score"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M6.20932 2.42975C6.64374 1.50432 6.86095 1.04161 7.19279 0.965176C7.29618 0.941362 7.40363 0.941362 7.50702 0.965176C7.83886 1.04161 8.05607 1.50432 8.49049 2.42975L9.14361 3.82108C9.16308 3.86256 9.17281 3.8833 9.18893 3.89802C9.19424 3.90286 9.20001 3.90718 9.20616 3.9109C9.22483 3.9222 9.24748 3.92568 9.29276 3.93264L10.8778 4.17626C11.8117 4.31979 12.2786 4.39156 12.4478 4.67274C12.5007 4.76073 12.5337 4.8593 12.5442 4.96144C12.5781 5.28783 12.248 5.62585 11.5879 6.30189L10.3947 7.52395C10.3644 7.55507 10.3492 7.57063 10.3411 7.58981C10.3384 7.59613 10.3363 7.60269 10.3349 7.6094C10.3305 7.62975 10.334 7.65121 10.341 7.69414L10.6092 9.33864C10.7691 10.3186 10.849 10.8086 10.6241 11.0583C10.5539 11.1362 10.4671 11.1973 10.3701 11.2372C10.0593 11.3649 9.62486 11.1246 8.75592 10.6441L7.44572 9.9196C7.40418 9.89663 7.38342 9.88514 7.361 9.88287C7.35362 9.88212 7.34619 9.88212 7.33881 9.88287C7.31639 9.88514 7.29562 9.89663 7.25409 9.9196L5.94389 10.6441C5.07495 11.1246 4.64048 11.3649 4.3297 11.2372C4.23271 11.1973 4.14591 11.1362 4.07572 11.0583C3.85081 10.8086 3.93073 10.3186 4.09058 9.33864L4.35881 7.69414C4.36581 7.65121 4.36931 7.62975 4.36493 7.6094C4.36348 7.60269 4.36141 7.59613 4.35874 7.58981C4.35064 7.57063 4.33545 7.55507 4.30506 7.52395L3.11186 6.30188C2.45179 5.62585 2.12175 5.28783 2.15557 4.96144C2.16615 4.8593 2.19908 4.76073 2.25202 4.67274C2.42118 4.39156 2.88811 4.31979 3.82198 4.17626L5.40704 3.93264C5.45233 3.92568 5.47498 3.9222 5.49365 3.9109C5.4998 3.90718 5.50557 3.90286 5.51088 3.89802C5.52699 3.8833 5.53673 3.86256 5.5562 3.82108L6.20932 2.42975Z" fill="#9AAE2D"/></svg>4.5</span></span><span class="rv-tour__muted">Тревел&#8209;эксперт</span></div>
+              <button class="rv-chat" type="button"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M1.9268 6.62185C2.0181 5.1669 2.99515 4.05508 4.27375 3.95119C5.5514 3.84735 9.43355 3.75 12 3.75C14.5665 3.75 18.4486 3.84735 19.7262 3.95119C21.0049 4.05508 21.9819 5.1669 22.0732 6.62185C22.1645 8.07573 22.25 9.07956 22.25 12C22.25 14.9204 22.1645 14.9243 22.0732 16.3781C21.9819 17.8331 21.0049 18.9449 19.7262 19.0488C18.5166 19.1471 15.6444 19.2396 13.1639 19.2492C12.8987 19.2502 12.6446 19.3516 12.4421 19.5229C11.8111 20.0564 10.4533 21.1317 9.3599 21.9908C8.70556 22.5049 7.75 22.0375 7.75 21.2054V20.2301C7.75 19.6856 7.31394 19.2428 6.76991 19.2217C5.56438 19.1751 4.91512 19.1009 4.27375 19.0488C2.99515 18.9449 2.0181 17.8331 1.9268 16.3781C1.83555 14.9243 1.75 14.9204 1.75 12C1.75 9.07956 1.83555 8.07573 1.9268 6.62185Z" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 10H16.285M8 13.3486H16.285" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Чат</button>
             </div>
           </div>
-          <div class="divider"></div>
-          <div class="field">
-            <label class="label" for="t-wish">Пожелания тревел-эксперту</label>
-            <textarea class="textarea" id="t-wish" placeholder="Пожелания увидят только тревел-эксперт и модераторы.&#10;Расскажите, что можно улучшить"></textarea>
-          </div>
-          <div class="form-foot">
-            <button class="button button--green button--m t-body-m-semi" type="submit">Далее</button>
-            <span class="caps" id="autosave" aria-live="polite">Сохранено как черновик</span>
-          </div>
-          </div>
-        </form>
-
-        <aside class="aside" aria-label="Тур">
-          <div class="tour-card">
-            <div class="tour-card__trip">
-              <img class="tour-card__cover" src="assets/kamchatka.jpg" alt="">
-              <div class="tour-card__info">
-                <span class="title t-body-s-semi">Земля Камчатка. Вулканы, термальные источники. Джип&#8209;тур</span>
-                <span class="dates t-body-xs-semi">с&nbsp;29&nbsp;сентября по&nbsp;6&nbsp;октября 2026</span>
-              </div>
-            </div>
-            <span class="tag tag--draft" style="align-self:flex-start"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.07066 10.3043L9.07078 5.30418L6.69582 2.92922L1.6957 7.92934C1.62686 7.99826 1.57797 8.08453 1.55419 8.17899L1 11L3.82047 10.4458C3.91516 10.4221 4.00179 10.3732 4.07066 10.3043ZM10.6849 3.69003C10.8867 3.48823 11 3.21457 11 2.92922C11 2.64388 10.8867 2.37022 10.6849 2.16842L9.83158 1.31507C9.62978 1.11333 9.35612 1 9.07078 1C8.78543 1 8.51177 1.11333 8.30997 1.31507L7.45662 2.16842L9.83158 4.54338L10.6849 3.69003Z" fill="#242A37"/></svg>Черновик</span>
-            <div class="divider"></div>
-            <div class="expert">
-              <img src="assets/expert.jpg" alt="">
-              <div><span class="t-body-s-semi">Снежанна</span><span class="caps">Тревел-эксперт</span></div>
-            </div>
-          </div>
-          <ol class="steps">
-            <li aria-current="step"><span class="num">1</span>Тур и&nbsp;тревел-эксперт</li>
-            <li><span class="num">2</span>Сервис YouTravel.me</li>
-          </ol>
-        </aside>
-      </div>
-    </section>
+        </div>
+      </aside>
+    </div>
+  </div>
+  <div class="rv-overlay rv-overlay--plain" id="dlg-processing" hidden><div class="rv-spinner" role="status" aria-label="Обрабатываем фото"><svg class="rv-spinner__svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="19.596" cy="19.5964" r="16" stroke="#fff" stroke-width="5"/><path d="M15.4549 35.0512C12.3982 34.2321 9.65304 32.5251 7.56654 30.1459C5.48004 27.7667 4.14591 24.8222 3.73286 21.6848C3.31981 18.5474 3.84639 15.3579 5.24601 12.5197C6.64564 9.68159 8.85544 7.32221 11.596 5.73996C14.3365 4.15771 17.4847 3.42365 20.6424 3.63062C23.8002 3.83759 26.8256 4.97629 29.3362 6.90271C31.8467 8.82914 33.7297 11.4568 34.7469 14.4533C35.7641 17.4499 35.8698 20.6808 35.0508 23.7375" stroke="url(#rv-spin-g)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="rv-spin-g" x1="3.2353" y1="18.836" x2="40.0191" y2="16.7865" gradientUnits="userSpaceOnUse"><stop stop-color="#ABC232"/><stop offset="0.426123" stop-color="#ABC232"/><stop offset="1" stop-color="#ABC232" stop-opacity="0"/></linearGradient></defs></svg></div></div>
+  <div class="rv-viewer" id="viewer" hidden data-photos="assets/photo-1.jpg assets/photo-2.jpg assets/photo-3.jpg" role="dialog" aria-modal="true" aria-label="Просмотр фото">
+    <span class="rv-viewer__count" id="viewer-count">1 из&nbsp;3</span>
+    <img class="rv-viewer__img" id="viewer-img" src="assets/photo-1.jpg" alt="">
+    <button class="rv-viewer__btn rv-viewer__prev" type="button" aria-label="Предыдущее фото"><svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M32 36L24 28L32 20" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="rv-viewer__btn rv-viewer__next" type="button" aria-label="Следующее фото"><svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M24 36L32 28L24 20" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="rv-viewer__btn rv-viewer__close" type="button" data-close aria-label="Закрыть"><svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M20 36L36 20M20 20L36 36" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </div>
 
 </main>
 
 <p class="note">Сделала Diana Shvedskaia для YouTravel.me, не&nbsp;официальный сайт</p>
-<nav class="states" aria-label="Состояния макета"><span>Раздел</span><a class="states__section" href="bookings.html">Бронирования</a><a class="states__section" href="orders.html">Заявки эксперта</a><span>Состояния</span><a href="index.html">Список</a><a href="empty.html">Пусто</a><a href="loading.html">Загрузка</a><a href="step-1.html" aria-current="page">Шаг 1</a><a href="step-2.html">Шаг 2</a><a href="step-2.html?fail=1">Ошибка отправки</a><a href="success.html">Успех</a><a href="review.html?s=published">Опубликован</a><a href="review.html?s=moderation">На проверке</a><a href="review.html?s=rejected">Не опубликован</a></nav>
+<nav class="states" aria-label="Состояния макета"><span>Раздел</span><a class="states__section" href="index.html" aria-current="true">Отзывы</a><a class="states__section" href="bookings.html">Бронирования</a><a class="states__section" href="orders.html">Заявки эксперта</a><a class="states__section" href="expert-reviews.html">Отзывы эксперта</a><span>Состояния</span><a href="index.html">Список</a><a href="index.html?photos=1">Только с фото</a><a href="index.html?open=text">Текст отзыва раскрыт</a><a href="index.html?open=answer">Ответ эксперта раскрыт</a><a href="index.html?tip=1">Не опубликован: подсказка</a><a href="index.html?dlg=reasons">Не опубликован: причины</a><a href="index.html?viewer=1">Просмотр фото</a><a href="empty.html">Пусто</a><a href="loading.html">Загрузка</a><a href="step-1.html?s=empty">Шаг 1: пусто</a><a href="step-1.html" aria-current="page">Шаг 1: черновик</a><a href="step-1.html?s=filled">Шаг 1: заполнено</a><a href="step-1.html?s=errors">Шаг 1: ошибки</a><a href="step-1.html?photo=loading">Фото: загрузка</a><a href="step-1.html?photo=processing">Фото: обработка</a><a href="step-1.html?photo=mixed">Фото: загрузка и ошибки</a><a href="step-1.html?photo=limit">Фото: лимит</a><a href="step-1.html?viewer=1">Шаг 1: просмотр фото</a><a href="step-2.html">Шаг 2</a><a href="step-2.html?s=errors">Шаг 2: ошибки</a><a href="step-2.html?s=sending">Отправка</a><a href="step-2.html?fail=1">Ошибка отправки</a><a href="success.html">Отзыв отправлен</a><a href="success.html?bonus=1">Бонусы</a></nav>
 <script src="app.js"></script>
 </body>
 </html>

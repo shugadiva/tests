@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<!-- Раздел «Отзывы» скрыт на прототипе 21.10.2026: страницы не открываются, ведут в Бронирования. Вернуть: удалить эту строку -->
-<script>location.replace("bookings.html")</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
@@ -51,7 +49,7 @@
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11.993 10.9551C11.8904 10.945 11.7672 10.945 11.6543 10.9551C9.21149 10.8743 7.27161 8.90564 7.27161 6.48261C7.27161 4.0091 9.30386 2 11.8288 2C14.3435 2 16.386 4.0091 16.386 6.48261C16.3757 8.90564 14.4358 10.8743 11.993 10.9551Z" stroke="#9AAE2D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.8629 14.6806C4.37903 16.3161 4.37903 18.9815 6.8629 20.6069C9.68548 22.4646 14.3145 22.4646 17.1371 20.6069C19.621 18.9714 19.621 16.306 17.1371 14.6806C14.3248 12.833 9.69575 12.833 6.8629 14.6806Z" stroke="#9AAE2D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Настройки профиля
     </a>
-    <a class="sidebar-item" href="#" data-sec="reviews" aria-current="page">
+    <a class="sidebar-item" href="index.html" data-sec="reviews" aria-current="page">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10.5059 2.65733C11.0504 1.61422 12.4914 1.61422 13.0358 2.65733L15.3845 7.15716L20.2219 8.1037C21.3388 8.32224 21.7825 9.73643 21.004 10.5967L17.6178 14.3391L18.2508 19.4361C18.3967 20.6108 17.2325 21.4868 16.2037 20.9765L11.7709 18.7778L7.33801 20.9765C6.30924 21.4868 5.14507 20.6108 5.29095 19.4361L5.92392 14.3391L2.5377 10.5967C1.75928 9.73643 2.20295 8.32224 3.31982 8.1037L8.15728 7.15716L10.5059 2.65733Z" stroke="#9AAE2D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Мои отзывы
     </a>
@@ -75,41 +73,74 @@
   </nav>
 
 
-  <div class="content">
-    <section class="card">
-      <div class="page-head d-only">
-        <h1 class="t-h3">Мои отзывы</h1>
-      </div>
-      <div class="empty-state empty-state--success">
-        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect width="64" height="64" rx="32" fill="url(#sg)"/><path d="M46.33 24 29.41 40.92a2 2 0 0 1-2.83 0L19.67 34" stroke="#ABC232" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="sg" x1="7.9" y1="0" x2="41.2" y2="68.7" gradientUnits="userSpaceOnUse"><stop stop-color="#F3F7DD"/><stop offset=".82" stop-color="#E5FFED"/></linearGradient></defs></svg>
-        <h2 class="t-h4" style="margin:0">Отзыв отправлен на&nbsp;проверку</h2>
-        <div class="dialog__text t-body-s"><p>Спасибо! Мы&nbsp;отправили отзыв на&nbsp;модерацию.</p><p>Статус публикации видно в&nbsp;разделе «Мои отзывы»</p></div>
-        <a class="button button--green button--m t-body-m-semi" href="index.html">К&nbsp;моим отзывам</a>
-      </div>
-    </section>
+  <div class="content rv">
+    <div class="rv-form-cols">
+      <form class="rv-form" id="review-step-2" novalidate>
+        <div class="rv-form__head"><span class="rv-step">Шаг 2 из&nbsp;2</span><h1 class="rv-form__title">Оцените наш сервис</h1></div>
+        <div class="rv-field" data-required="rating"><span class="rv-label" id="l-service">Как&nbsp;вы&nbsp;оцениваете работу сервиса YouTravel.me?<span class="rv-req">*</span></span><div class="rv-scale" role="radiogroup" aria-labelledby="l-service" data-name="service"><button type="button" role="radio" aria-checked="false">1</button><button type="button" role="radio" aria-checked="false">2</button><button type="button" role="radio" aria-checked="false">3</button><button type="button" role="radio" aria-checked="false">4</button><button type="button" role="radio" aria-checked="true">5</button></div></div>
+        <div class="rv-field" data-required="text"><label class="rv-label" for="t-service">Напишите отзыв о&nbsp;работе приложения YouTravel.me<span class="rv-req">*</span></label><textarea class="rv-textarea" id="t-service" placeholder="Расскажите нам о своем взаимодействии с YouTravel.me:&#10;что понравилось, а что хотелось бы улучшить">Удобно, что&nbsp;всё&nbsp;в&nbsp;одном месте: бронь, чат&nbsp;с&nbsp;организатором и&nbsp;оплата. Поддержка ответила за&nbsp;несколько минут, когда я&nbsp;перепутала даты.</textarea></div>
+        <div class="rv-divider"></div>
+        <div class="rv-field"><label class="rv-label" for="t-ideas">Пожелания и&nbsp;предложения</label><textarea class="rv-textarea" id="t-ideas" placeholder="Приветствуются любые замечания и&nbsp;идеи по&nbsp;улучшению"></textarea></div>
+        <div class="rv-divider"></div>
+        <div class="rv-field rv-field--nps" data-required="rating"><span class="rv-label" id="l-nps">Порекомендуете ли&nbsp;сервис YouTravel.me своим друзьям<br>и&nbsp;знакомым?<span class="rv-req">*</span></span><div class="rv-scale rv-scale--nps" role="radiogroup" aria-labelledby="l-nps" data-name="nps"><button type="button" role="radio" aria-checked="false">1</button><button type="button" role="radio" aria-checked="false">2</button><button type="button" role="radio" aria-checked="false">3</button><button type="button" role="radio" aria-checked="false">4</button><button type="button" role="radio" aria-checked="false">5</button><button type="button" role="radio" aria-checked="false">6</button><button type="button" role="radio" aria-checked="false">7</button><button type="button" role="radio" aria-checked="false">8</button><button type="button" role="radio" aria-checked="false">9</button><button type="button" role="radio" aria-checked="true">10</button></div></div>
+        <div class="rv-form__footer"><button class="rv-btn-submit" type="submit">Отправить</button></div>
+      </form>
+      <aside class="rv-aside" aria-label="Тур">
+        <div class="rv-tour">
+          <div class="rv-tour__head"><img class="rv-tour__cover" src="assets/kamchatka.jpg" alt=""><span class="rv-tour__title">Земля Камчатка. Вулканы, термальные источники. Джип&#8209;тур 2024</span></div>
+          <div class="rv-tour__rows">
+            <span class="rv-tour__region">Россия, Камчатский край</span>
+            <div class="rv-tour__divider"></div>
+            <div class="rv-tour__dates"><span><span class="rv-tour__muted">Даты:</span> 29&nbsp;сент&nbsp;– 6&nbsp;окт 2026</span><span class="rv-tour__days"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M7.99992 1.33301C4.31763 1.33301 1.33325 4.31738 1.33325 7.99967C1.33325 11.682 4.31763 14.6663 7.99992 14.6663C11.6822 14.6663 14.6666 11.682 14.6666 7.99967C14.6666 4.31738 11.6822 1.33301 7.99992 1.33301ZM9.72388 10.6663L7.52856 8.47103C7.40356 8.34538 7.33325 8.17611 7.33325 7.99967V4.66634C7.33325 4.2985 7.63208 3.99967 7.99992 3.99967C8.36776 3.99967 8.66659 4.2985 8.66659 4.66634V7.72363L10.6666 9.72363C10.9264 9.9834 10.9264 10.4066 10.6666 10.6663C10.4068 10.9261 9.98364 10.9261 9.72388 10.6663Z" fill="#9999A9"/></svg><span class="rv-tour__muted">8&nbsp;дней</span></span></div>
+            <div class="rv-tour__divider"></div>
+            <div class="rv-tour__expert">
+              <img class="rv-tour__avatar" src="assets/expert.jpg" alt="">
+              <div class="rv-tour__who"><span class="rv-tour__name">Снежанна <span class="rv-tour__score"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M6.20932 2.42975C6.64374 1.50432 6.86095 1.04161 7.19279 0.965176C7.29618 0.941362 7.40363 0.941362 7.50702 0.965176C7.83886 1.04161 8.05607 1.50432 8.49049 2.42975L9.14361 3.82108C9.16308 3.86256 9.17281 3.8833 9.18893 3.89802C9.19424 3.90286 9.20001 3.90718 9.20616 3.9109C9.22483 3.9222 9.24748 3.92568 9.29276 3.93264L10.8778 4.17626C11.8117 4.31979 12.2786 4.39156 12.4478 4.67274C12.5007 4.76073 12.5337 4.8593 12.5442 4.96144C12.5781 5.28783 12.248 5.62585 11.5879 6.30189L10.3947 7.52395C10.3644 7.55507 10.3492 7.57063 10.3411 7.58981C10.3384 7.59613 10.3363 7.60269 10.3349 7.6094C10.3305 7.62975 10.334 7.65121 10.341 7.69414L10.6092 9.33864C10.7691 10.3186 10.849 10.8086 10.6241 11.0583C10.5539 11.1362 10.4671 11.1973 10.3701 11.2372C10.0593 11.3649 9.62486 11.1246 8.75592 10.6441L7.44572 9.9196C7.40418 9.89663 7.38342 9.88514 7.361 9.88287C7.35362 9.88212 7.34619 9.88212 7.33881 9.88287C7.31639 9.88514 7.29562 9.89663 7.25409 9.9196L5.94389 10.6441C5.07495 11.1246 4.64048 11.3649 4.3297 11.2372C4.23271 11.1973 4.14591 11.1362 4.07572 11.0583C3.85081 10.8086 3.93073 10.3186 4.09058 9.33864L4.35881 7.69414C4.36581 7.65121 4.36931 7.62975 4.36493 7.6094C4.36348 7.60269 4.36141 7.59613 4.35874 7.58981C4.35064 7.57063 4.33545 7.55507 4.30506 7.52395L3.11186 6.30188C2.45179 5.62585 2.12175 5.28783 2.15557 4.96144C2.16615 4.8593 2.19908 4.76073 2.25202 4.67274C2.42118 4.39156 2.88811 4.31979 3.82198 4.17626L5.40704 3.93264C5.45233 3.92568 5.47498 3.9222 5.49365 3.9109C5.4998 3.90718 5.50557 3.90286 5.51088 3.89802C5.52699 3.8833 5.53673 3.86256 5.5562 3.82108L6.20932 2.42975Z" fill="#9AAE2D"/></svg>4.5</span></span><span class="rv-tour__muted">Тревел&#8209;эксперт</span></div>
+              <button class="rv-chat" type="button"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M1.9268 6.62185C2.0181 5.1669 2.99515 4.05508 4.27375 3.95119C5.5514 3.84735 9.43355 3.75 12 3.75C14.5665 3.75 18.4486 3.84735 19.7262 3.95119C21.0049 4.05508 21.9819 5.1669 22.0732 6.62185C22.1645 8.07573 22.25 9.07956 22.25 12C22.25 14.9204 22.1645 14.9243 22.0732 16.3781C21.9819 17.8331 21.0049 18.9449 19.7262 19.0488C18.5166 19.1471 15.6444 19.2396 13.1639 19.2492C12.8987 19.2502 12.6446 19.3516 12.4421 19.5229C11.8111 20.0564 10.4533 21.1317 9.3599 21.9908C8.70556 22.5049 7.75 22.0375 7.75 21.2054V20.2301C7.75 19.6856 7.31394 19.2428 6.76991 19.2217C5.56438 19.1751 4.91512 19.1009 4.27375 19.0488C2.99515 18.9449 2.0181 17.8331 1.9268 16.3781C1.83555 14.9243 1.75 14.9204 1.75 12C1.75 9.07956 1.83555 8.07573 1.9268 6.62185Z" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 10H16.285M8 13.3486H16.285" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Чат</button>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
   </div>
-
-  <div class="overlay" id="dlg-bonus">
-    <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="db-t">
-      <div class="dialog__head"><span class="grabber" aria-hidden="true"></span><h2 class="t-h4" id="db-t">Спасибо за&nbsp;вашу обратную связь</h2><button class="dialog__close dialog__close--inline" type="button" data-close aria-label="Закрыть"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M7 7l10 10" stroke="#242A37" stroke-width="1.2" stroke-linecap="round"/></svg></button></div>
-      <div class="dialog__text t-body-s d-only"><p>Получите бонусы за&nbsp;отзыв на&nbsp;других площадках.</p><p>Ими можно оплатить следующие поездки</p></div>
-      <div class="dialog__text t-body-s m-only bonus-intro"><p>Вы&nbsp;можете заработать бонусы за&nbsp;ваши отзывы.</p><p>Бонусы можно использовать для будущих бронирований</p></div>
-      <ul class="platforms">
-        <li><a href="#"><img src="assets/p-yandex.png" alt=""><span class="t-body-s-semi">Яндекс</span><span class="dates t-body-s">+&nbsp;500 бонусов</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 17l5-5-5-5" stroke="#C5C6CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-        <li><a href="#"><img src="assets/p-google.png" alt=""><span class="t-body-s-semi">Google</span><span class="dates t-body-s">+&nbsp;500 бонусов</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 17l5-5-5-5" stroke="#C5C6CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-        <li><a href="#"><img src="assets/p-otzovik.png" alt=""><span class="t-body-s-semi">Отзовик</span><span class="dates t-body-s">+&nbsp;2000 бонусов</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 17l5-5-5-5" stroke="#C5C6CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-        <li><a href="#"><img src="assets/p-irecommend.png" alt=""><span class="t-body-s-semi">Irecommend</span><span class="dates t-body-s">+&nbsp;2000 бонусов</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 17l5-5-5-5" stroke="#C5C6CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-      </ul>
-      <p class="dates t-body-xs-semi d-only">Опубликуйте отзыв и&nbsp;пришлите скриншот<br>или ссылку в&nbsp;чат поддержки</p>
-      <p class="t-body-s m-only bonus-foot">Опубликуйте отзыв и&nbsp;пришлите скриншот или ссылку на&nbsp;него в&nbsp;<a href="#">Чат поддержки</a></p>
-      <button class="button button--grey button--m t-body-m-semi" type="button" data-close style="width:100%">Позже, закрыть</button>
+  <div class="rv-overlay rv-overlay--plain rv-overlay--clear" id="dlg-sending" hidden><div class="rv-spinner" role="status" aria-label="Отправляем отзыв"><svg class="rv-spinner__svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="19.596" cy="19.5964" r="16" stroke="#fff" stroke-width="5"/><path d="M15.4549 35.0512C12.3982 34.2321 9.65304 32.5251 7.56654 30.1459C5.48004 27.7667 4.14591 24.8222 3.73286 21.6848C3.31981 18.5474 3.84639 15.3579 5.24601 12.5197C6.64564 9.68159 8.85544 7.32221 11.596 5.73996C14.3365 4.15771 17.4847 3.42365 20.6424 3.63062C23.8002 3.83759 26.8256 4.97629 29.3362 6.90271C31.8467 8.82914 33.7297 11.4568 34.7469 14.4533C35.7641 17.4499 35.8698 20.6808 35.0508 23.7375" stroke="url(#rv-spin-g)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="rv-spin-g" x1="3.2353" y1="18.836" x2="40.0191" y2="16.7865" gradientUnits="userSpaceOnUse"><stop stop-color="#ABC232"/><stop offset="0.426123" stop-color="#ABC232"/><stop offset="1" stop-color="#ABC232" stop-opacity="0"/></linearGradient></defs></svg></div></div>
+  <div class="rv-overlay" id="dlg-error" hidden>
+    <div class="rv-dialog rv-dialog--result" role="alertdialog" aria-modal="true" aria-labelledby="dlg-error-title">
+      <button class="rv-dialog__x rv-dialog__x--abs" type="button" data-close aria-label="Закрыть"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1.2 10.8 10.8 1.2M1.2 1.2l9.6 9.6" stroke="#242A37" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <svg width="60" height="60" viewBox="1.2 1.2 60 60" overflow="visible" fill="none" aria-hidden="true"><rect x="1.2" y="1.2" width="60" height="60" rx="30" stroke="#F84565" stroke-width="2.4"/><path d="M23.2 39.2 39.2 23.2M23.2 23.2l16 16" stroke="#F84565" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <div class="rv-result__text"><h2 class="rv-result__title" id="dlg-error-title">Ошибка</h2><p>Произошла ошибка при&nbsp;отправке отзыва. Попробуйте&nbsp;еще&nbsp;раз.</p></div>
+      <button class="rv-btn-grey rv-btn-grey--l" type="button" id="retry">Повторить</button>
+    </div>
+  </div>
+  <div class="rv-overlay" id="dlg-success" hidden>
+    <div class="rv-dialog rv-dialog--result" role="dialog" aria-modal="true" aria-labelledby="dlg-success-title">
+      <a class="rv-dialog__x rv-dialog__x--abs" href="index.html" aria-label="Закрыть"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1.2 10.8 10.8 1.2M1.2 1.2l9.6 9.6" stroke="#242A37" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <svg width="60" height="60" viewBox="1.2 1.2 60 60" overflow="visible" fill="none" aria-hidden="true"><rect x="1.2" y="1.2" width="60" height="60" rx="30" stroke="url(#rv-ok-a)" stroke-width="2.4"/><path d="M44.6377 23.7002L28.8644 39.4735C28.0834 40.2545 26.817 40.2545 26.036 39.4735L19.6377 33.0752" stroke="url(#rv-ok-b)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="rv-ok-a" x1="8.62207" y1="1.2002" x2="39.7859" y2="65.5902" gradientUnits="userSpaceOnUse"><stop stop-color="#ABC40D"/><stop offset="1" stop-color="#9FD20C"/></linearGradient><linearGradient id="rv-ok-b" x1="22.7301" y1="23.7002" x2="29.5501" y2="44.1966" gradientUnits="userSpaceOnUse"><stop stop-color="#ABC40D"/><stop offset="1" stop-color="#9FD20C"/></linearGradient></defs></svg>
+      <div class="rv-result__text"><h2 class="rv-result__title" id="dlg-success-title">Отзыв отправлен на&nbsp;проверку</h2><p>Спасибо! Мы&nbsp;отправили отзыв на&nbsp;модерацию. Статус&nbsp;публикации отзыва вы&nbsp;можете отслеживать в&nbsp;разделе&nbsp;«Мои&nbsp;отзывы».</p></div>
+      <a class="rv-btn-grey rv-btn-grey--l" href="success.html?bonus=1">Хорошо</a>
+    </div>
+  </div>
+  <div class="rv-overlay" id="dlg-bonus" hidden>
+    <div class="rv-dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-bonus-title">
+      <div class="rv-dialog__head"><h2 class="rv-dialog__title" id="dlg-bonus-title">Спасибо за&nbsp;вашу обратную связь</h2><a class="rv-dialog__x" href="index.html" aria-label="Закрыть"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.2 16.8 16.8 7.2M7.2 7.2l9.6 9.6" stroke="#242A37" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      <div class="rv-dialog__body rv-dialog__body--center">
+        <p>Вы&nbsp;можете заработать бонусы за&nbsp;ваши отзывы.<br>Бонусы можно использовать для будущих<br>бронирований.</p>
+        <ul class="rv-platforms">
+          <li><a href="#"><span class="rv-platforms__name"><img src="assets/p-yandex.png" alt="">Яндекс</span><span class="rv-platforms__bonus">+&nbsp;500 бонусов</span><svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true"><path d="M1 1l6 6-6 6" stroke="#D1D7E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+          <li><a href="#"><span class="rv-platforms__name"><img src="assets/p-google.png" alt="">Google</span><span class="rv-platforms__bonus">+&nbsp;500 бонусов</span><svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true"><path d="M1 1l6 6-6 6" stroke="#D1D7E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+          <li><a href="#"><span class="rv-platforms__name"><img src="assets/p-otzovik.png" alt="">Отзовик</span><span class="rv-platforms__bonus">+&nbsp;2000 бонусов</span><svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true"><path d="M1 1l6 6-6 6" stroke="#D1D7E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+          <li><a href="#"><span class="rv-platforms__name"><img src="assets/p-irecommend.png" alt="">Irecommend</span><span class="rv-platforms__bonus">+&nbsp;2000 бонусов</span><svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true"><path d="M1 1l6 6-6 6" stroke="#D1D7E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        </ul>
+        <p class="rv-platforms__note">Опубликуйте отзыв и&nbsp;пришлите скриншот или ссылку на&nbsp;него в&nbsp;<a href="#">Чат поддержки</a></p>
+        <a class="rv-btn-grey rv-btn-grey--l" href="index.html">Позже, закрыть</a>
+      </div>
     </div>
   </div>
 
 </main>
 
 <p class="note">Сделала Diana Shvedskaia для YouTravel.me, не&nbsp;официальный сайт</p>
-<nav class="states" aria-label="Состояния макета"><span>Раздел</span><a class="states__section" href="bookings.html">Бронирования</a><a class="states__section" href="orders.html">Заявки эксперта</a><span>Состояния</span><a href="index.html">Список</a><a href="empty.html">Пусто</a><a href="loading.html">Загрузка</a><a href="step-1.html">Шаг 1</a><a href="step-2.html">Шаг 2</a><a href="step-2.html?fail=1">Ошибка отправки</a><a href="success.html" aria-current="page">Успех</a><a href="review.html?s=published">Опубликован</a><a href="review.html?s=moderation">На проверке</a><a href="review.html?s=rejected">Не опубликован</a></nav>
+<nav class="states" aria-label="Состояния макета"><span>Раздел</span><a class="states__section" href="index.html" aria-current="true">Отзывы</a><a class="states__section" href="bookings.html">Бронирования</a><a class="states__section" href="orders.html">Заявки эксперта</a><a class="states__section" href="expert-reviews.html">Отзывы эксперта</a><span>Состояния</span><a href="index.html">Список</a><a href="index.html?photos=1">Только с фото</a><a href="index.html?open=text">Текст отзыва раскрыт</a><a href="index.html?open=answer">Ответ эксперта раскрыт</a><a href="index.html?tip=1">Не опубликован: подсказка</a><a href="index.html?dlg=reasons">Не опубликован: причины</a><a href="index.html?viewer=1">Просмотр фото</a><a href="empty.html">Пусто</a><a href="loading.html">Загрузка</a><a href="step-1.html?s=empty">Шаг 1: пусто</a><a href="step-1.html">Шаг 1: черновик</a><a href="step-1.html?s=filled">Шаг 1: заполнено</a><a href="step-1.html?s=errors">Шаг 1: ошибки</a><a href="step-1.html?photo=loading">Фото: загрузка</a><a href="step-1.html?photo=processing">Фото: обработка</a><a href="step-1.html?photo=mixed">Фото: загрузка и ошибки</a><a href="step-1.html?photo=limit">Фото: лимит</a><a href="step-1.html?viewer=1">Шаг 1: просмотр фото</a><a href="step-2.html">Шаг 2</a><a href="step-2.html?s=errors">Шаг 2: ошибки</a><a href="step-2.html?s=sending">Отправка</a><a href="step-2.html?fail=1">Ошибка отправки</a><a href="success.html" aria-current="page">Отзыв отправлен</a><a href="success.html?bonus=1">Бонусы</a></nav>
 <script src="app.js"></script>
 </body>
 </html>
