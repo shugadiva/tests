@@ -1728,6 +1728,10 @@
   .rv-dialog__title { flex: 1; margin: 0; font: 700 18px/22px var(--font-display); letter-spacing: 0; color: var(--primary-night); }
   .rv-dialog__x { width: 24px; height: 24px; padding: 0; background: none; display: grid; place-items: center; border-radius: 6px; flex: none; }
   .rv-dialog__x:hover { background: var(--grey-pale); }
+  /* «Бонусы»: заголовок по центру, крестик справа поверх (dialog Type=Bonus, 27.10.2026) */
+  .rv-dialog__head--center { position: relative; justify-content: center; min-height: 24px; padding: 0 32px; }
+  .rv-dialog__head--center .rv-dialog__title { flex: none; text-align: center; }
+  .rv-dialog__head--center .rv-dialog__x { position: absolute; top: 0; right: 0; }
   .rv-dialog__x--abs { position: absolute; top: 20px; right: 20px; width: 28px; height: 28px; }
   .rv-dialog__body { display: flex; flex-direction: column; gap: 16px; font: 400 13px/17px var(--font-text); color: var(--primary-night); }
   .rv-dialog__body b { font-weight: 600; }
