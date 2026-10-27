@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Отзывы · YouTravel.me</title>
-<link rel="stylesheet" href="styles.css?v=81f67894">
+<link rel="stylesheet" href="styles.css?v=911730c3">
 </head>
 <body>
 
@@ -59,7 +59,7 @@
     <section class="er-card" aria-labelledby="er-title">
       <div class="er-head">
         <div class="er-head__text">
-          <h1 class="er-title" id="er-title">Отзывы на&nbsp;платформе<span class="er-title__n" data-n>23</span></h1>
+          <h1 class="er-title" id="er-title"><span class="er-d">Отзывы на&nbsp;платформе</span><span class="er-m">Отзывы</span><span class="er-title__n" data-n>23</span></h1>
           <p class="er-lead">В&nbsp;этом разделе собраны отзывы путешественников на&nbsp;поездки с&nbsp;вами. Собирайте впечатления после каждого путешествия и&nbsp;отвечайте на&nbsp;каждый отзыв, чтобы новым путешественникам было проще выбрать ваши туры.</p>
         </div>
         <div class="er-rating">
@@ -69,7 +69,7 @@
             </button>
             <span class="er-tip" id="er-tip" role="tooltip" hidden>Средняя оценка на&nbsp;основе всех опубликованных отзывов, включая перенесенные</span>
           </div>
-          <div class="er-rating__v"><img src="assets/er-star24.svg" width="24" height="24" alt=""><span data-rating>4.0</span></div>
+          <div class="er-rating__v"><img class="er-d" src="assets/er-star24.svg" width="24" height="24" alt=""><img class="er-m" src="assets/er-star24m.svg" width="24" height="24" alt=""><span data-rating>4.0</span><span class="er-m er-rating__cnt">&nbsp;•&nbsp;<span data-mcount>23&nbsp;отзыва</span></span></div>
           <span class="er-sk er-sk--rating" aria-hidden="true"></span>
         </div>
       </div>
@@ -80,6 +80,8 @@
             <button class="er-dd er-dd--green" type="button" id="er-tourbtn" aria-haspopup="listbox" aria-expanded="false"><span data-tour-label>Все туры</span><svg class="er-chev" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M9 5.25 6 8.25 3 5.25" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             <button class="er-dd er-dd--green er-chip" type="button" id="er-tourchip" hidden aria-label="Сбросить фильтр по туру"><span data-chip-label></span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M9 9 6 6 3 9M9 3 6 6 3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             <div class="er-pop er-tours" id="er-tours" hidden>
+              <!-- На мобилке выпадающие списки открываются шторкой снизу: шапка шторки только там -->
+              <div class="er-m er-sheet__head"><span class="er-sheet__grab" aria-hidden="true"></span><h2 class="er-sheet__t">Туры</h2><button class="er-sheet__x" type="button" aria-label="Закрыть" data-er-sheetx><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1.2 10.8 10.8 1.2M1.2 1.2l9.6 9.6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
               <label class="er-search"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15.71 6.84a6.27 6.27 0 1 1-8.87 8.87 6.27 6.27 0 0 1 8.87-8.87M19 19l-3.29-3.29" stroke="#242A37" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg><input type="text" placeholder="Поиск" aria-label="Поиск по названию тура" data-tour-q></label>
               <div class="er-opts" role="listbox" aria-label="Туры" data-tour-opts></div>
             </div>
@@ -88,6 +90,7 @@
           <div class="er-cols__sort">
             <button class="er-dd" type="button" id="er-sortbtn" aria-haspopup="listbox" aria-expanded="false"><span class="er-dd__k">Сортировать:</span><span data-sort-label>Сначала новые</span><svg class="er-chev" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M9 5.25 6 8.25 3 5.25" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             <div class="er-pop er-sorts" id="er-sorts" role="listbox" aria-label="Сортировка" hidden>
+              <div class="er-m er-sheet__head"><span class="er-sheet__grab" aria-hidden="true"></span><h2 class="er-sheet__t">Сортировка</h2><button class="er-sheet__x" type="button" aria-label="Закрыть" data-er-sheetx><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1.2 10.8 10.8 1.2M1.2 1.2l9.6 9.6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
               <button class="er-opt" type="button" role="option" data-sort="new" aria-selected="true">Сначала новые</button>
               <button class="er-opt" type="button" role="option" data-sort="old">Сначала старые</button>
               <button class="er-opt" type="button" role="option" data-sort="down">По&nbsp;убыванию рейтинга</button>
@@ -120,6 +123,6 @@
 <p class="note">Сделала Diana Shvedskaia для YouTravel.me, не&nbsp;официальный сайт</p>
 <nav class="states" aria-label="Состояния макета"><span>Раздел</span><a class="states__section" href="index.html">Отзывы</a><a class="states__section" href="bookings.html">Бронирования</a><a class="states__section" href="orders.html">Заявки эксперта</a><a class="states__section" href="expert-reviews.html" aria-current="true">Отзывы эксперта</a><span>Состояния</span><a href="expert-reviews.html" aria-current="page">Список</a><a href="expert-reviews.html?s=empty">Пусто</a><a href="expert-reviews.html?s=loading">Загрузка</a><a href="expert-reviews.html?tip=rating">Подсказка у рейтинга</a><a href="expert-reviews.html?sort=1">Сортировка</a><a href="expert-reviews.html?f=tour">Фильтр по туру</a><a href="expert-reviews.html?f=tour&q=Камч">Поиск в фильтре</a><a href="expert-reviews.html?tour=1">Тур выбран</a><a href="expert-reviews.html?reply=1">Форма ответа</a><a href="expert-reviews.html?reply=org">Форма ответа: оценка организатора</a><a href="expert-reviews.html?send=1">Отправка ответа</a><a href="expert-reviews.html?fail=1">Ошибка отправки ответа</a><a href="expert-reviews.html?sent=1">Ответ отправлен</a><a href="expert-reviews.html?edit=1">Редактирование ответа</a><a href="expert-reviews.html?locked=1">Ответ оставлен, 2 часа прошли</a></nav>
 <script src="app.js?v=32040e0a"></script>
-<script src="expert-reviews.js?v=657b1fd3"></script>
+<script src="expert-reviews.js?v=8aa0d799"></script>
 </body>
 </html>

@@ -2047,3 +2047,114 @@
 
   .er-toast { position: fixed; left: 50%; bottom: 32px; z-index: 30; max-width: calc(100vw - 32px); padding: 12px 16px; border-radius: 8px; background: var(--primary-night); color: var(--primary-white); font: 600 13px/17px var(--font-text); opacity: 0; transform: translate(-50%, 16px); pointer-events: none; transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out); }
   .er-toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+
+  /* ===== Мобилка 375 (Figma «ТЭ · Mobile 375» 12471:59199, кадр «ТЭ · Mobile / Отзывы / Список» 12471:59200), 27.10.2026 =====
+     .er-m есть только на мобилке, .er-d только на десктопе. Фильтр и сортировка на мобилке те же .er-pop, но шторкой снизу, как в заявках */
+  :root {
+    --er-answer-bg: rgba(122, 21, 184, .06);   /* expert-answer: #7a15b8 6% */
+    --er-shadow-tabs: 1px 2px 45px rgba(153, 153, 169, .22);
+    --er-m-gutter: 16px;
+    --er-m-sheet-pad: 34px;
+  }
+  @media (min-width: 641px) { .er .er-m { display: none !important; } }
+  @media (max-width: 640px) {
+    .er .er-d { display: none !important; }
+    .er-moderation { display: none; } /* плашки «На проверке» в мобильной шапке кадра нет */
+    .er { gap: var(--er-m-gutter); }
+
+    /* anchors-tabs (12485:63891): белая полоса 56 во всю ширину под шапкой, чипы chip (12564:62443) лентой с прокруткой */
+    .er-tabs { height: 56px; margin: calc(-1 * var(--er-m-gutter)) calc(-1 * var(--er-m-gutter)) 4px; padding: 9px var(--er-m-gutter); gap: 8px; border-radius: 0; overflow-x: auto; scrollbar-width: none; box-shadow: var(--er-shadow-tabs); }
+    .er-tabs::-webkit-scrollbar { display: none; }
+    .er-tab { flex: none; height: 38px; padding: 0 12px; border-radius: 8px; box-shadow: inset 0 0 0 1px var(--er-border-button); font: 600 14px/18px var(--font-text); letter-spacing: -.005em; color: var(--primary-night); transition: background-color 150ms var(--ease-out); } /* −1.6% в макете; Chrome на Windows рисует SF Pro уже Figma, −0.5% даёт ширину чипов как в кадре */
+    .er-tab:hover { color: var(--primary-night); background: var(--grey-pale); }
+    .er-tab[aria-current="page"] { background: var(--primary-night); color: var(--primary-white); box-shadow: inset 0 0 0 1px var(--primary-night); }
+    .er-tab__n, .er-tab[aria-current="page"] .er-tab__n { color: inherit; }
+    .er-tab:focus-visible { outline: 2px solid var(--green-click); outline-offset: -2px; }
+
+    /* Заголовок, описание, рейтинг строкой «Рейтинг 4.0 • 23 отзыва» со звездой и знаком info */
+    .er-card { padding: 0; gap: var(--er-m-gutter); background: transparent; border-radius: 0; }
+    .er-head { flex-direction: column; align-items: stretch; gap: var(--er-m-gutter); }
+    .er-head__text { width: auto; gap: var(--er-m-gutter); }
+    .er-title { letter-spacing: -.01em; }
+    .er-title__n { display: none; }
+    .er-lead { width: auto; }
+    .er-rating { position: relative; width: auto; align-self: flex-start; flex-direction: row; align-items: center; }
+    .er-rating__k, .er-rating__v { display: contents; font: 700 20px/24px var(--font-display); letter-spacing: -.01em; color: var(--primary-night); }
+    .er-rating__v img { order: -1; margin-right: 8px; }
+    .er-rating [data-rating] { color: var(--green-hover); }
+    .er-rating [data-rating]::before { content: "\00a0"; }
+    .er-rating__cnt { white-space: nowrap; }
+    .er-info { order: 1; margin: 0 0 0 8px; }
+    .er-tip { right: -8px; bottom: 32px; }
+    .er-sk--rating { width: 56px; height: 24px; margin-left: 8px; background: var(--rv-grey-platforms); } /* на сером фоне страницы grey/default не виден */
+
+    /* Фильтр по туру и сортировка в одну строку */
+    .er-listwrap { gap: var(--er-m-gutter); }
+    .er-cols { z-index: 21; justify-content: space-between; gap: 12px; padding: 0; margin: 0; border: 0; }
+    .er-cols__tour { width: auto; }
+    .er-cols__k { display: none; }
+    .er-cols__sort { flex: none; }
+
+    /* Выпадающие списки шторкой снизу (кадра нет, по шторкам заявок): затемнение тенью, шапка с ручкой и крестиком */
+    .er-pop { position: fixed; top: auto; left: 0; right: 0; bottom: 0; width: auto; max-height: calc(100vh - 64px); display: flex; flex-direction: column; gap: 0; padding: 0 var(--er-m-gutter) var(--er-m-sheet-pad); border-radius: 16px 16px 0 0; box-shadow: 0 0 0 100vmax var(--er-overlay); animation: sheet 250ms var(--ease-out); }
+    .er-tours, .er-sorts { left: 0; right: 0; width: auto; padding: 0 var(--er-m-gutter) var(--er-m-sheet-pad); gap: 0; }
+    .er-sheet__head { position: relative; flex: none; display: flex; align-items: center; justify-content: center; min-height: 58px; padding-top: 8px; margin: 0 calc(-1 * var(--er-m-gutter)); }
+    .er-sheet__grab { position: absolute; top: 8px; left: 50%; width: 40px; height: 4px; margin-left: -20px; border-radius: 100px; background: var(--grey-divider); }
+    .er-sheet__t { font: 600 16px/19px var(--font-text); color: var(--rv-black); }
+    .er-sheet__x { position: absolute; right: 8px; top: 17px; width: 32px; height: 32px; padding: 0; display: grid; place-items: center; border-radius: 8px; background: transparent; color: var(--dark-grey-primary); }
+    .er-sheet__x:hover { background: var(--grey-pale); }
+    .er-sorts .er-opt, .er-tours .er-opt { height: auto; min-height: 49px; padding: 14px 0; justify-content: space-between; gap: 12px; border-radius: 0; border-bottom: 1px solid var(--row-line); font: 600 13px/17px var(--font-text); white-space: normal; }
+    .er-sorts .er-opt:hover, .er-tours .er-opt:hover, .er-opt:focus-visible { background: none; }
+    .er-tours .er-opt.is-hover { background: var(--grey-pale); }
+    .er-sorts .er-opt::after { content: ""; width: 16px; height: 16px; margin: 2px; flex: none; box-sizing: border-box; border-radius: 50%; border: 1.5px solid var(--row-line); background: var(--primary-white); transition: border-width 150ms var(--ease-out), border-color 150ms var(--ease-out); }
+    .er-sorts .er-opt[aria-selected="true"]::after { border: 5px solid var(--green-default); }
+    .er-search { flex: none; margin-bottom: 4px; }
+    .er-opts { padding: 0; gap: 0; max-height: none; min-height: 0; }
+    .er-opts__none { padding: 14px 0; }
+
+    /* Строки отзывов в белой карточке, разделитель между строками */
+    .er-rows { padding: 0 var(--er-m-gutter); gap: 0; background: var(--primary-white); border-radius: 16px; }
+    .er-row { flex-direction: column; gap: 12px; padding: var(--er-m-gutter) 0; }
+    .er-row + .er-row::before { top: 0; }
+    .er-row__tour, .er-row__body { width: auto; }
+    .er-blk__t--clamp { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .er-btn--white { align-self: stretch; }
+
+    /* Ответ эксперта блоком (expert-answer 12484:63925): шапка с именем и «Скрыть ответ», текст 13/19, «(Ред.)» ниже */
+    .er-answer { flex-wrap: wrap; align-items: center; gap: 0 8px; padding: 20px; border-radius: 12px; background: var(--er-answer-bg); }
+    .er-answer__head { display: contents; }
+    .er-answer__name { font: 600 14px/22px var(--font-text); color: var(--primary-night); }
+    .er-answer__role { font: 600 13px/19px var(--font-text); color: var(--rv-purple); }
+    .er-answer__toggle { flex: 0 0 100%; display: flex; align-items: center; gap: 4px; margin-top: 8px; padding: 0; background: none; text-align: left; font: 600 13px/19px var(--font-text); color: var(--dark-grey-primary); }
+    .er-answer__toggle svg { transition: transform 150ms var(--ease-out); }
+    .er-answer__toggle[aria-expanded="false"] svg { transform: rotate(180deg); }
+    .er-answer__toggle:focus-visible { outline: 2px solid var(--green-click); outline-offset: 2px; border-radius: 2px; }
+    .er-answer__col { flex: 0 0 100%; margin-top: var(--er-m-gutter); padding-top: 0; gap: var(--er-m-gutter); line-height: 19px; }
+    .er-answer.is-hidden .er-answer__col { display: none; }
+
+    /* Форма ответа во всю ширину строки, кнопки поровну */
+    .er-form { padding-left: 0; }
+    .er-form__row > .er-answer__ava { display: none; }
+    .er-form__btns .er-btn, .er-form__btns .er-btn--grey { flex: 1 1 0; width: auto; }
+
+    /* Заглушки загрузки строками карточки */
+    .er-skrow { flex-direction: column; gap: 12px; padding: var(--er-m-gutter) 0; }
+    .er-skrow + .er-skrow { border-top: 1px solid var(--grey-default); }
+    .er-skrow__tour, .er-skrow__body { width: auto; }
+    .er-skrow__tour .er-sk + .er-sk { display: none; }
+    .er-skrow .er-sk { max-width: 100%; }
+    .er-skrow__btn { width: 100%; }
+
+    /* Пусто: текст в белой карточке */
+    .er.is-empty .er-card { gap: var(--er-m-gutter); }
+    .er-none { padding: 24px var(--er-m-gutter); background: var(--primary-white); border-radius: 16px; text-align: center; }
+
+    /* «Показать ещё» белой кнопкой под карточкой */
+    .er-more { border-top: 0; padding-top: 0; }
+    .er-morebtn { height: 40px; border-radius: 8px; background: var(--primary-white); box-shadow: inset 0 0 0 1px var(--er-border-button); font: 600 14px/18px var(--font-text); }
+    .er-morebtn:hover { background: var(--grey-pale); }
+
+    /* Окно ошибки шторкой снизу */
+    .er-overlay { place-items: end center; }
+    .er-dialog { width: 100%; padding: 24px var(--er-m-gutter) var(--er-m-sheet-pad); border-radius: 16px 16px 0 0; animation: sheet 250ms var(--ease-out); }
+  }

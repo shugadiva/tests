@@ -13,7 +13,9 @@
   const nb = (s) => s.replace(/(^|[\s («])([А-Яа-яЁёA-Za-z]{1,3}) /g, '$1$2 ').replace(/(^|[\s («])([А-Яа-яЁёA-Za-z]{1,3}) /g, '$1$2 ');
   const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
   const tx = (s) => esc(nb(s));
-  const ut = (s) => esc(s); // текст путешественника: как написал автор, без типографики интерфейса
+  // Текст путешественника: на десктопе как написал автор (кадры «ТЭ · Desktop»), на мобилке с неразрывными пробелами, как в кадре «ТЭ · Mobile / Отзывы / Список»
+  const MOB = matchMedia('(max-width: 640px)');
+  const ut = (s) => esc(MOB.matches ? nb(s) : s);
 
   // ---- Тексты кадров ----
   const T3 = 'Спасибо за очередной офигеннай кэмп! Все было очень и очень круто! Я в восторге и не перестану рекомендовать зимний отдых только с ними! Горы, солнце, эмоции, конкурсы, каталка, снег, вжух, синие коленки, фотки, каталка, каталка и ещё раз каталка...! Восхитительная неделя, 100% перезагрузка. спасибо...';
@@ -122,17 +124,22 @@
       return `<div class="er-blk er-blk--i">${head}<p class="er-blk__t">${lead}${ut(text)}</p>${more}</div>`;
     }
     const k = b.k ? `<p class="er-blk__k">${tx(b.k)}${b.note ? `<span class="er-note">${tx(b.note)}</span>:` : ''}</p>` : '';
-    return `<div class="er-blk er-blk--l">${k}<p class="er-blk__t">${ut(text)}</p>${b.full && b.full !== b.t ? more : ''}</div>`;
+    // er-blk__t--clamp: на мобилке свёрнутый текст в 3 строки с многоточием (кадр «ТЭ · Mobile / Отзывы / Список»), на десктопе класс без стилей
+    return `<div class="er-blk er-blk--l">${k}<p class="er-blk__t${b.full && b.full !== b.t && !open ? ' er-blk__t--clamp' : ''}">${ut(text)}</p>${b.full && b.full !== b.t ? more : ''}</div>`;
   };
   const blockGap = (b) => b.m === 'i' ? 12 : 16;
   const EXPERT = '<img class="er-answer__ava" src="assets/er-expert.jpg" alt="Константин">';
   const SPIN = '<div class="er-spin" role="status" aria-label="Отправляем ответ"><svg width="39" height="39" viewBox="0 0 37 37" fill="none" aria-hidden="true"><circle cx="18.5" cy="18.5" r="16" stroke="#fff" stroke-width="5"/><path d="M18.5 2.5a16 16 0 1 1-16 16" stroke="url(#er-sg)" stroke-width="5" stroke-linecap="round"/><defs><linearGradient id="er-sg" x1="34.5" y1="15" x2="-.5" y2="26.5" gradientUnits="userSpaceOnUse"><stop stop-color="#ABC232"/><stop offset=".43" stop-color="#ABC232"/><stop offset="1" stop-color="#ABC232" stop-opacity="0"/></linearGradient></defs></svg></div>';
+  // Шапка ответа на мобилке (expert-answer 12484:63925): имя, «Тревел-эксперт», «Скрыть ответ». На десктопе .er-m скрыт
+  const CHEV_UP = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 6.75 6 3.75 9 6.75" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const ansHead = (t) => `<div class="er-m er-answer__head"><span class="er-answer__name">Константин</span><span class="er-answer__role">Тревел-эксперт</span>`
+    + `<button class="er-answer__toggle" type="button" data-ans-toggle aria-expanded="${t.hide ? 'false' : 'true'}">${t.hide ? 'Показать ответ' : 'Скрыть ответ'}${CHEV_UP}</button></div>`;
   const tail = (r) => {
     const t = r.tail;
     if (t.t === 'btn') return '<button class="er-btn er-btn--white" type="button" data-reply>Оставьте публичный ответ</button>';
     if (t.t === 'ans') {
-      if (t.short) return `<div class="er-answer er-answer--short">${EXPERT}<div class="er-answer__col"><p>${tx(t.text)}${t.edit ? '<button class="er-edit" type="button" data-edit>(Ред.)</button>' : ''}</p></div></div>`;
-      return `<div class="er-answer">${EXPERT}<div class="er-answer__col"><p>${tx(t.text)}</p>${t.edit ? '<button class="er-edit" type="button" data-edit>(Ред.)</button>' : ''}</div></div>`;
+      if (t.short) return `<div class="er-answer er-answer--short${t.hide ? ' is-hidden' : ''}">${EXPERT}${ansHead(t)}<div class="er-answer__col"><p>${tx(t.text)}${t.edit ? '<button class="er-edit" type="button" data-edit>(Ред.)</button>' : ''}</p></div></div>`;
+      return `<div class="er-answer${t.hide ? ' is-hidden' : ''}">${EXPERT}${ansHead(t)}<div class="er-answer__col"><p>${tx(t.text)}</p>${t.edit ? '<button class="er-edit" type="button" data-edit>(Ред.)</button>' : ''}</div></div>`;
     }
     // форма ответа
     const m = t.mode, busy = m === 'sending', val = t.text || '';
@@ -175,9 +182,11 @@
     root.classList.add('is-empty');
     $$('[data-n]').forEach((n) => { n.textContent = n.classList.contains('er-title__n') ? '0' : ' 0'; });
     $('[data-rating]').textContent = '0.0';
+    $('[data-mcount]').textContent = '0 отзывов';
   }
   if (mode === 'loading') root.classList.add('is-loading');
   render();
+  MOB.addEventListener('change', render);
 
   // ---- Строки: «Показать еще», ответ, отправка, «(Ред.)» ----
   const send = (r, ta) => {
@@ -190,6 +199,7 @@
   list.addEventListener('click', (e) => {
     const b = e.target.closest('button'); if (!b) return;
     const r = byId(b);
+    if (b.hasAttribute('data-ans-toggle')) { r.tail.hide = !r.tail.hide; rerow(r); return; }
     if (b.dataset.more !== undefined) { r.open = r.open || {}; r.open[b.dataset.more] = !r.open[b.dataset.more]; rerow(r); return; }
     if (b.hasAttribute('data-reply')) { r.tail = { t: 'form', mode: 'empty' }; rerow(r); $(`.er-row[data-id="${r.id}"] textarea`).focus(); return; }
     if (b.hasAttribute('data-edit')) { r.tail = { t: 'form', mode: 'edit', text: r.tail.text, was: r.tail }; rerow(r); const ta = $(`.er-row[data-id="${r.id}"] textarea`); ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); return; }
@@ -248,6 +258,8 @@
     $('[data-sort-label]').textContent = SORTS[sort]; close(); render();
   });
   tours.addEventListener('click', (e) => e.stopPropagation());
+  // Крестик в шапке шторки (мобилка)
+  pops.forEach(([, p]) => p.querySelector('[data-er-sheetx]').addEventListener('click', (e) => { e.stopPropagation(); close(); }));
   document.addEventListener('click', (e) => { if (!e.target.closest('.er-pop')) close(); if (!e.target.closest('.er-info')) setTip(false); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { close(); setTip(false); if (!fail.hidden) fail.hidden = true; } });
 
