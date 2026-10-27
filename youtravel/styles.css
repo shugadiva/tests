@@ -1858,6 +1858,9 @@
     --er-shadow-spinner: 1px 3px 60px rgba(153, 153, 169, .35);
     --er-shadow-tip: .8px 4px 12px rgba(0, 0, 0, .2);
   }
+  /* Шапка: плашка «На проверке» под именем (lk-header Moderation=True 12541:78084, по LKTE) */
+  .er-namebox { display: flex; flex-direction: column; align-items: flex-start; }
+  .er-moderation { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 6px; border: 1px solid var(--er-border-button); border-radius: 5px; background: var(--primary-white); box-shadow: var(--er-shadow-tip); color: var(--primary-black); font: 600 13px/20px var(--font-text); letter-spacing: -.016em; white-space: nowrap; }
 
   /* Трекинг стилей ДС: Text −1.6%, Display +1.4% */
   .er, .er-tip, .er-toast { letter-spacing: -.012em; } /* в макете −1.6%, но Chrome на Windows рисует SF Pro чуть уже Figma: −1.2% даёт те же переносы */
