@@ -2065,6 +2065,8 @@
     /* anchors-tabs (12485:63891): белая полоса 56 во всю ширину под шапкой, чипы chip (12564:62443) лентой с прокруткой */
     .er-tabs { height: 56px; margin: calc(-1 * var(--er-m-gutter)) calc(-1 * var(--er-m-gutter)) 4px; padding: 9px var(--er-m-gutter); gap: 8px; border-radius: 0; overflow-x: auto; scrollbar-width: none; box-shadow: var(--er-shadow-tabs); }
     .er-tabs::-webkit-scrollbar { display: none; }
+    /* Шапка и чипы одним белым блоком с одной тенью снизу, как в кадре 12471:59200 (27.10.2026): тень шапки не ложится на чипы */
+    body:has(.er-tabs) .lk-header { box-shadow: none; border-bottom: 1px solid var(--er-border-button); }
     .er-tab { flex: none; height: 38px; padding: 0 12px; border-radius: 8px; box-shadow: inset 0 0 0 1px var(--er-border-button); font: 600 14px/18px var(--font-text); letter-spacing: -.005em; color: var(--primary-night); transition: background-color 150ms var(--ease-out); } /* −1.6% в макете; Chrome на Windows рисует SF Pro уже Figma, −0.5% даёт ширину чипов как в кадре */
     .er-tab:hover { color: var(--primary-night); background: var(--grey-pale); }
     .er-tab[aria-current="page"] { background: var(--primary-night); color: var(--primary-white); box-shadow: inset 0 0 0 1px var(--primary-night); }
