@@ -1,0 +1,12 @@
+﻿{"link": "figma://file/pkcHlRm2Qy0hQ95yfJsogC?node-id=12370-155305",
+ "scenario": "Вторая волна замены на ДС 3.0 и разделители",
+ "screenshots": ["w2-tour-selected-12370-152837.png", "w2-sort-open-12370-155305.png", "w2-mobile-filter-12594-62397.png"],
+ "mobile": {"chip -> button-select ДС (Default/Selected, Dropdown=No)": 45, "search-field-mob -> Input-Icon ДС 0d85 + Icons=search": 2, "filter-option-mob -> item-checkbox ДС (Default/Select)": 7},
+ "desktopFilter": {"closed filters-reviews-tour LKTE -> button-select ДС State=Default, Dropdown=Yes «Все туры»": 12, "open (#49) label -> button-select State=Clicked, Dropdown=Yes": "12704:64876, 12704:64882", "12370:152837 (#50) selected tour": "12704:65187 button-select State=Default, Dropdown=Yes «Легенды…» (Selected у ДС с крестиком очистки, его не ставим до ответа Владимира; столбец 116, текст обрезан по слову)"},
+ "sort": {"sort-reviews LKTE -> рамка «Сортировка»: текст «Сортировать:» + button-select Dropdown=Yes": 15, "open sort 12370:155305": "State=Clicked + Dropdown-List ДС b989c23e Number=4 (12704:64968), пункты без иконок, ширина 220"},
+ "styles": {"white -> primary/white ДС": 777, "green -> green/click ДС": 529, "red -> red/default ДС": 50, "skipped inside lk-header / Mobile header / sidebar-items": "white 202, green 366"},
+ "dividers": {"note": "компонента-разделителя в ДС 3.0 нет (поиск divider/separator/line), разделители это линии со стилем; у нас и в LKTE grey/default #f0f2f5",
+  "Line 159 12370:152254 #eeeef2 -> grey/default ДС": 1, "form separators RECTANGLE grey/light (не ДС) #eeeef2 -> grey/default ДС": 78, "lines grey/default не из ДС -> grey/default ДС 4642dfe7": 239,
+  "not touched": "LINE primary/black и primary/white в Frame 277134356/354/357 (по 15) уже на стилях ДС, не трогала, назначение не проверяла; LINE grey/divider в окне бонусов (9) - уже ДС"}
+}
+

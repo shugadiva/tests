@@ -1,0 +1,63 @@
+{"link": "figma://file/pkcHlRm2Qy0hQ95yfJsogC?node-id=12370-152837",
+  "frame": "ТЭ · Desktop / Отзывы / Тур выбран в фильтре",
+  "fix": "#50, Amiga 15620:29607, Владимир: «Такой очистки фильтров у нас нет»",
+  "owner": "Бэмби (art-yt-travelers), 29.10.2026",
+  "screenshots": ["desktop-1440.png"],
+  "changes": [
+    "Экземпляр filters-reviews-tour / Property 1=selected (набор копии LKTE 12321:99516, с крестиком) удалён.",
+    "На его место рамка «Фильтр по туру» 12687:74477: клон образца Миши 12686:64711 без Filters-List. Подпись «Легенды Грече...» + шеврон вниз, как закрытый «Все туры».",
+    "Подписи тура в 4 строках списка (12370:152992, 12370:153024, 12370:153069, 12370:153098) заменены на «Легенды Греческих островов»."
+  ],
+  "filter": {
+    "id": "12687:74477", "type": "FRAME", "name": "Фильтр по туру", "size": "114x18", "sizing": "FIXED/FIXED",
+    "instance": false,
+    "note": "Экземпляра нет, рамка собрана вручную по образцу Миши. Какой компонент кита ставить (button-select или Filter dropdown), Диана ещё решает, тот же вопрос у Миши по #49.",
+    "children": [
+      {"id": "12687:74478", "type": "FRAME", "name": "Frame 277135847", "al": "H gap6 pad0", "sizing": "HUG/HUG",
+        "children": [
+          {"id": "12687:74479", "type": "FRAME", "name": "Frame 277135954", "al": "H gap0 pad0", "sizing": "HUG/HUG",
+            "children": [
+              {"id": "12687:74480", "type": "TEXT", "text": "Легенды Грече...", "textStyle": "Body XS/Semibold (remote)", "fill": "#7fa40c", "fillVar": null},
+              {"id": "12687:74481", "type": "FRAME", "name": "dropdown-open", "size": "12x12",
+                "children": [{"id": "12687:74482", "type": "VECTOR", "stroke": "#7fa40c", "strokeW": 1.4, "transform": "[[1,0,3.75],[0,1,3]], как в закрытом «Все туры»"}]}
+            ]}
+        ]}
+    ]
+  },
+  "filterRow": {
+    "id": "12370:152981", "name": "Frame 277135515", "al": "V gap8", "sizing": "FILL/HUG",
+    "row": {"id": "12370:152983", "al": "H gap24", "children": [
+      {"id": "12370:152984", "name": "Frame 39816", "size": "116x18", "sizing": "FIXED/HUG", "holds": "12687:74477"},
+      {"id": "12370:152986", "type": "TEXT", "text": "Отзыв", "textStyle": "Body XS/Semibold (remote)", "fill": "#9797a3"},
+      {"id": "12370:152987", "name": "Frame 277135629", "sizing": "FILL/HUG", "holds": "12370:152988 sort-reviews"}
+    ]},
+    "divider": {"id": "12370:152989", "type": "LINE", "stroke": "#f0f2f5", "strokeW": 1}
+  },
+  "instances": [
+    {"id": "12370:152838", "name": "lk-header", "main": "lk-header / Auth=True, Moderation=True", "mainId": "11824:139390", "key": "fda5010670d4cb45dbf41b0f3f18ae7b9515cf80", "remote": false, "source": "local (не копия LKTE)"},
+    {"ids": ["12455:65307", "12455:65308", "12455:65309", "12455:65310", "12455:65311", "12455:65314", "12455:65317", "12455:65318", "12455:65319"], "name": "sidebar-items", "main": "sidebar-items / State=Selected|Default", "mainId": "12321:91069", "key": "416d9d878aa2c7a43b26bce1618f9e6f91dac975", "remote": true, "source": "library"},
+    {"id": "12370:152966", "name": "info-tooltip", "main": "info-tooltip / State=Default, Vertical=Top, Horizontal=Left", "mainId": "12321:90569", "key": "44ef85f3d8fd24fc206a969d97832d0145e644b9", "remote": true, "source": "library"},
+    {"ids": ["12656:65135", "12370:153020", "12370:153095", "12370:153124", "12370:153127"], "name": "button", "main": "button / Color=White|Green, Size=S|M", "mainId": "12321:91717", "key": "8401878a581913e7ddd23622c294e30b910a843c", "remote": true, "source": "library"},
+    {"id": "12370:152974", "name": "button-select", "parent": "Frame 277135511 (скрытый ряд)", "main": "button-select / State=Clicked, Dropdown=No", "mainId": "5271:354867", "key": "22ca003d43255888c8309883be9ec405deaf4295", "remote": true, "source": "library", "hidden": true},
+    {"id": "12370:152988", "name": "sort-reviews", "main": "sort-reviews / Property 1=Default", "mainId": "12321:99493", "key": "9c7cec333be966feef42d9ba239f459638f55027", "remote": false, "source": "LKTE copy (local)", "flag": "Нарушает правило «Компоненты кита заказчика ведут в его оригинал». Не часть #50 (сортировка), замену согласовать с Мишей и Дианой вместе с выбором компонента для фильтра."},
+    {"ids": ["12370:153018", "12370:153050", "12370:153054", "12370:153061", "12370:153065", "12370:153093", "12370:153122"], "name": "link", "main": "link / State=Default, Color=Green|Black, Icon=No", "mainId": "515:52454", "key": "9a7c092f0da5bede15dcec71dd77dd3ce95171f9", "remote": true, "source": "library"},
+    {"id": "12370:153063", "name": "icons", "parent": "Frame 18391 (скрытый)", "main": "icons / Icons=edit", "mainId": "12321:91189", "key": "aa66f224025f9cb40276aa0205785025caa150de", "remote": true, "source": "library", "hidden": true}
+  ],
+  "lkteCopyInstances": ["12370:152988 sort-reviews (12321:99493)"],
+  "list": {
+    "id": "12370:152972", "name": "Frame 277135510", "al": "V gap20", "sizing": "FILL/HUG",
+    "rows": [
+      {"id": "12370:152990", "tour": "12370:152992 «Легенды Греческих островов» Body S/Semibold #121212, 116 FIXED/HUG", "author": "Яна, 4.0, 29 июня 2022", "content": "О туре + «Оставьте публичный ответ»", "h": 200},
+      {"id": "12370:153022", "tour": "12370:153024 «Легенды Греческих островов»", "author": "Ольга, 4.0, 29 июня 2022", "content": "О туре + ответ эксперта + Об организаторе тура", "h": 333},
+      {"id": "12370:153067", "tour": "12370:153069 «Легенды Греческих островов»", "author": "Ольга, 4.0, 29 июня 2022", "content": "О туре + «Оставьте публичный ответ»", "h": 200},
+      {"id": "12370:153097", "tour": "12370:153098 «Легенды Греческих островов»", "author": "Ольга, 4.0, 29 июня 2022", "content": "О туре + «Оставьте публичный ответ»", "h": 200}
+    ],
+    "dividers": ["12370:153021", "12370:153066", "12370:153096", "12370:153126"],
+    "showMore": "12370:153127 button Green M, FILL/FIXED 848x44",
+    "hiddenLeftovers": ["12370:152973 ряд чипов туров (HIDDEN)", "12370:152991, 12370:153023, 12370:153068 Rectangle 2804 (HIDDEN)", "chevron-down 12370:152996/153028/153073/153102 (HIDDEN)", "«•» 12370:153012/153035/153088/153117 (HIDDEN)", "12370:153044 Title (HIDDEN)", "12370:153062 правка ответа (HIDDEN)"]
+  },
+  "openQuestions": [
+    "Сброс фильтра без крестика: пункт «Все туры» первым в открытом списке. В Filters-List на «Фильтр по туру открыт» его нет. Ждём решения Дианы.",
+    "Компонент кита для закрытого фильтра: button-select или Filter dropdown (решает Диана, общий вопрос с #49)."
+  ]
+}

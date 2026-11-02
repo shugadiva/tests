@@ -1854,6 +1854,124 @@
   .rv-tour__who .rv-tour__muted { color: var(--rv-grey-region); }
   .rv-chat { height: 48px; padding: 12px; border-radius: 8px; background: var(--rv-purple-chat); display: inline-flex; align-items: center; gap: 8px; font: 600 15px/22px var(--font-text); color: var(--primary-white); }
 
+  /* ==== Обновление по макету 02.11.2026 («обнови»): путешественник, десктоп и мобилка 375 ==== */
+  /* Шапка SERP (Header LKP=Yes): меню сайта слева, справа избранное, чат, язык, валюта, аватар со стрелкой */
+  .hd-menu { display: flex; align-items: center; gap: 16px; margin: 0 auto 0 32px; }
+  .hd-menu a { display: inline-flex; align-items: center; gap: 4px; font: 600 13px/17px var(--font-text); color: var(--rv-black); white-space: nowrap; }
+  .hd-menu a:hover { color: var(--green-click); }
+  .hd-panel { display: flex; align-items: center; gap: 8px; }
+  .hd-btn { position: relative; width: 40px; height: 40px; padding: 0; border-radius: 8px; background: var(--primary-white); display: grid; place-items: center; transition: background-color 150ms var(--ease-out); }
+  .hd-btn:hover { background: var(--grey-pale); }
+  .hd-badge { position: absolute; left: 16px; top: 1px; height: 16px; padding: 0 5px; border-radius: 8px; background: var(--red-default); font: 600 10px/16px var(--font-text); color: var(--primary-white); }
+  .hd-badge--lang { left: 14px; background: var(--primary-night); font-size: 9px; }
+  .hd-btn--cur { padding: 0 8px; font: 600 12px/17px var(--font-text); color: var(--primary-night); }
+  @media (min-width: 641px) {
+    .user--serp { gap: 2px; }
+    .user--serp::after { content: ""; width: 28px; height: 28px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Cpath d='M19 12 14 17 9 12' stroke='%23828296' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; }
+  }
+
+  /* Кнопка Green M во всю ширину: «Показать еще» внизу списка */
+  .rv-btn-green { width: 100%; height: 44px; padding: 0 20px; display: inline-flex; align-items: center; justify-content: center; border-radius: 9px; background: var(--green-default); font: 600 15px/22px var(--font-text); color: var(--primary-white); transition: background-color 150ms var(--ease-out); }
+  .rv-btn-green:hover { background: var(--green-hover); }
+  .rv-about:not(.is-open) .rv-about__tail { display: none; }
+
+  /* Форма: Textarea ДС 3.0 (Field серый, без обводки, текст SERP Body S/Regular 13/19) */
+  .rv-mhead { display: none; }
+  .rv-scale:not(.rv-scale--nps) button { width: auto; min-width: 48px; padding: 0 20px; }
+  .rv-textarea { min-height: 108px; height: 108px; padding: 12px; border: 0; border-radius: 8px; background: var(--grey-default); color: var(--primary-night); box-shadow: none; }
+  .rv-textarea::placeholder { color: var(--dark-grey-primary); }
+  .rv-textarea:focus, .rv-textarea:not(:placeholder-shown) { border: 0; box-shadow: none; }
+  .rv-textarea:focus { box-shadow: inset 0 0 0 1px var(--green-default); }
+  .is-error .rv-textarea { background: var(--rv-red-pale); box-shadow: none; }
+  /* Фото: кнопка Grey L с иконкой 24, затемнение плитки 40% */
+  .rv-add__btn { height: 48px; padding: 0 20px 0 16px; border-radius: 10px; font: 600 15px/22px var(--font-text); }
+  .rv-tile::before { content: ""; position: absolute; inset: 0; z-index: 1; background: rgba(18, 18, 18, .4); pointer-events: none; }
+  .rv-tile--error::before, .rv-tile--loading::before { display: none; }
+  /* Чат в карточке тура: button Grey XS, иконка слева */
+  .rv-chat { height: 36px; padding: 0 12px 0 10px; border-radius: 6px; gap: 6px; background: var(--grey-default); font: 600 13px/17px var(--font-text); color: var(--primary-night); transition: background-color 150ms var(--ease-out); }
+  .rv-chat:hover { background: var(--grey-light); }
+
+  /* ---- Мобилка 375: кадры «Путешественник · Mobile 375» и «Форма · Mobile 375» ---- */
+  @media (max-width: 640px) {
+    /* Шапка списка: белая полоса во всю ширину, «Только с фото» под текстом */
+    .rv-card { background: transparent; padding: 0; gap: 0; border-radius: 0; }
+    .rv-dialog__head--center .rv-dialog__title { max-width: 200px; }
+    .rv-head { margin: -16px -16px 0; padding: 20px 16px 16px; background: var(--primary-white); gap: 12px; }
+    .rv-title__count { display: none; }
+    .rv-lead { max-width: none; }
+    .rv-cols { margin: 0 -16px; padding: 0 16px 16px; border: 0; background: var(--primary-white); }
+    .rv-cols__tour, .rv-cols__review { display: none; }
+    .rv-list { display: flex; flex-direction: column; gap: 16px; margin-top: 16px; }
+    /* review-card-mob: карточка 16, паддинг 16 */
+    .rv-row, .rv-list > li:last-child .rv-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 12px; padding: 16px; border: 0; border-radius: 16px; background: var(--primary-white); }
+    body:has(.rv) .lk-header { box-shadow: none; }
+    .rv-row__tour { width: auto; grid-column: 1; grid-row: 1; }
+    .rv-row__title { display: block; font: 600 14px/18px var(--font-text); }
+    .rv-row__title > span { display: inline; white-space: normal; }
+    .rv-row__body { grid-column: 1 / -1; margin-top: 12px; gap: 16px; }
+    .rv-line { flex-direction: column; align-items: stretch; gap: 16px; }
+    .rv-line .rv-meta { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .rv-line .rv-meta__date { order: -1; font: 600 12px/18px var(--font-text); }
+    .rv-btn-outline { justify-content: center; height: 44px; border-radius: 9px; padding: 0 20px; }
+    /* отзыв с оценкой: рейтинг справа от названия, ниже дата, статус, текст, фото, ответ */
+    .rv-row__body:has(> .rv-meta), .rv-row__body > .rv-meta, .rv-row .rv-rating-date { display: contents; }
+    .rv-row .rv-rating { grid-column: 2; grid-row: 1; align-self: start; }
+    .rv-row .rv-rating-date .rv-meta__date { grid-column: 1 / -1; grid-row: 2; margin-top: 12px; }
+    .rv-row .rv-meta__status { grid-column: 1 / -1; grid-row: 3; margin-top: 8px; justify-self: start; }
+    .rv-row .rv-about { grid-column: 1 / -1; grid-row: 4; margin-top: 16px; }
+    .rv-row .rv-photos { grid-column: 1 / -1; grid-row: 5; margin-top: 16px; gap: 8px; }
+    .rv-row .rv-answer { grid-column: 1 / -1; grid-row: 6; margin-top: 16px; }
+    .rv-about__text { padding-right: 0; }
+    .rv-photo { flex: 1 1 0; width: auto; height: 77px; }
+    .rv-answer__head { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .rv-more { padding-top: 16px; border: 0; }
+    /* загрузка: заглушки карточками */
+    .rv-row--sk, .rv-list > li:last-child .rv-row--sk { display: flex; flex-direction: column; gap: 12px; border: 0; }
+    .rv-row--sk .rv-row__body { margin-top: 0; }
+    .rv-row--sk { position: relative; }
+    .rv-row--sk .rv-meta { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .rv-row--sk .rv-meta .sk:nth-child(2) { position: absolute; top: 16px; right: 16px; }
+    .rv-row--sk .rv-meta .sk:nth-child(3) { order: -1; }
+    .rv-row--sk .rv-photos { gap: 8px; }
+    .rv-row--sk .rv-photos .sk { flex: 1 1 0; width: auto !important; height: 77px !important; }
+    .rv-row--sk .sk { max-width: 100%; }
+    /* пусто */
+    .rv > .card:has(.empty-state) { background: transparent; padding: 0; gap: 0; }
+    .rv > .card:has(.empty-state) .page-head { margin: -16px -16px 0; padding: 20px 16px 16px; background: var(--primary-white); }
+    .rv .empty-state { padding: 160px 0 0; gap: 16px; }
+    .rv .empty-state p { max-width: 280px; }
+    .rv .empty-state .button { margin-top: 16px; }
+    .rv .empty-state .button { width: 100%; height: 48px; border-radius: 10px; font: 600 15px/22px var(--font-text); }
+
+    /* Форма: «Шаг» и заголовок на сером фоне, под ними карточка тура и форма */
+    .rv-form-cols { flex-direction: column; align-items: stretch; gap: 16px; }
+    .rv-mhead { display: flex; order: -2; }
+    .rv-dhead { display: none; }
+    .rv-aside { order: -1; width: auto; position: static; }
+    .rv-tour { border: 0; padding: 16px; }
+    .rv-tour__rows { display: none; }
+    .rv-form { width: auto; padding: 20px 16px; }
+    .rv-scale--nps { flex-wrap: wrap; gap: 8px 4px; }
+    .rv-scale--nps button { flex: 0 0 calc((100% - 16px) / 5); }
+    .rv-textarea { height: auto; field-sizing: content; }
+    .rv-tiles { gap: 12px 8px; }
+    .rv-tile { width: calc((100% - 16px) / 3); height: auto; aspect-ratio: 1; }
+    .rv-tile__spin { left: calc(50% - 15px); top: calc(50% - 15px); }
+    .rv-tile--error { padding: 40px 4px 0; place-items: start center; }
+    .rv-form__footer .rv-btn-submit { width: 100%; }
+
+    /* Окна шторкой снизу: радиус 20 сверху, паддинг 24 */
+    .rv-overlay:not(.rv-overlay--plain) { place-items: end stretch; }
+    .rv-dialog { width: 100%; max-width: none; border-radius: 20px 20px 0 0; animation: sheet 250ms var(--ease-out); }
+
+    /* Просмотр фото: фото во всю ширину 250, счётчик и крестик сверху, без стрелок */
+    .rv-viewer__img { width: 100vw; height: 250px; }
+    .rv-viewer__prev, .rv-viewer__next { display: none; }
+    .rv-viewer__count { top: 17px; }
+    .rv-viewer__close { top: 16px; right: 16px; width: 24px; height: 24px; }
+    .rv-viewer__close svg { width: 24px; height: 24px; }
+  }
+
   /* ===== Отзывы тревел-эксперта, десктоп (Figma «ТЭ · Desktop» 12370:151806, вид LKTE «Отзывы на платформе») ===== */
   :root {
     --er-grey-count: #b6b6bf;     /* счётчик во вкладке и заголовке */

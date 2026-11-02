@@ -1,0 +1,12 @@
+﻿{"link": "figma://file/pkcHlRm2Qy0hQ95yfJsogC?node-id=12677-65245",
+ "scenario": "#49 повтор: восстановлено серое поле поиска (решение Дианы), только исправленные узлы",
+ "dropdown": {"id": "12677:65245", "w": 264, "h": 282, "al": "VERTICAL pad 0 gap 0", "r": 10, "fillStyle": "white", "effectStyle": "main"},
+ "children": [
+  {"id": "12679:82371", "name": "search", "al": "VERTICAL pad 8/8/0/8", "sz": ["FILL", "HUG"], "h": 52,
+   "children": [{"id": "12679:82372", "type": "INSTANCE", "main": "Input-Icon / Filled=No, State=Default, Close=No, Tooltip=No, Hint=No", "w": 248, "h": 44, "sz": ["FILL", "HUG"], "leftIcon": "icons / Icons=search", "placeholder": "Поиск", "look": "серое поле F0F2F5, радиус 8, без рамки (как в ДС 73:34304)"}]},
+  {"id": "12677:66453", "type": "INSTANCE", "main": "Filters-List / Buttons=No, Type=Simple, Selected=No, Search=No, Scroll=No", "h": 230, "pad": "8/0/8/0",
+   "overrides": "Frame 18375: тень, радиус и фон сняты (карточку даёт dropdown)",
+   "items": ["Лучшее в Грузии за 7 дней! Го…", "Легенды Греческих островов", "Путь самурая в Японии", "Тур по Турции", "Тур по Турции", "Тур по Турции"]}
+ ],
+ "kept": ["неразрывные пробелы и многоточие Коти", "стиль white на dropdown от Совушки", "hover первого пункта на 12370:152547 (12677:66554)"],
+ "toCheck": "зазор поле-список 8 (pad списка), поле 248 с отступом 8 по бокам"}

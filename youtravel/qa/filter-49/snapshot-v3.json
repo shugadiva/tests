@@ -1,0 +1,38 @@
+{"link": "figma://file/pkcHlRm2Qy0hQ95yfJsogC?node-id=12370-152547",
+ "scenario": "#49 v3: решение Дианы, поиск как в ДС 3.0 (Filters-List Search=Yes, линия снизу). Свой компонент filters-reviews-tour-search удалён.",
+ "frames": {
+  "Фильтр по туру открыт": "figma://file/pkcHlRm2Qy0hQ95yfJsogC?node-id=12370-152257",
+  "Поиск в фильтре по туру": "figma://file/pkcHlRm2Qy0hQ95yfJsogC?node-id=12370-152547"
+ },
+ "screenshots": ["v3-frame-12370-152257.png", "v3-frame-12370-152547.png"],
+ "upstream": {"LKTE main": "12321:99516 (вариант click 12321:99517), не тронут", "DS 3.0 копия": "zx1LabtEJad0nJSJ3W2olU, Filters-List Search=Yes 968:56711"},
+ "screens": [
+  {"frame": "12370:152257", "frameName": "ТЭ · Desktop / Отзывы / Фильтр по туру открыт",
+   "instance": {"id": "12680:81844", "main": "filters-reviews-tour / Property 1=click", "mainId": "12321:99517", "w": 67, "h": 18, "parent": "12370:152404 Frame 39816 VERTICAL", "index": 0, "note": "карточка торчит вниз без обрезки, как в LKTE"},
+   "label": {"id": "I12680:81844;12321:99522", "text": "Все туры", "style": "Body XS/Semibold"},
+   "filtersList": {"id": "I12680:81844;12321:99519", "main": "Buttons=No, Type=Simple, Selected=No, Search=Yes, Scroll=No", "y": 18, "w": 264, "h": 274},
+   "search": {"id": "I12680:81844;12321:99519;8498:429790", "main": "Input-Icon / Filled=No, State=Default, Close=No, Tooltip=No, Hint=No", "w": 264, "h": 44, "icon": "Icons=search", "placeholder": "Поиск", "field": "белый, обводка F0F2F5 (вид задаёт Filters-List), радиус 0"},
+   "items": [
+    {"id": "I12680:81844;12321:99519;8498:429793", "state": "Type=Black, State=Default, Icon=No, Arrow=No", "text": "Лучшее в Грузии за 7 дней! Го…"},
+    {"id": "I12680:81844;12321:99519;8498:429794", "state": "Type=Black, State=Default, Icon=No, Arrow=No", "text": "Легенды Греческих островов"},
+    {"id": "I12680:81844;12321:99519;8498:429795", "state": "Type=Black, State=Default, Icon=No, Arrow=No", "text": "Путь самурая в Японии"},
+    {"id": "I12680:81844;12321:99519;8498:429796", "state": "Type=Black, State=Default, Icon=No, Arrow=No", "text": "Тур по Турции"},
+    {"id": "I12680:81844;12321:99519;8511:466689", "state": "Type=Black, State=Default, Icon=No, Arrow=No", "text": "Тур по Турции"},
+    {"id": "I12680:81844;12321:99519;8511:466697", "state": "Type=Black, State=Default, Icon=No, Arrow=No", "text": "Тур по Турции"}
+   ]},
+  {"frame": "12370:152547", "frameName": "ТЭ · Desktop / Отзывы / Поиск в фильтре по туру",
+   "instance": {"id": "12680:81904", "main": "filters-reviews-tour / Property 1=click", "mainId": "12321:99517", "w": 67, "h": 18, "parent": "12370:152694 Frame 39816 VERTICAL", "index": 0},
+   "label": {"id": "I12680:81904;12321:99522", "text": "Все туры", "style": "Body XS/Semibold"},
+   "filtersList": {"id": "I12680:81904;12321:99519", "main": "Buttons=No, Type=Simple, Selected=No, Search=Yes, Scroll=No", "y": 18, "w": 264, "h": 274},
+   "search": {"id": "I12680:81904;12321:99519;8498:429790", "main": "Input-Icon / Filled=No, State=Default, Close=No, Tooltip=No, Hint=No", "w": 264, "h": 44, "icon": "Icons=search", "placeholder": "Поиск", "field": "белый, обводка F0F2F5, радиус 0"},
+   "items": [
+    {"id": "I12680:81904;12321:99519;8498:429793", "state": "Type=Black, State=Hover, Icon=No, Arrow=None", "text": "Лучшее в Грузии за 7 дней! Го…", "note": "hover взят по ключу 3a84b0df, как был в старом кадре; у него свойство Arrow=None, у остальных Arrow=No. Проверить, тот ли это набор item-list"},
+    {"id": "I12680:81904;12321:99519;8498:429794", "state": "Type=Black, State=Default, Icon=No, Arrow=No", "text": "Легенды Греческих островов"},
+    {"id": "I12680:81904;12321:99519;8498:429795", "state": "Type=Black, State=Default, Icon=No, Arrow=No", "text": "Путь самурая в Японии"},
+    {"id": "I12680:81904;12321:99519;8498:429796", "state": "Type=Black, State=Default, Icon=No, Arrow=No", "text": "Тур по Турции"},
+    {"id": "I12680:81904;12321:99519;8511:466689", "state": "Type=Black, State=Default, Icon=No, Arrow=No", "text": "Тур по Турции"},
+    {"id": "I12680:81904;12321:99519;8511:466697", "state": "Type=Black, State=Default, Icon=No, Arrow=No", "text": "Тур по Турции"}
+   ]}
+ ],
+ "open": ["в поле на втором кадре текст не введён (вопрос «Гру» у Дианы)", "пустой результат и Scroll=Yes не показаны (вопрос объёма у Дианы)"]
+}

@@ -1,0 +1,18 @@
+﻿{"link": "figma://file/pkcHlRm2Qy0hQ95yfJsogC?node-id=12370-151806",
+ "scenario": "Перевод на ДС 3.0, исправления по Волчку и Совушке",
+ "volchok": {
+  "header buttons": "Components lk-header: icon-button / message1 (11418:38958, 12541:78089) -> button-message ДС State=default, New=No (12699:65732, 12699:65750); icon-button / world -> рамка 40 с icons ДС world, зелёная как соседняя иконка (12699:67962, 12699:67970): swith-language ДС показывает код языка «EN», не глобус",
+  "photo viewer": "стрелки 12405:156126/129, 12394:60824/27 -> icons ДС arrow-left/arrow-right 32 (12699:65793..65808); в close 12405:156131 иконка -> icons ДС cross 20 (12699:65813), сама круглая рамка 56 оставлена",
+  "clock": "icons8-часы (14) и icon / clock 12541:78113 оставлены: в icons ДС 3.0 часов нет",
+  "booking-card 12413:79833, 12413:79893": "оставлены по решению Дианы до ответа заказчика про кнопку «Оставить отзыв» в карточке брони (в booking-card её нет)",
+  "sidebar-items": "ни abac086d, ни 416d9d87 не из ДС 3.0. В ДС ближе всего list button 4f012e44, у него нет State=Selected. Оставлены оба",
+  "add-photo": "набор Buttons 1 83a5cee2 не из ДС 3.0 (по ключу); поиск по библиотеке ДС 3.0 набора Buttons 1 не находит. Какая это библиотека, по API не видно, по составу похоже на библиотеку МП"
+ },
+ "sovushka": {
+  "green/click (#7fa40c)": "483 обводки и 15 заливок во всех наших секциях",
+  "red/default (#f84565)": "75 обводок ошибки на кнопках оценок",
+  "primary/white": "30 обводок Line на ТЭ · Desktop",
+  "#eeeef2": "Line 159 12370:152254 не привязан: в ДС 3.0 нет такого цвета (ближе grey/sidebar #ebeef4, grey/background #f1f3f8), вопрос к Диане"
+ }
+}
+

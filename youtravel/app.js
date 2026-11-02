@@ -67,10 +67,10 @@
     onlyPhotos.addEventListener('change', filter);
     if (q.has('photos')) { onlyPhotos.checked = true; filter(); }
 
-    // Текст отзыва: «Показать ещё» / «Скрыть»
+    // Текст отзыва: «Показать еще» / «Скрыть»
     const toggleText = (about, force) => {
       const on = about.classList.toggle('is-open', force);
-      $('.rv-about__more', about).textContent = on ? 'Скрыть' : 'Показать ещё';
+      $('.rv-about__more', about).textContent = on ? 'Скрыть' : 'Показать еще';
     };
     $$('.rv-about', list).forEach((about) => $('.rv-about__more', about).addEventListener('click', () => toggleText(about)));
 

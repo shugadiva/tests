@@ -1,0 +1,1838 @@
+{"link": "figma://file/pkcHlRm2Qy0hQ95yfJsogC?node-id=12677-65238",
+ "scenario": "#49 поиск в фильтре по туру",
+ "frames": {
+  "Фильтр по туру открыт": "figma://file/pkcHlRm2Qy0hQ95yfJsogC?node-id=12370-152257",
+  "Поиск в фильтре по туру": "figma://file/pkcHlRm2Qy0hQ95yfJsogC?node-id=12370-152547"
+ },
+ "screenshots": [
+  "frame-12370-152257.png",
+  "frame-12370-152547.png",
+  "component-12677-65245.png"
+ ],
+ "note": "Компонент 67x18, выпадающая карточка торчит вниз без обрезки, как у LKTE. Образец поля: ДС 3.0 копия zx1LabtEJad0nJSJ3W2olU, Input-Icon 73:34304 (Default).",
+ "component": {
+  "id": "12677:65238",
+  "type": "COMPONENT",
+  "name": "filters-reviews-tour-search",
+  "w": 67,
+  "h": 18,
+  "x": 1200,
+  "y": 802,
+  "sz": [
+   "FIXED",
+   "FIXED"
+  ],
+  "children": [
+   {
+    "id": "12677:65239",
+    "type": "FRAME",
+    "name": "Frame 277135847",
+    "w": 67,
+    "h": 18,
+    "x": 0,
+    "y": 0,
+    "al": {
+     "m": "HORIZONTAL",
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "gap": 6,
+     "ax": "MAX",
+     "cx": "CENTER"
+    },
+    "sz": [
+     "HUG",
+     "HUG"
+    ],
+    "children": [
+     {
+      "id": "12677:65240",
+      "type": "FRAME",
+      "name": "Frame 277135954",
+      "w": 67,
+      "h": 18,
+      "x": 0,
+      "y": 0,
+      "al": {
+       "m": "HORIZONTAL",
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "gap": 0,
+       "ax": "MAX",
+       "cx": "CENTER"
+      },
+      "sz": [
+       "HUG",
+       "HUG"
+      ],
+      "children": [
+       {
+        "id": "12677:65241",
+        "type": "TEXT",
+        "name": "Все туры",
+        "w": 55,
+        "h": 18,
+        "x": 0,
+        "y": 0,
+        "sz": [
+         "HUG",
+         "HUG"
+        ],
+        "fills": [
+         {
+          "t": "SOLID",
+          "c": [
+           0.498,
+           0.643,
+           0.047
+          ]
+         }
+        ],
+        "text": "Все туры",
+        "textStyle": "Body XS/Semibold",
+        "font": "SF Pro Text Semibold 12"
+       },
+       {
+        "id": "12677:65242",
+        "type": "FRAME",
+        "name": "dropdown-open",
+        "w": 12,
+        "h": 12,
+        "x": 55,
+        "y": 15,
+        "sz": [
+         "FIXED",
+         "FIXED"
+        ],
+        "children": [
+         {
+          "id": "12677:65243",
+          "type": "VECTOR",
+          "name": "Vector",
+          "w": 3,
+          "h": 6,
+          "x": 7,
+          "y": 3,
+          "sz": [
+           "FIXED",
+           "FIXED"
+          ],
+          "strokes": [
+           {
+            "t": "SOLID",
+            "c": [
+             0.498,
+             0.643,
+             0.047
+            ]
+           }
+          ],
+          "sw": 1.399999976158142
+         },
+         {
+          "id": "12677:65244",
+          "type": "VECTOR",
+          "name": "Vector",
+          "w": 3,
+          "h": 6,
+          "x": 8,
+          "y": 3,
+          "hidden": true,
+          "sz": [
+           "FIXED",
+           "FIXED"
+          ],
+          "strokes": [
+           {
+            "t": "SOLID",
+            "c": [
+             0.607,
+             0.607,
+             0.671
+            ]
+           }
+          ],
+          "sw": 1.399999976158142
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "12677:65245",
+    "type": "FRAME",
+    "name": "dropdown",
+    "w": 264,
+    "h": 282,
+    "x": 0,
+    "y": 26,
+    "al": {
+     "m": "VERTICAL",
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "gap": 0,
+     "ax": "MIN",
+     "cx": "MIN"
+    },
+    "sz": [
+     "FIXED",
+     "HUG"
+    ],
+    "r": 10,
+    "fills": [
+     {
+      "t": "SOLID",
+      "c": [
+       1,
+       1,
+       1
+      ]
+     }
+    ],
+    "effectStyle": "main",
+    "children": [
+     {
+      "id": "12677:65246",
+      "type": "FRAME",
+      "name": "search",
+      "w": 264,
+      "h": 52,
+      "x": 0,
+      "y": 0,
+      "al": {
+       "m": "VERTICAL",
+       "pad": [
+        8,
+        8,
+        0,
+        8
+       ],
+       "gap": 0,
+       "ax": "MIN",
+       "cx": "MIN"
+      },
+      "sz": [
+       "FILL",
+       "HUG"
+      ],
+      "children": [
+       {
+        "id": "12677:65472",
+        "type": "INSTANCE",
+        "name": "Input-Icon",
+        "w": 248,
+        "h": 44,
+        "x": 8,
+        "y": 8,
+        "al": {
+         "m": "VERTICAL",
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "gap": 0,
+         "ax": "MIN",
+         "cx": "MIN"
+        },
+        "sz": [
+         "FILL",
+         "HUG"
+        ],
+        "main": "Input-Icon / Filled=No, State=Default, Close=No, Tooltip=No, Hint=No",
+        "remote": true,
+        "props": {
+         "Filled": "No",
+         "State": "Default",
+         "Close": "No",
+         "Tooltip": "No",
+         "Hint": "No"
+        }
+       }
+      ]
+     },
+     {
+      "id": "12677:66453",
+      "type": "INSTANCE",
+      "name": "Filters-List",
+      "w": 264,
+      "h": 230,
+      "x": 0,
+      "y": 52,
+      "al": {
+       "m": "VERTICAL",
+       "pad": [
+        8,
+        0,
+        8,
+        0
+       ],
+       "gap": 10,
+       "ax": "MIN",
+       "cx": "MIN"
+      },
+      "sz": [
+       "FILL",
+       "HUG"
+      ],
+      "main": "Filters-List / Buttons=No, Type=Simple, Selected=No, Search=No, Scroll=No",
+      "remote": true,
+      "props": {
+       "Buttons": "No",
+       "Type": "Simple",
+       "Selected": "No",
+       "Search": "No",
+       "Scroll": "No"
+      },
+      "children": [
+       {
+        "id": "I12677:66453;8498:429805",
+        "type": "FRAME",
+        "name": "Frame 18375",
+        "w": 264,
+        "h": 214,
+        "x": 0,
+        "y": 8,
+        "al": {
+         "m": "VERTICAL",
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "gap": 0,
+         "ax": "MIN",
+         "cx": "MIN"
+        },
+        "sz": [
+         "FIXED",
+         "HUG"
+        ],
+        "children": [
+         {
+          "id": "I12677:66453;8498:429806",
+          "type": "FRAME",
+          "name": "Frame 39812",
+          "w": 264,
+          "h": 214,
+          "x": 0,
+          "y": 0,
+          "al": {
+           "m": "VERTICAL",
+           "pad": [
+            0,
+            0,
+            0,
+            0
+           ],
+           "gap": 0,
+           "ax": "MIN",
+           "cx": "MIN"
+          },
+          "sz": [
+           "FILL",
+           "HUG"
+          ],
+          "children": [
+           {
+            "id": "I12677:66453;8498:429807",
+            "type": "FRAME",
+            "name": "Frame 277135851",
+            "w": 264,
+            "h": 214,
+            "x": 0,
+            "y": 0,
+            "al": {
+             "m": "HORIZONTAL",
+             "pad": [
+              6,
+              2,
+              6,
+              6
+             ],
+             "gap": 1,
+             "ax": "MIN",
+             "cx": "MIN"
+            },
+            "sz": [
+             "FILL",
+             "HUG"
+            ],
+            "children": [
+             {
+              "id": "I12677:66453;8498:440286",
+              "type": "FRAME",
+              "name": "Frame 277135867",
+              "w": 252,
+              "h": 202,
+              "x": 6,
+              "y": 6,
+              "al": {
+               "m": "VERTICAL",
+               "pad": [
+                0,
+                0,
+                0,
+                0
+               ],
+               "gap": 2,
+               "ax": "MIN",
+               "cx": "MIN"
+              },
+              "sz": [
+               "FIXED",
+               "HUG"
+              ],
+              "children": [
+               {
+                "id": "I12677:66453;8498:429808",
+                "type": "INSTANCE",
+                "name": "item-list",
+                "w": 252,
+                "h": 32,
+                "x": 0,
+                "y": 0,
+                "al": {
+                 "m": "HORIZONTAL",
+                 "pad": [
+                  0,
+                  10,
+                  0,
+                  8
+                 ],
+                 "gap": 8,
+                 "ax": "MIN",
+                 "cx": "CENTER"
+                },
+                "sz": [
+                 "FILL",
+                 "FIXED"
+                ],
+                "r": 6,
+                "main": "item-list / Type=Black, State=Default, Icon=No, Arrow=None",
+                "remote": true,
+                "props": {
+                 "Name#2638:9": "Лучшее в Грузии за 7 дней! Го...",
+                 "Type": "Black",
+                 "State": "Default",
+                 "Icon": "No",
+                 "Arrow": "None"
+                }
+               },
+               {
+                "id": "I12677:66453;8498:429809",
+                "type": "INSTANCE",
+                "name": "item-list",
+                "w": 252,
+                "h": 32,
+                "x": 0,
+                "y": 34,
+                "al": {
+                 "m": "HORIZONTAL",
+                 "pad": [
+                  0,
+                  10,
+                  0,
+                  8
+                 ],
+                 "gap": 8,
+                 "ax": "MIN",
+                 "cx": "CENTER"
+                },
+                "sz": [
+                 "FILL",
+                 "FIXED"
+                ],
+                "r": 6,
+                "main": "item-list / Type=Black, State=Default, Icon=No, Arrow=None",
+                "remote": true,
+                "props": {
+                 "Name#2638:9": "Легенды Греческих островов",
+                 "Type": "Black",
+                 "State": "Default",
+                 "Icon": "No",
+                 "Arrow": "None"
+                }
+               },
+               {
+                "id": "I12677:66453;8498:429810",
+                "type": "INSTANCE",
+                "name": "item-list",
+                "w": 252,
+                "h": 32,
+                "x": 0,
+                "y": 68,
+                "al": {
+                 "m": "HORIZONTAL",
+                 "pad": [
+                  0,
+                  10,
+                  0,
+                  8
+                 ],
+                 "gap": 8,
+                 "ax": "MIN",
+                 "cx": "CENTER"
+                },
+                "sz": [
+                 "FILL",
+                 "FIXED"
+                ],
+                "r": 6,
+                "main": "item-list / Type=Black, State=Default, Icon=No, Arrow=None",
+                "remote": true,
+                "props": {
+                 "Name#2638:9": "Путь самурая в Японии",
+                 "Type": "Black",
+                 "State": "Default",
+                 "Icon": "No",
+                 "Arrow": "None"
+                }
+               },
+               {
+                "id": "I12677:66453;8498:429811",
+                "type": "INSTANCE",
+                "name": "item-list",
+                "w": 252,
+                "h": 32,
+                "x": 0,
+                "y": 102,
+                "al": {
+                 "m": "HORIZONTAL",
+                 "pad": [
+                  0,
+                  10,
+                  0,
+                  8
+                 ],
+                 "gap": 8,
+                 "ax": "MIN",
+                 "cx": "CENTER"
+                },
+                "sz": [
+                 "FILL",
+                 "FIXED"
+                ],
+                "r": 6,
+                "main": "item-list / Type=Black, State=Default, Icon=No, Arrow=None",
+                "remote": true,
+                "props": {
+                 "Name#2638:9": "Тур по Турции",
+                 "Type": "Black",
+                 "State": "Default",
+                 "Icon": "No",
+                 "Arrow": "None"
+                }
+               },
+               {
+                "id": "I12677:66453;8511:466795",
+                "type": "INSTANCE",
+                "name": "item-list",
+                "w": 252,
+                "h": 32,
+                "x": 0,
+                "y": 136,
+                "al": {
+                 "m": "HORIZONTAL",
+                 "pad": [
+                  0,
+                  10,
+                  0,
+                  8
+                 ],
+                 "gap": 8,
+                 "ax": "MIN",
+                 "cx": "CENTER"
+                },
+                "sz": [
+                 "FILL",
+                 "FIXED"
+                ],
+                "r": 6,
+                "main": "item-list / Type=Black, State=Default, Icon=No, Arrow=None",
+                "remote": true,
+                "props": {
+                 "Name#2638:9": "Тур по Турции",
+                 "Type": "Black",
+                 "State": "Default",
+                 "Icon": "No",
+                 "Arrow": "None"
+                }
+               },
+               {
+                "id": "I12677:66453;8511:466803",
+                "type": "INSTANCE",
+                "name": "item-list",
+                "w": 252,
+                "h": 32,
+                "x": 0,
+                "y": 170,
+                "al": {
+                 "m": "HORIZONTAL",
+                 "pad": [
+                  0,
+                  10,
+                  0,
+                  8
+                 ],
+                 "gap": 8,
+                 "ax": "MIN",
+                 "cx": "CENTER"
+                },
+                "sz": [
+                 "FILL",
+                 "FIXED"
+                ],
+                "r": 6,
+                "main": "item-list / Type=Black, State=Default, Icon=No, Arrow=None",
+                "remote": true,
+                "props": {
+                 "Name#2638:9": "Тур по Турции",
+                 "Type": "Black",
+                 "State": "Default",
+                 "Icon": "No",
+                 "Arrow": "None"
+                }
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "screens": [
+  {
+   "frame": "12370:152257",
+   "frameName": "ТЭ · Desktop / Отзывы / Фильтр по туру открыт",
+   "instanceParent": {
+    "id": "12370:152404",
+    "name": "Frame 39816",
+    "al": "VERTICAL"
+   },
+   "instance": {
+    "id": "12677:66493",
+    "type": "INSTANCE",
+    "name": "filters-reviews-tour-search",
+    "w": 67,
+    "h": 18,
+    "x": 0,
+    "y": 0,
+    "sz": [
+     "FIXED",
+     "FIXED"
+    ],
+    "main": "filters-reviews-tour-search",
+    "remote": false,
+    "props": {},
+    "children": [
+     {
+      "id": "I12677:66493;12677:65239",
+      "type": "FRAME",
+      "name": "Frame 277135847",
+      "w": 67,
+      "h": 18,
+      "x": 0,
+      "y": 0,
+      "al": {
+       "m": "HORIZONTAL",
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "gap": 6,
+       "ax": "MAX",
+       "cx": "CENTER"
+      },
+      "sz": [
+       "HUG",
+       "HUG"
+      ],
+      "children": [
+       {
+        "id": "I12677:66493;12677:65240",
+        "type": "FRAME",
+        "name": "Frame 277135954",
+        "w": 67,
+        "h": 18,
+        "x": 0,
+        "y": 0,
+        "al": {
+         "m": "HORIZONTAL",
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "gap": 0,
+         "ax": "MAX",
+         "cx": "CENTER"
+        },
+        "sz": [
+         "HUG",
+         "HUG"
+        ],
+        "children": [
+         {
+          "id": "I12677:66493;12677:65241",
+          "type": "TEXT",
+          "name": "Все туры",
+          "w": 55,
+          "h": 18,
+          "x": 0,
+          "y": 0,
+          "sz": [
+           "HUG",
+           "HUG"
+          ],
+          "fills": [
+           {
+            "t": "SOLID",
+            "c": [
+             0.498,
+             0.643,
+             0.047
+            ]
+           }
+          ],
+          "text": "Все туры",
+          "textStyle": "Body XS/Semibold",
+          "font": "SF Pro Text Semibold 12"
+         },
+         {
+          "id": "I12677:66493;12677:65242",
+          "type": "FRAME",
+          "name": "dropdown-open",
+          "w": 12,
+          "h": 12,
+          "x": 55,
+          "y": 15,
+          "sz": [
+           "FIXED",
+           "FIXED"
+          ],
+          "children": [
+           {
+            "id": "I12677:66493;12677:65243",
+            "type": "VECTOR",
+            "name": "Vector",
+            "w": 3,
+            "h": 6,
+            "x": 7,
+            "y": 3,
+            "sz": [
+             "FIXED",
+             "FIXED"
+            ],
+            "strokes": [
+             {
+              "t": "SOLID",
+              "c": [
+               0.498,
+               0.643,
+               0.047
+              ]
+             }
+            ],
+            "sw": 1.399999976158142
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "id": "I12677:66493;12677:65245",
+      "type": "FRAME",
+      "name": "dropdown",
+      "w": 264,
+      "h": 282,
+      "x": 0,
+      "y": 26,
+      "al": {
+       "m": "VERTICAL",
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "gap": 0,
+       "ax": "MIN",
+       "cx": "MIN"
+      },
+      "sz": [
+       "FIXED",
+       "HUG"
+      ],
+      "r": 10,
+      "fills": [
+       {
+        "t": "SOLID",
+        "c": [
+         1,
+         1,
+         1
+        ]
+       }
+      ],
+      "effectStyle": "main",
+      "children": [
+       {
+        "id": "I12677:66493;12677:65246",
+        "type": "FRAME",
+        "name": "search",
+        "w": 264,
+        "h": 52,
+        "x": 0,
+        "y": 0,
+        "al": {
+         "m": "VERTICAL",
+         "pad": [
+          8,
+          8,
+          0,
+          8
+         ],
+         "gap": 0,
+         "ax": "MIN",
+         "cx": "MIN"
+        },
+        "sz": [
+         "FILL",
+         "HUG"
+        ],
+        "children": [
+         {
+          "id": "I12677:66493;12677:65472",
+          "type": "INSTANCE",
+          "name": "Input-Icon",
+          "w": 248,
+          "h": 44,
+          "x": 8,
+          "y": 8,
+          "al": {
+           "m": "VERTICAL",
+           "pad": [
+            0,
+            0,
+            0,
+            0
+           ],
+           "gap": 0,
+           "ax": "MIN",
+           "cx": "MIN"
+          },
+          "sz": [
+           "FILL",
+           "HUG"
+          ],
+          "main": "Input-Icon / Filled=No, State=Default, Close=No, Tooltip=No, Hint=No",
+          "remote": true,
+          "props": {
+           "Filled": "No",
+           "State": "Default",
+           "Close": "No",
+           "Tooltip": "No",
+           "Hint": "No"
+          }
+         }
+        ]
+       },
+       {
+        "id": "I12677:66493;12677:66453",
+        "type": "INSTANCE",
+        "name": "Filters-List",
+        "w": 264,
+        "h": 230,
+        "x": 0,
+        "y": 52,
+        "al": {
+         "m": "VERTICAL",
+         "pad": [
+          8,
+          0,
+          8,
+          0
+         ],
+         "gap": 10,
+         "ax": "MIN",
+         "cx": "MIN"
+        },
+        "sz": [
+         "FILL",
+         "HUG"
+        ],
+        "main": "Filters-List / Buttons=No, Type=Simple, Selected=No, Search=No, Scroll=No",
+        "remote": true,
+        "props": {
+         "Buttons": "No",
+         "Type": "Simple",
+         "Selected": "No",
+         "Search": "No",
+         "Scroll": "No"
+        },
+        "children": [
+         {
+          "id": "I12677:66493;12677:66453;8498:429805",
+          "type": "FRAME",
+          "name": "Frame 18375",
+          "w": 264,
+          "h": 214,
+          "x": 0,
+          "y": 8,
+          "al": {
+           "m": "VERTICAL",
+           "pad": [
+            0,
+            0,
+            0,
+            0
+           ],
+           "gap": 0,
+           "ax": "MIN",
+           "cx": "MIN"
+          },
+          "sz": [
+           "FIXED",
+           "HUG"
+          ],
+          "children": [
+           {
+            "id": "I12677:66493;12677:66453;8498:429806",
+            "type": "FRAME",
+            "name": "Frame 39812",
+            "w": 264,
+            "h": 214,
+            "x": 0,
+            "y": 0,
+            "al": {
+             "m": "VERTICAL",
+             "pad": [
+              0,
+              0,
+              0,
+              0
+             ],
+             "gap": 0,
+             "ax": "MIN",
+             "cx": "MIN"
+            },
+            "sz": [
+             "FILL",
+             "HUG"
+            ],
+            "children": [
+             {
+              "id": "I12677:66493;12677:66453;8498:429807",
+              "type": "FRAME",
+              "name": "Frame 277135851",
+              "w": 264,
+              "h": 214,
+              "x": 0,
+              "y": 0,
+              "al": {
+               "m": "HORIZONTAL",
+               "pad": [
+                6,
+                2,
+                6,
+                6
+               ],
+               "gap": 1,
+               "ax": "MIN",
+               "cx": "MIN"
+              },
+              "sz": [
+               "FILL",
+               "HUG"
+              ],
+              "children": [
+               {
+                "id": "I12677:66493;12677:66453;8498:440286",
+                "type": "FRAME",
+                "name": "Frame 277135867",
+                "w": 252,
+                "h": 202,
+                "x": 6,
+                "y": 6,
+                "al": {
+                 "m": "VERTICAL",
+                 "pad": [
+                  0,
+                  0,
+                  0,
+                  0
+                 ],
+                 "gap": 2,
+                 "ax": "MIN",
+                 "cx": "MIN"
+                },
+                "sz": [
+                 "FIXED",
+                 "HUG"
+                ],
+                "children": [
+                 {
+                  "id": "I12677:66493;12677:66453;8498:429808",
+                  "type": "INSTANCE",
+                  "name": "item-list",
+                  "w": 252,
+                  "h": 32,
+                  "x": 0,
+                  "y": 0,
+                  "al": {
+                   "m": "HORIZONTAL",
+                   "pad": [
+                    0,
+                    10,
+                    0,
+                    8
+                   ],
+                   "gap": 8,
+                   "ax": "MIN",
+                   "cx": "CENTER"
+                  },
+                  "sz": [
+                   "FILL",
+                   "FIXED"
+                  ],
+                  "r": 6,
+                  "main": "item-list / Type=Black, State=Default, Icon=No, Arrow=None",
+                  "remote": true,
+                  "props": {
+                   "Name#2638:9": "Лучшее в Грузии за 7 дней! Го...",
+                   "Type": "Black",
+                   "State": "Default",
+                   "Icon": "No",
+                   "Arrow": "None"
+                  }
+                 },
+                 {
+                  "id": "I12677:66493;12677:66453;8498:429809",
+                  "type": "INSTANCE",
+                  "name": "item-list",
+                  "w": 252,
+                  "h": 32,
+                  "x": 0,
+                  "y": 34,
+                  "al": {
+                   "m": "HORIZONTAL",
+                   "pad": [
+                    0,
+                    10,
+                    0,
+                    8
+                   ],
+                   "gap": 8,
+                   "ax": "MIN",
+                   "cx": "CENTER"
+                  },
+                  "sz": [
+                   "FILL",
+                   "FIXED"
+                  ],
+                  "r": 6,
+                  "main": "item-list / Type=Black, State=Default, Icon=No, Arrow=None",
+                  "remote": true,
+                  "props": {
+                   "Name#2638:9": "Легенды Греческих островов",
+                   "Type": "Black",
+                   "State": "Default",
+                   "Icon": "No",
+                   "Arrow": "None"
+                  }
+                 },
+                 {
+                  "id": "I12677:66493;12677:66453;8498:429810",
+                  "type": "INSTANCE",
+                  "name": "item-list",
+                  "w": 252,
+                  "h": 32,
+                  "x": 0,
+                  "y": 68,
+                  "al": {
+                   "m": "HORIZONTAL",
+                   "pad": [
+                    0,
+                    10,
+                    0,
+                    8
+                   ],
+                   "gap": 8,
+                   "ax": "MIN",
+                   "cx": "CENTER"
+                  },
+                  "sz": [
+                   "FILL",
+                   "FIXED"
+                  ],
+                  "r": 6,
+                  "main": "item-list / Type=Black, State=Default, Icon=No, Arrow=None",
+                  "remote": true,
+                  "props": {
+                   "Name#2638:9": "Путь самурая в Японии",
+                   "Type": "Black",
+                   "State": "Default",
+                   "Icon": "No",
+                   "Arrow": "None"
+                  }
+                 },
+                 {
+                  "id": "I12677:66493;12677:66453;8498:429811",
+                  "type": "INSTANCE",
+                  "name": "item-list",
+                  "w": 252,
+                  "h": 32,
+                  "x": 0,
+                  "y": 102,
+                  "al": {
+                   "m": "HORIZONTAL",
+                   "pad": [
+                    0,
+                    10,
+                    0,
+                    8
+                   ],
+                   "gap": 8,
+                   "ax": "MIN",
+                   "cx": "CENTER"
+                  },
+                  "sz": [
+                   "FILL",
+                   "FIXED"
+                  ],
+                  "r": 6,
+                  "main": "item-list / Type=Black, State=Default, Icon=No, Arrow=None",
+                  "remote": true,
+                  "props": {
+                   "Name#2638:9": "Тур по Турции",
+                   "Type": "Black",
+                   "State": "Default",
+                   "Icon": "No",
+                   "Arrow": "None"
+                  }
+                 },
+                 {
+                  "id": "I12677:66493;12677:66453;8511:466795",
+                  "type": "INSTANCE",
+                  "name": "item-list",
+                  "w": 252,
+                  "h": 32,
+                  "x": 0,
+                  "y": 136,
+                  "al": {
+                   "m": "HORIZONTAL",
+                   "pad": [
+                    0,
+                    10,
+                    0,
+                    8
+                   ],
+                   "gap": 8,
+                   "ax": "MIN",
+                   "cx": "CENTER"
+                  },
+                  "sz": [
+                   "FILL",
+                   "FIXED"
+                  ],
+                  "r": 6,
+                  "main": "item-list / Type=Black, State=Default, Icon=No, Arrow=None",
+                  "remote": true,
+                  "props": {
+                   "Name#2638:9": "Тур по Турции",
+                   "Type": "Black",
+                   "State": "Default",
+                   "Icon": "No",
+                   "Arrow": "None"
+                  }
+                 },
+                 {
+                  "id": "I12677:66493;12677:66453;8511:466803",
+                  "type": "INSTANCE",
+                  "name": "item-list",
+                  "w": 252,
+                  "h": 32,
+                  "x": 0,
+                  "y": 170,
+                  "al": {
+                   "m": "HORIZONTAL",
+                   "pad": [
+                    0,
+                    10,
+                    0,
+                    8
+                   ],
+                   "gap": 8,
+                   "ax": "MIN",
+                   "cx": "CENTER"
+                  },
+                  "sz": [
+                   "FILL",
+                   "FIXED"
+                  ],
+                  "r": 6,
+                  "main": "item-list / Type=Black, State=Default, Icon=No, Arrow=None",
+                  "remote": true,
+                  "props": {
+                   "Name#2638:9": "Тур по Турции",
+                   "Type": "Black",
+                   "State": "Default",
+                   "Icon": "No",
+                   "Arrow": "None"
+                  }
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "frame": "12370:152547",
+   "frameName": "ТЭ · Desktop / Отзывы / Поиск в фильтре по туру",
+   "instanceParent": {
+    "id": "12370:152694",
+    "name": "Frame 39816",
+    "al": "VERTICAL"
+   },
+   "instance": {
+    "id": "12677:66554",
+    "type": "INSTANCE",
+    "name": "filters-reviews-tour-search",
+    "w": 67,
+    "h": 18,
+    "x": 0,
+    "y": 0,
+    "sz": [
+     "FIXED",
+     "FIXED"
+    ],
+    "main": "filters-reviews-tour-search",
+    "remote": false,
+    "props": {},
+    "children": [
+     {
+      "id": "I12677:66554;12677:65239",
+      "type": "FRAME",
+      "name": "Frame 277135847",
+      "w": 67,
+      "h": 18,
+      "x": 0,
+      "y": 0,
+      "al": {
+       "m": "HORIZONTAL",
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "gap": 6,
+       "ax": "MAX",
+       "cx": "CENTER"
+      },
+      "sz": [
+       "HUG",
+       "HUG"
+      ],
+      "children": [
+       {
+        "id": "I12677:66554;12677:65240",
+        "type": "FRAME",
+        "name": "Frame 277135954",
+        "w": 67,
+        "h": 18,
+        "x": 0,
+        "y": 0,
+        "al": {
+         "m": "HORIZONTAL",
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "gap": 0,
+         "ax": "MAX",
+         "cx": "CENTER"
+        },
+        "sz": [
+         "HUG",
+         "HUG"
+        ],
+        "children": [
+         {
+          "id": "I12677:66554;12677:65241",
+          "type": "TEXT",
+          "name": "Все туры",
+          "w": 55,
+          "h": 18,
+          "x": 0,
+          "y": 0,
+          "sz": [
+           "HUG",
+           "HUG"
+          ],
+          "fills": [
+           {
+            "t": "SOLID",
+            "c": [
+             0.498,
+             0.643,
+             0.047
+            ]
+           }
+          ],
+          "text": "Все туры",
+          "textStyle": "Body XS/Semibold",
+          "font": "SF Pro Text Semibold 12"
+         },
+         {
+          "id": "I12677:66554;12677:65242",
+          "type": "FRAME",
+          "name": "dropdown-open",
+          "w": 12,
+          "h": 12,
+          "x": 55,
+          "y": 15,
+          "sz": [
+           "FIXED",
+           "FIXED"
+          ],
+          "children": [
+           {
+            "id": "I12677:66554;12677:65243",
+            "type": "VECTOR",
+            "name": "Vector",
+            "w": 3,
+            "h": 6,
+            "x": 7,
+            "y": 3,
+            "sz": [
+             "FIXED",
+             "FIXED"
+            ],
+            "strokes": [
+             {
+              "t": "SOLID",
+              "c": [
+               0.498,
+               0.643,
+               0.047
+              ]
+             }
+            ],
+            "sw": 1.399999976158142
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "id": "I12677:66554;12677:65245",
+      "type": "FRAME",
+      "name": "dropdown",
+      "w": 264,
+      "h": 282,
+      "x": 0,
+      "y": 26,
+      "al": {
+       "m": "VERTICAL",
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "gap": 0,
+       "ax": "MIN",
+       "cx": "MIN"
+      },
+      "sz": [
+       "FIXED",
+       "HUG"
+      ],
+      "r": 10,
+      "fills": [
+       {
+        "t": "SOLID",
+        "c": [
+         1,
+         1,
+         1
+        ]
+       }
+      ],
+      "effectStyle": "main",
+      "children": [
+       {
+        "id": "I12677:66554;12677:65246",
+        "type": "FRAME",
+        "name": "search",
+        "w": 264,
+        "h": 52,
+        "x": 0,
+        "y": 0,
+        "al": {
+         "m": "VERTICAL",
+         "pad": [
+          8,
+          8,
+          0,
+          8
+         ],
+         "gap": 0,
+         "ax": "MIN",
+         "cx": "MIN"
+        },
+        "sz": [
+         "FILL",
+         "HUG"
+        ],
+        "children": [
+         {
+          "id": "I12677:66554;12677:65472",
+          "type": "INSTANCE",
+          "name": "Input-Icon",
+          "w": 248,
+          "h": 44,
+          "x": 8,
+          "y": 8,
+          "al": {
+           "m": "VERTICAL",
+           "pad": [
+            0,
+            0,
+            0,
+            0
+           ],
+           "gap": 0,
+           "ax": "MIN",
+           "cx": "MIN"
+          },
+          "sz": [
+           "FILL",
+           "HUG"
+          ],
+          "main": "Input-Icon / Filled=No, State=Default, Close=No, Tooltip=No, Hint=No",
+          "remote": true,
+          "props": {
+           "Filled": "No",
+           "State": "Default",
+           "Close": "No",
+           "Tooltip": "No",
+           "Hint": "No"
+          }
+         }
+        ]
+       },
+       {
+        "id": "I12677:66554;12677:66453",
+        "type": "INSTANCE",
+        "name": "Filters-List",
+        "w": 264,
+        "h": 230,
+        "x": 0,
+        "y": 52,
+        "al": {
+         "m": "VERTICAL",
+         "pad": [
+          8,
+          0,
+          8,
+          0
+         ],
+         "gap": 10,
+         "ax": "MIN",
+         "cx": "MIN"
+        },
+        "sz": [
+         "FILL",
+         "HUG"
+        ],
+        "main": "Filters-List / Buttons=No, Type=Simple, Selected=No, Search=No, Scroll=No",
+        "remote": true,
+        "props": {
+         "Buttons": "No",
+         "Type": "Simple",
+         "Selected": "No",
+         "Search": "No",
+         "Scroll": "No"
+        },
+        "children": [
+         {
+          "id": "I12677:66554;12677:66453;8498:429805",
+          "type": "FRAME",
+          "name": "Frame 18375",
+          "w": 264,
+          "h": 214,
+          "x": 0,
+          "y": 8,
+          "al": {
+           "m": "VERTICAL",
+           "pad": [
+            0,
+            0,
+            0,
+            0
+           ],
+           "gap": 0,
+           "ax": "MIN",
+           "cx": "MIN"
+          },
+          "sz": [
+           "FIXED",
+           "HUG"
+          ],
+          "children": [
+           {
+            "id": "I12677:66554;12677:66453;8498:429806",
+            "type": "FRAME",
+            "name": "Frame 39812",
+            "w": 264,
+            "h": 214,
+            "x": 0,
+            "y": 0,
+            "al": {
+             "m": "VERTICAL",
+             "pad": [
+              0,
+              0,
+              0,
+              0
+             ],
+             "gap": 0,
+             "ax": "MIN",
+             "cx": "MIN"
+            },
+            "sz": [
+             "FILL",
+             "HUG"
+            ],
+            "children": [
+             {
+              "id": "I12677:66554;12677:66453;8498:429807",
+              "type": "FRAME",
+              "name": "Frame 277135851",
+              "w": 264,
+              "h": 214,
+              "x": 0,
+              "y": 0,
+              "al": {
+               "m": "HORIZONTAL",
+               "pad": [
+                6,
+                2,
+                6,
+                6
+               ],
+               "gap": 1,
+               "ax": "MIN",
+               "cx": "MIN"
+              },
+              "sz": [
+               "FILL",
+               "HUG"
+              ],
+              "children": [
+               {
+                "id": "I12677:66554;12677:66453;8498:440286",
+                "type": "FRAME",
+                "name": "Frame 277135867",
+                "w": 252,
+                "h": 202,
+                "x": 6,
+                "y": 6,
+                "al": {
+                 "m": "VERTICAL",
+                 "pad": [
+                  0,
+                  0,
+                  0,
+                  0
+                 ],
+                 "gap": 2,
+                 "ax": "MIN",
+                 "cx": "MIN"
+                },
+                "sz": [
+                 "FIXED",
+                 "HUG"
+                ],
+                "children": [
+                 {
+                  "id": "I12677:66554;12677:66453;8498:429808",
+                  "type": "INSTANCE",
+                  "name": "item-list",
+                  "w": 252,
+                  "h": 32,
+                  "x": 0,
+                  "y": 0,
+                  "al": {
+                   "m": "HORIZONTAL",
+                   "pad": [
+                    0,
+                    10,
+                    0,
+                    8
+                   ],
+                   "gap": 8,
+                   "ax": "MIN",
+                   "cx": "CENTER"
+                  },
+                  "sz": [
+                   "FILL",
+                   "FIXED"
+                  ],
+                  "r": 6,
+                  "fills": [
+                   {
+                    "t": "SOLID",
+                    "c": [
+                     0.965,
+                     0.969,
+                     0.98
+                    ]
+                   }
+                  ],
+                  "main": "item-list / Type=Black, State=Hover, Icon=No, Arrow=None",
+                  "remote": true,
+                  "props": {
+                   "Name#2638:9": "Лучшее в Грузии за 7 дней! Го...",
+                   "Type": "Black",
+                   "State": "Hover",
+                   "Icon": "No",
+                   "Arrow": "None"
+                  }
+                 },
+                 {
+                  "id": "I12677:66554;12677:66453;8498:429809",
+                  "type": "INSTANCE",
+                  "name": "item-list",
+                  "w": 252,
+                  "h": 32,
+                  "x": 0,
+                  "y": 34,
+                  "al": {
+                   "m": "HORIZONTAL",
+                   "pad": [
+                    0,
+                    10,
+                    0,
+                    8
+                   ],
+                   "gap": 8,
+                   "ax": "MIN",
+                   "cx": "CENTER"
+                  },
+                  "sz": [
+                   "FILL",
+                   "FIXED"
+                  ],
+                  "r": 6,
+                  "main": "item-list / Type=Black, State=Default, Icon=No, Arrow=None",
+                  "remote": true,
+                  "props": {
+                   "Name#2638:9": "Легенды Греческих островов",
+                   "Type": "Black",
+                   "State": "Default",
+                   "Icon": "No",
+                   "Arrow": "None"
+                  }
+                 },
+                 {
+                  "id": "I12677:66554;12677:66453;8498:429810",
+                  "type": "INSTANCE",
+                  "name": "item-list",
+                  "w": 252,
+                  "h": 32,
+                  "x": 0,
+                  "y": 68,
+                  "al": {
+                   "m": "HORIZONTAL",
+                   "pad": [
+                    0,
+                    10,
+                    0,
+                    8
+                   ],
+                   "gap": 8,
+                   "ax": "MIN",
+                   "cx": "CENTER"
+                  },
+                  "sz": [
+                   "FILL",
+                   "FIXED"
+                  ],
+                  "r": 6,
+                  "main": "item-list / Type=Black, State=Default, Icon=No, Arrow=None",
+                  "remote": true,
+                  "props": {
+                   "Name#2638:9": "Путь самурая в Японии",
+                   "Type": "Black",
+                   "State": "Default",
+                   "Icon": "No",
+                   "Arrow": "None"
+                  }
+                 },
+                 {
+                  "id": "I12677:66554;12677:66453;8498:429811",
+                  "type": "INSTANCE",
+                  "name": "item-list",
+                  "w": 252,
+                  "h": 32,
+                  "x": 0,
+                  "y": 102,
+                  "al": {
+                   "m": "HORIZONTAL",
+                   "pad": [
+                    0,
+                    10,
+                    0,
+                    8
+                   ],
+                   "gap": 8,
+                   "ax": "MIN",
+                   "cx": "CENTER"
+                  },
+                  "sz": [
+                   "FILL",
+                   "FIXED"
+                  ],
+                  "r": 6,
+                  "main": "item-list / Type=Black, State=Default, Icon=No, Arrow=None",
+                  "remote": true,
+                  "props": {
+                   "Name#2638:9": "Тур по Турции",
+                   "Type": "Black",
+                   "State": "Default",
+                   "Icon": "No",
+                   "Arrow": "None"
+                  }
+                 },
+                 {
+                  "id": "I12677:66554;12677:66453;8511:466795",
+                  "type": "INSTANCE",
+                  "name": "item-list",
+                  "w": 252,
+                  "h": 32,
+                  "x": 0,
+                  "y": 136,
+                  "al": {
+                   "m": "HORIZONTAL",
+                   "pad": [
+                    0,
+                    10,
+                    0,
+                    8
+                   ],
+                   "gap": 8,
+                   "ax": "MIN",
+                   "cx": "CENTER"
+                  },
+                  "sz": [
+                   "FILL",
+                   "FIXED"
+                  ],
+                  "r": 6,
+                  "main": "item-list / Type=Black, State=Default, Icon=No, Arrow=None",
+                  "remote": true,
+                  "props": {
+                   "Name#2638:9": "Тур по Турции",
+                   "Type": "Black",
+                   "State": "Default",
+                   "Icon": "No",
+                   "Arrow": "None"
+                  }
+                 },
+                 {
+                  "id": "I12677:66554;12677:66453;8511:466803",
+                  "type": "INSTANCE",
+                  "name": "item-list",
+                  "w": 252,
+                  "h": 32,
+                  "x": 0,
+                  "y": 170,
+                  "al": {
+                   "m": "HORIZONTAL",
+                   "pad": [
+                    0,
+                    10,
+                    0,
+                    8
+                   ],
+                   "gap": 8,
+                   "ax": "MIN",
+                   "cx": "CENTER"
+                  },
+                  "sz": [
+                   "FILL",
+                   "FIXED"
+                  ],
+                  "r": 6,
+                  "main": "item-list / Type=Black, State=Default, Icon=No, Arrow=None",
+                  "remote": true,
+                  "props": {
+                   "Name#2638:9": "Тур по Турции",
+                   "Type": "Black",
+                   "State": "Default",
+                   "Icon": "No",
+                   "Arrow": "None"
+                  }
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}

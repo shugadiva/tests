@@ -1,0 +1,25 @@
+﻿{"link": "figma://file/pkcHlRm2Qy0hQ95yfJsogC?node-id=11455-43378",
+ "scenario": "Перевод на ДС 3.0, исправления после проверки Миши и Бэмби",
+ "screenshots": ["form-desktop-11463-43661.png", "form-mobile-12469-156706.png"],
+ "scales": {
+  "rating-scale 11455:43378": "все 6 вариантов FIXED 481, scale FILL, score N = button ДС a784dfac Size=L Resizable=Yes, FILL (87x48), внутренний button default FILL. Error: красная обводка перенесена с внешнего экземпляра на button default (радиус 10), двойного контура нет",
+  "nps-scale 12400:61298": "FIXED 481, scale FILL gap 8, score FILL Resizable=Yes (41x48), вылета нет",
+  "nps-scale-mob 12481:156318": "311, WRAP gap 9, score FIXED 55 Resizable=Yes, 2 ряда (высота 104)",
+  "instances": "48 экземпляров rating-scale в формах (десктоп и мобилка) переведены на FILL по родителю; на мобилке 311 видны 1-5"
+ },
+ "fixed": {
+  "detached chat buttons": "12468:157830, 12468:157923 заменены на button ДС Color=Grey, Icon=Left (message1), Size=L, Resizable=Yes, 311x48: 12694:74499, 12694:74516",
+  "booking-card 12413:79576 и booking-card-mob 12468:157530": "главные на странице бронирований, не трогала; в наших экземплярах вложенные button и copy button заменены на ДС оверрайдом",
+  "icons": "в search-field-mob и booking-card-mob экземплярах заменены на icons ДС; остальные aa66f224 лежат внутри чужих remote-компонентов (sidebar-items, Mobile header кнопки, Master-Input в Filters-List ДС) и меняются только в их библиотеке",
+  "close button": "6de15626 это ДС 3.0. 1e408429 x6 лежат внутри remote-компонента close (иконка 73:31062), не наш уровень",
+  "add-photo": "18 экземпляров HUG по высоте, 40 -> 46",
+  "Frame 18391": "15 кадров ТЭ · Desktop, FILL, 848 -> 695"
+ },
+ "notFixed": {
+  "Буттер Frame 39788": "внутри Mobile header ДС 3.0 (паддинги 20 в 40), это сама библиотека",
+  "close button 24 с вложенным 28": "внутренности компонента ДС",
+  "Frame 18346 FIXED 18 у «Показать еще», «(Ред.)»": "внутренности link ДС 3.0 (eb650b35)",
+  "Buttons 1 в Components 11465:116201": "это не кнопки и не Buttons 1: нарисованные строки 288x56 (иконка с названием площадки + «+ 500 бонусов» Regular 13) внутри нашего dialog Type=Bonus; кликабельной кнопки или строки-списка с таким видом в ДС 3.0 нет, оставлены"
+ }
+}
+
