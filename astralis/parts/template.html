@@ -188,13 +188,8 @@ textarea.field{align-items:flex-start;padding-top:14px;resize:none}
 .w-target .tile{position:absolute;left:18px;top:18px;width:30.9px;height:30.9px;border-radius:9.36px;box-shadow:inset 0 0 0 1.04px rgba(0,255,208,.3)}
 .w-target .tile img{left:6.09px;top:6.09px;width:16.64px;height:16.64px}
 .w-target .t{left:58px;top:23px;font-weight:500;font-size:14.71px;letter-spacing:-.32px;color:#F8F8F8;white-space:nowrap}
-.map{left:61.27px;top:73px;height:220.7px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6.95px}
-.map img{width:299.75px;height:175.61px;mix-blend-mode:lighten}
-.map-legend{display:flex;gap:30.28px}
-.map-legend span{display:flex;align-items:flex-start;gap:3.03px;font-size:8.69px;color:#D9D9D9}
-.map-legend i{width:10.6px;height:10.6px;border-radius:50%;overflow:hidden;position:relative;display:block}
-.map-legend i.on::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(-45deg, rgba(0,255,208,.85) 0 .76px, transparent .76px 1.69px)}
-.map-legend i.off{opacity:.5;background:rgba(255,255,255,.01);box-shadow:inset 0 0 30px rgba(255,255,255,.08), inset 0 .76px 0 rgba(255,255,255,.05)}
+.map{left:61.27px;top:73px;width:299.75px;height:220.7px}
+.map img{display:block;width:100%;height:100%}
 .crow-num{left:463.53px;font-size:10.5px;font-weight:500;color:rgba(215,215,215,.5)}
 .crow-name{left:489.53px;font-size:12px;font-weight:500;color:#D7D7D7}
 .crow-name.first,.crow-pct.first{color:#F8F8F8}
@@ -520,8 +515,7 @@ textarea.field{align-items:flex-start;padding-top:14px;resize:none}
             <span class="tile"><img src="assets/w-globe.svg" alt=""></span>
             <span class="t">Target by country</span>
             <div class="map">
-              <img src="assets/world-map.png" alt="">
-              <div class="map-legend"><span><i class="on"></i>Active</span><span><i class="off"></i>Inactive</span></div>
+              <img src="assets/world-dots.svg" alt="">
             </div>
 @@COUNTRIES@@
           </div>
